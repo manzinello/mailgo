@@ -18,5 +18,8 @@
   "bugs": {
     "url": "https://github.com/manzinello/mailgo/issues"
   },
-  "homepage": "https://github.com/manzinello/mailgo#readme"
+  "homepage": "https://github.com/manzinello/mailgo#readme",
+  "devDependencies": {
+    "gulp": "^4.0.1"
+  }
 }
