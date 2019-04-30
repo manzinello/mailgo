@@ -1,0 +1,22 @@
+{
+  "name": "mailgo",
+  "version": "0.1.0",
+  "description": "a different mailto",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manzinello/mailgo.git"
+  },
+  "keywords": [
+    "mailto"
+  ],
+  "author": "Matteo Manzinello",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/manzinello/mailgo/issues"
+  },
+  "homepage": "https://github.com/manzinello/mailgo#readme"
+}
