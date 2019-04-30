@@ -9,6 +9,7 @@ mailtos.forEach(mailto => {
     "click",
     event => {
       event.preventDefault();
+      alert("clicked");
     },
     false
   );
