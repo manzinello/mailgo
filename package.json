@@ -2,7 +2,7 @@
   "name": "mailgo",
   "version": "0.1.0",
   "description": "a different mailto",
-  "main": "index.js",
+  "main": "src/mailgo.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,11 +18,9 @@
   "bugs": {
     "url": "https://github.com/manzinello/mailgo/issues"
   },
-  "homepage": "https://github.com/manzinello/mailgo#readme",
+  "homepage": "https://mailgo.js.org",
   "devDependencies": {
     "gulp": "^4.0.1",
-    "gulp-terser": "^1.1.7",
-    "gulp-uglify": "^3.0.2",
-    "readable-stream": "^3.3.0"
+    "gulp-terser": "^1.1.7"
   }
 }
