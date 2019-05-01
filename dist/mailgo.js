@@ -1,2 +1,27 @@
-let mailtos=document.querySelectorAll('a[href^="mailto:"]');console.log("mailgo is WIP"),mailtos.forEach(e=>{e.addEventListener("click",l=>{l.preventDefault(),!0===confirm("You have clicked mailto: "+e.href)&&(location.href=e.href)},!1)});
-//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIm1haWxnby5qcyJdLCJuYW1lcyI6WyJtYWlsdG9zIiwiZG9jdW1lbnQiLCJxdWVyeVNlbGVjdG9yQWxsIiwiY29uc29sZSIsImxvZyIsImZvckVhY2giLCJtYWlsdG8iLCJhZGRFdmVudExpc3RlbmVyIiwiZXZlbnQiLCJwcmV2ZW50RGVmYXVsdCIsImNvbmZpcm0iLCJocmVmIiwibG9jYXRpb24iXSwibWFwcGluZ3MiOiJBQUNBLElBQUlBLFFBQVVDLFNBQVNDLGlCQUFpQixzQkFFeENDLFFBQVFDLElBQUksaUJBR1pKLFFBQVFLLFFBQVFDLElBU2RBLEVBQU9DLGlCQUNMLFFBQ0FDLElBQ0VBLEVBQU1DLGtCQUVJLElBREZDLFFBQVEsNEJBQThCSixFQUFPSyxRQUVuREMsU0FBU0QsS0FBT0wsRUFBT0ssUUFHM0IiLCJmaWxlIjoibWFpbGdvLmpzIn0=
+// ottengo tutti i mailto contenuti nella pagina
+let mailtos = document.querySelectorAll('a[href^="mailto:"]');
+
+console.log("mailgo is WIP");
+
+// attivo mailgo su tutti gli elementi
+mailtos.forEach(mailto => {
+  /*
+  var newDiv = document.createElement("div");
+  var newContent = document.createTextNode("hi!");
+  newDiv.appendChild(newContent);
+
+  mailto.parentNode.insertBefore(newDiv, mailto.nextSibling);
+  */
+
+  mailto.addEventListener(
+    "click",
+    event => {
+      event.preventDefault();
+      let r = confirm("You have clicked mailto: " + mailto.href);
+      if (r === true) {
+        location.href = mailto.href;
+      }
+    },
+    false
+  );
+});
