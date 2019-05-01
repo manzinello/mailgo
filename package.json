@@ -20,6 +20,9 @@
   },
   "homepage": "https://github.com/manzinello/mailgo#readme",
   "devDependencies": {
-    "gulp": "^4.0.1"
+    "gulp": "^4.0.1",
+    "gulp-terser": "^1.1.7",
+    "gulp-uglify": "^3.0.2",
+    "readable-stream": "^3.3.0"
   }
 }
