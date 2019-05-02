@@ -1,5 +1,7 @@
-// Your CSS as text
-var styles = `
+// ottengo tutti i mailto contenuti nella pagina
+let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
+
+let styles = `
     .mailgo-modal-container {
       background: white;
     }
@@ -10,10 +12,7 @@ styleSheet.type = "text/css";
 styleSheet.innerText = styles;
 document.head.appendChild(styleSheet);
 
-// ottengo tutti i mailto contenuti nella pagina
-let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
-
-console.log("mailgo is WIP");
+console.log("mailgo is WIP!");
 
 // attivo mailgo su tutti gli elementi
 mailgos.forEach(mailgo => {
@@ -34,14 +33,6 @@ mailgos.forEach(mailgo => {
     event => {
       // blocco l'esecuzione normale del mailto:
       event.preventDefault();
-
-      // mostro un alert
-      /*
-      let r = confirm("You have clicked mailto: " + mailto.href);
-      if (r === true) {
-        location.href = mailto.href;
-      }
-      */
     },
     false
   );
