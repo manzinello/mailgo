@@ -1,4 +1,14 @@
-import "./mailgo.css";
+// Your CSS as text
+var styles = `
+    .mailgo-modal-container {
+      background: white;
+    }
+`;
+
+let styleSheet = document.createElement("style");
+styleSheet.type = "text/css";
+styleSheet.innerText = styles;
+document.head.appendChild(styleSheet);
 
 // ottengo tutti i mailto contenuti nella pagina
 let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
