@@ -24,8 +24,10 @@ mailgos.forEach(mailgo => {
   modalContainer.appendChild(modal);
 
   let modalContent = document.createTextNode("mailgo");
+
   modal.appendChild(modalContent);
 
+  modalContainer.style.display = "none";
   mailgo.parentNode.insertBefore(modalContainer, mailgo.nextSibling);
 
   mailgo.addEventListener(
@@ -33,6 +35,7 @@ mailgos.forEach(mailgo => {
     event => {
       // blocco l'esecuzione normale del mailto:
       event.preventDefault();
+      mailgo.nextElementSibling.style.display = "block";
     },
     false
   );
