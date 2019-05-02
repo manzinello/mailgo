@@ -4,6 +4,7 @@ let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 let styles = `
     .mailgo-modal-container {
       background: white;
+      color:red;
     }
 `;
 
