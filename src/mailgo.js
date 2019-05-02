@@ -5,11 +5,17 @@ console.log("mailgo is WIP");
 
 // attivo mailgo su tutti gli elementi
 mailgos.forEach(mailgo => {
-  let modalDiv = document.createElement("div");
-  let modalContent = document.createTextNode("hi!");
-  modalDiv.appendChild(modalContent);
+  let modalContainer = document.createElement("div");
+  modalContainer.className = "mailgo-modal-container";
+  let modal = document.createElement("div");
+  modal.className = "mailgo-modal";
 
-  mailgo.parentNode.insertBefore(newDiv, mailto.nextSibling);
+  modalContainer.appendChild(modal);
+
+  let modalContent = document.createTextNode("mailgo");
+  modal.appendChild(modalContent);
+
+  mailgo.parentNode.insertBefore(modalContainer, mailgo.nextSibling);
 
   mailgo.addEventListener(
     "click",
