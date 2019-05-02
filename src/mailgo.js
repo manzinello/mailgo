@@ -16,7 +16,10 @@ mailtos.forEach(mailto => {
   mailto.addEventListener(
     "click",
     event => {
+      // blocco l'esecuzione normale del mailto:
       event.preventDefault();
+
+      // mostro un alert
       let r = confirm("You have clicked mailto: " + mailto.href);
       if (r === true) {
         location.href = mailto.href;
