@@ -1,17 +1,17 @@
 // ottengo tutti i mailto contenuti nella pagina
-let mailtos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
+let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
 console.log("mailgo is WIP");
 
 // attivo mailgo su tutti gli elementi
-mailtos.forEach(mailto => {
-  let newDiv = document.createElement("div");
-  let newContent = document.createTextNode("hi!");
-  newDiv.appendChild(newContent);
+mailgos.forEach(mailgo => {
+  let modalDiv = document.createElement("div");
+  let modalContent = document.createTextNode("hi!");
+  modalDiv.appendChild(modalContent);
 
-  mailto.parentNode.insertBefore(newDiv, mailto.nextSibling);
+  mailgo.parentNode.insertBefore(newDiv, mailto.nextSibling);
 
-  mailto.addEventListener(
+  mailgo.addEventListener(
     "click",
     event => {
       // blocco l'esecuzione normale del mailto:
