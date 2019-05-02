@@ -21,6 +21,8 @@
   "homepage": "https://mailgo.js.org",
   "devDependencies": {
     "gulp": "^4.0.1",
-    "gulp-terser": "^1.1.7"
+    "gulp-terser": "^1.1.7",
+    "webpack": "^4.30.0",
+    "webpack-cli": "^3.3.1"
   }
 }

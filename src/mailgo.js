@@ -1,3 +1,5 @@
+import "./mailgo.css";
+
 // ottengo tutti i mailto contenuti nella pagina
 let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
