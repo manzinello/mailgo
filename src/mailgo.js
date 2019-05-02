@@ -1,5 +1,5 @@
 // ottengo tutti i mailto contenuti nella pagina
-let mailtos = document.querySelectorAll('a[href^="mailto:"]');
+let mailtos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
 console.log("mailgo is WIP");
 
