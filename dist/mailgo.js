@@ -2,6 +2,19 @@
 let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
 let styles = `
+
+    .mailgo-modal {
+      all: initial;
+      * {
+        all: unset;
+      }
+    }
+
+    .mailgo-title {
+      display: block;
+      margin-bottom: 16px;
+    }
+
     .mailgo-modal-background {
       position: absolute;
       top: 0;
@@ -27,13 +40,40 @@ let styles = `
     }
     .mailgo-modal-content {
       z-index: 1000;
-      width: 400px;
+      text-align: center;
+      width: 200px;
       background-color: #fff;
       border-radius: 6px;
       box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
       color: #4a4a4a;
       display: block;
       padding: 1.25rem;
+    }
+    .mailgo-modal-content a {
+      display: block;
+      color: #4a4a4a;
+      padding: 10px;
+      border-radius: 4px;
+      text-decoration: none;
+    }
+    .mailgo-modal-content a:hover {
+      background-color: rgba(0, 0, 0, 0.08);
+    }
+    .mailgo-modal-content a.outlook {
+      color: rgba(0, 114, 198);
+    }
+    .mailgo-modal-content a.gmail {
+      color: rgba(212, 70, 56);
+    }
+    .mailgo-modal-content a.outlook:hover {
+      background-color: rgba(0, 114, 198, 0.08);
+    }
+    .mailgo-modal-content a.gmail:hover {
+      background-color: rgba(212, 70, 56, 0.08);
+    }
+    a.mailgo-copy {
+      margin-top: 10px;
+      padding: 16px 10px;
     }
 `;
 
@@ -51,8 +91,6 @@ mailgos.forEach((mailgo, index) => {
     .split("?")[0]
     .split("mailto:")[1]
     .trim();
-
-  console.log(mail);
 
   if (!validateEmail(mail)) return;
 
@@ -76,10 +114,46 @@ mailgos.forEach((mailgo, index) => {
   modalContent.className = "mailgo-modal-content";
   modal.appendChild(modalContent);
 
+  // titolo (l'email)
   let strong = document.createElement("strong");
+  strong.className = "mailgo-title";
   let strongContent = document.createTextNode(mail);
   strong.appendChild(strongContent);
   modalContent.appendChild(strong);
+
+  // Gmail
+  let gmail = document.createElement("a");
+  gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
+  gmail.classList.add("mailgo-open");
+  gmail.classList.add("gmail");
+  let gmailContent = document.createTextNode("open in Gmail");
+  gmail.appendChild(gmailContent);
+  modalContent.appendChild(gmail);
+
+  // Outlook
+  let outlook = document.createElement("a");
+  outlook.href =
+    "https://outlook.office.com/owa/?rru=compose&to=" + mail + url.search;
+  outlook.classList.add("mailgo-open");
+  outlook.classList.add("outlook");
+  let outlookContent = document.createTextNode("open in Outlook");
+  outlook.appendChild(outlookContent);
+  modalContent.appendChild(outlook);
+
+  // default
+  let open = document.createElement("a");
+  open.href = mailgo.href;
+  open.className = "mailgo-open";
+  let openContent = document.createTextNode("open");
+  open.appendChild(openContent);
+  modalContent.appendChild(open);
+
+  // copia l'email
+  let copy = document.createElement("a");
+  copy.className = "mailgo-copy";
+  let copyContent = document.createTextNode("copy");
+  copy.appendChild(copyContent);
+  modalContent.appendChild(copy);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
