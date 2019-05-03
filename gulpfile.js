@@ -1,11 +1,10 @@
 const { src, dest, parallel } = require("gulp");
+
 const terser = require("gulp-terser");
 const rename = require("gulp-rename");
 
 function js() {
-  return src("src/*.js", { sourcemaps: false }).pipe(
-    dest("dist", { sourcemaps: false })
-  );
+  return src("src/*.js").pipe(dest("dist"));
 }
 
 function jsmin() {
