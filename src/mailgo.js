@@ -18,6 +18,7 @@ let styles = `
       bottom: 0;
       left: 0;
       display: none;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
     }
     .mailgo-modal.is-active {
       display: flex;
@@ -60,7 +61,9 @@ mailgos.forEach((mailgo, index) => {
   modalContent.className = "mailgo-modal-content";
   modal.appendChild(modalContent);
 
-  let strong = document.createTextNode("mailgo");
+  let strong = document.createElement("strong");
+  let strongContent = document.createTextNode("mailgo");
+  strong.appendChild(strongContent);
   modalContent.appendChild(strong);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
