@@ -75,6 +75,15 @@ let styles = `
       margin-top: 10px;
       padding: 16px 10px;
     }
+    .mailgo-by {
+      display: block;
+      font-size: 8px;
+      padding: 5px;
+      margin-top: 0.75rem;
+    }
+    .mailgo-by:hover {
+      background-color: none;
+    }
 `;
 
 // CSS
@@ -121,6 +130,12 @@ mailgos.forEach((mailgo, index) => {
   strong.appendChild(strongContent);
   modalContent.appendChild(strong);
 
+  // details
+  let details = document.createElement("div");
+  details.className = "mailgo-details";
+
+  modalContent.appendChild(details);
+
   // Gmail
   let gmail = document.createElement("a");
   gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
@@ -163,6 +178,16 @@ mailgos.forEach((mailgo, index) => {
     false
   );
   modalContent.appendChild(copy);
+
+  // details
+  let by = document.createElement("a");
+  by.href = "https://mailgo.js.org";
+  by.className = "mailgo-by";
+
+  let textBy = document.createTextNode("mailgo.js.org");
+  by.appendChild(textBy);
+
+  modalContent.appendChild(by);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
