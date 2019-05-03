@@ -60,10 +60,10 @@ let styles = `
       background-color: rgba(0, 0, 0, 0.08);
     }
     .mailgo-modal-content a.outlook {
-      color: rgba(0, 114, 198);
+      color: #0072C6;
     }
     .mailgo-modal-content a.gmail {
-      color: rgba(212, 70, 56);
+      color: #D44638;
     }
     .mailgo-modal-content a.outlook:hover {
       background-color: rgba(0, 114, 198, 0.08);
