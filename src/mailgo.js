@@ -8,7 +8,7 @@ let styles = `
       right: 0;
       bottom: 0;
       left: 0;
-      background-color: black;
+      background-color: rgba(10,10,10,.86);
       opacity: 0.8;
     }
     .mailgo-modal {
@@ -26,10 +26,12 @@ let styles = `
     }
     .mailgo-modal-content {
       z-index: 1000;
-      border-radius: 8px;
-      background: white;
-      padding: 24px;
-      margin: 24px;
+      background-color: #fff;
+      border-radius: 6px;
+      box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+      color: #4a4a4a;
+      display: block;
+      padding: 1.25rem;
     }
 `;
 
@@ -68,6 +70,14 @@ mailgos.forEach((mailgo, index) => {
 
       // setto il modal come attivo
       mailgo.nextElementSibling.classList.add("is-active");
+    },
+    false
+  );
+
+  modalBackground.addEventListener(
+    "click",
+    event => {
+      mailgo.nextElementSibling.classList.remove("is-active");
     },
     false
   );
