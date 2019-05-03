@@ -20,6 +20,7 @@
   "homepage": "https://mailgo.js.org",
   "devDependencies": {
     "gulp": "^4.0.1",
+    "gulp-rename": "^1.4.0",
     "gulp-terser": "^1.1.7"
   }
 }
