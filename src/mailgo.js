@@ -47,7 +47,7 @@ console.log("mailgo is WIP!");
 mailgos.forEach((mailgo, index) => {
   let modal = document.createElement("div");
   modal.className = "mailgo-modal";
-  modal.id = "mailgo-modal-" + index;
+  modal.setAttribute("data-index", index);
 
   let modalBackground = document.createElement("div");
   modalBackground.className = "mailgo-modal-background";
@@ -82,3 +82,8 @@ mailgos.forEach((mailgo, index) => {
     false
   );
 });
+
+function validateEmail(email) {
+  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
+}
