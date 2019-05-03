@@ -47,10 +47,16 @@ console.log("mailgo is WIP!");
 
 // attivo mailgo su tutti gli elementi
 mailgos.forEach((mailgo, index) => {
+  let mail = mailgo.href
+    .split("?")[0]
+    .split("mailto:")[1]
+    .trim();
+
+  if (!validateEmail(mail)) return;
+
   let url = new URL(mailgo.href);
   let urlParams = new URLSearchParams(url.search);
 
-  let mail = url.split("?")[0];
   let subject = urlParams.get("subject");
   let body = urlParams.get("body");
   let cc = urlParams.get("cc");
