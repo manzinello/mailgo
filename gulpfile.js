@@ -1,4 +1,5 @@
 const { src, dest, parallel } = require("gulp");
+const terser = require("gulp-terser");
 
 function js() {
   return src("src/*.js", { sourcemaps: false }).pipe(
@@ -6,5 +7,12 @@ function js() {
   );
 }
 
+function jsmin() {
+  return src("src/*.js")
+    .pipe(terser())
+    .pipe(dest("dist"));
+}
+
 exports.js = js;
-exports.default = parallel(js);
+exports.jsmin = jsmin;
+exports.default = parallel(js, jsmin);
