@@ -1,5 +1,6 @@
 const { src, dest, parallel } = require("gulp");
 
+const uglify = require("gulp-uglify");
 const terser = require("gulp-terser");
 const rename = require("gulp-rename");
 

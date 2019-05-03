@@ -45,6 +45,12 @@ console.log("mailgo is WIP!");
 
 // attivo mailgo su tutti gli elementi
 mailgos.forEach((mailgo, index) => {
+  let url = new URL(mailgo.href);
+  const urlParams = new URLSearchParams(url.search);
+  console.log("cc:" + urlParams.get("cc"));
+
+  console.log();
+
   let modal = document.createElement("div");
   modal.className = "mailgo-modal";
   modal.setAttribute("data-index", index);
@@ -57,8 +63,8 @@ mailgos.forEach((mailgo, index) => {
   modalContent.className = "mailgo-modal-content";
   modal.appendChild(modalContent);
 
-  let text = document.createTextNode("mailgo");
-  modalContent.appendChild(text);
+  let strong = document.createTextNode("mailgo");
+  modalContent.appendChild(strong);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
