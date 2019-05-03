@@ -10,6 +10,14 @@ let styles = `
       left: 0;
       display: none;
     }
+    .mailgo-modal-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: black;
+    }
     .mailgo-modal.is-active {
       display: flex;
       justify-content: center;
@@ -35,9 +43,12 @@ mailgos.forEach((mailgo, index) => {
   modal.className = "mailgo-modal";
   modal.id = "mailgo-modal-" + index;
 
+  let modalBackground = document.createElement("div");
+  modalBackground.className = "mailgo-modal-background";
+  modal.appendChild(modalBackground);
+
   let modalContent = document.createElement("div");
   modalContent.className = "mailgo-modal-content";
-
   modal.appendChild(modalContent);
 
   let text = document.createTextNode("mailgo");
