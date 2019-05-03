@@ -3,17 +3,21 @@ let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
 let styles = `
     .mailgo-modal {
-      position:fixed;
-      top:0;
-      right:0;
-      bottom:0;
-      left:0;
-      display:none;
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      display: none;
     }
     .mailgo-modal.is-active {
-      display:flex;
-      justify-content:center;
-      align-items:center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .mailgo-modal-content {
+      padding: 24px;
+      margin: 24px;
     }
 `;
 
