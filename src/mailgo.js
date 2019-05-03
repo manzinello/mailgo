@@ -2,6 +2,15 @@
 let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
 let styles = `
+    .mailgo-modal-background {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      background-color: black;
+      opacity: 0.8;
+    }
     .mailgo-modal {
       position: fixed;
       top: 0;
@@ -10,20 +19,15 @@ let styles = `
       left: 0;
       display: none;
     }
-    .mailgo-modal-background {
-      position: absolute;
-      top: 0;
-      right: 0;
-      bottom: 0;
-      left: 0;
-      background-color: black;
-    }
     .mailgo-modal.is-active {
       display: flex;
       justify-content: center;
       align-items: center;
     }
     .mailgo-modal-content {
+      z-index: 1000;
+      border-radius: 8px;
+      background: white;
       padding: 24px;
       margin: 24px;
     }
