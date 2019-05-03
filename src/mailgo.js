@@ -154,7 +154,14 @@ mailgos.forEach((mailgo, index) => {
   copy.className = "mailgo-copy";
   let copyContent = document.createTextNode("copy");
   copy.appendChild(copyContent);
-  copy.addEventListener("click", event => {}, false);
+  copy.addEventListener(
+    "click",
+    event => {
+      copyToClipboard(mail);
+      copy.innerHTML = "copied!";
+    },
+    false
+  );
   modalContent.appendChild(copy);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);

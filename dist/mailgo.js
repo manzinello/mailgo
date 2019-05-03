@@ -150,9 +150,18 @@ mailgos.forEach((mailgo, index) => {
 
   // copia l'email
   let copy = document.createElement("a");
+  copy.href = "#mailgo-copy";
   copy.className = "mailgo-copy";
   let copyContent = document.createTextNode("copy");
   copy.appendChild(copyContent);
+  copy.addEventListener(
+    "click",
+    event => {
+      copyToClipboard(mail);
+      copy.innerHTML = "copied!";
+    },
+    false
+  );
   modalContent.appendChild(copy);
 
   mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
@@ -181,4 +190,24 @@ mailgos.forEach((mailgo, index) => {
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
+}
+
+function copyToClipboard(str) {
+  const el = document.createElement("textarea");
+  el.value = str;
+  el.setAttribute("readonly", "");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  document.body.appendChild(el);
+  const selected =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  if (selected) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selected);
+  }
 }
