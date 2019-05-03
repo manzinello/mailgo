@@ -27,6 +27,7 @@ let styles = `
     }
     .mailgo-modal-content {
       z-index: 1000;
+      width: 400px;
       background-color: #fff;
       border-radius: 6px;
       box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
@@ -49,6 +50,12 @@ mailgos.forEach((mailgo, index) => {
   let url = new URL(mailgo.href);
   let urlParams = new URLSearchParams(url.search);
 
+  let mail = url.hostname;
+  let subject = urlParams.get("subject");
+  let body = urlParams.get("body");
+  let cc = urlParams.get("cc");
+  let bcc = urlParams.get("bcc");
+
   let modal = document.createElement("div");
   modal.className = "mailgo-modal";
   modal.setAttribute("data-index", index);
@@ -62,7 +69,7 @@ mailgos.forEach((mailgo, index) => {
   modal.appendChild(modalContent);
 
   let strong = document.createElement("strong");
-  let strongContent = document.createTextNode("mailgo");
+  let strongContent = document.createTextNode(mail);
   strong.appendChild(strongContent);
   modalContent.appendChild(strong);
 
