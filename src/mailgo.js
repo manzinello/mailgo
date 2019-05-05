@@ -1,20 +1,14 @@
-// ottengo tutti i mailto contenuti nella pagina
-let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
-
 let styles = `
-
     .mailgo-modal {
       all: initial;
       * {
         all: unset;
       }
     }
-
     .mailgo-title {
       display: block;
       margin-bottom: 16px;
     }
-
     .mailgo-modal-background {
       position: absolute;
       top: 0;
@@ -87,6 +81,9 @@ let styles = `
     }
 `;
 
+// ottengo tutti i mailto contenuti nella pagina
+let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
+
 // CSS
 let styleSheet = document.createElement("style");
 styleSheet.type = "text/css";
@@ -96,7 +93,7 @@ document.head.appendChild(styleSheet);
 console.log("mailgo is WIP!");
 
 // attivo mailgo su tutti gli elementi
-mailgos.forEach((mailgo, index) => {
+mailgos.forEach(function(mailgo, index) {
   let mail = mailgo.href
     .split("?")[0]
     .split("mailto:")[1]
@@ -186,7 +183,7 @@ mailgos.forEach((mailgo, index) => {
   copy.appendChild(copyContent);
   copy.addEventListener(
     "click",
-    event => {
+    function(event) {
       copyToClipboard(mail);
       copy.innerHTML = "copied!";
     },
@@ -209,7 +206,7 @@ mailgos.forEach((mailgo, index) => {
 
   mailgo.addEventListener(
     "click",
-    event => {
+    function(event) {
       // blocco l'esecuzione normale del mailto:
       event.preventDefault();
 
@@ -221,7 +218,7 @@ mailgos.forEach((mailgo, index) => {
 
   modalBackground.addEventListener(
     "click",
-    event => {
+    function(event) {
       mailgo.nextElementSibling.classList.remove("is-active");
     },
     false
