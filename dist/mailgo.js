@@ -3,7 +3,7 @@ function mailgoInit() {
   let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
   let styles = `
-    .mailgo-modal {
+    .mailgo {
       all: initial;
       * {
         all: unset;
@@ -87,6 +87,7 @@ function mailgoInit() {
       font-size: 8px;
       margin-top: 1rem;
       padding: 0px;
+      font-style: italic;
     }
     .mailgo-weight-500 {
       font-weight: 500;
