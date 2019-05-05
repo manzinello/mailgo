@@ -7,7 +7,13 @@ let styles = `
     }
     .mailgo-title {
       display: block;
-      margin-bottom: 16px;
+      margin-bottom: 5px;
+    }
+    .mailgo-details {
+      font-size: 12px;
+    }
+    .mailgo-details p {
+      margin-top: 5px;
     }
     .mailgo-modal-background {
       position: absolute;
@@ -100,20 +106,21 @@ function mailgoInit() {
       .split("mailto:")[1]
       .trim();
 
-    if (!validateEmail(mail)) return;
-
     let url = new URL(mailgo.href);
     let urlParams = new URLSearchParams(url.search);
 
-    let subject = urlParams.get("subject");
-    let body = urlParams.get("body");
     let cc = urlParams.get("cc");
     let bcc = urlParams.get("bcc");
+    let subject = urlParams.get("subject");
+    let bodyMail = urlParams.get("body");
+
+    if (!validateEmail(mail)) return;
 
     let modal = document.createElement("div");
     modal.className = "mailgo-modal";
     modal.setAttribute("data-index", index);
 
+    // background
     let modalBackground = document.createElement("div");
     modalBackground.className = "mailgo-modal-background";
     modal.appendChild(modalBackground);
@@ -132,6 +139,54 @@ function mailgoInit() {
     // details
     let details = document.createElement("div");
     details.className = "mailgo-details";
+
+    if (cc != "") {
+      let detailCC = document.createElement("p");
+      let ccSpan = document.createElement("span");
+      ccSpan.className = "mailgo-weight-500";
+      let ccContent = document.createTextNode("cc");
+      ccSpan.appendChild(ccContent);
+      let ccValue = document.createTextNode(": " + cc);
+      detailCC.appendChild(ccSpan);
+      detailCC.appendChild(ccValue);
+      details.appendChild(detailCC);
+    }
+
+    if (bcc != "") {
+      let detailBCC = document.createElement("p");
+      let bccSpan = document.createElement("span");
+      bccSpan.className = "mailgo-weight-500";
+      let bccContent = document.createTextNode("bcc");
+      bccSpan.appendChild(ccContent);
+      let bccValue = document.createTextNode(": " + bcc);
+      detailBCC.appendChild(bccSpan);
+      detailBCC.appendChild(bccValue);
+      details.appendChild(detailBCC);
+    }
+
+    if (subject != "") {
+      let detailSUBJECT = document.createElement("p");
+      let subjectSpan = document.createElement("span");
+      subjectSpan.className = "mailgo-weight-500";
+      let subjectContent = document.createTextNode("cc");
+      subjectSpan.appendChild(subjectContent);
+      let subjectValue = document.createTextNode(": " + subject);
+      detailSUBJECT.appendChild(subjectSpan);
+      detailSUBJECT.appendChild(subjectValue);
+      details.appendChild(detailSUBJECT);
+    }
+
+    if (bodyMail != "") {
+      let detailBODY = document.createElement("p");
+      let bodySpan = document.createElement("span");
+      bodySpan.className = "mailgo-weight-500";
+      let bodyContent = document.createTextNode("cc");
+      bodySpan.appendChild(bodyContent);
+      let bodyValue = document.createTextNode(": " + body);
+      detailBODY.appendChild(bodySpan);
+      detailBODY.appendChild(bodyValue);
+      details.appendChild(detailBODY);
+    }
 
     modalContent.appendChild(details);
 
@@ -228,7 +283,7 @@ function mailgoInit() {
   });
 }
 
-document.addEventListener("load", mailgoInit);
+document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
