@@ -82,6 +82,9 @@ let styles = `
       font-size: 8px;
       margin-top: 0.75rem;
     }
+    .mailgo-weight-500 {
+      font-weight: 500;
+    }
 `;
 
 // CSS
@@ -140,10 +143,13 @@ mailgos.forEach((mailgo, index) => {
   gmail.classList.add("mailgo-open");
   gmail.classList.add("gmail");
   let gmailContent = document.createTextNode("open in ");
+  gmail.appendChild(gmailContent);
   let gmailSpan = document.createElement("span");
   gmailSpan.className = "mailgo-weight-500";
-  gmail.appendChild(gmailContent);
-  gmailSpan.parentNode.insertBefore(gmailContent);
+  let gmailSpanContent = document.createTextNode("Gmail");
+  gmailSpan.appendChild(gmailSpanContent);
+  gmail.appendChild(gmailSpan);
+
   modalContent.appendChild(gmail);
 
   // Outlook
@@ -152,14 +158,21 @@ mailgos.forEach((mailgo, index) => {
     "https://outlook.office.com/owa/?rru=compose&to=" + mail + url.search;
   outlook.classList.add("mailgo-open");
   outlook.classList.add("outlook");
-  let outlookContent = document.createTextNode("open in Outlook");
+  let outlookContent = document.createTextNode("open in ");
   outlook.appendChild(outlookContent);
+  let outlookSpan = document.createElement("span");
+  outlookSpan.className = "mailgo-weight-500";
+  let outlookSpanContent = document.createTextNode("Outlook");
+  outlookSpan.appendChild(outlookSpanContent);
+  outlook.appendChild(outlookSpan);
+
   modalContent.appendChild(outlook);
 
   // default
   let open = document.createElement("a");
   open.href = mailgo.href;
-  open.className = "mailgo-open";
+  open.classList.add("mailgo-open");
+  open.classList.add("mailgo-weight-500");
   let openContent = document.createTextNode("open");
   open.appendChild(openContent);
   modalContent.appendChild(open);
@@ -167,7 +180,8 @@ mailgos.forEach((mailgo, index) => {
   // copia l'email
   let copy = document.createElement("a");
   copy.href = "#mailgo-copy";
-  copy.className = "mailgo-copy";
+  copy.classList.add("mailgo-copy");
+  copy.classList.add("mailgo-weight-500");
   let copyContent = document.createTextNode("copy");
   copy.appendChild(copyContent);
   copy.addEventListener(
