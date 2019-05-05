@@ -11,9 +11,11 @@ let styles = `
     }
     .mailgo-details {
       font-size: 12px;
+      margin-bottom: 10px;
     }
     .mailgo-details p {
-      margin-top: 5px;
+      margin-top: 3px;
+      margin-bottom: 3px;
     }
     .mailgo-modal-background {
       position: absolute;
@@ -140,7 +142,7 @@ function mailgoInit() {
     let details = document.createElement("div");
     details.className = "mailgo-details";
 
-    if (cc != "") {
+    if (cc && cc != "") {
       let detailCC = document.createElement("p");
       let ccSpan = document.createElement("span");
       ccSpan.className = "mailgo-weight-500";
@@ -152,19 +154,19 @@ function mailgoInit() {
       details.appendChild(detailCC);
     }
 
-    if (bcc != "") {
+    if (bcc && bcc != "") {
       let detailBCC = document.createElement("p");
       let bccSpan = document.createElement("span");
       bccSpan.className = "mailgo-weight-500";
       let bccContent = document.createTextNode("bcc");
-      bccSpan.appendChild(ccContent);
+      bccSpan.appendChild(bccContent);
       let bccValue = document.createTextNode(": " + bcc);
       detailBCC.appendChild(bccSpan);
       detailBCC.appendChild(bccValue);
       details.appendChild(detailBCC);
     }
 
-    if (subject != "") {
+    if (subject && subject != "") {
       let detailSUBJECT = document.createElement("p");
       let subjectSpan = document.createElement("span");
       subjectSpan.className = "mailgo-weight-500";
@@ -176,13 +178,13 @@ function mailgoInit() {
       details.appendChild(detailSUBJECT);
     }
 
-    if (bodyMail != "") {
+    if (bodyMail && bodyMail != "") {
       let detailBODY = document.createElement("p");
       let bodySpan = document.createElement("span");
       bodySpan.className = "mailgo-weight-500";
       let bodyContent = document.createTextNode("cc");
       bodySpan.appendChild(bodyContent);
-      let bodyValue = document.createTextNode(": " + body);
+      let bodyValue = document.createTextNode(": " + bodyMail);
       detailBODY.appendChild(bodySpan);
       detailBODY.appendChild(bodyValue);
       details.appendChild(detailBODY);
