@@ -1,4 +1,8 @@
-let styles = `
+function mailgoInit() {
+  // ottengo tutti i mailto contenuti nella pagina
+  let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
+
+  let styles = `
     .mailgo-modal {
       all: initial;
       * {
@@ -86,14 +90,8 @@ let styles = `
     }
     .mailgo-weight-500 {
       font-weight: 500;
-    }
-`;
+    }`;
 
-function mailgoInit() {
-  // ottengo tutti i mailto contenuti nella pagina
-  let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
-
-  // CSS
   let styleSheet = document.createElement("style");
   styleSheet.type = "text/css";
   styleSheet.innerText = styles;
