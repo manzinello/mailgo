@@ -81,149 +81,154 @@ let styles = `
     }
 `;
 
-// ottengo tutti i mailto contenuti nella pagina
-let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
+function mailgoInit() {
+  // ottengo tutti i mailto contenuti nella pagina
+  let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
 
-// CSS
-let styleSheet = document.createElement("style");
-styleSheet.type = "text/css";
-styleSheet.innerText = styles;
-document.head.appendChild(styleSheet);
+  // CSS
+  let styleSheet = document.createElement("style");
+  styleSheet.type = "text/css";
+  styleSheet.innerText = styles;
+  document.head.appendChild(styleSheet);
 
-console.log("mailgo is WIP!");
+  console.log("mailgo is WIP!");
 
-// attivo mailgo su tutti gli elementi
-mailgos.forEach(function(mailgo, index) {
-  let mail = mailgo.href
-    .split("?")[0]
-    .split("mailto:")[1]
-    .trim();
+  // attivo mailgo su tutti gli elementi
+  mailgos.forEach(function(mailgo, index) {
+    let mail = mailgo.href
+      .split("?")[0]
+      .split("mailto:")[1]
+      .trim();
 
-  if (!validateEmail(mail)) return;
+    if (!validateEmail(mail)) return;
 
-  let url = new URL(mailgo.href);
-  let urlParams = new URLSearchParams(url.search);
+    let url = new URL(mailgo.href);
+    let urlParams = new URLSearchParams(url.search);
 
-  let subject = urlParams.get("subject");
-  let body = urlParams.get("body");
-  let cc = urlParams.get("cc");
-  let bcc = urlParams.get("bcc");
+    let subject = urlParams.get("subject");
+    let body = urlParams.get("body");
+    let cc = urlParams.get("cc");
+    let bcc = urlParams.get("bcc");
 
-  let modal = document.createElement("div");
-  modal.className = "mailgo-modal";
-  modal.setAttribute("data-index", index);
+    let modal = document.createElement("div");
+    modal.className = "mailgo-modal";
+    modal.setAttribute("data-index", index);
 
-  let modalBackground = document.createElement("div");
-  modalBackground.className = "mailgo-modal-background";
-  modal.appendChild(modalBackground);
+    let modalBackground = document.createElement("div");
+    modalBackground.className = "mailgo-modal-background";
+    modal.appendChild(modalBackground);
 
-  let modalContent = document.createElement("div");
-  modalContent.className = "mailgo-modal-content";
-  modal.appendChild(modalContent);
+    let modalContent = document.createElement("div");
+    modalContent.className = "mailgo-modal-content";
+    modal.appendChild(modalContent);
 
-  // titolo (l'email)
-  let strong = document.createElement("strong");
-  strong.className = "mailgo-title";
-  let strongContent = document.createTextNode(mail);
-  strong.appendChild(strongContent);
-  modalContent.appendChild(strong);
+    // titolo (l'email)
+    let strong = document.createElement("strong");
+    strong.className = "mailgo-title";
+    let strongContent = document.createTextNode(mail);
+    strong.appendChild(strongContent);
+    modalContent.appendChild(strong);
 
-  // details
-  let details = document.createElement("div");
-  details.className = "mailgo-details";
+    // details
+    let details = document.createElement("div");
+    details.className = "mailgo-details";
 
-  modalContent.appendChild(details);
+    modalContent.appendChild(details);
 
-  // Gmail
-  let gmail = document.createElement("a");
-  gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
-  gmail.classList.add("mailgo-open");
-  gmail.classList.add("gmail");
-  let gmailContent = document.createTextNode("open in ");
-  gmail.appendChild(gmailContent);
-  let gmailSpan = document.createElement("span");
-  gmailSpan.className = "mailgo-weight-500";
-  let gmailSpanContent = document.createTextNode("Gmail");
-  gmailSpan.appendChild(gmailSpanContent);
-  gmail.appendChild(gmailSpan);
+    // Gmail
+    let gmail = document.createElement("a");
+    gmail.href =
+      "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
+    gmail.classList.add("mailgo-open");
+    gmail.classList.add("gmail");
+    let gmailContent = document.createTextNode("open in ");
+    gmail.appendChild(gmailContent);
+    let gmailSpan = document.createElement("span");
+    gmailSpan.className = "mailgo-weight-500";
+    let gmailSpanContent = document.createTextNode("Gmail");
+    gmailSpan.appendChild(gmailSpanContent);
+    gmail.appendChild(gmailSpan);
 
-  modalContent.appendChild(gmail);
+    modalContent.appendChild(gmail);
 
-  // Outlook
-  let outlook = document.createElement("a");
-  outlook.href =
-    "https://outlook.office.com/owa/?rru=compose&to=" + mail + url.search;
-  outlook.classList.add("mailgo-open");
-  outlook.classList.add("outlook");
-  let outlookContent = document.createTextNode("open in ");
-  outlook.appendChild(outlookContent);
-  let outlookSpan = document.createElement("span");
-  outlookSpan.className = "mailgo-weight-500";
-  let outlookSpanContent = document.createTextNode("Outlook");
-  outlookSpan.appendChild(outlookSpanContent);
-  outlook.appendChild(outlookSpan);
+    // Outlook
+    let outlook = document.createElement("a");
+    outlook.href =
+      "https://outlook.office.com/owa/?rru=compose&to=" + mail + url.search;
+    outlook.classList.add("mailgo-open");
+    outlook.classList.add("outlook");
+    let outlookContent = document.createTextNode("open in ");
+    outlook.appendChild(outlookContent);
+    let outlookSpan = document.createElement("span");
+    outlookSpan.className = "mailgo-weight-500";
+    let outlookSpanContent = document.createTextNode("Outlook");
+    outlookSpan.appendChild(outlookSpanContent);
+    outlook.appendChild(outlookSpan);
 
-  modalContent.appendChild(outlook);
+    modalContent.appendChild(outlook);
 
-  // default
-  let open = document.createElement("a");
-  open.href = mailgo.href;
-  open.classList.add("mailgo-open");
-  open.classList.add("mailgo-weight-500");
-  let openContent = document.createTextNode("open");
-  open.appendChild(openContent);
-  modalContent.appendChild(open);
+    // default
+    let open = document.createElement("a");
+    open.href = mailgo.href;
+    open.classList.add("mailgo-open");
+    open.classList.add("mailgo-weight-500");
+    let openContent = document.createTextNode("open");
+    open.appendChild(openContent);
+    modalContent.appendChild(open);
 
-  // copia l'email
-  let copy = document.createElement("a");
-  copy.href = "#mailgo-copy";
-  copy.classList.add("mailgo-copy");
-  copy.classList.add("mailgo-weight-500");
-  let copyContent = document.createTextNode("copy");
-  copy.appendChild(copyContent);
-  copy.addEventListener(
-    "click",
-    function(event) {
-      copyToClipboard(mail);
-      copy.innerHTML = "copied!";
-    },
-    false
-  );
-  modalContent.appendChild(copy);
+    // copia l'email
+    let copy = document.createElement("a");
+    copy.href = "#mailgo-copy";
+    copy.classList.add("mailgo-copy");
+    copy.classList.add("mailgo-weight-500");
+    let copyContent = document.createTextNode("copy");
+    copy.appendChild(copyContent);
+    copy.addEventListener(
+      "click",
+      function(event) {
+        copyToClipboard(mail);
+        copy.innerHTML = "copied!";
+      },
+      false
+    );
+    modalContent.appendChild(copy);
 
-  // details
-  let by = document.createElement("a");
-  by.href = "https://mailgo.js.org";
-  by.className = "mailgo-by";
-  by.target = "_blank";
+    // details
+    let by = document.createElement("a");
+    by.href = "https://mailgo.js.org";
+    by.className = "mailgo-by";
+    by.target = "_blank";
 
-  let textBy = document.createTextNode("mailgo.js.org");
-  by.appendChild(textBy);
+    let textBy = document.createTextNode("mailgo.js.org");
+    by.appendChild(textBy);
 
-  modalContent.appendChild(by);
+    modalContent.appendChild(by);
 
-  mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
+    mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
-  mailgo.addEventListener(
-    "click",
-    function(event) {
-      // blocco l'esecuzione normale del mailto:
-      event.preventDefault();
+    mailgo.addEventListener(
+      "click",
+      function(event) {
+        // blocco l'esecuzione normale del mailto:
+        event.preventDefault();
 
-      // setto il modal come attivo
-      mailgo.nextElementSibling.classList.add("is-active");
-    },
-    false
-  );
+        // setto il modal come attivo
+        mailgo.nextElementSibling.classList.add("is-active");
+      },
+      false
+    );
 
-  modalBackground.addEventListener(
-    "click",
-    function(event) {
-      mailgo.nextElementSibling.classList.remove("is-active");
-    },
-    false
-  );
-});
+    modalBackground.addEventListener(
+      "click",
+      function(event) {
+        mailgo.nextElementSibling.classList.remove("is-active");
+      },
+      false
+    );
+  });
+}
+
+document.addEventListener("load", mailgoInit);
 
 function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
