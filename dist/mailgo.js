@@ -52,11 +52,13 @@ let styles = `
     .mailgo-modal-content a {
       display: block;
       color: #4a4a4a;
-      padding: 10px;
       border-radius: 4px;
       text-decoration: none;
     }
-    .mailgo-modal-content a:hover {
+    .mailgo-modal-content a {
+      padding: 10px;
+    }
+    .mailgo-modal-content a.mailgo-open:hover, .mailgo-modal-content a.mailgo-copy:hover  {
       background-color: rgba(0, 0, 0, 0.08);
     }
     .mailgo-modal-content a.outlook {
@@ -78,11 +80,7 @@ let styles = `
     .mailgo-by {
       display: block;
       font-size: 8px;
-      padding: 5px;
       margin-top: 0.75rem;
-    }
-    .mailgo-by:hover {
-      background-color: none;
     }
 `;
 
@@ -141,8 +139,11 @@ mailgos.forEach((mailgo, index) => {
   gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
   gmail.classList.add("mailgo-open");
   gmail.classList.add("gmail");
-  let gmailContent = document.createTextNode("open in Gmail");
+  let gmailContent = document.createTextNode("open in ");
+  let gmailSpan = document.createElement("span");
+  gmailSpan.className = "mailgo-weight-500";
   gmail.appendChild(gmailContent);
+  gmailSpan.parentNode.insertBefore(gmailContent);
   modalContent.appendChild(gmail);
 
   // Outlook
@@ -183,6 +184,7 @@ mailgos.forEach((mailgo, index) => {
   let by = document.createElement("a");
   by.href = "https://mailgo.js.org";
   by.className = "mailgo-by";
+  by.target = "_blank";
 
   let textBy = document.createTextNode("mailgo.js.org");
   by.appendChild(textBy);
