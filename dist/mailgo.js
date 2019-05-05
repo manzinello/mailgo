@@ -79,14 +79,14 @@ function mailgoInit() {
     .mailgo-modal-content a.gmail:hover {
       background-color: rgba(212, 70, 56, 0.08);
     }
-    a.mailgo-copy {
-      margin-top: 10px;
+    .mailgo-modal-content a.mailgo-copy {
       padding: 16px 10px;
     }
-    .mailgo-by {
+    .mailgo-modal-content a.mailgo-by {
       display: block;
       font-size: 8px;
-      margin-top: 0.75rem;
+      margin-top: 1rem;
+      padding: 0px;
     }
     .mailgo-weight-500 {
       font-weight: 500;
@@ -117,7 +117,8 @@ function mailgoInit() {
     if (!validateEmail(mail)) return;
 
     let modal = document.createElement("div");
-    modal.className = "mailgo-modal";
+    modal.classList.add("mailgo");
+    modal.classList.add("mailgo-modal");
     modal.setAttribute("data-index", index);
 
     // background
