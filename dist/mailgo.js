@@ -237,7 +237,7 @@ function mailgoInit() {
 
     // default
     let open = document.createElement("a");
-    open.href = mailgo.href;
+    open.href = mailtoHref;
     open.classList.add("mailgo-open");
     open.classList.add("mailgo-weight-500");
     let openContent = document.createTextNode("open");
