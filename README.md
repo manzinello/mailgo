@@ -41,3 +41,5 @@ specifying `[VERSION]`
 ## docs
 
 <https://mailgo.js.org>
+
+[![NPM](https://nodei.co/npm/mailgo.png)](https://nodei.co/npm/mailgo/)
