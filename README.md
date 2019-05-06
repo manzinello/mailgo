@@ -11,7 +11,7 @@ mailgo will substitute all the `mailto:` links with the **mailgo modal**
 
 ## installation
 
-add at the very and of the `<body>` or in the `<head>` of your HTML
+add at the very and of the `<body>`
 
 ```
 <script src="https://cdn.jsdelivr.net/npm/mailgo/dist/mailgo.min.js"></script>
