@@ -255,7 +255,10 @@ function mailgoInit() {
       "click",
       function(event) {
         copyToClipboard(mail);
-        copy.innerHTML = "copied!";
+        copy.innerHTML = "copied";
+        let timeout = setTimeout(() => {
+          copy.innerHTML = "copy";
+        }, 999);
       },
       false
     );
