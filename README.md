@@ -1,10 +1,13 @@
-# 💌 mailgo
+# 💌 mailgo - a different mailto
 
-_mailgo is WIP_
+![mailgo screencast](/assets/video/mailgo-v.0.1.2-screencast.gif)
+(see it in action! <https://mailgo.js.org>)
+
+<u>mailgo is WIP</u>
 
 add the mailgo script in a web page to substitute all the `mailgo:` links with the **mailgo modal**
 
-![mailgo modal](/assets/img/screen-1.png)
+<img src="assets/img/screen-1.png" alt="mailgo modal" width="200"/>
 
 to exclude a mailto link add to the `<a>` element the class `no-mailgo` like in this example:
 
