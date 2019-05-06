@@ -97,19 +97,21 @@ function mailgoInit() {
   // attivo mailgo su tutti gli elementi
   mailgos.forEach(function(mailgo, index) {
     let mail = "",
+      mailtoHref = "",
       cc = "",
       bcc = "",
       subject = "",
       bodyMail = "";
 
     // caso in cui applico mailgo ad un <a> con mailto:
-    if (mailgo.href.includes("mailto:")) {
+    if (mailgo.href && mailgo.href.includes("mailto:")) {
       mail = mailgo.href
         .split("?")[0]
         .split("mailto:")[1]
         .trim();
 
-      let url = new URL(mailgo.href);
+      mailtoHref = mailgo.href;
+      url = new URL(mailtoHref);
       let urlParams = new URLSearchParams(url.search);
 
       cc = urlParams.get("cc");
@@ -122,6 +124,8 @@ function mailgoInit() {
         mailgo.getAttribute("data-address") +
         "@" +
         mailgo.getAttribute("data-domain");
+      mailtoHref = "mailto:" + mail;
+      url = new URL(mailtoHref);
     }
 
     if (!validateEmail(mail)) return;
@@ -202,8 +206,7 @@ function mailgoInit() {
 
     // Gmail
     let gmail = document.createElement("a");
-    gmail.href =
-      "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
+    gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailtoHref;
     gmail.classList.add("mailgo-open");
     gmail.classList.add("gmail");
     let gmailContent = document.createTextNode("open in ");

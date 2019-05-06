@@ -1,20 +1,14 @@
 function mailgoInit() {
   const styles = `
-    .mailgo {
-      all: initial;
-      * {
-        all: unset;
-      }
-    }
     .mailgo-title {
       display: block;
       margin-bottom: 5px;
     }
     .mailgo-details {
-      font-size: 12px;
       margin-bottom: 10px;
     }
     .mailgo-details p {
+      font-size: 12px;
       margin-top: 3px;
       margin-bottom: 3px;
     }
@@ -97,28 +91,46 @@ function mailgoInit() {
 
   // ottengo tutti i mailto contenuti nella pagina
   const mailgos = document.querySelectorAll(
-    'a[href^="mailto:"]:not(.no-mailgo)'
+    'a[href^="mailto:"]:not(.no-mailgo), a.mailgo'
   );
 
   // attivo mailgo su tutti gli elementi
   mailgos.forEach(function(mailgo, index) {
-    let mail = mailgo.href
-      .split("?")[0]
-      .split("mailto:")[1]
-      .trim();
+    let mail = "",
+      mailtoHref = "",
+      cc = "",
+      bcc = "",
+      subject = "",
+      bodyMail = "";
 
-    let url = new URL(mailgo.href);
-    let urlParams = new URLSearchParams(url.search);
+    // caso in cui applico mailgo ad un <a> con mailto:
+    if (mailgo.href && mailgo.href.includes("mailto:")) {
+      mail = mailgo.href
+        .split("?")[0]
+        .split("mailto:")[1]
+        .trim();
 
-    let cc = urlParams.get("cc");
-    let bcc = urlParams.get("bcc");
-    let subject = urlParams.get("subject");
-    let bodyMail = urlParams.get("body");
+      mailtoHref = mailgo.href;
+      url = new URL(mailtoHref);
+      let urlParams = new URLSearchParams(url.search);
+
+      cc = urlParams.get("cc");
+      bcc = urlParams.get("bcc");
+      subject = urlParams.get("subject");
+      bodyMail = urlParams.get("body");
+    } else {
+      // caso in cui applico mailgo ad <a> con class="mailgo"
+      mail =
+        mailgo.getAttribute("data-address") +
+        "@" +
+        mailgo.getAttribute("data-domain");
+      mailtoHref = "mailto:" + mail;
+      url = new URL(mailtoHref);
+    }
 
     if (!validateEmail(mail)) return;
 
     let modal = document.createElement("div");
-    modal.classList.add("mailgo");
     modal.classList.add("mailgo-modal");
     modal.setAttribute("data-index", index);
 
@@ -194,8 +206,7 @@ function mailgoInit() {
 
     // Gmail
     let gmail = document.createElement("a");
-    gmail.href =
-      "https://mail.google.com/mail?extsrc=mailto&url=" + mailgo.href;
+    gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailtoHref;
     gmail.classList.add("mailgo-open");
     gmail.classList.add("gmail");
     let gmailContent = document.createTextNode("open in ");
