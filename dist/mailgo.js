@@ -1,8 +1,5 @@
 function mailgoInit() {
-  // ottengo tutti i mailto contenuti nella pagina
-  let mailgos = document.querySelectorAll('a[href^="mailto:"]:not(.no-mailgo)');
-
-  let styles = `
+  const styles = `
     .mailgo {
       all: initial;
       * {
@@ -93,12 +90,15 @@ function mailgoInit() {
       font-weight: 500;
     }`;
 
-  let styleSheet = document.createElement("style");
+  const styleSheet = document.createElement("style");
   styleSheet.type = "text/css";
   styleSheet.innerText = styles;
   document.head.appendChild(styleSheet);
 
-  console.log("mailgo is WIP!");
+  // ottengo tutti i mailto contenuti nella pagina
+  const mailgos = document.querySelectorAll(
+    'a[href^="mailto:"]:not(.no-mailgo)'
+  );
 
   // attivo mailgo su tutti gli elementi
   mailgos.forEach(function(mailgo, index) {
@@ -288,7 +288,7 @@ function mailgoInit() {
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 function validateEmail(email) {
-  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
