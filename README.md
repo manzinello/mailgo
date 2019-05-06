@@ -20,9 +20,7 @@ add at the very and of the `<body>`
 or, specifying `[VERSION]`
 
 ```
-
 <script src="https://cdn.jsdelivr.net/npm/mailgo@[VERSION]/dist/mailgo.min.js"></script>
-
 ```
 
 ## usage
@@ -40,9 +38,7 @@ just adding **mailgo** as class and your email address splitted in **data-addres
 to exclude a mailto link add to the `<a>` element the class `no-mailgo` like in this example:
 
 ```
-
 <a class="no-mailgo" href="mailto:matteo@manzinello.dev">matteo@manzinello.dev</a>
-
 ```
 
 ---
