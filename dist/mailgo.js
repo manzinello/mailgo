@@ -1,4 +1,5 @@
 function mailgoInit() {
+  // style di mailgo
   const styles = `
     .mailgo-title {
       display: block;
@@ -95,7 +96,7 @@ function mailgoInit() {
 
   // ottengo tutti i mailto contenuti nella pagina
   const mailgos = document.querySelectorAll(
-    'a[href^="mailto:"]:not(.no-mailgo), a.mailgo:not(.no-mailgo)'
+    'a[href^="mailto:"]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
   );
 
   // attivo mailgo su tutti gli elementi
@@ -118,12 +119,14 @@ function mailgoInit() {
       url = new URL(mailtoHref);
       let urlParams = new URLSearchParams(url.search);
 
+      // ottengo i parametri aggiuntivi
       cc = urlParams.get("cc");
       bcc = urlParams.get("bcc");
       subject = urlParams.get("subject");
       bodyMail = urlParams.get("body");
     } else {
-      // caso in cui applico mailgo ad <a> con class="mailgo"
+      // caso in cui applico mailgo ad <a> con class="mailgo" o href=#mailgo
+      // compongo l'email con data-address e data-domain passati nell'elemento
       mail =
         mailgo.getAttribute("data-address") +
         "@" +
@@ -132,6 +135,7 @@ function mailgoInit() {
       url = new URL(mailtoHref);
     }
 
+    // valido l'email, se non valida non abilito mailgo per il singolo elemento
     if (!validateEmail(mail)) return;
 
     let modal = document.createElement("div");
@@ -143,6 +147,7 @@ function mailgoInit() {
     modalBackground.className = "mailgo-modal-background";
     modal.appendChild(modalBackground);
 
+    // modal content
     let modalContent = document.createElement("div");
     modalContent.className = "mailgo-modal-content";
     modal.appendChild(modalContent);
@@ -239,7 +244,7 @@ function mailgoInit() {
 
     modalContent.appendChild(outlook);
 
-    // default
+    // open default
     let open = document.createElement("a");
     open.href = mailtoHref;
     open.classList.add("mailgo-open");
@@ -268,19 +273,19 @@ function mailgoInit() {
     );
     modalContent.appendChild(copy);
 
-    // details
+    // by
     let by = document.createElement("a");
     by.href = "https://mailgo.js.org";
     by.className = "mailgo-by";
     by.target = "_blank";
-
     let textBy = document.createTextNode("mailgo.js.org");
     by.appendChild(textBy);
-
     modalContent.appendChild(by);
 
+    // aggiungo il modal dopo l'elemento
     mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
+    // se clicco sull'elemento appare il modal
     mailgo.addEventListener(
       "click",
       function(event) {
@@ -293,6 +298,7 @@ function mailgoInit() {
       false
     );
 
+    // se clicco fuori scompare
     modalBackground.addEventListener(
       "click",
       function(event) {
@@ -303,13 +309,16 @@ function mailgoInit() {
   });
 }
 
+// aggiungo l'init di mailgo al DOMContentLoaded
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
+// funzionalità di validazione dell'email con regex
 function validateEmail(email) {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 }
 
+// funzionalità di copia di una stringa
 function copyToClipboard(str) {
   const el = document.createElement("textarea");
   el.value = str;
