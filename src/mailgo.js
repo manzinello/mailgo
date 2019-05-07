@@ -23,17 +23,20 @@ function mailgoInit() {
     }
     .mailgo-modal {
       position: fixed;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
       top: 0;
       right: 0;
       bottom: 0;
       left: 0;
       display: none;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 100000;
     }
     .mailgo-modal.is-active {
       display: flex;
-      justify-content: center;
-      align-items: center;
     }
     .mailgo-modal-content {
       z-index: 1000;
@@ -44,6 +47,7 @@ function mailgoInit() {
       box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
       color: #4a4a4a;
       display: block;
+      overflow: auto;
       padding: 1.25rem;
     }
     .mailgo-modal-content a {
