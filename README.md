@@ -9,31 +9,55 @@ mailgo will substitute all the `mailto:` links with the **mailgo modal**
 
 <img src="assets/img/screen-1.png" alt="mailgo modal" width="200"/>
 
+---
+
 ## installation
 
-add at the very and of the `<body>`
+add at the end of the `<body>`
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/mailgo/dist/mailgo.min.js"></script>
+<body>
+...
+<script src="https://cdn.jsdelivr.net/npm/mailgo@latest/dist/mailgo.min.js"></script>
+</body>
 ```
 
-or, specifying `[VERSION]`
+or download the script <a download href="https://cdn.jsdelivr.net/npm/mailgo@latest/dist/mailgo.min.js">here</a> and
 
 ```
-<script src="https://cdn.jsdelivr.net/npm/mailgo@[VERSION]/dist/mailgo.min.js"></script>
+<body>
+...
+<script src="path/to/mailgo/mailgo.min.js"></script>
+</body>
 ```
+
+---
 
 ## usage
 
-now all your `mailto` links will be mailgone!
+### default
 
-you can also add mailgo to links like in this <u>no-spam</u> way:
+**by default all the `mailto:` links will be enabled with mailgo only importing the script!**
+
+(and with the default usage in the modal will appear also cc, bcc, subject and body parameter if provided)
+
+Do you want to prevent the spam? Use a _no-spam usage_ instead the default usage
+
+### no-spam usage #1 (recommended)
+
+`<a href="#mailgo" data-address="matteo" data-domain="manzinello.dev">write me!</a>`
+
+- add `href="#mailgo"` to `<a>`
+- add `data-address` and `data-domain` to re-create your email address
+
+### no-spam usage #2
 
 `<a class="mailgo" data-address="matteo" data-domain="manzinello.dev">write me!</a>`
 
-just adding **mailgo** as class and your email address splitted in **data-address** and **data-domain**
+- add `class="mailgo"` to `<a>`
+- add `data-address` and `data-domain` to re-create your email address
 
-### exclude a mailto
+#### exclude a mailto
 
 to exclude a mailto link add to the `<a>` element the class `no-mailgo` like in this example:
 
