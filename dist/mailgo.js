@@ -1,4 +1,4 @@
-function mailgoInit() {
+mailgoInit = () => {
   // style di mailgo
   const styles = `
     .mailgo-title {
@@ -100,7 +100,7 @@ function mailgoInit() {
   );
 
   // attivo mailgo su tutti gli elementi
-  mailgos.forEach(function(mailgo, index) {
+  mailgos.forEach((mailgo, index) => {
     let mail = "",
       mailtoHref = "",
       cc = "",
@@ -262,7 +262,7 @@ function mailgoInit() {
     copy.appendChild(copyContent);
     copy.addEventListener(
       "click",
-      function(event) {
+      event => {
         copyToClipboard(mail);
         copy.innerHTML = "copied";
         let timeout = setTimeout(() => {
@@ -288,7 +288,7 @@ function mailgoInit() {
     // se clicco sull'elemento appare il modal
     mailgo.addEventListener(
       "click",
-      function(event) {
+      event => {
         // blocco l'esecuzione normale del mailto:
         event.preventDefault();
 
@@ -301,25 +301,25 @@ function mailgoInit() {
     // se clicco fuori scompare
     modalBackground.addEventListener(
       "click",
-      function(event) {
+      event => {
         mailgo.nextElementSibling.classList.remove("is-active");
       },
       false
     );
   });
-}
+};
 
 // aggiungo l'init di mailgo al DOMContentLoaded
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 // funzionalità di validazione dell'email con regex
-function validateEmail(email) {
+validateEmail = email => {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
-}
+};
 
 // funzionalità di copia di una stringa
-function copyToClipboard(str) {
+copyToClipboard = str => {
   const el = document.createElement("textarea");
   el.value = str;
   el.setAttribute("readonly", "");
@@ -337,4 +337,4 @@ function copyToClipboard(str) {
     document.getSelection().removeAllRanges();
     document.getSelection().addRange(selected);
   }
-}
+};
