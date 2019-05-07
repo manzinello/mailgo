@@ -5,7 +5,9 @@
 
 ## what?
 
-mailgo will substitute all the `mailto:` links with the **mailgo modal**
+mailgo will substitute all the `mailto:` links with the **mailgo modal**, in less than 7KB
+
+![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=popout-square)
 
 <img src="assets/img/screen-1.png" alt="mailgo modal" width="200"/>
 
