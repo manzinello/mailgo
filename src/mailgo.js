@@ -95,7 +95,7 @@ function mailgoInit() {
 
   // ottengo tutti i mailto contenuti nella pagina
   const mailgos = document.querySelectorAll(
-    'a[href^="mailto:"]:not(.no-mailgo), a.mailgo:not(.no-mailgo)'
+    'a[href^="mailto:"]:not(.no-mailgo), a[href="#mailgo"], a.mailgo:not(.no-mailgo)'
   );
 
   // attivo mailgo su tutti gli elementi
