@@ -1,6 +1,6 @@
 # 💌 mailgo - a different mailto (WIP)
 
-![mailgo screencast](/assets/video/mailgo-v.0.1.2-screencast.gif)
+![mailgo screencast](/assets/video/mailgo-v0.2.1-screencast.gif)
 (see it in action! <https://mailgo.js.org>)
 
 ## what?
