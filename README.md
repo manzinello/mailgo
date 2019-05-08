@@ -33,7 +33,7 @@ or
 </body>
 ```
 
-or download the script <a download href="https://cdn.jsdelivr.net/npm/mailgo@latest/dist/mailgo.min.js">here</a> and
+or download the script <a download href="https://unpkg.com/mailgo@latest/dist/mailgo.min.js">here</a> and
 
 ```
 <body>
