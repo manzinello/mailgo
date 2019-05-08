@@ -1,7 +1,7 @@
 mailgoInit = () => {
   const styleSheet = document.createElement("style");
   styleSheet.type = "text/css";
-  styleSheet.innerText = styles;
+  styleSheet.src = "https://unpkg.com/mailgo@latest/dist/mailgo.min.css";
   document.head.appendChild(styleSheet);
 
   // ottengo tutti i mailto contenuti nella pagina
