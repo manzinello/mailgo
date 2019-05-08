@@ -3,7 +3,7 @@
   "version": "0.2.1",
   "description": "a different mailto",
   "scripts": {
-    "dist": "gulp"
+    "build": "gulp"
   },
   "repository": {
     "type": "git",
