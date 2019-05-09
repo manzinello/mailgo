@@ -1,7 +1,8 @@
 mailgoInit = () => {
-  const styleSheet = document.createElement("style");
+  const styleSheet = document.createElement("link");
+  styleSheet.rel = "stylesheet";
   styleSheet.type = "text/css";
-  styleSheet.src = "https://unpkg.com/mailgo@latest/dist/mailgo.min.css";
+  styleSheet.href = "https://unpkg.com/mailgo@latest/dist/mailgo.min.css";
   document.head.appendChild(styleSheet);
 
   // ottengo tutti i mailto contenuti nella pagina
@@ -156,7 +157,17 @@ mailgoInit = () => {
 
     // open default
     let open = document.createElement("a");
-    open.href = mailtoHref;
+
+    open.href = "#mailgo-open";
+    let encEmail = encryptEmail(mail);
+    open.addEventListener(
+      "click",
+      () => {
+        mailToEncoded(encEmail);
+      },
+      false
+    );
+
     open.classList.add("mailgo-open");
     open.classList.add("mailgo-weight-500");
     let openContent = document.createTextNode("open");
@@ -248,3 +259,14 @@ copyToClipboard = str => {
     document.getSelection().addRange(selected);
   }
 };
+
+// decrypt email
+function mailToEncoded(encoded) {
+  var address = atob(encoded);
+  window.location.href = "mailto:" + address;
+}
+
+// encrypt email
+function encryptEmail(email) {
+  return btoa(email);
+}
