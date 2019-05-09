@@ -16,7 +16,6 @@
 
 .mailgo-modal {
   position: fixed;
-  box-sizing: content-box;
   top: 0;
   right: 0;
   bottom: 0;
@@ -55,21 +54,26 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(10, 10, 10, 0.86);
+  background-color: rgba(10, 10, 10, 0.75);
   opacity: 0.8;
 }
 
 .mailgo-modal-content {
   z-index: 1000;
+  box-sizing: content-box;
   text-align: center;
   width: 200px;
   background-color: #fff;
   border-radius: 6px;
-  box-shadow: 0 2px 3px rgba(10, 10, 10, 0.1), 0 0 0 1px rgba(10, 10, 10, 0.1);
+  box-shadow: 0 2px 6px 0 rgba(10, 10, 10, 0.39);
   color: #4a4a4a;
   display: block;
   overflow: auto;
   padding: 1.25rem;
+}
+
+.mailgo-modal-content:hover {
+  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.23);
 }
 
 .mailgo-modal-content a {
