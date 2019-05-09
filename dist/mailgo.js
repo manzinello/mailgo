@@ -8,12 +8,12 @@ mailgoInit = () => {
     "https://unpkg.com/mailgo@" + version + "/dist/mailgo.min.css";
   document.head.appendChild(styleSheet);
 
-  // ottengo tutti i mailto contenuti nella pagina
+  // all mailgos in the document
   const mailgos = document.querySelectorAll(
     'a[href^="mailto:"]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
   );
 
-  // attivo mailgo su tutti gli elementi
+  // mailgo on every element
   mailgos.forEach((mailgo, index) => {
     let mail = "",
       mailtoHref = "",
@@ -22,7 +22,7 @@ mailgoInit = () => {
       subject = "",
       bodyMail = "";
 
-    // caso in cui applico mailgo ad un <a> con mailto:
+    // mailgo all the element with href=^"mailto:"
     if (mailgo.href && mailgo.href.includes("mailto:")) {
       mail = mailgo.href
         .split("?")[0]
@@ -33,14 +33,14 @@ mailgoInit = () => {
       url = new URL(mailtoHref);
       let urlParams = new URLSearchParams(url.search);
 
-      // ottengo i parametri aggiuntivi
+      // optional parameters for the email
       cc = urlParams.get("cc");
       bcc = urlParams.get("bcc");
       subject = urlParams.get("subject");
       bodyMail = urlParams.get("body");
     } else {
-      // caso in cui applico mailgo ad <a> con class="mailgo" o href=#mailgo
-      // compongo l'email con data-address e data-domain passati nell'elemento
+      // mailgo all the element with href="#mailgo" or class="mailgo"
+      // email = data-address + @ + data-domain
       mail =
         mailgo.getAttribute("data-address") +
         "@" +
@@ -49,9 +49,10 @@ mailgoInit = () => {
       url = new URL(mailtoHref);
     }
 
-    // valido l'email, se non valida non abilito mailgo per il singolo elemento
+    // validate the email address
     if (!validateEmail(mail)) return;
 
+    // modal
     let modal = document.createElement("div");
     modal.classList.add("mailgo-modal");
     modal.setAttribute("data-index", index);
@@ -66,7 +67,7 @@ mailgoInit = () => {
     modalContent.className = "mailgo-modal-content";
     modal.appendChild(modalContent);
 
-    // titolo (l'email)
+    // title (email address)
     let strong = document.createElement("strong");
     strong.className = "mailgo-title";
     let strongContent = document.createTextNode(mail);
@@ -177,7 +178,7 @@ mailgoInit = () => {
     open.appendChild(openContent);
     modalContent.appendChild(open);
 
-    // copia l'email
+    // copy
     let copy = document.createElement("a");
     copy.href = "#mailgo-copy";
     copy.classList.add("mailgo-copy");
@@ -206,23 +207,23 @@ mailgoInit = () => {
     by.appendChild(textBy);
     modalContent.appendChild(by);
 
-    // aggiungo il modal dopo l'elemento
+    // add the modal after the element
     mailgo.parentNode.insertBefore(modal, mailgo.nextSibling);
 
-    // se clicco sull'elemento appare il modal
+    // show the modal on every element click
     mailgo.addEventListener(
       "click",
       event => {
-        // blocco l'esecuzione normale del mailto:
+        // clock the mailto: classic behaviour
         event.preventDefault();
 
-        // setto il modal come attivo
+        // modal is now active (showing)
         mailgo.nextElementSibling.classList.add("is-active");
       },
       false
     );
 
-    // se clicco fuori scompare
+    // every click outside the modal will hide the modal
     modalBackground.addEventListener(
       "click",
       event => {
@@ -233,16 +234,16 @@ mailgoInit = () => {
   });
 };
 
-// aggiungo l'init di mailgo al DOMContentLoaded
+// DOMContentLoaded -> mailgoInit
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
-// funzionalità di validazione dell'email con regex
+// validate the email with refgex
 validateEmail = email => {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 };
 
-// funzionalità di copia di una stringa
+// copy of a string
 copyToClipboard = str => {
   const el = document.createElement("textarea");
   el.value = str;
