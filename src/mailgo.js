@@ -186,7 +186,7 @@ mailgoInit = () => {
       event => {
         copyToClipboard(mail);
         copy.innerHTML = "copied";
-        let timeout = setTimeout(() => {
+        setTimeout(() => {
           copy.innerHTML = "copy";
         }, 999);
       },
@@ -261,12 +261,7 @@ copyToClipboard = str => {
 };
 
 // decrypt email
-function mailToEncoded(encoded) {
-  var address = atob(encoded);
-  window.location.href = "mailto:" + address;
-}
+mailToEncoded = encoded => (window.location.href = "mailto:" + atob(encoded));
 
 // encrypt email
-function encryptEmail(email) {
-  return btoa(email);
-}
+encryptEmail = email => btoa(email);
