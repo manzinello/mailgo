@@ -37,6 +37,7 @@
   flex-direction: column;
   overflow: hidden;
   z-index: 100000;
+  font-size: 15px;
 }
 
 .mailgo-modal.is-active {
