@@ -10,6 +10,30 @@
     Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
 }
 
+.mailgo-modal strong {
+  font-weight: 700;
+}
+
+.mailgo-modal {
+  position: fixed;
+  box-sizing: content-box;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  overflow: hidden;
+  z-index: 100000;
+  font-size: 15px;
+}
+
+.mailgo-modal.is-active {
+  display: flex;
+}
+
 .mailgo-title {
   display: block;
   margin-bottom: 5px;
@@ -33,25 +57,6 @@
   left: 0;
   background-color: rgba(10, 10, 10, 0.86);
   opacity: 0.8;
-}
-
-.mailgo-modal {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  display: none;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  overflow: hidden;
-  z-index: 100000;
-  font-size: 15px;
-}
-
-.mailgo-modal.is-active {
-  display: flex;
 }
 
 .mailgo-modal-content {
