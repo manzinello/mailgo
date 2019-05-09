@@ -1,4 +1,4 @@
-const version = "0.2.3";
+const version = "0.2.4";
 
 mailgoInit = () => {
   const styleSheet = document.createElement("link");

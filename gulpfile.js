@@ -1,16 +1,21 @@
 const { src, dest, parallel } = require("gulp");
 
-const uglify = require("gulp-uglify");
 const terser = require("gulp-terser");
 const rename = require("gulp-rename");
 const csso = require("gulp-csso");
+const replace = require("gulp-replace");
+
+let version = require("./package.json").version;
 
 function js() {
-  return src("src/*.js").pipe(dest("dist"));
+  return src("src/*.js")
+    .pipe(replace("MAILGO_VERSION", version.toString()))
+    .pipe(dest("dist"));
 }
 
 function jsmin() {
   return src("src/*.js")
+    .pipe(replace("MAILGO_VERSION", version))
     .pipe(terser())
     .pipe(
       rename({
