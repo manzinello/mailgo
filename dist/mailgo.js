@@ -1,8 +1,11 @@
+const version = "0.2.1";
+
 mailgoInit = () => {
   const styleSheet = document.createElement("link");
   styleSheet.rel = "stylesheet";
   styleSheet.type = "text/css";
-  styleSheet.href = "https://unpkg.com/mailgo@latest/dist/mailgo.min.css";
+  styleSheet.href =
+    "https://unpkg.com/mailgo@" + version + "/dist/mailgo.min.css";
   document.head.appendChild(styleSheet);
 
   // ottengo tutti i mailto contenuti nella pagina
