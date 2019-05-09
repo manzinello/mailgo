@@ -20,25 +20,7 @@ add at the end of the `<body>`
 ```
 <body>
 ...
-<script src="https://cdn.jsdelivr.net/npm/mailgo@latest/dist/mailgo.min.js"></script>
-</body>
-```
-
-or
-
-```
-<body>
-...
 <script src="https://unpkg.com/mailgo@latest/dist/mailgo.min.js"></script>
-</body>
-```
-
-or download the script <a download href="https://unpkg.com/mailgo@latest/dist/mailgo.min.js">here</a> and
-
-```
-<body>
-...
-<script src="path/to/mailgo/mailgo.min.js"></script>
 </body>
 ```
 
@@ -47,7 +29,7 @@ you can also import mailgo in `<head>` using `defer`
 ```
 <head>
 ...
-<script src="https://cdn.jsdelivr.net/npm/mailgo@latest/dist/mailgo.min.js" defer></script>
+<script src="https://unpkg.com/mailgo@latest/dist/mailgo.min.js" defer></script>
 </head>
 ```
 
