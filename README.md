@@ -33,6 +33,8 @@ you can also import mailgo in `<head>` using `defer`
 </head>
 ```
 
+(note: the GitHub `/dist` is totally unstable, use `unpkg` or `npm` to test **mailgo**, thanks!)
+
 ---
 
 ## usage
