@@ -11,7 +11,7 @@ mailgoInit = () => {
 
   // all mailgos in the document
   const mailgos = document.querySelectorAll(
-    'a[href^="mailto:"]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+    'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
   );
 
   // mailgo on every element
@@ -24,11 +24,12 @@ mailgoInit = () => {
       bodyMail = "";
 
     // mailgo all the element with href=^"mailto:"
-    if (mailgo.href && mailgo.href.startsWith(MAILTO)) {
-      mail = mailgo.href
-        .split("?")[0]
-        .split(MAILTO)[1]
-        .trim();
+    if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
+      mail = decodeURIComponent(
+        mailgo.href
+          .split("?")[0]
+          .split(MAILTO)[1]
+          .trim());
 
       mailtoHref = mailgo.href;
       url = new URL(mailtoHref);
@@ -46,7 +47,7 @@ mailgoInit = () => {
         mailgo.getAttribute("data-address") +
         "@" +
         mailgo.getAttribute("data-domain");
-      mailtoHref = MAILTO + mail;
+      mailtoHref = MAILTO + encodeURIComponent(mail);
       url = new URL(mailtoHref);
     }
 
@@ -131,7 +132,8 @@ mailgoInit = () => {
 
     // Gmail
     let gmail = document.createElement("a");
-    gmail.href = "https://mail.google.com/mail?extsrc=mailto&url=" + mailtoHref;
+    gmail.href = "https://mail.google.com/mail?extsrc=mailto&url="
+      + encodeURIComponent(mailtoHref);
     gmail.classList.add("mailgo-open");
     gmail.classList.add("gmail");
     let gmailContent = document.createTextNode("open in ");
@@ -147,7 +149,8 @@ mailgoInit = () => {
     // Outlook
     let outlook = document.createElement("a");
     outlook.href =
-      "https://outlook.office.com/owa/?rru=compose&to=" + mail + url.search;
+      "https://outlook.office.com/owa/?rru=compose&to="
+      + encodeURIComponent(mail) + url.search.replace(/^[$]/, '&');
     outlook.classList.add("mailgo-open");
     outlook.classList.add("outlook");
     let outlookContent = document.createTextNode("open in ");
@@ -164,7 +167,7 @@ mailgoInit = () => {
     let open = document.createElement("a");
 
     open.href = "#mailgo-open";
-    let encEmail = encryptEmail(mail);
+    let encEmail = encodeEmail(mail);
     open.addEventListener(
       "click",
       () => {
@@ -190,9 +193,9 @@ mailgoInit = () => {
       "click",
       event => {
         copyToClipboard(mail);
-        copy.innerHTML = "copied";
+        copy.textContent = "copied";
         setTimeout(() => {
-          copy.innerHTML = "copy";
+          copy.textContent = "copy";
         }, 999);
       },
       false
@@ -268,5 +271,5 @@ copyToClipboard = str => {
 // decrypt email
 mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
-// encrypt email
-encryptEmail = email => btoa(email);
+// encode email
+encodeEmail = email => btoa(email);
