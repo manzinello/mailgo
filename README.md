@@ -29,7 +29,7 @@ you can also import mailgo in `<head>` using `defer`
 ```
 <head>
 ...
-<script src="https://unpkg.com/mailgo@0.2./dist/mailgo.min.js" defer></script>
+<script src="https://unpkg.com/mailgo@0.2.6/dist/mailgo.min.js" defer></script>
 </head>
 ```
 
