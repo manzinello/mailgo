@@ -29,7 +29,8 @@ mailgoInit = () => {
         mailgo.href
           .split("?")[0]
           .split(MAILTO)[1]
-          .trim());
+          .trim()
+      );
 
       mailtoHref = mailgo.href;
       url = new URL(mailtoHref);
@@ -132,8 +133,9 @@ mailgoInit = () => {
 
     // Gmail
     let gmail = document.createElement("a");
-    gmail.href = "https://mail.google.com/mail?extsrc=mailto&url="
-      + encodeURIComponent(mailtoHref);
+    gmail.href =
+      "https://mail.google.com/mail?extsrc=mailto&url=" +
+      encodeURIComponent(mailtoHref);
     gmail.classList.add("mailgo-open");
     gmail.classList.add("gmail");
     let gmailContent = document.createTextNode("open in ");
@@ -149,8 +151,9 @@ mailgoInit = () => {
     // Outlook
     let outlook = document.createElement("a");
     outlook.href =
-      "https://outlook.office.com/owa/?rru=compose&to="
-      + encodeURIComponent(mail) + url.search.replace(/^[$]/, '&');
+      "https://outlook.office.com/owa/?rru=compose&to=" +
+      encodeURIComponent(mail) +
+      url.search.replace(/^[$]/, "&");
     outlook.classList.add("mailgo-open");
     outlook.classList.add("outlook");
     let outlookContent = document.createTextNode("open in ");
