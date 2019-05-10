@@ -229,6 +229,17 @@ mailgoInit = () => {
       },
       false
     );
+    
+    // allow the escape key to hide the modal
+    mailgo.addEventListener(
+      "keydown",
+      event => {
+        if (event.keyCode === 27) {
+          mailgo.nextElementSibling.classList.remove("is-active");
+        }
+      },
+      false
+    );
 
     // every click outside the modal will hide the modal
     modalBackground.addEventListener(
