@@ -1,11 +1,12 @@
-const version = "MAILGO_VERSION";
+const VERSION = "MAILGO_VERSION";
+const MAILTO = "mailto:";
 
 mailgoInit = () => {
   const styleSheet = document.createElement("link");
   styleSheet.rel = "stylesheet";
   styleSheet.type = "text/css";
   styleSheet.href =
-    "https://unpkg.com/mailgo@" + version + "/dist/mailgo.min.css";
+    "https://unpkg.com/mailgo@" + VERSION + "/dist/mailgo.min.css";
   document.head.appendChild(styleSheet);
 
   // all mailgos in the document
@@ -23,10 +24,10 @@ mailgoInit = () => {
       bodyMail = "";
 
     // mailgo all the element with href=^"mailto:"
-    if (mailgo.href && mailgo.href.includes("mailto:")) {
+    if (mailgo.href && mailgo.href.startsWith(MAILTO)) {
       mail = mailgo.href
         .split("?")[0]
-        .split("mailto:")[1]
+        .split(MAILTO)[1]
         .trim();
 
       mailtoHref = mailgo.href;
@@ -45,7 +46,7 @@ mailgoInit = () => {
         mailgo.getAttribute("data-address") +
         "@" +
         mailgo.getAttribute("data-domain");
-      mailtoHref = "mailto:" + mail;
+      mailtoHref = MAILTO + mail;
       url = new URL(mailtoHref);
     }
 
@@ -265,7 +266,7 @@ copyToClipboard = str => {
 };
 
 // decrypt email
-mailToEncoded = encoded => (window.location.href = "mailto:" + atob(encoded));
+mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
 // encrypt email
 encryptEmail = email => btoa(email);
