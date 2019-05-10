@@ -58,6 +58,7 @@ mailgoInit = () => {
     // modal
     let modal = document.createElement("div");
     modal.classList.add("mailgo-modal");
+    modal.style.display = "none";
     modal.setAttribute("data-index", index);
 
     // background
@@ -225,17 +226,17 @@ mailgoInit = () => {
         event.preventDefault();
 
         // modal is now active (showing)
-        mailgo.nextElementSibling.classList.add("is-active");
+        mailgo.nextElementSibling.style.display = "flex";
       },
       false
     );
-    
+
     // allow the escape key to hide the modal
     mailgo.addEventListener(
       "keydown",
       event => {
         if (event.keyCode === 27) {
-          mailgo.nextElementSibling.classList.remove("is-active");
+          mailgo.nextElementSibling.style.display = "flex";
         }
       },
       false
@@ -245,7 +246,7 @@ mailgoInit = () => {
     modalBackground.addEventListener(
       "click",
       event => {
-        mailgo.nextElementSibling.classList.remove("is-active");
+        mailgo.nextElementSibling.style.display = "none";
       },
       false
     );

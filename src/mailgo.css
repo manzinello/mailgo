@@ -20,17 +20,12 @@
   right: 0;
   bottom: 0;
   left: 0;
-  display: none;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   overflow: hidden;
   z-index: 100000;
   font-size: 15px;
-}
-
-.mailgo-modal.is-active {
-  display: flex;
 }
 
 .mailgo-title {
