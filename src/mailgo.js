@@ -225,7 +225,7 @@ mailgoInit = () => {
         // clock the mailto: classic behaviour
         event.preventDefault();
 
-        // modal is now active (showing)
+        // modal is now showing
         mailgo.nextElementSibling.style.display = "flex";
       },
       false
