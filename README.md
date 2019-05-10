@@ -1,6 +1,6 @@
 # 💌 mailgo - a different mailto (WIP)
 
-![mailgo screencast](/assets/video/mailgo-v0.2.1-screencast.gif)
+![mailgo screencast](/assets/video/mailgo-screencast.gif)
 (see it in action! <https://mailgo.js.org>)
 
 ## what?
@@ -9,7 +9,7 @@ mailgo will substitute all the `mailto:` links with the **mailgo modal**
 
 [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js)
 
-<img src="assets/img/screen-1.png" alt="mailgo modal" width="200"/>
+<img src="assets/img/screen-1.png" alt="mailgo modal" width="250"/>
 
 ---
 
