@@ -226,7 +226,7 @@ mailgoInit = () => {
         event.preventDefault();
 
         // modal is now showing
-        mailgo.nextElementSibling.style.display = "flex";
+        showMailgo(mailgo.nextElementSibling);
       },
       false
     );
@@ -236,7 +236,7 @@ mailgoInit = () => {
       "keydown",
       event => {
         if (event.keyCode === 27) {
-          mailgo.nextElementSibling.style.display = "flex";
+          hideMailgo(mailgo.nextElementSibling);
         }
       },
       false
@@ -245,9 +245,7 @@ mailgoInit = () => {
     // every click outside the modal will hide the modal
     modalBackground.addEventListener(
       "click",
-      event => {
-        mailgo.nextElementSibling.style.display = "none";
-      },
+      event => hideMailgo(mailgo.nextElementSibling),
       false
     );
   });
@@ -282,6 +280,12 @@ copyToClipboard = str => {
     document.getSelection().addRange(selected);
   }
 };
+
+// show the modal
+showMailgo = m => (m.style.display = "flex");
+
+// hide the modal
+hideMailgo = m => (m.style.display = "none");
 
 // decrypt email
 mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
