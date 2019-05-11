@@ -1,12 +1,11 @@
-const VERSION = "MAILGO_VERSION";
+const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
 
 // mailgo style
 const styleSheet = document.createElement("link");
 styleSheet.rel = "stylesheet";
 styleSheet.type = "text/css";
-styleSheet.href =
-  "https://unpkg.com/mailgo@" + VERSION + "/dist/mailgo.min.css";
+styleSheet.href = "https://unpkg.com/mailgo@" + V + "/dist/mailgo.min.css";
 document.head.appendChild(styleSheet);
 
 /**
@@ -186,7 +185,7 @@ mailgoRender = mailgo => {
     subject = "",
     bodyMail = "";
 
-  // mailgo all the element with href=^"mailto:"
+  // if the element href=^"mailto:"
   if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
     mail = decodeURIComponent(
       mailgo.href
@@ -205,7 +204,7 @@ mailgoRender = mailgo => {
     subject = urlParams.get("subject");
     bodyMail = urlParams.get("body");
   } else {
-    // mailgo all the element with href="#mailgo" or class="mailgo"
+    // if the element href="#mailgo" or class="mailgo"
     // email = data-address + @ + data-domain
     mail =
       mailgo.getAttribute("data-address") +
@@ -218,6 +217,7 @@ mailgoRender = mailgo => {
   // validate the email address
   if (!validateEmail(mail)) return;
 
+  // information
   titleEl = getE("mailgo-title");
   detailsEl = getE("mailgo-details");
   ccEl = getE("mailgo-cc");
@@ -229,22 +229,34 @@ mailgoRender = mailgo => {
   bodyEl = getE("mailgo-body");
   bodyValueEl = getE("mailgo-body-value");
 
+  // actions
   gmailButton = getE("mailgo-gmail");
   outlookButton = getE("mailgo-outlook");
   openButton = getE("mailgo-open");
   copyButton = getE("mailgo-copy");
 
+  // the title of the modal (email address)
   titleEl.textContent = mail;
 
-  cc ? (ccValueEl.textContent = cc) : (ccEl.style.display = "none");
-  bcc ? (bccValueEl.textContent = bcc) : (bccEl.style.display = "none");
+  // add the details if provided
+  cc
+    ? ((ccEl.style.display = "block"), (ccValueEl.textContent = cc))
+    : (ccEl.style.display = "none");
+
+  bcc
+    ? ((bccEl.style.display = "block"), (bccValueEl.textContent = bcc))
+    : (bccEl.style.display = "none");
+
   subject
-    ? (subjectValueEl.textContent = subject)
+    ? ((subjectEl.style.display = "block"),
+      (subjectValueEl.textContent = subject))
     : (subjectEl.style.display = "none");
+
   bodyMail
-    ? (bodyValueEl.textContent = bodyMail)
+    ? ((bodyEl.style.display = "block"), (bodyValueEl.textContent = bodyMail))
     : (bodyEl.style.display = "none");
 
+  // add the actions
   gmailButton.href =
     "https://mail.google.com/mail?extsrc=mailto&url=" +
     encodeURIComponent(mailtoHref);
@@ -275,14 +287,20 @@ mailgoRender = mailgo => {
     false
   );
 
+  // show the mailgo
   showMailgo();
 };
 
+/**
+ * mailgoCheckRender
+ * function to check if an element is mailgo-enabled or not referencing to the old
+ * document.querySelectorAll(
+ *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ */
 mailgoCheckRender = event => {
   // the target element
   let e = event.target;
-
-  console.log(e);
 
   // check if the id=mailgo exists in the body
   if (!document.body.contains(getE("mailgo"))) return;
