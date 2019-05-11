@@ -218,21 +218,21 @@ mailgoRender = mailgo => {
   // validate the email address
   if (!validateEmail(mail)) return;
 
-  titleEl = document.getElementById("mailgo-title");
-  detailsEl = document.getElementById("mailgo-details");
-  ccEl = document.getElementById("mailgo-cc");
-  ccValueEl = document.getElementById("mailgo-cc-value");
-  bccEl = document.getElementById("mailgo-bcc");
-  bccValueEl = document.getElementById("mailgo-bcc-value");
-  subjectEl = document.getElementById("mailgo-subject");
-  subjectValueEl = document.getElementById("mailgo-subject-value");
-  bodyEl = document.getElementById("mailgo-body");
-  bodyValueEl = document.getElementById("mailgo-body-value");
+  titleEl = getE("mailgo-title");
+  detailsEl = getE("mailgo-details");
+  ccEl = getE("mailgo-cc");
+  ccValueEl = getE("mailgo-cc-value");
+  bccEl = getE("mailgo-bcc");
+  bccValueEl = getE("mailgo-bcc-value");
+  subjectEl = getE("mailgo-subject");
+  subjectValueEl = getE("mailgo-subject-value");
+  bodyEl = getE("mailgo-body");
+  bodyValueEl = getE("mailgo-body-value");
 
-  gmailButton = document.getElementById("mailgo-gmail");
-  outlookButton = document.getElementById("mailgo-outlook");
-  openButton = document.getElementById("mailgo-open");
-  copyButton = document.getElementById("mailgo-copy");
+  gmailButton = getE("mailgo-gmail");
+  outlookButton = getE("mailgo-outlook");
+  openButton = getE("mailgo-open");
+  copyButton = getE("mailgo-copy");
 
   titleEl.textContent = mail;
 
@@ -285,7 +285,7 @@ mailgoCheckRender = event => {
   console.log(e);
 
   // check if the id=mailgo exists in the body
-  if (!document.body.contains(document.getElementById("mailgo"))) return;
+  if (!document.body.contains(getE("mailgo"))) return;
 
   if (
     // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
@@ -340,13 +340,16 @@ copyToClipboard = str => {
 };
 
 // show the modal
-showMailgo = () => (document.getElementById("mailgo").style.display = "flex");
+showMailgo = () => (getE("mailgo").style.display = "flex");
 
 // hide the modal
-hideMailgo = () => (document.getElementById("mailgo").style.display = "none");
+hideMailgo = () => (getE("mailgo").style.display = "none");
 
 // decrypt email
 mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
 // encode email
 encodeEmail = email => btoa(email);
+
+// getE shorthand
+getE = id => document.getElementById(id);
