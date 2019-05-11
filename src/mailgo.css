@@ -24,7 +24,6 @@
   align-items: center;
   flex-direction: column;
   overflow: hidden;
-  z-index: 100000;
   font-size: 15px;
 }
 
@@ -45,6 +44,7 @@
 
 .mailgo-modal-background {
   position: absolute;
+  z-index: 1000;
   top: 0;
   right: 0;
   bottom: 0;
@@ -54,7 +54,8 @@
 }
 
 .mailgo-modal-content {
-  z-index: 1000;
+  position: relative;
+  z-index: 1001;
   box-sizing: content-box;
   text-align: center;
   width: 200px;
