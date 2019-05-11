@@ -7,7 +7,7 @@
 
 mailgo will substitute all the `mailto:` links with the **mailgo modal**
 
-[![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js)
+[![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js)
 
 <img src="assets/img/screen-1.png" alt="mailgo modal" width="250"/>
 
@@ -20,7 +20,7 @@ add at the end of the `<body>`
 ```
 <body>
 ...
-<script src="https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js"></script>
+<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js"></script>
 </body>
 ```
 
@@ -29,7 +29,7 @@ you can also import mailgo in `<head>` using `defer`
 ```
 <head>
 ...
-<script src="https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js" defer></script>
+<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js" defer></script>
 </head>
 ```
 
