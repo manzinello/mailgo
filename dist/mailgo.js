@@ -280,6 +280,7 @@ document.addEventListener("DOMContentLoaded", mailgoInit, false);
 document.addEventListener(
   "click",
   event => {
+    // TODO add all the possibilities
     if (event.target.href && event.target.href.startsWith("mailto:")) {
       event.preventDefault();
       mailgoRender(event.target);
