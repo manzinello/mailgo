@@ -1,7 +1,7 @@
 const VERSION = "0.3.0";
 const MAILTO = "mailto:";
 
-// style of mailgo
+// mailgo style
 const styleSheet = document.createElement("link");
 styleSheet.rel = "stylesheet";
 styleSheet.type = "text/css";
@@ -9,12 +9,11 @@ styleSheet.href =
   "https://unpkg.com/mailgo@" + VERSION + "/dist/mailgo.min.css";
 document.head.appendChild(styleSheet);
 
+/**
+ * mailgoInit
+ * the function that creates the mailgo element in DOM
+ */
 mailgoInit = () => {
-  // all mailgos in the document
-  const mailgos = document.querySelectorAll(
-    'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
-  );
-
   // modal
   let modal = document.createElement("div");
   modal.id = "mailgo";
@@ -151,6 +150,7 @@ mailgoInit = () => {
   by.appendChild(textBy);
   modalContent.appendChild(by);
 
+  // add the modal at the end of the body
   document.body.appendChild(modal);
 
   // allow the escape key to hide the modal
@@ -174,6 +174,10 @@ mailgoInit = () => {
   );
 };
 
+/**
+ * mailgoRender
+ * function to render a single mailgo
+ */
 mailgoRender = mailgo => {
   let mail = "",
     mailtoHref = "",
@@ -274,20 +278,38 @@ mailgoRender = mailgo => {
   showMailgo();
 };
 
+mailgoCheckRender = event => {
+  // the target element
+  let e = event.target;
+
+  console.log(e);
+
+  // check if the id=mailgo exists in the body
+  if (!document.body.contains(document.getElementById("mailgo"))) return;
+
+  if (
+    // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+    (e.href &&
+      e.href.toLowerCase().startsWith(MAILTO) &&
+      !e.classList.contains("no-mailgo")) ||
+    // second case: the href=#mailgo
+    (e.href && e.href.toLowerCase() == "#mailgo") ||
+    //third case: the classList contains mailgo
+    e.classList.contains("mailgo")
+  ) {
+    // stop the normal execution of the element click
+    event.preventDefault();
+
+    // render mailgo
+    mailgoRender(e);
+  }
+};
+
 // DOMContentLoaded -> mailgoInit (creates the modal)
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
-document.addEventListener(
-  "click",
-  event => {
-    // TODO add all the possibilities
-    if (event.target.href && event.target.href.startsWith("mailto:")) {
-      event.preventDefault();
-      mailgoRender(event.target);
-    }
-  },
-  false
-);
+// event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+document.addEventListener("click", mailgoCheckRender, false);
 
 // validate the email with regex
 validateEmail = email => {
