@@ -3,6 +3,8 @@
 ![mailgo screencast](/assets/video/mailgo-screencast.gif)
 (see it in action! <https://mailgo.js.org>)
 
+See the <a href="https://www.npmjs.com/package/mailgo">docs</a> on npm for a more stable version of mailgo, the README of GitHub is referencing to the latest WIP **mailgo**.
+
 ## what?
 
 mailgo will substitute all the `mailto:` links with the **mailgo modal**
