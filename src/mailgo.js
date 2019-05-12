@@ -155,25 +155,11 @@ mailgoInit = () => {
   // add the modal at the end of the body
   document.body.appendChild(modal);
 
-  // allow the escape key to hide the modal
-  mailgo.addEventListener(
-    "keydown",
-    event => {
-      if (event.keyCode === 27) {
-        hideMailgo();
-      }
-    },
-    false
-  );
+  // add the event mailgoKeydown on mailgo
+  mailgo.addEventListener("keydown", mailgoKeydown, false);
 
   // every click outside the modal will hide the modal
-  modalBackground.addEventListener(
-    "click",
-    event => {
-      hideMailgo();
-    },
-    false
-  );
+  modalBackground.addEventListener("click", hideMailgo, false);
 };
 
 /**
@@ -325,6 +311,16 @@ mailgoCheckRender = event => {
 
     // render mailgo
     mailgoRender(e);
+  }
+};
+
+/**
+ * mailgoKeydown
+ * function to manage the keydown event when the modal is showing
+ */
+mailgoKeydown = event => {
+  if (event.keyCode === 27) {
+    hideMailgo();
   }
 };
 
