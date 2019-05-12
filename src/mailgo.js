@@ -128,6 +128,7 @@ mailgoInit = () => {
   open.classList.add("mailgo-weight-500");
   let openContent = document.createTextNode("open");
   open.appendChild(openContent);
+
   modalContent.appendChild(open);
 
   // copy
@@ -138,6 +139,7 @@ mailgoInit = () => {
   copy.classList.add("mailgo-weight-500");
   let copyContent = document.createTextNode("copy");
   copy.appendChild(copyContent);
+
   modalContent.appendChild(copy);
 
   // by
@@ -147,6 +149,7 @@ mailgoInit = () => {
   by.target = "_blank";
   let textBy = document.createTextNode("mailgo.js.org");
   by.appendChild(textBy);
+
   modalContent.appendChild(by);
 
   // add the modal at the end of the body
@@ -328,7 +331,7 @@ mailgoCheckRender = event => {
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.addEventListener("click", mailgoCheckRender, false);
+document.body.addEventListener("click", mailgoCheckRender, false);
 
 // validate the email with regex
 validateEmail = email => {
