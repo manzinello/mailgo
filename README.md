@@ -3,13 +3,13 @@
 ![mailgo screencast](/assets/video/mailgo-screencast.gif)
 (see it in action! <https://mailgo.js.org>)
 
-See the <a href="https://www.npmjs.com/package/mailgo">docs</a> on npm for a more stable version of mailgo, the README of GitHub is referencing to the latest WIP **mailgo**.
+See the <a href="https://www.npmjs.com/package/mailgo">docs</a> on npm for a more stable version of mailgo, the README of GitHub is referencing to the latest WIP **mailgo**: 0.3.0.
 
 ## what?
 
 mailgo will substitute all the `mailto:` links with the **mailgo modal**
 
-[![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js)
+[![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js)
 
 <img src="assets/img/screen-1.png" alt="mailgo modal" width="250"/>
 
@@ -22,7 +22,7 @@ add at the end of the `<body>`
 ```
 <body>
 ...
-<script src="https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js"></script>
+<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js"></script>
 </body>
 ```
 
@@ -31,7 +31,7 @@ you can also import mailgo in `<head>` using `defer`
 ```
 <head>
 ...
-<script src="https://unpkg.com/mailgo@0.2.9/dist/mailgo.min.js" defer></script>
+<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js" defer></script>
 </head>
 ```
 
@@ -63,6 +63,13 @@ Do you want to prevent the spam? Use a _no-spam usage_ instead the default usage
 - add `class="mailgo"` to `<a>`
 - add `data-address` and `data-domain` to re-create your email address
 
+### no-spam usage #3
+
+`<a mailgo data-address="matteo" data-domain="manzinello.dev">write me!</a>`
+
+- add the attribute `mailgo` to `<a>`
+- add `data-address` and `data-domain` to re-create your email address
+
 #### exclude a mailto
 
 to exclude a mailto link add to the `<a>` element the class `no-mailgo` like in this example:
@@ -71,8 +78,10 @@ to exclude a mailto link add to the `<a>` element the class `no-mailgo` like in 
 <a class="no-mailgo" href="mailto:matteo@manzinello.dev">matteo@manzinello.dev</a>
 ```
 
+this solution can be applied only to the default installation (`<a>` element with href starting with `mailto:`, the classic mailto link)
+
 ---
 
-[![NPM](https://nodei.co/npm/mailgo.png)](https://nodei.co/npm/mailgo/)
+[![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
 
 <https://mailgo.js.org>
