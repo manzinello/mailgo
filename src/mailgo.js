@@ -285,7 +285,7 @@ mailgoRender = mailgo => {
  * function to check if an element is mailgo-enabled or not referencing to the old
  * document.querySelectorAll(
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * );
+ * ); and the new a[mailgo]
  */
 mailgoCheckRender = event => {
   // the target element
