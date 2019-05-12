@@ -128,6 +128,7 @@ mailgoInit = () => {
   open.classList.add("mailgo-weight-500");
   let openContent = document.createTextNode("open");
   open.appendChild(openContent);
+
   modalContent.appendChild(open);
 
   // copy
@@ -138,6 +139,7 @@ mailgoInit = () => {
   copy.classList.add("mailgo-weight-500");
   let copyContent = document.createTextNode("copy");
   copy.appendChild(copyContent);
+
   modalContent.appendChild(copy);
 
   // by
@@ -147,6 +149,7 @@ mailgoInit = () => {
   by.target = "_blank";
   let textBy = document.createTextNode("mailgo.js.org");
   by.appendChild(textBy);
+
   modalContent.appendChild(by);
 
   // add the modal at the end of the body
@@ -305,6 +308,8 @@ mailgoCheckRender = event => {
   // check if the id=mailgo exists in the body
   if (!document.body.contains(getE("mailgo"))) return;
 
+  console.log(e.href.toLowerCase());
+
   if (
     // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
     (e.href &&
@@ -312,7 +317,7 @@ mailgoCheckRender = event => {
       !e.classList.contains("no-mailgo")) ||
     // second case: the href=#mailgo
     // TODO FIX here
-    (e.href && e.href.toLowerCase() === "#mailgo") ||
+    (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
     //third case: the classList contains mailgo
     e.classList.contains("mailgo")
   ) {
@@ -328,7 +333,7 @@ mailgoCheckRender = event => {
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.addEventListener("click", mailgoCheckRender, false);
+document.body.addEventListener("click", mailgoCheckRender, false);
 
 // validate the email with regex
 validateEmail = email => {

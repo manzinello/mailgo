@@ -314,8 +314,7 @@ mailgoCheckRender = event => {
       e.href.toLowerCase().startsWith(MAILTO) &&
       !e.classList.contains("no-mailgo")) ||
     // second case: the href=#mailgo
-    // TODO FIX here
-    (e.href && e.href.toLowerCase() === "#mailgo") ||
+    (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
     //third case: the classList contains mailgo
     e.classList.contains("mailgo")
   ) {
