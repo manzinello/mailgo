@@ -308,18 +308,17 @@ mailgoCheckRender = event => {
   // check if the id=mailgo exists in the body
   if (!document.body.contains(getE("mailgo"))) return;
 
-  console.log(e.href.toLowerCase());
-
   if (
     // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
     (e.href &&
       e.href.toLowerCase().startsWith(MAILTO) &&
       !e.classList.contains("no-mailgo")) ||
     // second case: the href=#mailgo
-    // TODO FIX here
     (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
-    //third case: the classList contains mailgo
-    e.classList.contains("mailgo")
+    // third case: the classList contains mailgo
+    e.classList.contains("mailgo") ||
+    // fourth case: exists the attribute mailgo in the <a> element
+    !!e.getAttribute("mailgo")
   ) {
     // stop the normal execution of the element click
     event.preventDefault();
