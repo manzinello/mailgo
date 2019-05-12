@@ -319,9 +319,15 @@ mailgoCheckRender = event => {
  * function to manage the keydown event when the modal is showing
  */
 mailgoKeydown = event => {
-  if (event.keyCode === 27) {
-    hideMailgo();
+  switch (event.keyCode) {
+    case 27:
+      // Escape
+      hideMailgo();
+      break;
+    default:
+      return;
   }
+  return;
 };
 
 // DOMContentLoaded -> mailgoInit (creates the modal)
