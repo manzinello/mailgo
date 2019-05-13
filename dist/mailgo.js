@@ -155,9 +155,6 @@ mailgoInit = () => {
   // add the modal at the end of the body
   document.body.appendChild(modal);
 
-  // add the event mailgoKeydown on mailgo
-  mailgo.addEventListener("keydown", mailgoKeydown, false);
-
   // every click outside the modal will hide the modal
   modalBackground.addEventListener("click", hideMailgo, false);
 };
@@ -208,6 +205,12 @@ mailgoRender = mailgo => {
       "@" +
       mailgo.getAttribute("data-cc-domain");
 
+    // bcc = data-bcc-address + @ + data-bcc-domain
+    bcc =
+      mailgo.getAttribute("data-bcc-address") +
+      "@" +
+      mailgo.getAttribute("data-bcc-domain");
+
     // subject = data-subject
     subject = mailgo.getAttribute("data-subject");
 
@@ -218,8 +221,9 @@ mailgoRender = mailgo => {
   // validate the email address
   if (!validateEmail(mail)) return;
 
-  // if cc is not valid cc = ""
+  // if cc, bcc is not valid cc, bcc = ""
   if (!validateEmail(cc)) cc = "";
+  if (!validateEmail(bcc)) bcc = "";
 
   // information
   titleEl = getE("mailgo-title");
@@ -379,11 +383,18 @@ copyToClipboard = str => {
 };
 
 // show the modal
-showMailgo = () => (getE("mailgo").style.display = "flex");
+showMailgo = () => {
+  getE("mailgo").style.display = "flex";
+  // add mailgoKeydown
+  document.body.addEventListener("keydown", mailgoKeydown, false);
+};
 
 // hide the modal
-hideMailgo = () => (getE("mailgo").style.display = "none");
-
+hideMailgo = () => {
+  getE("mailgo").style.display = "none";
+  // remove mailgoKeydown
+  document.body.removeEventListener("keydown", mailgoKeydown, false);
+};
 // decrypt email
 mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
