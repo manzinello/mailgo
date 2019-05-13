@@ -208,6 +208,12 @@ mailgoRender = mailgo => {
       "@" +
       mailgo.getAttribute("data-cc-domain");
 
+    // bcc = data-bcc-address + @ + data-bcc-domain
+    bcc =
+      mailgo.getAttribute("data-bcc-address") +
+      "@" +
+      mailgo.getAttribute("data-bcc-domain");
+
     // subject = data-subject
     subject = mailgo.getAttribute("data-subject");
 
@@ -218,8 +224,9 @@ mailgoRender = mailgo => {
   // validate the email address
   if (!validateEmail(mail)) return;
 
-  // if cc is not valid cc = ""
+  // if cc, bcc is not valid cc, bcc = ""
   if (!validateEmail(cc)) cc = "";
+  if (!validateEmail(bcc)) bcc = "";
 
   // information
   titleEl = getE("mailgo-title");
