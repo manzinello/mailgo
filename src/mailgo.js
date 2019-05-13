@@ -194,17 +194,32 @@ mailgoRender = mailgo => {
     bodyMail = urlParams.get("body");
   } else {
     // if the element href="#mailgo" or class="mailgo"
-    // email = data-address + @ + data-domain
+    // mail = data-address + @ + data-domain
     mail =
       mailgo.getAttribute("data-address") +
       "@" +
       mailgo.getAttribute("data-domain");
     mailtoHref = MAILTO + encodeURIComponent(mail);
     url = new URL(mailtoHref);
+
+    // cc = data-cc-address + @ + data-cc-domain
+    cc =
+      mailgo.getAttribute("data-cc-address") +
+      "@" +
+      mailgo.getAttribute("data-cc-domain");
+
+    // subject = data-subject
+    subject = mailgo.getAttribute("data-subject");
+
+    // body = data-body
+    bodyMail = mailgo.getAttribute("data-body");
   }
 
   // validate the email address
   if (!validateEmail(mail)) return;
+
+  // if cc is not valid cc = ""
+  if (!validateEmail(cc)) cc = "";
 
   // information
   titleEl = getE("mailgo-title");
@@ -344,13 +359,13 @@ validateEmail = email => {
 
 // copy of a string
 copyToClipboard = str => {
-  const el = document.createElement("textarea");
+  let el = document.createElement("textarea");
   el.value = str;
   el.setAttribute("readonly", "");
   el.style.position = "absolute";
   el.style.left = "-9999px";
   document.body.appendChild(el);
-  const selected =
+  let selected =
     document.getSelection().rangeCount > 0
       ? document.getSelection().getRangeAt(0)
       : false;
