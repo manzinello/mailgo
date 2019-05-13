@@ -82,6 +82,12 @@ this solution can be applied only to the default installation (`<a>` element wit
 
 ---
 
+## browsers support
+
+// WIP
+
+---
+
 [![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
 
 <https://mailgo.js.org>
