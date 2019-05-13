@@ -85,7 +85,7 @@ to exclude a single mailto link add to the `<a>` element the class `no-mailgo` l
 
 ---
 
-## example
+## examples
 
 This is a complete **mailgo** example with the no-spam usage #1:
 
