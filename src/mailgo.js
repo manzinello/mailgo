@@ -2,11 +2,11 @@ const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
 
 // mailgo style
-const styleSheet = document.createElement("link");
-styleSheet.rel = "stylesheet";
-styleSheet.type = "text/css";
-styleSheet.href = "https://unpkg.com/mailgo@" + V + "/dist/mailgo.min.css";
-document.head.appendChild(styleSheet);
+const mailgoCSS = document.createElement("link");
+mailgoCSS.rel = "stylesheet";
+mailgoCSS.type = "text/css";
+mailgoCSS.href = "https://unpkg.com/mailgo@" + V + "/dist/mailgo.min.css";
+document.head.appendChild(mailgoCSS);
 
 /**
  * mailgoInit
