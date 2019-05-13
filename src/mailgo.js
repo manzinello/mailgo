@@ -155,9 +155,6 @@ mailgoInit = () => {
   // add the modal at the end of the body
   document.body.appendChild(modal);
 
-  // add the event mailgoKeydown on mailgo
-  mailgo.addEventListener("keydown", mailgoKeydown, false);
-
   // every click outside the modal will hide the modal
   modalBackground.addEventListener("click", hideMailgo, false);
 };
@@ -386,11 +383,18 @@ copyToClipboard = str => {
 };
 
 // show the modal
-showMailgo = () => (getE("mailgo").style.display = "flex");
+showMailgo = () => {
+  getE("mailgo").style.display = "flex";
+  // add mailgoKeydown
+  document.body.addEventListener("keydown", mailgoKeydown, false);
+};
 
 // hide the modal
-hideMailgo = () => (getE("mailgo").style.display = "none");
-
+hideMailgo = () => {
+  getE("mailgo").style.display = "none";
+  // remove mailgoKeydown
+  document.body.removeEventListener("keydown", mailgoKeydown, false);
+};
 // decrypt email
 mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
