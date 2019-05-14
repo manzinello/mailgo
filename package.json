@@ -19,11 +19,17 @@
   },
   "homepage": "https://mailgo.js.org",
   "devDependencies": {
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
     "gulp": "^4.0.2",
     "gulp-csso": "^3.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
     "gulp-terser": "^1.1.7",
     "gulp-uglify": "^3.0.2"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4"
   }
 }
