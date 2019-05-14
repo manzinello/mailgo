@@ -101,6 +101,17 @@ This is a more simple example (also with no-spam #1 usage):
 
 ---
 
-[![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
+## connected projects
 
+### mailgo Chrome extension (WIP)
+
+<https://github.com/manzinello/mailgo-chrome-extension>
+
+### mailgo React component (WIP)
+
+<https://github.com/manzinello/react-mailgo>
+
+---
+
+[![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
 <https://mailgo.js.org>
