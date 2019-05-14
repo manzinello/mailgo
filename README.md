@@ -5,6 +5,8 @@
 
 docs: <a href="https://www.npmjs.com/package/mailgo">npm</a>
 
+[![Open Source Helpers](https://www.codetriage.com/manzinello/mailgo/badges/users.svg)](https://www.codetriage.com/manzinello/mailgo)
+
 ## what?
 
 mailgo will substitute all the `mailto:` links with the **mailgo modal**
@@ -35,13 +37,11 @@ you can also import mailgo in `<head>` using `defer`
 </head>
 ```
 
-(note: the GitHub `/dist` is totally unstable, use `unpkg` or `npm` to test **mailgo**, thanks!)
+(note: the GitHub `/dist` folder is totally unstable, use `unpkg` to test **mailgo**, thanks!)
 
 ---
 
 ## usage
-
-### default
 
 **by default all the `mailto:` links will be enabled with mailgo automatically** and will appear also cc, bcc, subject and body parameter, if provided
 
