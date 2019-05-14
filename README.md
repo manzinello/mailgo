@@ -5,7 +5,7 @@
 
 docs: <a href="https://www.npmjs.com/package/mailgo">npm</a>
 
-![npm](https://img.shields.io/npm/v/mailgo.svg?style=flat-square) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js)
+![npm](https://img.shields.io/npm/v/mailgo.svg?style=flat-square) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.1/dist/mailgo.min.js)
 
 ## what?
 
@@ -22,7 +22,7 @@ add at the end of the `<body>`
 ```
 <body>
 ...
-<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js"></script>
+<script src="https://unpkg.com/mailgo@0.3.1/dist/mailgo.min.js"></script>
 </body>
 ```
 
@@ -31,7 +31,7 @@ you can also import mailgo in `<head>` using `defer`
 ```
 <head>
 ...
-<script src="https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js" defer></script>
+<script src="https://unpkg.com/mailgo@0.3.1/dist/mailgo.min.js" defer></script>
 </head>
 ```
 

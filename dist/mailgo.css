@@ -74,18 +74,16 @@
 
 .mailgo-modal-content a {
   display: block;
+  padding: 10px;
   color: #4a4a4a;
   border-radius: 4px;
   text-decoration: none;
 }
 
-.mailgo-modal-content a {
-  padding: 10px;
-}
-
 .mailgo-modal-content a.mailgo-open:hover,
 .mailgo-modal-content a.mailgo-copy:hover {
   background-color: rgba(0, 0, 0, 0.08);
+  color: #4a4a4a;
 }
 
 .mailgo-modal-content a.outlook {
