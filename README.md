@@ -1,4 +1,4 @@
-# 💌 mailgo - a different mailto (WIP)
+# 💌 mailgo, a different mailto: more possibilities, less spam (WIP)
 
 ![mailgo screencast](/assets/video/mailgo-screencast.gif)
 (see it in action! <https://mailgo.js.org>)
