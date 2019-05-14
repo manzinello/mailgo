@@ -114,4 +114,5 @@ This is a more simple example (also with no-spam #1 usage):
 ---
 
 [![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
+
 <https://mailgo.js.org>
