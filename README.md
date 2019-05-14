@@ -5,13 +5,11 @@
 
 docs: <a href="https://www.npmjs.com/package/mailgo">npm</a>
 
-[![Open Source Helpers](https://www.codetriage.com/manzinello/mailgo/badges/users.svg)](https://www.codetriage.com/manzinello/mailgo)
+![npm](https://img.shields.io/npm/v/mailgo.svg?style=flat-square) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js)
 
 ## what?
 
 mailgo will substitute all the `mailto:` links with the **mailgo modal**
-
-[![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.0/dist/mailgo.min.js)
 
 <img src="assets/img/screen-1.png" alt="mailgo modal" width="250"/>
 
@@ -113,6 +111,10 @@ This is a more simple example (also with no-spam #1 usage):
 
 ---
 
-[![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
+## open source helpers
 
-<https://mailgo.js.org>
+[![Open Source Helpers](https://www.codetriage.com/manzinello/mailgo/badges/users.svg)](https://www.codetriage.com/manzinello/mailgo)
+
+---
+
+[![NPM](https://nodei.co/npm/mailgo.png?stars=true)](https://www.npmjs.com/package/mailgo)
