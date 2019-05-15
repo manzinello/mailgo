@@ -23,6 +23,7 @@
     "@babel/core": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
     "gulp-csso": "^3.0.1",
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
