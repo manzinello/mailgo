@@ -80,30 +80,32 @@
   text-decoration: none;
 }
 
-.mailgo-modal-content a.mailgo-open:hover,
+.mailgo-modal-content a.mailgo-gmail {
+  color: #d44638;
+}
+
+.mailgo-modal-content a.mailgo-outlook {
+  color: #0072c6;
+}
+
+.mailgo-modal-content a.mailgo-copy {
+  padding: 16px 10px;
+}
+
+.mailgo-modal-content a.mailgo-default:hover,
 .mailgo-modal-content a.mailgo-copy:hover {
   background-color: rgba(0, 0, 0, 0.08);
   color: #4a4a4a;
 }
 
-.mailgo-modal-content a.outlook {
+.mailgo-modal-content a.mailgo-outlook:hover {
+  background-color: rgba(0, 114, 198, 0.08);
   color: #0072c6;
 }
 
-.mailgo-modal-content a.gmail {
-  color: #d44638;
-}
-
-.mailgo-modal-content a.outlook:hover {
-  background-color: rgba(0, 114, 198, 0.08);
-}
-
-.mailgo-modal-content a.gmail:hover {
+.mailgo-modal-content a.mailgo-gmail:hover {
   background-color: rgba(212, 70, 56, 0.08);
-}
-
-.mailgo-modal-content a.mailgo-copy {
-  padding: 16px 10px;
+  color: #d44638;
 }
 
 .mailgo-modal-content a.mailgo-by {

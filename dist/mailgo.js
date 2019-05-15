@@ -85,7 +85,7 @@ var mailgoInit = function mailgoInit() {
   var gmail = document.createElement("a");
   gmail.id = "mailgo-gmail";
   gmail.classList.add("mailgo-open");
-  gmail.classList.add("gmail");
+  gmail.classList.add("mailgo-gmail");
   var gmailContent = document.createTextNode("open in ");
   gmail.appendChild(gmailContent);
   var gmailSpan = document.createElement("span");
@@ -98,7 +98,7 @@ var mailgoInit = function mailgoInit() {
   var outlook = document.createElement("a");
   outlook.id = "mailgo-outlook";
   outlook.classList.add("mailgo-open");
-  outlook.classList.add("outlook");
+  outlook.classList.add("mailgo-outlook");
   var outlookContent = document.createTextNode("open in ");
   outlook.appendChild(outlookContent);
   var outlookSpan = document.createElement("span");
@@ -112,6 +112,7 @@ var mailgoInit = function mailgoInit() {
   open.id = "mailgo-open";
   open.href = "#mailgo-open";
   open.classList.add("mailgo-open");
+  open.classList.add("mailgo-default");
   open.classList.add("mailgo-weight-500");
   var openContent = document.createTextNode("open");
   open.appendChild(openContent);
