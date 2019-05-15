@@ -12,7 +12,7 @@ document.head.appendChild(mailgoCSS);
  * mailgoInit
  * the function that creates the mailgo element in DOM
  */
-mailgoInit = () => {
+let mailgoInit = () => {
   // modal
   let modal = document.createElement("div");
   modal.id = "mailgo";
@@ -163,8 +163,9 @@ mailgoInit = () => {
  * mailgoRender
  * function to render a single mailgo
  */
-mailgoRender = mailgo => {
+let mailgoRender = mailgo => {
   let mail = "",
+    url = "",
     mailtoHref = "",
     cc = "",
     bcc = "",
@@ -226,22 +227,22 @@ mailgoRender = mailgo => {
   if (!validateEmail(bcc)) bcc = "";
 
   // information
-  titleEl = getE("mailgo-title");
-  detailsEl = getE("mailgo-details");
-  ccEl = getE("mailgo-cc");
-  ccValueEl = getE("mailgo-cc-value");
-  bccEl = getE("mailgo-bcc");
-  bccValueEl = getE("mailgo-bcc-value");
-  subjectEl = getE("mailgo-subject");
-  subjectValueEl = getE("mailgo-subject-value");
-  bodyEl = getE("mailgo-body");
-  bodyValueEl = getE("mailgo-body-value");
+  let titleEl = getE("mailgo-title");
+  let detailsEl = getE("mailgo-details");
+  let ccEl = getE("mailgo-cc");
+  let ccValueEl = getE("mailgo-cc-value");
+  let bccEl = getE("mailgo-bcc");
+  let bccValueEl = getE("mailgo-bcc-value");
+  let subjectEl = getE("mailgo-subject");
+  let subjectValueEl = getE("mailgo-subject-value");
+  let bodyEl = getE("mailgo-body");
+  let bodyValueEl = getE("mailgo-body-value");
 
   // actions
-  gmailButton = getE("mailgo-gmail");
-  outlookButton = getE("mailgo-outlook");
-  openButton = getE("mailgo-open");
-  copyButton = getE("mailgo-copy");
+  let gmailButton = getE("mailgo-gmail");
+  let outlookButton = getE("mailgo-outlook");
+  let openButton = getE("mailgo-open");
+  let copyButton = getE("mailgo-copy");
 
   // the title of the modal (email address)
   titleEl.textContent = mail;
@@ -306,7 +307,7 @@ mailgoRender = mailgo => {
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * ); and the new a[mailgo]
  */
-mailgoCheckRender = event => {
+let mailgoCheckRender = event => {
   // the target element
   let e = event.target;
 
@@ -337,7 +338,7 @@ mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-mailgoKeydown = event => {
+let mailgoKeydown = event => {
   switch (event.keyCode) {
     case 27:
       // Escape
@@ -356,13 +357,13 @@ document.addEventListener("DOMContentLoaded", mailgoInit, false);
 document.body.addEventListener("click", mailgoCheckRender, false);
 
 // validate the email with regex
-validateEmail = email => {
+let validateEmail = email => {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 };
 
 // copy of a string
-copyToClipboard = str => {
+let copyToClipboard = str => {
   let el = document.createElement("textarea");
   el.value = str;
   el.setAttribute("readonly", "");
@@ -383,23 +384,23 @@ copyToClipboard = str => {
 };
 
 // show the modal
-showMailgo = () => {
+let showMailgo = () => {
   getE("mailgo").style.display = "flex";
   // add mailgoKeydown
   document.body.addEventListener("keydown", mailgoKeydown, false);
 };
 
 // hide the modal
-hideMailgo = () => {
+let hideMailgo = () => {
   getE("mailgo").style.display = "none";
   // remove mailgoKeydown
   document.body.removeEventListener("keydown", mailgoKeydown, false);
 };
 // decrypt email
-mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
+let mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
 
 // encode email
-encodeEmail = email => btoa(email);
+let encodeEmail = email => btoa(email);
 
 // getE shorthand
-getE = id => document.getElementById(id);
+let getE = id => document.getElementById(id);
