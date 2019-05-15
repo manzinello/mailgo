@@ -45,23 +45,23 @@ you can also import mailgo in `<head>` using `defer`
 
 <small>(to exclude a single mailto link add to the `<a>` element the class `no-mailgo`)</small>
 
-**do you want to prevent the spam? Use a _no-spam usage_ instead the default usage**
+**do you want to prevent the spam? Use a _spam-less usage_ instead the default usage**
 
-### no-spam usage #1 (recommended)
+### spam-less usage #1 (recommended)
 
 `<a href="#mailgo" data-address="matteo" data-domain="manzinello.dev">write me!</a>`
 
 - add `href="#mailgo"` to `<a>`
 - add `data-address` and `data-domain` to re-create your email address
 
-### no-spam usage #2
+### spam-less usage #2
 
 `<a class="mailgo" data-address="matteo" data-domain="manzinello.dev">write me!</a>`
 
 - add `class="mailgo"` to `<a>`
 - add `data-address` and `data-domain` to re-create your email address
 
-### no-spam usage #3
+### spam-less usage #3
 
 `<a mailgo data-address="matteo" data-domain="manzinello.dev">write me!</a>`
 
@@ -70,7 +70,7 @@ you can also import mailgo in `<head>` using `defer`
 
 ### cc, bcc, body and subject
 
-**mailgo** also supports cc, bcc, subject and body in no-spam installation using the parameters:
+**mailgo** also supports cc, bcc, subject and body in spam-less installation using the parameters:
 
 - `data-cc-address` and `data-cc-domain` to recreate cc: `data-cc-address@data-cc-domain`
 - `data-bcc-address` and `data-bcc-domain` to recreate bcc: `data-bcc-address@data-bcc-domain`
@@ -83,11 +83,11 @@ for the default installation you can use the classic mailto parameters and they 
 
 ## examples
 
-this is a complete **mailgo** example with the no-spam usage #1 (and cc, bcc, subject and body):
+this is a complete **mailgo** example with the spam-less usage #1 (and cc, bcc, subject and body):
 
 `<a href="#mailgo" data-address="matteo" data-domain="manzinello.dev" data-cc-address="matteomanzinello" data-cc-domain="gmail.com" data-bcc-address="hello" data-bcc-domain="matteomanzinello.com" data-subject="A strange email" data-body="This email is for me with me also in cc and in bcc">write me!</a>`
 
-This is a more simple example (also with no-spam #1 usage):
+This is a more simple example (also with spam-less #1 usage):
 
 `<a href="#mailgo" data-address="matteo" data-domain="manzinello.dev">write me!</a>`
 
