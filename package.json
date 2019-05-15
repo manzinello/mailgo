@@ -33,5 +33,5 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4"
   },
-  "browserslist": []
+  "browserslist": "> 0.25%, not dead"
 }
