@@ -12,7 +12,7 @@ document.head.appendChild(mailgoCSS);
  * mailgoInit
  * the function that creates the mailgo element in DOM
  */
-let mailgoInit = () => {
+const mailgoInit = () => {
   // modal
   let modal = document.createElement("div");
   modal.id = "mailgo";
@@ -164,7 +164,7 @@ let mailgoInit = () => {
  * mailgoRender
  * function to render a single mailgo
  */
-let mailgoRender = mailgo => {
+const mailgoRender = mailgo => {
   let mail = "",
     url = "",
     mailtoHref = "",
@@ -308,7 +308,7 @@ let mailgoRender = mailgo => {
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * ); and the new a[mailgo]
  */
-let mailgoCheckRender = event => {
+const mailgoCheckRender = event => {
   // the target element
   let e = event.target;
 
@@ -339,7 +339,7 @@ let mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-let mailgoKeydown = event => {
+const mailgoKeydown = event => {
   switch (event.keyCode) {
     case 27:
       // Escape
@@ -358,13 +358,13 @@ document.addEventListener("DOMContentLoaded", mailgoInit, false);
 document.body.addEventListener("click", mailgoCheckRender, false);
 
 // validate the email with regex
-let validateEmail = email => {
+const validateEmail = email => {
   let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
 };
 
 // copy of a string
-let copyToClipboard = str => {
+const copyToClipboard = str => {
   let el = document.createElement("textarea");
   el.value = str;
   el.setAttribute("readonly", "");
@@ -385,23 +385,25 @@ let copyToClipboard = str => {
 };
 
 // show the modal
-let showMailgo = () => {
+const showMailgo = () => {
   getE("mailgo").style.display = "flex";
   // add mailgoKeydown
   document.body.addEventListener("keydown", mailgoKeydown, false);
 };
 
 // hide the modal
-let hideMailgo = () => {
+const hideMailgo = () => {
   getE("mailgo").style.display = "none";
   // remove mailgoKeydown
   document.body.removeEventListener("keydown", mailgoKeydown, false);
 };
+
 // decrypt email
-let mailToEncoded = encoded => (window.location.href = MAILTO + atob(encoded));
+const mailToEncoded = encoded =>
+  (window.location.href = MAILTO + atob(encoded));
 
 // encode email
-let encodeEmail = email => btoa(email);
+const encodeEmail = email => btoa(email);
 
 // getE shorthand
-let getE = id => document.getElementById(id);
+const getE = id => document.getElementById(id);
