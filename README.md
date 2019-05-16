@@ -68,7 +68,7 @@ you can also import mailgo in `<head>` using `defer`
 - add the attribute `mailgo` to `<a>`
 - add `data-address` and `data-domain` to re-create your email address
 
-### cc, bcc, body and subject
+### cc, bcc, body, subject and multiple email addresses
 
 **mailgo** also supports cc, bcc, subject and body in spam-less installation using the parameters:
 
@@ -78,6 +78,8 @@ you can also import mailgo in `<head>` using `defer`
 - `data-body` for the body of the email
 
 for the default installation you can use the classic mailto parameters and they will appear in the modal
+
+mailgo doesn't support multiple email addresses in to, cc and bcc at the moment, but there is an <a href="https://github.com/manzinello/mailgo/issues/19">issue</a> for this!
 
 ---
 
