@@ -94,7 +94,7 @@ This is a more simple example (also with spam-less #1 usage):
 
 ---
 
-## browsers support
+## browsers support (WIP)
 
 `"browserslist": "> 0.25%, not dead"`
 
