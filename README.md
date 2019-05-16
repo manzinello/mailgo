@@ -1,11 +1,10 @@
 # 💌 mailgo, a different mailto: more possibilities, less spam (WIP)
 
 ![mailgo screencast](/assets/video/mailgo-screencast.gif)
-(see it in action! <https://mailgo.js.org>)
 
-docs: <a href="https://www.npmjs.com/package/mailgo">npm</a>
+![npm](https://img.shields.io/npm/v/mailgo.svg?style=flat-square) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.2/dist/mailgo.min.js) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.css.svg?label=mailgo.min.css&style=flat-square)](https://unpkg.com/mailgo@0.3.2/dist/mailgo.min.css)
 
-![npm](https://img.shields.io/npm/v/mailgo.svg?style=flat-square) [![mailgo.min.js size](https://img.shields.io/github/size/manzinello/mailgo/dist/mailgo.min.js.svg?label=mailgo.min.js&style=flat-square)](https://unpkg.com/mailgo@0.3.2/dist/mailgo.min.js)
+### docs: <a href="https://www.npmjs.com/package/mailgo">npm</a>
 
 ## what?
 
@@ -112,6 +111,10 @@ see the compatibility of mailgo on <a href="https://browserl.ist/?q=%3E+0.25%25%
 ### mailgo React component (WIP)
 
 <https://github.com/manzinello/react-mailgo>
+
+### mailgo WordPress plugin (WIP)
+
+<https://github.com/manzinello/mailgo-wp-plugin>
 
 ---
 
