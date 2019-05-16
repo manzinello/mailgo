@@ -97,7 +97,9 @@ This is a more simple example (also with spam-less #1 usage):
 
 ## browsers support
 
-// WIP
+`"browserslist": "> 0.25%, not dead"`
+
+see the compatibility of mailgo on <a href="https://browserl.ist/?q=%3E+0.25%25%2C+not+dead">browserl.ist</a>
 
 ---
 
