@@ -90,6 +90,7 @@
 
 .mailgo-modal-content a.mailgo-copy {
   padding: 16px 10px;
+  font-size: 16px;
 }
 
 .mailgo-modal-content a.mailgo-default:hover,

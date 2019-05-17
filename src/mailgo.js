@@ -126,8 +126,12 @@ const mailgoInit = () => {
   open.href = "#mailgo-open";
   open.classList.add("mailgo-open");
   open.classList.add("mailgo-default");
-  open.classList.add("mailgo-weight-500");
-  let openContent = document.createTextNode("open");
+  let openSpan = document.createElement("span");
+  openSpan.className = "mailgo-weight-500";
+  let openSpanContent = document.createTextNode("open");
+  openSpan.appendChild(openSpanContent);
+  let openContent = document.createTextNode(" default");
+  open.appendChild(openSpan);
   open.appendChild(openContent);
 
   modalContent.appendChild(open);
@@ -148,6 +152,7 @@ const mailgoInit = () => {
   by.href = "https://mailgo.js.org";
   by.className = "mailgo-by";
   by.target = "_blank";
+  by.rel = "noopener noreferrer";
   let textBy = document.createTextNode("mailgo.js.org");
   by.appendChild(textBy);
 
