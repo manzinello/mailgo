@@ -455,6 +455,11 @@ const hideMailgo = () => {
   document.body.removeEventListener("keydown", mailgoKeydown, false);
 };
 
+// is the modal hidden?
+const mailgoHidden = () => {
+  return getE("mailgo").style.display === "none";
+};
+
 // decrypt email
 const mailToEncoded = encoded =>
   (window.location.href = MAILTO + atob(encoded));
