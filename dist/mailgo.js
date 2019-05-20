@@ -230,7 +230,11 @@ var mailgoRender = function mailgoRender(mailgo) {
     copyAction(mail, copyButton);
   }, false); // show the mailgo
 
-  showMailgo();
+  showMailgo(); // listener keyDown
+
+  document.body.addEventListener("keydown", function () {
+    mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
+  }, false);
 }; // actions
 
 
@@ -285,7 +289,10 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
  */
 
 
-var mailgoKeydown = function mailgoKeydown(event) {
+var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton) {
+  // if mailgo is not showing do nothing
+  if (mailgoHidden()) return;
+
   switch (event.keyCode) {
     case 27:
       // Escape
@@ -294,23 +301,23 @@ var mailgoKeydown = function mailgoKeydown(event) {
 
     case 71:
       // g -> open GMail
-      hideMailgo();
+      openGmailAction(mailtoHref);
       break;
 
     case 79:
       // o -> open Outlook
-      hideMailgo();
+      openOutlookAction(mail, url);
       break;
 
     case 32:
     case 13:
       // spacebar or enter -> open default
-      hideMailgo();
+      openDefaultAction(encEmail);
       break;
 
     case 67:
       // c -> copy
-      hideMailgo();
+      copyAction(mail, copyButton);
       break;
 
     default:
@@ -351,16 +358,17 @@ var copyToClipboard = function copyToClipboard(str) {
 
 
 var showMailgo = function showMailgo() {
-  getE("mailgo").style.display = "flex"; // add mailgoKeydown
-
-  document.body.addEventListener("keydown", mailgoKeydown, false);
+  getE("mailgo").style.display = "flex";
 }; // hide the modal
 
 
 var hideMailgo = function hideMailgo() {
-  getE("mailgo").style.display = "none"; // remove mailgoKeydown
+  getE("mailgo").style.display = "none";
+}; // is the modal hidden?
 
-  document.body.removeEventListener("keydown", mailgoKeydown, false);
+
+var mailgoHidden = function mailgoHidden() {
+  return getE("mailgo").style.display === "none";
 }; // decrypt email
 
 

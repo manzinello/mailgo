@@ -309,6 +309,15 @@ const mailgoRender = mailgo => {
 
   // show the mailgo
   showMailgo();
+
+  // listener keyDown
+  document.body.addEventListener(
+    "keydown",
+    () => {
+      mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
+    },
+    false
+  );
 };
 
 // actions
@@ -379,7 +388,9 @@ const mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-const mailgoKeydown = event => {
+const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
+  // if mailgo is not showing do nothing
+  if (mailgoHidden()) return;
   switch (event.keyCode) {
     case 27:
       // Escape
@@ -387,20 +398,20 @@ const mailgoKeydown = event => {
       break;
     case 71:
       // g -> open GMail
-      hideMailgo();
+      openGmailAction(mailtoHref);
       break;
     case 79:
       // o -> open Outlook
-      hideMailgo();
+      openOutlookAction(mail, url);
       break;
     case 32:
     case 13:
       // spacebar or enter -> open default
-      hideMailgo();
+      openDefaultAction(encEmail);
       break;
     case 67:
       // c -> copy
-      hideMailgo();
+      copyAction(mail, copyButton);
       break;
     default:
       return;
@@ -444,15 +455,11 @@ const copyToClipboard = str => {
 // show the modal
 const showMailgo = () => {
   getE("mailgo").style.display = "flex";
-  // add mailgoKeydown
-  document.body.addEventListener("keydown", mailgoKeydown, false);
 };
 
 // hide the modal
 const hideMailgo = () => {
   getE("mailgo").style.display = "none";
-  // remove mailgoKeydown
-  document.body.removeEventListener("keydown", mailgoKeydown, false);
 };
 
 // is the modal hidden?
