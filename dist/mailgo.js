@@ -84,6 +84,7 @@ var mailgoInit = function mailgoInit() {
 
   var gmail = document.createElement("a");
   gmail.id = "mailgo-gmail";
+  gmail.href = "#mailgo-gmail";
   gmail.classList.add("mailgo-open");
   gmail.classList.add("mailgo-gmail");
   var gmailContent = document.createTextNode("open in ");
@@ -97,6 +98,7 @@ var mailgoInit = function mailgoInit() {
 
   var outlook = document.createElement("a");
   outlook.id = "mailgo-outlook";
+  outlook.href = "#mailgo-outlook";
   outlook.classList.add("mailgo-open");
   outlook.classList.add("mailgo-outlook");
   var outlookContent = document.createTextNode("open in ");
@@ -214,21 +216,42 @@ var mailgoRender = function mailgoRender(mailgo) {
   subject ? (subjectEl.style.display = "block", subjectValueEl.textContent = subject) : subjectEl.style.display = "none";
   bodyMail ? (bodyEl.style.display = "block", bodyValueEl.textContent = bodyMail) : bodyEl.style.display = "none"; // add the actions
 
-  gmailButton.href = "https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref);
-  outlookButton.href = "https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&");
+  gmailButton.addEventListener("click", function () {
+    openGmailAction(mailtoHref);
+  }, false);
+  outlookButton.addEventListener("click", function () {
+    openOutlookAction(mail, url);
+  }, false);
   var encEmail = encodeEmail(mail);
   openButton.addEventListener("click", function () {
-    mailToEncoded(encEmail);
+    openDefaultAction(encEmail);
   }, false);
   copyButton.addEventListener("click", function (event) {
-    copyToClipboard(mail);
-    copyButton.textContent = "copied";
-    setTimeout(function () {
-      copyButton.textContent = "copy";
-    }, 999);
+    copyAction(mail, copyButton);
   }, false); // show the mailgo
 
   showMailgo();
+}; // actions
+
+
+var openGmailAction = function openGmailAction(mailtoHref) {
+  window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
+};
+
+var openOutlookAction = function openOutlookAction(mail, url) {
+  window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
+};
+
+var openDefaultAction = function openDefaultAction(encEmail) {
+  mailToEncoded(encEmail);
+};
+
+var copyAction = function copyAction(mail, copyButton) {
+  copyToClipboard(mail);
+  copyButton.textContent = "copied";
+  var timeout = setTimeout(function () {
+    copyButton.textContent = "copy";
+  }, 999);
 };
 /**
  * mailgoCheckRender
@@ -266,6 +289,27 @@ var mailgoKeydown = function mailgoKeydown(event) {
   switch (event.keyCode) {
     case 27:
       // Escape
+      hideMailgo();
+      break;
+
+    case 71:
+      // g -> open GMail
+      hideMailgo();
+      break;
+
+    case 79:
+      // o -> open Outlook
+      hideMailgo();
+      break;
+
+    case 32:
+    case 13:
+      // spacebar or enter -> open default
+      hideMailgo();
+      break;
+
+    case 67:
+      // c -> copy
       hideMailgo();
       break;
 

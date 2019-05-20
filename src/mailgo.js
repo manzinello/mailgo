@@ -93,6 +93,7 @@ const mailgoInit = () => {
   // Gmail
   let gmail = document.createElement("a");
   gmail.id = "mailgo-gmail";
+  gmail.href = "#mailgo-gmail";
   gmail.classList.add("mailgo-open");
   gmail.classList.add("mailgo-gmail");
   let gmailContent = document.createTextNode("open in ");
@@ -108,6 +109,7 @@ const mailgoInit = () => {
   // Outlook
   let outlook = document.createElement("a");
   outlook.id = "mailgo-outlook";
+  outlook.href = "#mailgo-outlook";
   outlook.classList.add("mailgo-open");
   outlook.classList.add("mailgo-outlook");
   let outlookContent = document.createTextNode("open in ");
@@ -272,20 +274,27 @@ const mailgoRender = mailgo => {
     : (bodyEl.style.display = "none");
 
   // add the actions
-  gmailButton.href =
-    "https://mail.google.com/mail?extsrc=mailto&url=" +
-    encodeURIComponent(mailtoHref);
+  gmailButton.addEventListener(
+    "click",
+    () => {
+      openGmailAction(mailtoHref);
+    },
+    false
+  );
 
-  outlookButton.href =
-    "https://outlook.office.com/owa/?rru=compose&to=" +
-    encodeURIComponent(mail) +
-    url.search.replace(/^[$]/, "&");
+  outlookButton.addEventListener(
+    "click",
+    () => {
+      openOutlookAction(mail, url);
+    },
+    false
+  );
 
   let encEmail = encodeEmail(mail);
   openButton.addEventListener(
     "click",
     () => {
-      mailToEncoded(encEmail);
+      openDefaultAction(encEmail);
     },
     false
   );
@@ -293,17 +302,43 @@ const mailgoRender = mailgo => {
   copyButton.addEventListener(
     "click",
     event => {
-      copyToClipboard(mail);
-      copyButton.textContent = "copied";
-      setTimeout(() => {
-        copyButton.textContent = "copy";
-      }, 999);
+      copyAction(mail, copyButton);
     },
     false
   );
 
   // show the mailgo
   showMailgo();
+};
+
+// actions
+let openGmailAction = mailtoHref => {
+  window.open(
+    "https://mail.google.com/mail?extsrc=mailto&url=" +
+      encodeURIComponent(mailtoHref),
+    "_blank"
+  );
+};
+
+let openOutlookAction = (mail, url) => {
+  window.open(
+    "https://outlook.office.com/owa/?rru=compose&to=" +
+      encodeURIComponent(mail) +
+      url.search.replace(/^[$]/, "&"),
+    "_blank"
+  );
+};
+
+let openDefaultAction = encEmail => {
+  mailToEncoded(encEmail);
+};
+
+let copyAction = (mail, copyButton) => {
+  copyToClipboard(mail);
+  copyButton.textContent = "copied";
+  let timeout = setTimeout(() => {
+    copyButton.textContent = "copy";
+  }, 999);
 };
 
 /**
@@ -348,6 +383,23 @@ const mailgoKeydown = event => {
   switch (event.keyCode) {
     case 27:
       // Escape
+      hideMailgo();
+      break;
+    case 71:
+      // g -> open GMail
+      hideMailgo();
+      break;
+    case 79:
+      // o -> open Outlook
+      hideMailgo();
+      break;
+    case 32:
+    case 13:
+      // spacebar or enter -> open default
+      hideMailgo();
+      break;
+    case 67:
+      // c -> copy
       hideMailgo();
       break;
     default:
