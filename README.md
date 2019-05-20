@@ -82,6 +82,17 @@ mailgo doesn't support multiple email addresses in to, cc and bcc at the moment,
 
 ---
 
+## keyboard commands
+
+from mailgo 0.4.0, when a **mailgo** modal is showing, there are also keyboard commands that can perform different actions
+
+- pressing **g** perform the **open in Gmail** action
+- pressing **o** perform the **open in Outlook** action
+- pressing **spacebar** or **enter** perform the **open default** action
+- pressing **c** perform the **copy** action
+
+---
+
 ## examples
 
 this is a complete **mailgo** example with the spam-less usage #1 (and cc, bcc, subject and body):
