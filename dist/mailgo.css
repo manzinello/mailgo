@@ -115,7 +115,12 @@
   font-size: 8px;
   margin-top: 1rem;
   padding: 0px;
-  font-style: italic;
+  color: #4a4a4a;
+  opacity: 0.5;
+}
+
+.mailgo-modal-content a.mailgo-by:hover {
+  opacity: 1;
 }
 
 .mailgo-weight-500 {
