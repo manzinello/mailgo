@@ -217,17 +217,17 @@ var mailgoRender = function mailgoRender(mailgo) {
   bodyMail ? (bodyEl.style.display = "block", bodyValueEl.textContent = bodyMail) : bodyEl.style.display = "none"; // add the actions
 
   gmailButton.addEventListener("click", function () {
-    openGmailAction(mailtoHref);
+    actions.openGmail(mailtoHref);
   }, false);
   outlookButton.addEventListener("click", function () {
-    openOutlookAction(mail, url);
+    actions.openOutlook(mail, url);
   }, false);
   var encEmail = encodeEmail(mail);
   openButton.addEventListener("click", function () {
-    openDefaultAction(encEmail);
+    actions.openDefault(encEmail);
   }, false);
   copyButton.addEventListener("click", function (event) {
-    copyAction(mail, copyButton);
+    actions.copy(mail, copyButton);
   }, false); // show the mailgo
 
   showMailgo(); // listener keyDown
@@ -238,24 +238,23 @@ var mailgoRender = function mailgoRender(mailgo) {
 }; // actions
 
 
-var openGmailAction = function openGmailAction(mailtoHref) {
-  window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
-};
-
-var openOutlookAction = function openOutlookAction(mail, url) {
-  window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
-};
-
-var openDefaultAction = function openDefaultAction(encEmail) {
-  mailToEncoded(encEmail);
-};
-
-var copyAction = function copyAction(mail, copyButton) {
-  copyToClipboard(mail);
-  copyButton.textContent = "copied";
-  var timeout = setTimeout(function () {
-    copyButton.textContent = "copy";
-  }, 999);
+var actions = {
+  openGmail: function openGmail(mailtoHref) {
+    window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
+  },
+  openOutlook: function openOutlook(mail, url) {
+    window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
+  },
+  openDefault: function openDefault(encEmail) {
+    mailToEncoded(encEmail);
+  },
+  copy: function copy(mail, copyButton) {
+    copyToClipboard(mail);
+    copyButton.textContent = "copied";
+    var timeout = setTimeout(function () {
+      copyButton.textContent = "copy";
+    }, 999);
+  }
 };
 /**
  * mailgoCheckRender
@@ -264,7 +263,6 @@ var copyAction = function copyAction(mail, copyButton) {
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * ); and the new a[mailgo]
  */
-
 
 var mailgoCheckRender = function mailgoCheckRender(event) {
   // the target element
@@ -291,7 +289,7 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
 
 var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton) {
   // if mailgo is not showing do nothing
-  if (mailgoHidden()) return;
+  if (!mailgoIsShowing()) return;
 
   switch (event.keyCode) {
     case 27:
@@ -301,23 +299,23 @@ var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copy
 
     case 71:
       // g -> open GMail
-      openGmailAction(mailtoHref);
+      actions.openGmail(mailtoHref);
       break;
 
     case 79:
       // o -> open Outlook
-      openOutlookAction(mail, url);
+      actions.openOutlook(mail, url);
       break;
 
     case 32:
     case 13:
       // spacebar or enter -> open default
-      openDefaultAction(encEmail);
+      actions.openDefault(encEmail);
       break;
 
     case 67:
       // c -> copy
-      copyAction(mail, copyButton);
+      actions.copy(mail, copyButton);
       break;
 
     default:
@@ -330,7 +328,7 @@ var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copy
 
 document.addEventListener("DOMContentLoaded", mailgoInit, false); // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
-document.body.addEventListener("click", mailgoCheckRender, false); // validate the email with regex
+document.body.addEventListener("click", mailgoCheckRender, true); // validate the email with regex
 
 var validateEmail = function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
@@ -367,8 +365,8 @@ var hideMailgo = function hideMailgo() {
 }; // is the modal hidden?
 
 
-var mailgoHidden = function mailgoHidden() {
-  return getE("mailgo").style.display === "none";
+var mailgoIsShowing = function mailgoIsShowing() {
+  return getE("mailgo").style.display === "flex";
 }; // decrypt email
 
 
