@@ -268,7 +268,7 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
   // the target element
   var e = event.target; // check if the id=mailgo exists in the body
 
-  if (!document.body.contains(getE("mailgo"))) return;
+  if (!document.contains(getE("mailgo"))) return;
 
   if ( // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
   e.href && e.href.toLowerCase().startsWith(MAILTO) && !e.classList.contains("no-mailgo") || // second case: the href=#mailgo
@@ -328,7 +328,7 @@ var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copy
 
 document.addEventListener("DOMContentLoaded", mailgoInit, false); // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
-document.body.addEventListener("click", mailgoCheckRender, true); // validate the email with regex
+document.addEventListener("click", mailgoCheckRender, true); // validate the email with regex
 
 var validateEmail = function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
