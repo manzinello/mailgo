@@ -12,22 +12,14 @@ let version = require("./package.json").version;
 function js() {
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
-    .pipe(
-      babel({
-        presets: ["@babel/env"]
-      })
-    )
+    .pipe(babel())
     .pipe(dest("dist"));
 }
 
 function jsmin() {
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
-    .pipe(
-      babel({
-        presets: ["@babel/env"]
-      })
-    )
+    .pipe(babel())
     .pipe(terser())
     .pipe(
       rename({
