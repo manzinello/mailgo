@@ -390,7 +390,7 @@ const mailgoCheckRender = event => {
  */
 const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
   // if mailgo is not showing do nothing
-  if (mailgoHidden()) return;
+  if (!mailgoIsShowing()) return;
   switch (event.keyCode) {
     case 27:
       // Escape
@@ -423,7 +423,7 @@ const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.body.addEventListener("click", mailgoCheckRender, false);
+document.body.addEventListener("click", mailgoCheckRender, true);
 
 // validate the email with regex
 const validateEmail = email => {
@@ -463,8 +463,8 @@ const hideMailgo = () => {
 };
 
 // is the modal hidden?
-const mailgoHidden = () => {
-  return getE("mailgo").style.display === "none";
+const mailgoIsShowing = () => {
+  return getE("mailgo").style.display === "flex";
 };
 
 // decrypt email
