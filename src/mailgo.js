@@ -364,7 +364,7 @@ const mailgoCheckRender = event => {
   let e = event.target;
 
   // check if the id=mailgo exists in the body
-  if (!document.body.contains(getE("mailgo"))) return;
+  if (!document.contains(getE("mailgo"))) return;
 
   if (
     // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
@@ -425,7 +425,7 @@ const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
 document.addEventListener("DOMContentLoaded", mailgoInit, false);
 
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.body.addEventListener("click", mailgoCheckRender, true);
+document.addEventListener("click", mailgoCheckRender, true);
 
 // validate the email with regex
 const validateEmail = email => {
