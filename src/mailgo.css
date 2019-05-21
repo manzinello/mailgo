@@ -25,6 +25,7 @@
   flex-direction: column;
   overflow: hidden;
   font-size: 15px;
+  z-index: 10000;
 }
 
 .mailgo-title {
@@ -44,7 +45,7 @@
 
 .mailgo-modal-background {
   position: absolute;
-  z-index: 1000;
+  z-index: 10001;
   top: 0;
   right: 0;
   bottom: 0;
@@ -55,7 +56,7 @@
 
 .mailgo-modal-content {
   position: relative;
-  z-index: 1001;
+  z-index: 10002;
   box-sizing: content-box;
   text-align: center;
   width: 200px;
