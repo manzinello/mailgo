@@ -232,7 +232,7 @@ var mailgoRender = function mailgoRender(mailgo) {
 
   showMailgo(); // listener keyDown
 
-  document.body.addEventListener("keydown", function () {
+  mailgo.addEventListener("keydown", function () {
     mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
   }, false);
 }; // actions
@@ -356,12 +356,12 @@ var copyToClipboard = function copyToClipboard(str) {
 
 
 var showMailgo = function showMailgo() {
-  getE("mailgo").style.display = "flex";
+  return getE("mailgo").style.display = "flex";
 }; // hide the modal
 
 
 var hideMailgo = function hideMailgo() {
-  getE("mailgo").style.display = "none";
+  return getE("mailgo").style.display = "none";
 }; // is the modal hidden?
 
 

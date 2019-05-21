@@ -311,7 +311,7 @@ const mailgoRender = mailgo => {
   showMailgo();
 
   // listener keyDown
-  document.body.addEventListener(
+  mailgo.addEventListener(
     "keydown",
     () => {
       mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
@@ -455,19 +455,13 @@ const copyToClipboard = str => {
 };
 
 // show the modal
-const showMailgo = () => {
-  getE("mailgo").style.display = "flex";
-};
+const showMailgo = () => (getE("mailgo").style.display = "flex");
 
 // hide the modal
-const hideMailgo = () => {
-  getE("mailgo").style.display = "none";
-};
+const hideMailgo = () => (getE("mailgo").style.display = "none");
 
 // is the modal hidden?
-const mailgoIsShowing = () => {
-  return getE("mailgo").style.display === "flex";
-};
+const mailgoIsShowing = () => getE("mailgo").style.display === "flex";
 
 // decrypt email
 const mailToEncoded = encoded =>
