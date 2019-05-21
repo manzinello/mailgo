@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.4.2",
+  "version": "0.4.3",
   "description": "a different mailto",
   "scripts": {
     "build": "gulp"
@@ -20,8 +20,8 @@
   "homepage": "https://mailgo.js.org",
   "devDependencies": {
     "@babel/cli": "^7.4.4",
-    "@babel/core": "^7.4.4",
-    "@babel/preset-env": "^7.4.4",
+    "@babel/core": "^7.4.5",
+    "@babel/preset-env": "^7.4.5",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
     "gulp-csso": "^3.0.1",
