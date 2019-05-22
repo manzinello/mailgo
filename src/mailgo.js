@@ -151,7 +151,7 @@ const mailgoInit = () => {
 
   // by
   let by = document.createElement("a");
-  by.href = "https://mailgo.js.org?ref=" + window.location.hostname;
+  by.href = "https://mailgo.js.org?ref=mailgo-modal";
   by.className = "mailgo-by";
   by.target = "_blank";
   by.rel = "noopener noreferrer";
