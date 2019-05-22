@@ -1,6 +1,6 @@
 "use strict";
 
-var V = "0.4.4";
+var V = "0.4.5";
 var MAILTO = "mailto:"; // mailgo style
 
 var mailgoCSS = document.createElement("link");
@@ -134,7 +134,7 @@ var mailgoInit = function mailgoInit() {
   modalContent.appendChild(copy); // by
 
   var by = document.createElement("a");
-  by.href = window.location.hostname ? "https://mailgo.js.org?ref=" + window.location.hostname : "https://mailgo.js.org";
+  by.href = "https://mailgo.js.org?ref=mailgo-modal";
   by.className = "mailgo-by";
   by.target = "_blank";
   by.rel = "noopener noreferrer";
