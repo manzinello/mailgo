@@ -134,7 +134,7 @@ var mailgoInit = function mailgoInit() {
   modalContent.appendChild(copy); // by
 
   var by = document.createElement("a");
-  by.href = "https://mailgo.js.org";
+  by.href = "https://mailgo.js.org?ref=" + window.location.hostname;
   by.className = "mailgo-by";
   by.target = "_blank";
   by.rel = "noopener noreferrer";
