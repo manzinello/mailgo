@@ -1,6 +1,6 @@
 "use strict";
 
-var V = "0.4.3";
+var V = "0.4.4";
 var MAILTO = "mailto:"; // mailgo style
 
 var mailgoCSS = document.createElement("link");
@@ -261,7 +261,7 @@ var actions = {
  * function to check if an element is mailgo-enabled or not referencing to the old
  * document.querySelectorAll(
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * ); and the new a[mailgo]
+ * );
  */
 
 var mailgoCheckRender = function mailgoCheckRender(event) {
@@ -273,8 +273,7 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
   if ( // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
   e.href && e.href.toLowerCase().startsWith(MAILTO) && !e.classList.contains("no-mailgo") || // second case: the href=#mailgo
   e.href && e.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
-  e.classList.contains("mailgo") || // fourth case: exists the attribute mailgo in the <a> element
-  !!e.getAttribute("mailgo")) {
+  e.classList.contains("mailgo")) {
     // stop the normal execution of the element click
     event.preventDefault(); // render mailgo
 
