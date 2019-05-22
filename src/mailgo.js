@@ -357,7 +357,7 @@ const actions = {
  * function to check if an element is mailgo-enabled or not referencing to the old
  * document.querySelectorAll(
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * ); and the new a[mailgo]
+ * );
  */
 const mailgoCheckRender = event => {
   // the target element
@@ -374,9 +374,7 @@ const mailgoCheckRender = event => {
     // second case: the href=#mailgo
     (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
     // third case: the classList contains mailgo
-    e.classList.contains("mailgo") ||
-    // fourth case: exists the attribute mailgo in the <a> element
-    !!e.getAttribute("mailgo")
+    e.classList.contains("mailgo")
   ) {
     // stop the normal execution of the element click
     event.preventDefault();
