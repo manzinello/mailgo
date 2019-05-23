@@ -144,7 +144,7 @@ var mailgoInit = function mailgoInit() {
 
   document.body.appendChild(modal); // every click outside the modal will hide the modal
 
-  modalBackground.addEventListener("click", hideMailgo, false);
+  modalBackground.addEventListener("click", hideMailgo);
 };
 /**
  * mailgoRender
@@ -217,42 +217,42 @@ var mailgoRender = function mailgoRender(mailgo) {
   bodyMail ? (bodyEl.style.display = "block", bodyValueEl.textContent = bodyMail) : bodyEl.style.display = "none"; // add the actions
 
   gmailButton.addEventListener("click", function () {
-    actions.openGmail(mailtoHref);
-  }, false);
+    return actions.openGmail(mailtoHref);
+  });
   outlookButton.addEventListener("click", function () {
-    actions.openOutlook(mail, url);
-  }, false);
+    return actions.openOutlook(mail, url);
+  });
   var encEmail = encodeEmail(mail);
   openButton.addEventListener("click", function () {
-    actions.openDefault(encEmail);
-  }, false);
-  copyButton.addEventListener("click", function (event) {
-    actions.copy(mail, copyButton);
-  }, false); // show the mailgo
+    return actions.openDefault(encEmail);
+  });
+  copyButton.addEventListener("click", function () {
+    return actions.copy(mail, copyButton);
+  }); // show the mailgo
 
   showMailgo(); // listener keyDown
 
   mailgo.addEventListener("keydown", function () {
-    mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
+    return mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
   }, false);
 }; // actions
 
 
 var actions = {
   openGmail: function openGmail(mailtoHref) {
-    window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
+    return window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
   },
   openOutlook: function openOutlook(mail, url) {
-    window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
+    return window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
   },
   openDefault: function openDefault(encEmail) {
-    mailToEncoded(encEmail);
+    return mailToEncoded(encEmail);
   },
   copy: function copy(mail, copyButton) {
     copyToClipboard(mail);
     copyButton.textContent = "copied";
-    var timeout = setTimeout(function () {
-      copyButton.textContent = "copy";
+    setTimeout(function () {
+      return copyButton.textContent = "copy";
     }, 999);
   }
 };
@@ -325,9 +325,9 @@ var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copy
 }; // DOMContentLoaded -> mailgoInit (creates the modal)
 
 
-document.addEventListener("DOMContentLoaded", mailgoInit, false); // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+document.addEventListener("DOMContentLoaded", mailgoInit); // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
-document.addEventListener("click", mailgoCheckRender, true); // validate the email with regex
+document.addEventListener("click", mailgoCheckRender); // validate the email with regex
 
 var validateEmail = function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;

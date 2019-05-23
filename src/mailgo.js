@@ -164,7 +164,7 @@ const mailgoInit = () => {
   document.body.appendChild(modal);
 
   // every click outside the modal will hide the modal
-  modalBackground.addEventListener("click", hideMailgo, false);
+  modalBackground.addEventListener("click", hideMailgo);
 };
 
 /**
@@ -274,38 +274,14 @@ const mailgoRender = mailgo => {
     : (bodyEl.style.display = "none");
 
   // add the actions
-  gmailButton.addEventListener(
-    "click",
-    () => {
-      actions.openGmail(mailtoHref);
-    },
-    false
-  );
+  gmailButton.addEventListener("click", () => actions.openGmail(mailtoHref));
 
-  outlookButton.addEventListener(
-    "click",
-    () => {
-      actions.openOutlook(mail, url);
-    },
-    false
-  );
+  outlookButton.addEventListener("click", () => actions.openOutlook(mail, url));
 
   let encEmail = encodeEmail(mail);
-  openButton.addEventListener(
-    "click",
-    () => {
-      actions.openDefault(encEmail);
-    },
-    false
-  );
+  openButton.addEventListener("click", () => actions.openDefault(encEmail));
 
-  copyButton.addEventListener(
-    "click",
-    event => {
-      actions.copy(mail, copyButton);
-    },
-    false
-  );
+  copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
 
   // show the mailgo
   showMailgo();
@@ -313,42 +289,34 @@ const mailgoRender = mailgo => {
   // listener keyDown
   mailgo.addEventListener(
     "keydown",
-    () => {
-      mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
-    },
+    () => mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton),
     false
   );
 };
 
 // actions
 const actions = {
-  openGmail: mailtoHref => {
+  openGmail: mailtoHref =>
     window.open(
       "https://mail.google.com/mail?extsrc=mailto&url=" +
         encodeURIComponent(mailtoHref),
       "_blank"
-    );
-  },
+    ),
 
-  openOutlook: (mail, url) => {
+  openOutlook: (mail, url) =>
     window.open(
       "https://outlook.office.com/owa/?rru=compose&to=" +
         encodeURIComponent(mail) +
         url.search.replace(/^[$]/, "&"),
       "_blank"
-    );
-  },
+    ),
 
-  openDefault: encEmail => {
-    mailToEncoded(encEmail);
-  },
+  openDefault: encEmail => mailToEncoded(encEmail),
 
   copy: (mail, copyButton) => {
     copyToClipboard(mail);
     copyButton.textContent = "copied";
-    let timeout = setTimeout(() => {
-      copyButton.textContent = "copy";
-    }, 999);
+    setTimeout(() => (copyButton.textContent = "copy"), 999);
   }
 };
 
@@ -420,10 +388,10 @@ const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
 };
 
 // DOMContentLoaded -> mailgoInit (creates the modal)
-document.addEventListener("DOMContentLoaded", mailgoInit, false);
+document.addEventListener("DOMContentLoaded", mailgoInit);
 
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.addEventListener("click", mailgoCheckRender, true);
+document.addEventListener("click", mailgoCheckRender);
 
 // validate the email with regex
 const validateEmail = email => {
