@@ -68,7 +68,7 @@ const mailgoInit = () => {
   detailSubject.id = "mailgo-subject";
   let subjectSpan = document.createElement("span");
   subjectSpan.className = "mailgo-weight-500";
-  let subjectContent = document.createTextNode("subject");
+  let subjectContent = document.createTextNode("subject ");
   subjectSpan.appendChild(subjectContent);
   let subjectValue = document.createElement("span");
   subjectValue.id = "mailgo-subject-value";
