@@ -1,6 +1,6 @@
 "use strict";
 
-var V = "0.4.5";
+var V = "0.4.6";
 var MAILTO = "mailto:"; // mailgo style
 
 var mailgoCSS = document.createElement("link");
