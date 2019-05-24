@@ -291,7 +291,18 @@ const mailgoRender = mailgo => {
   // listener keyDown
   mailgo.addEventListener(
     "keydown",
-    () => mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton),
+    () =>
+      mailgoKeydown(
+        mail,
+        cc,
+        bcc,
+        subject,
+        bodyMail,
+        url,
+        mailtoHref,
+        encEmail,
+        copyButton
+      ),
     false
   );
 };
@@ -310,8 +321,8 @@ const actions = {
     let outlookUrl =
       "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
       encodeURIComponent(mail);
-    if (subject != "") outlookUrl = outlookUrl.concat("&subject=" + subject);
-    if (bodyMail != "") outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
+    if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
 
     window.open(outlookUrl, "_blank");
   },
@@ -336,7 +347,7 @@ const isMailgo = element =>
   // second case: the href=#mailgo
   (element.href && element.getAttribute("href").toLowerCase() === "#mailgo") ||
   // third case: the classList contains mailgo
-  element.classList.contains("mailgo");
+  (element.classList && element.classList.contains("mailgo"));
 
 /**
  * mailgoCheckRender
@@ -349,16 +360,18 @@ const mailgoCheckRender = event => {
   // check if the id=mailgo exists in the body
   if (!document.contains(getE("mailgo"))) return;
 
-  // go in the event.path to find if the user has clicked on a mailgo element
-  if (event.path.some(isMailgo)) {
-    // stop the normal execution of the element click
-    event.preventDefault();
+  event.path.forEach(element => {
+    // go in the event.path to find if the user has clicked on a mailgo element
+    if (isMailgo(element)) {
+      // stop the normal execution of the element click
+      event.preventDefault();
 
-    // render mailgo
-    mailgoRender(e);
+      // render mailgo
+      mailgoRender(element);
 
-    return;
-  }
+      return;
+    }
+  });
 
   return;
 };
@@ -369,10 +382,10 @@ const mailgoCheckRender = event => {
  */
 const mailgoKeydown = (
   mail,
-  cc = "",
-  bcc = "",
-  bodyMail = "",
-  subject = "",
+  cc,
+  bcc,
+  subject,
+  bodyMail,
   url,
   mailtoHref,
   encEmail,

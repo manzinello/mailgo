@@ -233,7 +233,7 @@ var mailgoRender = function mailgoRender(mailgo) {
   showMailgo(); // listener keyDown
 
   mailgo.addEventListener("keydown", function () {
-    return mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton);
+    return mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton);
   }, false);
 }; // actions
 
@@ -245,8 +245,8 @@ var actions = {
   },
   openOutlook: function openOutlook(mail, subject, bodyMail) {
     var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail);
-    if (subject != "") outlookUrl = outlookUrl.concat("&subject=" + subject);
-    if (bodyMail != "") outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
+    if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
     window.open(outlookUrl, "_blank");
   },
   openDefault: function openDefault(encEmail) {
@@ -265,7 +265,7 @@ var isMailgo = function isMailgo(element) {
   return (// first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
     element.href && element.href.toLowerCase().startsWith(MAILTO) && !element.classList.contains("no-mailgo") || // second case: the href=#mailgo
     element.href && element.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
-    element.classList.contains("mailgo")
+    element.classList && element.classList.contains("mailgo")
   );
 };
 /**
@@ -279,16 +279,17 @@ var isMailgo = function isMailgo(element) {
 
 var mailgoCheckRender = function mailgoCheckRender(event) {
   // check if the id=mailgo exists in the body
-  if (!document.contains(getE("mailgo"))) return; // go in the event.path to find if the user has clicked on a mailgo element
+  if (!document.contains(getE("mailgo"))) return;
+  event.path.forEach(function (element) {
+    // go in the event.path to find if the user has clicked on a mailgo element
+    if (isMailgo(element)) {
+      // stop the normal execution of the element click
+      event.preventDefault(); // render mailgo
 
-  if (event.path.some(isMailgo)) {
-    // stop the normal execution of the element click
-    event.preventDefault(); // render mailgo
-
-    mailgoRender(e);
-    return;
-  }
-
+      mailgoRender(element);
+      return;
+    }
+  });
   return;
 };
 /**
@@ -297,15 +298,7 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
  */
 
 
-var mailgoKeydown = function mailgoKeydown(mail) {
-  var cc = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
-  var bcc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
-  var bodyMail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
-  var subject = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "";
-  var url = arguments.length > 5 ? arguments[5] : undefined;
-  var mailtoHref = arguments.length > 6 ? arguments[6] : undefined;
-  var encEmail = arguments.length > 7 ? arguments[7] : undefined;
-  var copyButton = arguments.length > 8 ? arguments[8] : undefined;
+var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton) {
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
 
