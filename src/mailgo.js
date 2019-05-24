@@ -328,28 +328,32 @@ const actions = {
  * );
  */
 const mailgoCheckRender = event => {
-  // the target element
-  let e = event.target;
-
   // check if the id=mailgo exists in the body
   if (!document.contains(getE("mailgo"))) return;
 
-  if (
-    // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-    (e.href &&
-      e.href.toLowerCase().startsWith(MAILTO) &&
-      !e.classList.contains("no-mailgo")) ||
-    // second case: the href=#mailgo
-    (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
-    // third case: the classList contains mailgo
-    e.classList.contains("mailgo")
-  ) {
-    // stop the normal execution of the element click
-    event.preventDefault();
+  // go in the event.path to find if the user has clicked on a mailgo element
+  event.path.forEach(e => {
+    if (
+      // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+      (e.href &&
+        e.href.toLowerCase().startsWith(MAILTO) &&
+        !e.classList.contains("no-mailgo")) ||
+      // second case: the href=#mailgo
+      (e.href && e.getAttribute("href").toLowerCase() === "#mailgo") ||
+      // third case: the classList contains mailgo
+      e.classList.contains("mailgo")
+    ) {
+      // stop the normal execution of the element click
+      event.preventDefault();
 
-    // render mailgo
-    mailgoRender(e);
-  }
+      // render mailgo
+      mailgoRender(e);
+
+      return;
+    }
+  });
+
+  return;
 };
 
 /**
