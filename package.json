@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.4.7",
+  "version": "0.4.8",
   "description": "a different mailto",
   "scripts": {
     "build": "gulp"
@@ -10,7 +10,8 @@
     "url": "git+https://github.com/manzinello/mailgo.git"
   },
   "keywords": [
-    "mailto"
+    "mailto",
+    "mail"
   ],
   "author": "Matteo Manzinello",
   "license": "ISC",
