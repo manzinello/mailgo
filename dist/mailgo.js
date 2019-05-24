@@ -240,13 +240,17 @@ var mailgoRender = function mailgoRender(mailgo) {
 
 var actions = {
   openGmail: function openGmail(mailtoHref) {
-    return window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
+    var gmailUrl = "https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref);
+    window.open(gmailUrl, "_blank");
   },
-  openOutlook: function openOutlook(mail, url) {
-    return window.open("https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
+  openOutlook: function openOutlook(mail, bodyMail, subject) {
+    var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail);
+    if (subject != "") outlookUrl = outlookUrl + "&subject=" + subject;
+    if (bodyMail != "") outlookUrl = outlookUrl + "&body=" + bodyMail;
+    window.open(outlookUrl, "_blank");
   },
   openDefault: function openDefault(encEmail) {
-    return mailToEncoded(encEmail);
+    mailToEncoded(encEmail);
   },
   copy: function copy(mail, copyButton) {
     copyToClipboard(mail);
@@ -255,6 +259,14 @@ var actions = {
       return copyButton.textContent = "copy";
     }, 999);
   }
+}; // function that returns if an element is a mailgo
+
+var isMailgo = function isMailgo(element) {
+  return (// first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+    element.href && element.href.toLowerCase().startsWith(MAILTO) && !element.classList.contains("no-mailgo") || // second case: the href=#mailgo
+    element.href && element.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
+    element.classList.contains("mailgo")
+  );
 };
 /**
  * mailgoCheckRender
@@ -264,22 +276,19 @@ var actions = {
  * );
  */
 
+
 var mailgoCheckRender = function mailgoCheckRender(event) {
   // check if the id=mailgo exists in the body
   if (!document.contains(getE("mailgo"))) return; // go in the event.path to find if the user has clicked on a mailgo element
 
-  event.path.forEach(function (e) {
-    if ( // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-    e.href && e.href.toLowerCase().startsWith(MAILTO) && !e.classList.contains("no-mailgo") || // second case: the href=#mailgo
-    e.href && e.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
-    e.classList.contains("mailgo")) {
-      // stop the normal execution of the element click
-      event.preventDefault(); // render mailgo
+  if (event.path.some(isMailgo)) {
+    // stop the normal execution of the element click
+    event.preventDefault(); // render mailgo
 
-      mailgoRender(e);
-      return;
-    }
-  });
+    mailgoRender(e);
+    return;
+  }
+
   return;
 };
 /**
