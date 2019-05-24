@@ -243,7 +243,7 @@ var actions = {
     return window.open("https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref), "_blank");
   },
   openOutlook: function openOutlook(mail, url) {
-    return window.open("https://outlook.office.com/owa/?rru=compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
+    return window.open("https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail) + url.search.replace(/^[$]/, "&"), "_blank");
   },
   openDefault: function openDefault(encEmail) {
     return mailToEncoded(encEmail);

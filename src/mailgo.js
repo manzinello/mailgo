@@ -305,7 +305,7 @@ const actions = {
 
   openOutlook: (mail, url) =>
     window.open(
-      "https://outlook.office.com/owa/?rru=compose&to=" +
+      "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
         encodeURIComponent(mail) +
         url.search.replace(/^[$]/, "&"),
       "_blank"
