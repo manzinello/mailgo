@@ -276,7 +276,9 @@ const mailgoRender = mailgo => {
   // add the actions
   gmailButton.addEventListener("click", () => actions.openGmail(mailtoHref));
 
-  outlookButton.addEventListener("click", () => actions.openOutlook(mail, url));
+  outlookButton.addEventListener("click", () =>
+    actions.openOutlook(mail, subject, bodyMail)
+  );
 
   let encEmail = encodeEmail(mail);
   openButton.addEventListener("click", () => actions.openDefault(encEmail));
@@ -304,12 +306,12 @@ const actions = {
     window.open(gmailUrl, "_blank");
   },
 
-  openOutlook: (mail, bodyMail, subject) => {
+  openOutlook: (mail, subject, bodyMail) => {
     let outlookUrl =
       "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
       encodeURIComponent(mail);
-    if (subject != "") outlookUrl = outlookUrl + "&subject=" + subject;
-    if (bodyMail != "") outlookUrl = outlookUrl + "&body=" + bodyMail;
+    if (subject != "") outlookUrl = outlookUrl.concat("&subject=" + subject);
+    if (bodyMail != "") outlookUrl = outlookUrl.concat("&body=" + bodyMail);
 
     window.open(outlookUrl, "_blank");
   },
@@ -365,7 +367,17 @@ const mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
+const mailgoKeydown = (
+  mail,
+  cc = "",
+  bcc = "",
+  bodyMail = "",
+  subject = "",
+  url,
+  mailtoHref,
+  encEmail,
+  copyButton
+) => {
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
   switch (event.keyCode) {
@@ -379,7 +391,7 @@ const mailgoKeydown = (mail, url, mailtoHref, encEmail, copyButton) => {
       break;
     case 79:
       // o -> open Outlook
-      actions.openOutlook(mail, url);
+      actions.openOutlook(mail, subject, bodyMail);
       break;
     case 32:
     case 13:

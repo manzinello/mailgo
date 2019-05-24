@@ -220,7 +220,7 @@ var mailgoRender = function mailgoRender(mailgo) {
     return actions.openGmail(mailtoHref);
   });
   outlookButton.addEventListener("click", function () {
-    return actions.openOutlook(mail, url);
+    return actions.openOutlook(mail, subject, bodyMail);
   });
   var encEmail = encodeEmail(mail);
   openButton.addEventListener("click", function () {
@@ -243,10 +243,10 @@ var actions = {
     var gmailUrl = "https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref);
     window.open(gmailUrl, "_blank");
   },
-  openOutlook: function openOutlook(mail, bodyMail, subject) {
+  openOutlook: function openOutlook(mail, subject, bodyMail) {
     var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail);
-    if (subject != "") outlookUrl = outlookUrl + "&subject=" + subject;
-    if (bodyMail != "") outlookUrl = outlookUrl + "&body=" + bodyMail;
+    if (subject != "") outlookUrl = outlookUrl.concat("&subject=" + subject);
+    if (bodyMail != "") outlookUrl = outlookUrl.concat("&body=" + bodyMail);
     window.open(outlookUrl, "_blank");
   },
   openDefault: function openDefault(encEmail) {
@@ -297,7 +297,15 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
  */
 
 
-var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copyButton) {
+var mailgoKeydown = function mailgoKeydown(mail) {
+  var cc = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : "";
+  var bcc = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : "";
+  var bodyMail = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : "";
+  var subject = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : "";
+  var url = arguments.length > 5 ? arguments[5] : undefined;
+  var mailtoHref = arguments.length > 6 ? arguments[6] : undefined;
+  var encEmail = arguments.length > 7 ? arguments[7] : undefined;
+  var copyButton = arguments.length > 8 ? arguments[8] : undefined;
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
 
@@ -314,7 +322,7 @@ var mailgoKeydown = function mailgoKeydown(mail, url, mailtoHref, encEmail, copy
 
     case 79:
       // o -> open Outlook
-      actions.openOutlook(mail, url);
+      actions.openOutlook(mail, subject, bodyMail);
       break;
 
     case 32:
