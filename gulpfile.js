@@ -1,9 +1,9 @@
 const { src, dest, parallel } = require("gulp");
 
-const terser = require("gulp-terser");
 const rename = require("gulp-rename");
 const csso = require("gulp-csso");
 const replace = require("gulp-replace");
+const uglify = require("gulp-uglify");
 
 const babel = require("gulp-babel");
 
@@ -20,7 +20,7 @@ function jsmin() {
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
     .pipe(babel())
-    .pipe(terser())
+    .pipe(uglify())
     .pipe(
       rename({
         suffix: ".min"
