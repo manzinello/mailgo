@@ -360,7 +360,7 @@ const mailgoCheckRender = event => {
   // check if the id=mailgo exists in the body
   if (!document.contains(getE("mailgo"))) return;
 
-  event.path.forEach(element => {
+  event.composedPath().forEach(element => {
     // go in the event.path to find if the user has clicked on a mailgo element
     if (isMailgo(element)) {
       // stop the normal execution of the element click
