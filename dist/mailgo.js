@@ -279,17 +279,23 @@ var isMailgo = function isMailgo(element) {
 
 var mailgoCheckRender = function mailgoCheckRender(event) {
   // check if the id=mailgo exists in the body
-  if (!document.contains(getE("mailgo"))) return;
-  event.path.forEach(function (element) {
-    // go in the event.path to find if the user has clicked on a mailgo element
-    if (isMailgo(element)) {
-      // stop the normal execution of the element click
-      event.preventDefault(); // render mailgo
+  if (!document.contains(getE("mailgo"))) return; // the path of the event
 
-      mailgoRender(element);
-      return;
-    }
-  });
+  var path = event.path || event.composedPath && event.composedPath() || composedPath(event.target);
+
+  if (path) {
+    path.forEach(function (element) {
+      // go in the event.path to find if the user has clicked on a mailgo element
+      if (isMailgo(element)) {
+        // stop the normal execution of the element click
+        event.preventDefault(); // render mailgo
+
+        mailgoRender(element);
+        return;
+      }
+    });
+  }
+
   return;
 };
 /**
@@ -393,4 +399,21 @@ var encodeEmail = function encodeEmail(email) {
 
 var getE = function getE(id) {
   return document.getElementById(id);
+}; // custom composedPath
+
+
+var composedPath = function composedPath(el) {
+  var path = [];
+
+  while (el) {
+    path.push(el);
+
+    if (el.tagName === "HTML") {
+      path.push(document);
+      path.push(window);
+      return path;
+    }
+
+    el = el.parentElement;
+  }
 };

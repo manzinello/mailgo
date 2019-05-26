@@ -360,18 +360,26 @@ const mailgoCheckRender = event => {
   // check if the id=mailgo exists in the body
   if (!document.contains(getE("mailgo"))) return;
 
-  event.composedPath().forEach(element => {
-    // go in the event.path to find if the user has clicked on a mailgo element
-    if (isMailgo(element)) {
-      // stop the normal execution of the element click
-      event.preventDefault();
+  // the path of the event
+  let path =
+    event.path ||
+    (event.composedPath && event.composedPath()) ||
+    composedPath(event.target);
 
-      // render mailgo
-      mailgoRender(element);
+  if (path) {
+    path.forEach(element => {
+      // go in the event.path to find if the user has clicked on a mailgo element
+      if (isMailgo(element)) {
+        // stop the normal execution of the element click
+        event.preventDefault();
 
-      return;
-    }
-  });
+        // render mailgo
+        mailgoRender(element);
+
+        return;
+      }
+    });
+  }
 
   return;
 };
@@ -472,3 +480,21 @@ const encodeEmail = email => btoa(email);
 
 // getE shorthand
 const getE = id => document.getElementById(id);
+
+// custom composedPath
+const composedPath = el => {
+  let path = [];
+
+  while (el) {
+    path.push(el);
+
+    if (el.tagName === "HTML") {
+      path.push(document);
+      path.push(window);
+
+      return path;
+    }
+
+    el = el.parentElement;
+  }
+};
