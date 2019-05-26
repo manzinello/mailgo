@@ -232,9 +232,9 @@ var mailgoRender = function mailgoRender(mailgo) {
 
   showMailgo(); // listener keyDown
 
-  mailgo.addEventListener("keydown", function () {
+  document.addEventListener("keydown", function () {
     return mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton);
-  }, false);
+  });
 }; // actions
 
 
@@ -305,7 +305,8 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
 
 
 var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton) {
-  // if mailgo is not showing do nothing
+  console.log("keydown"); // if mailgo is not showing do nothing
+
   if (!mailgoIsShowing()) return;
 
   switch (event.keyCode) {

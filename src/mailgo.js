@@ -289,21 +289,18 @@ const mailgoRender = mailgo => {
   showMailgo();
 
   // listener keyDown
-  mailgo.addEventListener(
-    "keydown",
-    () =>
-      mailgoKeydown(
-        mail,
-        cc,
-        bcc,
-        subject,
-        bodyMail,
-        url,
-        mailtoHref,
-        encEmail,
-        copyButton
-      ),
-    false
+  document.addEventListener("keydown", () =>
+    mailgoKeydown(
+      mail,
+      cc,
+      bcc,
+      subject,
+      bodyMail,
+      url,
+      mailtoHref,
+      encEmail,
+      copyButton
+    )
   );
 };
 
@@ -399,6 +396,7 @@ const mailgoKeydown = (
   encEmail,
   copyButton
 ) => {
+  console.log("keydown");
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
   switch (event.keyCode) {
