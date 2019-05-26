@@ -399,7 +399,7 @@ var encodeEmail = function encodeEmail(email) {
 
 var getE = function getE(id) {
   return document.getElementById(id);
-}; // custom composedPath
+}; // custom composedPath if path or event.composedPath() are not defined
 
 
 var composedPath = function composedPath(el) {

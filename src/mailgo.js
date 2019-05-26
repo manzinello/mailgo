@@ -481,7 +481,7 @@ const encodeEmail = email => btoa(email);
 // getE shorthand
 const getE = id => document.getElementById(id);
 
-// custom composedPath
+// custom composedPath if path or event.composedPath() are not defined
 const composedPath = el => {
   let path = [];
 
@@ -491,7 +491,6 @@ const composedPath = el => {
     if (el.tagName === "HTML") {
       path.push(document);
       path.push(window);
-
       return path;
     }
 
