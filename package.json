@@ -31,8 +31,6 @@
     "gulp-terser": "^1.2.0",
     "gulp-uglify": "^3.0.2"
   },
-  "dependencies": {
-    "@babel/polyfill": "^7.4.4"
-  },
+  "dependencies": {},
   "browserslist": "cover 99.5%"
 }
