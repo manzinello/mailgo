@@ -14,7 +14,7 @@
     "mail"
   ],
   "author": "Matteo Manzinello",
-  "license": "ISC",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/manzinello/mailgo/issues"
   },
