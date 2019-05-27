@@ -4,7 +4,8 @@ const MAILTO = "mailto:";
 // mailgo style
 const mailgoCSS = document.createElement("style");
 mailgoCSS.type = "text/css";
-mailgoCSS.appendChild("MAILGO_STYLE");
+mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+mailgoCSS.appendChild(mailgoCSSContent);
 document.head.appendChild(mailgoCSS);
 
 /**
