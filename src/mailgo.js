@@ -4,7 +4,7 @@ const MAILTO = "mailto:";
 // mailgo style
 const mailgoCSS = document.createElement("style");
 mailgoCSS.type = "text/css";
-mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+const mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
 mailgoCSS.appendChild(mailgoCSSContent);
 document.head.appendChild(mailgoCSS);
 
@@ -396,7 +396,6 @@ const mailgoKeydown = (
   encEmail,
   copyButton
 ) => {
-  console.log("keydown");
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
   switch (event.keyCode) {
