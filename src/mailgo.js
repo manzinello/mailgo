@@ -1,8 +1,9 @@
 const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
 
-// mailgo style
+// mailgo style (gulp)
 const mailgoCSS = document.createElement("style");
+mailgoCSS.id = "mailgo-style";
 mailgoCSS.type = "text/css";
 const mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
 mailgoCSS.appendChild(mailgoCSSContent);
