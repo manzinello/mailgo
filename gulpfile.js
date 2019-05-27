@@ -27,7 +27,7 @@ function cssmin() {
 }
 
 function js() {
-  let cssContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
+  let cssContent = fs.readFileSync("dist/mailgo.css", "utf8");
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
     .pipe(replace("MAILGO_STYLE", cssContent))
@@ -36,10 +36,10 @@ function js() {
 }
 
 function jsmin() {
-  let cssContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
+  let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
-    .pipe(replace("MAILGO_STYLE", cssContent))
+    .pipe(replace("MAILGO_STYLE", cssMinContent))
     .pipe(babel())
     .pipe(uglify())
     .pipe(
