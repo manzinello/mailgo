@@ -154,9 +154,8 @@ var mailgoInit = function mailgoInit() {
 
 
 var mailgoRender = function mailgoRender(mailgo) {
-  var mail = "",
-      url = "",
-      mailtoHref = "",
+  var url = "",
+      mail = "",
       cc = "",
       bcc = "",
       subject = "",
@@ -164,8 +163,7 @@ var mailgoRender = function mailgoRender(mailgo) {
 
   if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
     mail = decodeURIComponent(mailgo.href.split("?")[0].split(MAILTO)[1].trim());
-    mailtoHref = mailgo.href;
-    url = new URL(mailtoHref);
+    url = new URL(mailgo.href);
     var urlParams = new URLSearchParams(url.search); // optional parameters for the email
 
     cc = urlParams.get("cc");
@@ -176,8 +174,7 @@ var mailgoRender = function mailgoRender(mailgo) {
     // if the element href="#mailgo" or class="mailgo"
     // mail = data-address + @ + data-domain
     mail = mailgo.getAttribute("data-address") + "@" + mailgo.getAttribute("data-domain");
-    mailtoHref = MAILTO + encodeURIComponent(mail);
-    url = new URL(mailtoHref); // cc = data-cc-address + @ + data-cc-domain
+    url = new URL(MAILTO + encodeURIComponent(mail)); // cc = data-cc-address + @ + data-cc-domain
 
     cc = mailgo.getAttribute("data-cc-address") + "@" + mailgo.getAttribute("data-cc-domain"); // bcc = data-bcc-address + @ + data-bcc-domain
 
@@ -218,7 +215,7 @@ var mailgoRender = function mailgoRender(mailgo) {
   bodyMail ? (bodyEl.style.display = "block", bodyValueEl.textContent = bodyMail) : bodyEl.style.display = "none"; // add the actions
 
   gmailButton.addEventListener("click", function () {
-    return actions.openGmail(mailtoHref);
+    return actions.openGmail(mail, cc, bcc, subject, bodyMail);
   });
   outlookButton.addEventListener("click", function () {
     return actions.openOutlook(mail, subject, bodyMail);
@@ -234,14 +231,18 @@ var mailgoRender = function mailgoRender(mailgo) {
   showMailgo(); // listener keyDown
 
   document.addEventListener("keydown", function () {
-    return mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton);
+    return mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton);
   });
 }; // actions
 
 
 var actions = {
-  openGmail: function openGmail(mailtoHref) {
-    var gmailUrl = "https://mail.google.com/mail?extsrc=mailto&url=" + encodeURIComponent(mailtoHref);
+  openGmail: function openGmail(mail, cc, bcc, subject, bodyMail) {
+    var gmailUrl = "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" + encodeURIComponent(mail);
+    if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
+    if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
+    if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
+    if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
     window.open(gmailUrl, "_blank");
   },
   openOutlook: function openOutlook(mail, subject, bodyMail) {
@@ -305,7 +306,7 @@ var mailgoCheckRender = function mailgoCheckRender(event) {
  */
 
 
-var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, url, mailtoHref, encEmail, copyButton) {
+var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton) {
   // if mailgo is not showing do nothing
   if (!mailgoIsShowing()) return;
 
@@ -317,7 +318,7 @@ var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, url
 
     case 71:
       // g -> open GMail
-      actions.openGmail(mailtoHref);
+      actions.openGmail(mail, cc, bcc, subject, bodyMail);
       break;
 
     case 79:

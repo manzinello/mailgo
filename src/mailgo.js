@@ -173,9 +173,8 @@ const mailgoInit = () => {
  * function to render a single mailgo
  */
 const mailgoRender = mailgo => {
-  let mail = "",
-    url = "",
-    mailtoHref = "",
+  let url = "",
+    mail = "",
     cc = "",
     bcc = "",
     subject = "",
@@ -190,8 +189,7 @@ const mailgoRender = mailgo => {
         .trim()
     );
 
-    mailtoHref = mailgo.href;
-    url = new URL(mailtoHref);
+    url = new URL(mailgo.href);
     let urlParams = new URLSearchParams(url.search);
 
     // optional parameters for the email
@@ -206,8 +204,8 @@ const mailgoRender = mailgo => {
       mailgo.getAttribute("data-address") +
       "@" +
       mailgo.getAttribute("data-domain");
-    mailtoHref = MAILTO + encodeURIComponent(mail);
-    url = new URL(mailtoHref);
+
+    url = new URL(MAILTO + encodeURIComponent(mail));
 
     // cc = data-cc-address + @ + data-cc-domain
     cc =
@@ -275,7 +273,9 @@ const mailgoRender = mailgo => {
     : (bodyEl.style.display = "none");
 
   // add the actions
-  gmailButton.addEventListener("click", () => actions.openGmail(mailtoHref));
+  gmailButton.addEventListener("click", () =>
+    actions.openGmail(mail, cc, bcc, subject, bodyMail)
+  );
 
   outlookButton.addEventListener("click", () =>
     actions.openOutlook(mail, subject, bodyMail)
@@ -291,26 +291,21 @@ const mailgoRender = mailgo => {
 
   // listener keyDown
   document.addEventListener("keydown", () =>
-    mailgoKeydown(
-      mail,
-      cc,
-      bcc,
-      subject,
-      bodyMail,
-      url,
-      mailtoHref,
-      encEmail,
-      copyButton
-    )
+    mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton)
   );
 };
 
 // actions
 const actions = {
-  openGmail: mailtoHref => {
+  openGmail: (mail, cc, bcc, subject, bodyMail) => {
     let gmailUrl =
-      "https://mail.google.com/mail?extsrc=mailto&url=" +
-      encodeURIComponent(mailtoHref);
+      "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
+      encodeURIComponent(mail);
+
+    if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
+    if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
+    if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
+    if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
 
     window.open(gmailUrl, "_blank");
   },
@@ -392,8 +387,6 @@ const mailgoKeydown = (
   bcc,
   subject,
   bodyMail,
-  url,
-  mailtoHref,
   encEmail,
   copyButton
 ) => {
@@ -406,7 +399,7 @@ const mailgoKeydown = (
       break;
     case 71:
       // g -> open GMail
-      actions.openGmail(mailtoHref);
+      actions.openGmail(mail, cc, bcc, subject, bodyMail);
       break;
     case 79:
       // o -> open Outlook
