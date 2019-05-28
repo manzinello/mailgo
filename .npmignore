@@ -4,3 +4,4 @@ gulpfile.js
 index.html
 .DS_Store
 CONTRIBUTING.md
+webpack.config.js
