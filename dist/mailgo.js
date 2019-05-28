@@ -1,6 +1,6 @@
 "use strict";
 
-var V = "0.5.1";
+var V = "0.6.0";
 var MAILTO = "mailto:"; // mailgo style (gulp)
 
 var mailgoCSS = document.createElement("style");
