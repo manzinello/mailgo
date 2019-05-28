@@ -9,6 +9,7 @@
     "type": "git",
     "url": "git+https://github.com/manzinello/mailgo.git"
   },
+  "main": "./dist/mailgo.min.js",
   "keywords": [
     "mailto",
     "mail"
@@ -29,7 +30,9 @@
     "gulp-rename": "^1.4.0",
     "gulp-replace": "^1.0.0",
     "gulp-terser": "^1.2.0",
-    "gulp-uglify": "^3.0.2"
+    "gulp-uglify": "^3.0.2",
+    "webpack": "^4.32.2",
+    "webpack-cli": "^3.3.2"
   },
   "dependencies": {},
   "browserslist": "cover 99.5%"
