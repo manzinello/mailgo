@@ -5,6 +5,8 @@ module.exports = {
   entry: "./dist/mailgo.min.js",
   output: {
     filename: "mailgo.js",
-    path: path.resolve(__dirname)
+    path: path.resolve(__dirname),
+    library: "mailgo",
+    libraryTarget: "umd"
   }
 };
