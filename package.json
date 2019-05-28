@@ -3,13 +3,13 @@
   "version": "0.5.1",
   "description": "a different mailto",
   "scripts": {
-    "build": "gulp"
+    "build": "gulp && webpack"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/manzinello/mailgo.git"
   },
-  "main": "./dist/mailgo.min.js",
+  "main": "./mailgo.js",
   "keywords": [
     "mailto",
     "mail"

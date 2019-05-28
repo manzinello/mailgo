@@ -1,9 +1,10 @@
 const path = require("path");
 
 module.exports = {
-  entry: "./src/mailgo.js",
+  mode: "production",
+  entry: "./dist/mailgo.min.js",
   output: {
-    filename: "main.js",
-    path: path.resolve(__dirname, "dist")
+    filename: "mailgo.js",
+    path: path.resolve(__dirname)
   }
 };
