@@ -252,15 +252,17 @@ const mailgoRender = mailgo => {
   let copyButton = getE("mailgo-copy");
 
   // the title of the modal (email address)
-  titleEl.textContent = mail;
+  titleEl.innerHTML = mail.split(",").join("<br/>");
 
   // add the details if provided
   cc
-    ? ((ccEl.style.display = "block"), (ccValueEl.textContent = cc))
+    ? ((ccEl.style.display = "block"),
+      (ccValueEl.innerHTML = cc.split(",").join("<br/>")))
     : (ccEl.style.display = "none");
 
   bcc
-    ? ((bccEl.style.display = "block"), (bccValueEl.textContent = bcc))
+    ? ((bccEl.style.display = "block"),
+      (bccValueEl.innerHTML = bcc.split(",").join("<br/>")))
     : (bccEl.style.display = "none");
 
   subject

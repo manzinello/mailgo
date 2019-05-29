@@ -59,7 +59,8 @@
   z-index: 10002;
   box-sizing: content-box;
   text-align: center;
-  width: 200px;
+  min-width: 200px;
+  max-width: 300px;
   background-color: #fff;
   border-radius: 6px;
   box-shadow: 0 2px 6px 0 rgba(10, 10, 10, 0.39);
