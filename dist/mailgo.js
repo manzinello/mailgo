@@ -186,10 +186,10 @@ var mailgoRender = function mailgoRender(mailgo) {
   } // validate the email address
 
 
-  if (!validateEmail(mail)) return; // if cc, bcc is not valid cc, bcc = ""
+  if (!validateEmails(mail.split(","))) return; // if cc, bcc is not valid cc, bcc = ""
 
-  if (!validateEmail(cc)) cc = "";
-  if (!validateEmail(bcc)) bcc = ""; // information
+  if (cc && !validateEmails(cc.split(","))) cc = "";
+  if (bcc && !validateEmails(bcc.split(","))) bcc = ""; // information
 
   var titleEl = getE("mailgo-title");
   var detailsEl = getE("mailgo-details");
@@ -347,11 +347,16 @@ var mailgoKeydown = function mailgoKeydown(mail, cc, bcc, subject, bodyMail, enc
 
 document.addEventListener("DOMContentLoaded", mailgoInit); // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
-document.addEventListener("click", mailgoCheckRender); // validate the email with regex
+document.addEventListener("click", mailgoCheckRender); // validate a single email with regex
 
 var validateEmail = function validateEmail(email) {
   var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
   return re.test(email);
+}; // validate an array of emails
+
+
+var validateEmails = function validateEmails(arr) {
+  return arr.every(validateEmail);
 }; // copy of a string
 
 
