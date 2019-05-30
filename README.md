@@ -2,6 +2,6 @@
 
 ### see the docs on <https://mailgo.js.org>
 
-![mailgo screencast](/assets/video/mailgo-screencast.gif)
+![mailgo screencast](/assets/video/mailgo.gif)
 
 <https://mailgo.js.org>
