@@ -50,7 +50,7 @@
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(10, 10, 10, 0.75);
+  background-color: rgba(32, 35, 42, 0.75);
   opacity: 0.8;
 }
 
@@ -60,10 +60,10 @@
   box-sizing: content-box;
   text-align: center;
   min-width: 200px;
-  max-width: 300px;
+  max-width: 240px;
   background-color: #fff;
-  border-radius: 6px;
-  box-shadow: 0 2px 6px 0 rgba(10, 10, 10, 0.39);
+  border-radius: 5px;
+  box-shadow: 0 2px 6px 0 rgba(32, 35, 42, 0.39);
   color: #4a4a4a;
   display: block;
   overflow: auto;
@@ -71,14 +71,14 @@
 }
 
 .mailgo-modal-content:hover {
-  box-shadow: 0 6px 20px rgba(10, 10, 10, 0.23);
+  box-shadow: 0 7px 20px rgba(32, 35, 42, 0.23);
 }
 
 .mailgo-modal-content a {
   display: block;
   padding: 10px;
   color: #4a4a4a;
-  border-radius: 4px;
+  border-radius: 5px;
   text-decoration: none;
 }
 
