@@ -12,10 +12,6 @@ const babel = require("gulp-babel");
 let version = require("./package.json").version;
 
 function css() {
-  return src("src/*.css").pipe(dest("dist"));
-}
-
-function cssmin() {
   return src("src/*.css")
     .pipe(csso())
     .pipe(
@@ -27,15 +23,6 @@ function cssmin() {
 }
 
 function js() {
-  let cssContent = fs.readFileSync("dist/mailgo.css", "utf8");
-  return src("src/*.js")
-    .pipe(replace("MAILGO_VERSION", version))
-    .pipe(replace("MAILGO_STYLE", cssContent))
-    .pipe(babel())
-    .pipe(dest("dist"));
-}
-
-function jsmin() {
   let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
@@ -51,8 +38,6 @@ function jsmin() {
 }
 
 exports.js = js;
-exports.jsmin = jsmin;
 exports.css = css;
-exports.cssmin = cssmin;
 
-exports.default = series(parallel(css, cssmin), parallel(js, jsmin));
+exports.default = series(css, js);
