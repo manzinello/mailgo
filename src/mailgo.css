@@ -62,15 +62,17 @@
   min-width: 200px;
   max-width: 240px;
   background-color: #fff;
+  opacity: 0.97;
   border-radius: 5px;
   box-shadow: 0 2px 6px 0 rgba(32, 35, 42, 0.39);
   color: #4a4a4a;
   display: block;
   overflow: auto;
-  padding: 1.25rem;
+  padding: 20px;
 }
 
 .mailgo-modal-content:hover {
+  opacity: 1;
   box-shadow: 0 7px 20px rgba(32, 35, 42, 0.23);
 }
 
