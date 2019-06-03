@@ -434,30 +434,6 @@ const validateEmail = email => {
   return re.test(email);
 };
 
-// validate an array of emails
-const validateEmails = arr => arr.every(validateEmail);
-
-// copy of a string
-const copyToClipboard = str => {
-  let el = document.createElement("textarea");
-  el.value = str;
-  el.setAttribute("readonly", "");
-  el.style.position = "absolute";
-  el.style.left = "-9999px";
-  document.body.appendChild(el);
-  let selected =
-    document.getSelection().rangeCount > 0
-      ? document.getSelection().getRangeAt(0)
-      : false;
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
-  if (selected) {
-    document.getSelection().removeAllRanges();
-    document.getSelection().addRange(selected);
-  }
-};
-
 // show the modal
 const showMailgo = () => (getE("mailgo").style.display = "flex");
 
@@ -491,5 +467,29 @@ const composedPath = el => {
     }
 
     el = el.parentElement;
+  }
+};
+
+// validate an array of emails
+const validateEmails = arr => arr.every(validateEmail);
+
+// copy of a string
+const copyToClipboard = str => {
+  let el = document.createElement("textarea");
+  el.value = str;
+  el.setAttribute("readonly", "");
+  el.style.position = "absolute";
+  el.style.left = "-9999px";
+  document.body.appendChild(el);
+  let selected =
+    document.getSelection().rangeCount > 0
+      ? document.getSelection().getRangeAt(0)
+      : false;
+  el.select();
+  document.execCommand("copy");
+  document.body.removeChild(el);
+  if (selected) {
+    document.getSelection().removeAllRanges();
+    document.getSelection().addRange(selected);
   }
 };
