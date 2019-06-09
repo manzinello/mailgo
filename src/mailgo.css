@@ -67,7 +67,7 @@
   background-color: #fff;
   opacity: 0.97;
   border-radius: 5px;
-  box-shadow: 0 2px 6px 0 rgba(32, 35, 42, 0.39);
+  box-shadow: 0px 3px 8px 0px rgba(32, 35, 42, 0.12);
   color: #4a4a4a;
   display: block;
   overflow: auto;
@@ -76,7 +76,7 @@
 
 .mailgo-modal-content:hover {
   opacity: 1;
-  box-shadow: 0 7px 20px rgba(32, 35, 42, 0.23);
+  box-shadow: 0px 18px 30px 0px rgba(32, 35, 42, 0.23);
 }
 
 .mailgo-modal-content a {
