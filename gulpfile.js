@@ -9,10 +9,14 @@ const fs = require("fs");
 
 const babel = require("gulp-babel");
 
+const sass = require("gulp-sass");
+sass.compiler = require("node-sass");
+
 let version = require("./package.json").version;
 
-function css() {
-  return src("src/*.css")
+function style() {
+  return src("src/*.scss")
+    .pipe(sass().on("error", sass.logError))
     .pipe(csso())
     .pipe(
       rename({
@@ -38,6 +42,6 @@ function js() {
 }
 
 exports.js = js;
-exports.css = css;
+exports.style = style;
 
-exports.default = series(css, js);
+exports.default = series(style, js);
