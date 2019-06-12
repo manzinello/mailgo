@@ -1,3 +1,4 @@
+$default-color: #4a4a4a;
 $gmail-color: #d44638;
 $outlook-color: #0072c6;
 
@@ -55,7 +56,7 @@ $outlook-color: #0072c6;
   opacity: 0.97;
   border-radius: 5px;
   box-shadow: 0px 3px 8px 0px rgba(32, 35, 42, 0.12);
-  color: #4a4a4a;
+  color: $default-color;
   display: block;
   overflow: auto;
   padding: 20px;
@@ -83,7 +84,7 @@ $outlook-color: #0072c6;
   a {
     display: block;
     padding: 10px;
-    color: #4a4a4a;
+    color: $default-color;
     border-radius: 5px;
     text-decoration: none;
   }
@@ -104,7 +105,7 @@ $outlook-color: #0072c6;
   a.mailgo-default:hover,
   a.mailgo-copy:hover {
     background-color: rgba(0, 0, 0, 0.08);
-    color: #4a4a4a;
+    color: $default-color;
   }
 
   a.mailgo-outlook:hover {
@@ -122,7 +123,7 @@ $outlook-color: #0072c6;
     font-size: 8px;
     margin-top: 1rem;
     padding: 0px;
-    color: #4a4a4a;
+    color: $default-color;
     opacity: 0.5;
   }
 
