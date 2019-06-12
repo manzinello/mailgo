@@ -1,18 +1,5 @@
-.mailgo-modal p,
-.mailgo-modal span,
-.mailgo-modal strong,
-.mailgo-modal a {
-  margin: 0;
-  padding: 0;
-  font-size: 100%;
-  line-height: 1;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-.mailgo-modal strong {
-  font-weight: 700;
-}
+$gmail-color: #d44638;
+$outlook-color: #0072c6;
 
 .mailgo-modal {
   position: fixed;
@@ -26,6 +13,24 @@
   overflow: hidden;
   font-size: 15px;
   z-index: 10000;
+}
+
+.mailgo-modal {
+  p,
+  span,
+  strong,
+  a {
+    margin: 0;
+    padding: 0;
+    font-size: 100%;
+    line-height: 1;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
+  }
+  strong {
+    font-weight: 700;
+  }
 }
 
 .mailgo-title {
@@ -88,11 +93,11 @@
 }
 
 .mailgo-modal-content a.mailgo-gmail {
-  color: #d44638;
+  color: $gmail-color;
 }
 
 .mailgo-modal-content a.mailgo-outlook {
-  color: #0072c6;
+  color: $outlook-color;
 }
 
 .mailgo-modal-content a.mailgo-copy {
@@ -108,12 +113,12 @@
 
 .mailgo-modal-content a.mailgo-outlook:hover {
   background-color: rgba(0, 114, 198, 0.08);
-  color: #0072c6;
+  color: $outlook-color;
 }
 
 .mailgo-modal-content a.mailgo-gmail:hover {
   background-color: rgba(212, 70, 56, 0.08);
-  color: #d44638;
+  color: $gmail-color;
 }
 
 .mailgo-modal-content a.mailgo-by {
