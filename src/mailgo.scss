@@ -33,24 +33,6 @@ $outlook-color: #0072c6;
   }
 }
 
-.mailgo-title {
-  display: block;
-  margin-bottom: 5px;
-  overflow: hidden;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-}
-
-.mailgo-details {
-  margin-bottom: 10px;
-}
-
-.mailgo-details p {
-  font-size: 12px;
-  margin-top: 3px;
-  margin-bottom: 3px;
-}
-
 .mailgo-modal-background {
   position: absolute;
   z-index: 10001;
@@ -79,61 +61,81 @@ $outlook-color: #0072c6;
   padding: 20px;
 }
 
+.mailgo-modal-content {
+  .mailgo-title {
+    display: block;
+    margin-bottom: 5px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .mailgo-details {
+    margin-bottom: 10px;
+  }
+
+  .mailgo-details p {
+    font-size: 12px;
+    margin-top: 3px;
+    margin-bottom: 3px;
+  }
+
+  a {
+    display: block;
+    padding: 10px;
+    color: #4a4a4a;
+    border-radius: 5px;
+    text-decoration: none;
+  }
+
+  a.mailgo-gmail {
+    color: $gmail-color;
+  }
+
+  a.mailgo-outlook {
+    color: $outlook-color;
+  }
+
+  a.mailgo-copy {
+    padding: 16px 10px;
+    font-size: 16px;
+  }
+
+  a.mailgo-default:hover,
+  a.mailgo-copy:hover {
+    background-color: rgba(0, 0, 0, 0.08);
+    color: #4a4a4a;
+  }
+
+  a.mailgo-outlook:hover {
+    background-color: rgba(0, 114, 198, 0.08);
+    color: $outlook-color;
+  }
+
+  a.mailgo-gmail:hover {
+    background-color: rgba(212, 70, 56, 0.08);
+    color: $gmail-color;
+  }
+
+  a.mailgo-by {
+    display: block;
+    font-size: 8px;
+    margin-top: 1rem;
+    padding: 0px;
+    color: #4a4a4a;
+    opacity: 0.5;
+  }
+
+  a.mailgo-by:hover {
+    opacity: 1;
+  }
+
+  .mailgo-weight-500 {
+    font-weight: 500;
+  }
+}
+
 .mailgo-modal-content:hover {
   opacity: 1;
   box-shadow: 0px 18px 30px 0px rgba(32, 35, 42, 0.23);
-}
-
-.mailgo-modal-content a {
-  display: block;
-  padding: 10px;
-  color: #4a4a4a;
-  border-radius: 5px;
-  text-decoration: none;
-}
-
-.mailgo-modal-content a.mailgo-gmail {
-  color: $gmail-color;
-}
-
-.mailgo-modal-content a.mailgo-outlook {
-  color: $outlook-color;
-}
-
-.mailgo-modal-content a.mailgo-copy {
-  padding: 16px 10px;
-  font-size: 16px;
-}
-
-.mailgo-modal-content a.mailgo-default:hover,
-.mailgo-modal-content a.mailgo-copy:hover {
-  background-color: rgba(0, 0, 0, 0.08);
-  color: #4a4a4a;
-}
-
-.mailgo-modal-content a.mailgo-outlook:hover {
-  background-color: rgba(0, 114, 198, 0.08);
-  color: $outlook-color;
-}
-
-.mailgo-modal-content a.mailgo-gmail:hover {
-  background-color: rgba(212, 70, 56, 0.08);
-  color: $gmail-color;
-}
-
-.mailgo-modal-content a.mailgo-by {
-  display: block;
-  font-size: 8px;
-  margin-top: 1rem;
-  padding: 0px;
-  color: #4a4a4a;
-  opacity: 0.5;
-}
-
-.mailgo-modal-content a.mailgo-by:hover {
-  opacity: 1;
-}
-
-.mailgo-weight-500 {
-  font-weight: 500;
 }
