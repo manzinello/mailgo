@@ -5,3 +5,5 @@ index.html
 .DS_Store
 CONTRIBUTING.md
 webpack.config.js
+.prettierrc
+.travis.yml
