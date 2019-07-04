@@ -1,3 +1,4 @@
+// @flow
 const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
 
