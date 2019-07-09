@@ -1,6 +1,7 @@
 // @flow
 const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
+const TEL = "tel:";
 
 // mailgo style (gulp)
 const mailgoCSS = document.createElement("style");
