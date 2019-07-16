@@ -4,7 +4,8 @@
   "description": "a different mailto",
   "scripts": {
     "build": "gulp && webpack",
-    "test": "jest"
+    "test": "jest",
+    "postinstall": "opencollective-postinstall || true"
   },
   "repository": {
     "type": "git",
@@ -41,6 +42,12 @@
     "webpack": "^4.35.2",
     "webpack-cli": "^3.3.5"
   },
-  "dependencies": {},
-  "browserslist": "cover 99.5%"
+  "dependencies": {
+    "opencollective-postinstall": "^2.0.2"
+  },
+  "browserslist": "cover 99.5%",
+  "collective": {
+    "type": "opencollective",
+    "url": "https://opencollective.com/mailgo"
+  }
 }
