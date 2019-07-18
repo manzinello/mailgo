@@ -487,6 +487,12 @@ const actions = {
     mailToEncoded(encEmail);
   },
 
+  openWhatsApp: tel => {
+    let waUrl = "https://wa.me/" + tel;
+
+    window.open(waUrl, "_blank");
+  },
+
   copy: (mail, copyButton) => {
     copyToClipboard(mail);
     copyButton.textContent = "copied";
