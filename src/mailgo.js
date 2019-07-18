@@ -18,9 +18,9 @@ document.head.appendChild(mailgoCSS);
 const mailgoInit = () => {
   // modal
   let modal = document.createElement("div");
+  modal.style.display = "none";
   modal.id = "mailgo";
   modal.classList.add("mailgo-modal");
-  modal.style.display = "none";
 
   // background
   let modalBackground = document.createElement("div");
