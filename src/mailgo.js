@@ -493,6 +493,13 @@ const actions = {
     window.open(waUrl, "_blank");
   },
 
+  openTelegram: tel => {
+    // TODO
+    let tgUrl = "";
+
+    window.open(tgUrl, "_blank");
+  },
+
   copy: (mail, copyButton) => {
     copyToClipboard(mail);
     copyButton.textContent = "copied";
