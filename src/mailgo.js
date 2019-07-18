@@ -252,53 +252,53 @@ const mailgoTelInit = () => {
 
   modalContent.appendChild(details);
 
-  // Gmail
-  let gmail = document.createElement("a");
-  gmail.id = "mailgo-gmail";
-  gmail.href = "#mailgo-gmail";
-  gmail.classList.add("mailgo-open");
-  gmail.classList.add("mailgo-gmail");
-  let gmailContent = document.createTextNode("open in ");
-  gmail.appendChild(gmailContent);
-  let gmailSpan = document.createElement("span");
-  gmailSpan.className = "mailgo-weight-500";
-  let gmailSpanContent = document.createTextNode("Gmail");
-  gmailSpan.appendChild(gmailSpanContent);
-  gmail.appendChild(gmailSpan);
+  // WhatsApp
+  let wa = document.createElement("a");
+  wa.id = "mailgo-wa";
+  wa.href = "#mailgo-wa";
+  wa.classList.add("mailgo-open");
+  wa.classList.add("mailgo-wa");
+  let waContent = document.createTextNode("open in ");
+  wa.appendChild(waContent);
+  let waSpan = document.createElement("span");
+  waSpan.className = "mailgo-weight-500";
+  let waSpanContent = document.createTextNode("WhatsApp");
+  waSpan.appendChild(waSpanContent);
+  wa.appendChild(waSpan);
 
-  modalContent.appendChild(gmail);
+  modalContent.appendChild(wa);
 
-  // Outlook
-  let outlook = document.createElement("a");
-  outlook.id = "mailgo-outlook";
-  outlook.href = "#mailgo-outlook";
-  outlook.classList.add("mailgo-open");
-  outlook.classList.add("mailgo-outlook");
-  let outlookContent = document.createTextNode("open in ");
-  outlook.appendChild(outlookContent);
-  let outlookSpan = document.createElement("span");
-  outlookSpan.className = "mailgo-weight-500";
-  let outlookSpanContent = document.createTextNode("Outlook");
-  outlookSpan.appendChild(outlookSpanContent);
-  outlook.appendChild(outlookSpan);
+  // Telegram
+  let telegram = document.createElement("a");
+  telegram.id = "mailgo-telegram";
+  telegram.href = "#mailgo-telegram";
+  telegram.classList.add("mailgo-open");
+  telegram.classList.add("mailgo-telegram");
+  let telegramContent = document.createTextNode("open in ");
+  telegram.appendChild(telegramContent);
+  let telegramSpan = document.createElement("span");
+  telegramSpan.className = "mailgo-weight-500";
+  let telegramSpanContent = document.createTextNode("Telegram");
+  telegramSpan.appendChild(telegramSpanContent);
+  telegram.appendChild(telegramSpan);
 
-  modalContent.appendChild(outlook);
+  modalContent.appendChild(telegram);
 
   // open default
-  let open = document.createElement("a");
-  open.id = "mailgo-open";
-  open.href = "#mailgo-open";
-  open.classList.add("mailgo-open");
-  open.classList.add("mailgo-default");
-  let openSpan = document.createElement("span");
-  openSpan.className = "mailgo-weight-500";
-  let openSpanContent = document.createTextNode("open");
-  openSpan.appendChild(openSpanContent);
-  let openContent = document.createTextNode(" default");
-  open.appendChild(openSpan);
-  open.appendChild(openContent);
+  let call = document.createElement("a");
+  call.id = "mailgo-open";
+  call.href = "#mailgo-open";
+  call.classList.add("mailgo-open");
+  call.classList.add("mailgo-default");
+  let callSpan = document.createElement("span");
+  callSpan.className = "mailgo-weight-500";
+  let callSpanContent = document.createTextNode("call");
+  callSpan.appendChild(callSpanContent);
+  let callContent = document.createTextNode(" default");
+  call.appendChild(callSpan);
+  call.appendChild(callContent);
 
-  modalContent.appendChild(open);
+  modalContent.appendChild(call);
 
   // copy
   let copy = document.createElement("a");
