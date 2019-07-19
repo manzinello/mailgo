@@ -458,6 +458,88 @@ const mailgoRender = mailgo => {
   );
 };
 
+/**
+ * mailgoTelRender
+ * function to render a single tel mailgo
+ */
+const mailgoTelRender = mailgo => {
+  let tel = "",
+    msg = "";
+
+  mail = decodeURIComponent(
+    mailgo.href
+      .split("?")[0]
+      .split(TEL)[1]
+      .trim()
+  );
+
+  url = new URL(mailgo.href);
+  let urlParams = new URLSearchParams(url.search);
+
+  // information
+  let titleEl = getE("mailgo-title");
+  let detailsEl = getE("mailgo-details");
+  let ccEl = getE("mailgo-cc");
+  let ccValueEl = getE("mailgo-cc-value");
+  let bccEl = getE("mailgo-bcc");
+  let bccValueEl = getE("mailgo-bcc-value");
+  let subjectEl = getE("mailgo-subject");
+  let subjectValueEl = getE("mailgo-subject-value");
+  let bodyEl = getE("mailgo-body");
+  let bodyValueEl = getE("mailgo-body-value");
+
+  // actions
+  let gmailButton = getE("mailgo-gmail");
+  let outlookButton = getE("mailgo-outlook");
+  let openButton = getE("mailgo-open");
+  let copyButton = getE("mailgo-copy");
+
+  // the title of the modal (email address)
+  titleEl.innerHTML = mail.split(",").join("<br/>");
+
+  // add the details if provided
+  cc
+    ? ((ccEl.style.display = "block"),
+      (ccValueEl.innerHTML = cc.split(",").join("<br/>")))
+    : (ccEl.style.display = "none");
+
+  bcc
+    ? ((bccEl.style.display = "block"),
+      (bccValueEl.innerHTML = bcc.split(",").join("<br/>")))
+    : (bccEl.style.display = "none");
+
+  subject
+    ? ((subjectEl.style.display = "block"),
+      (subjectValueEl.textContent = subject))
+    : (subjectEl.style.display = "none");
+
+  bodyMail
+    ? ((bodyEl.style.display = "block"), (bodyValueEl.textContent = bodyMail))
+    : (bodyEl.style.display = "none");
+
+  // add the actions
+  gmailButton.addEventListener("click", () =>
+    actions.openGmail(mail, cc, bcc, subject, bodyMail)
+  );
+
+  outlookButton.addEventListener("click", () =>
+    actions.openOutlook(mail, subject, bodyMail)
+  );
+
+  let encEmail = encodeEmail(mail);
+  openButton.addEventListener("click", () => actions.openDefault(encEmail));
+
+  copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
+
+  // show the mailgo
+  showMailgoTel();
+
+  // listener keyDown
+  document.addEventListener("keydown", () =>
+    mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton)
+  );
+};
+
 // actions
 const actions = {
   openGmail: (mail, cc, bcc, subject, bodyMail) => {
