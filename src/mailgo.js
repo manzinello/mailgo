@@ -515,6 +515,13 @@ const isMailgo = element =>
   // third case: the classList contains mailgo
   (element.classList && element.classList.contains("mailgo"));
 
+// function that returns if an element is a mailgo-tel
+const isMailgoTel = element =>
+  // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+  element.href &&
+  element.href.toLowerCase().startsWith(TEL) &&
+  !element.classList.contains("no-mailgo");
+
 /**
  * mailgoCheckRender
  * function to check if an element is mailgo-enabled or not referencing to the old
