@@ -28,6 +28,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.5.5",
     "@babel/preset-flow": "^7.0.0",
+    "@wdio/cli": "^5.11.11",
     "flow-bin": "^0.104.0",
     "gulp": "^4.0.2",
     "gulp-babel": "^8.0.0",
