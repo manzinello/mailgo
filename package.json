@@ -4,8 +4,7 @@
   "description": "a different mailto",
   "scripts": {
     "build": "gulp && webpack",
-    "test": "jest",
-    "postinstall": "opencollective-postinstall || true"
+    "test": "jest"
   },
   "repository": {
     "type": "git",
@@ -49,9 +48,7 @@
     "webpack": "^4.40.2",
     "webpack-cli": "^3.3.8"
   },
-  "dependencies": {
-    "opencollective-postinstall": "^2.0.2"
-  },
+  "dependencies": {},
   "browserslist": "cover 99.5%",
   "collective": {
     "type": "opencollective",
