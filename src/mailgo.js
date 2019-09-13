@@ -198,22 +198,6 @@ const mailgoTelInit = () => {
   title.className = "mailgo-title";
   modalContent.appendChild(title);
 
-  // WhatsApp
-  let wa = document.createElement("a");
-  wa.id = "mailgo-wa";
-  wa.href = "#mailgo-wa";
-  wa.classList.add("mailgo-open");
-  wa.classList.add("mailgo-wa");
-  let waContent = document.createTextNode("open in ");
-  wa.appendChild(waContent);
-  let waSpan = document.createElement("span");
-  waSpan.className = "mailgo-weight-500";
-  let waSpanContent = document.createTextNode("WhatsApp");
-  waSpan.appendChild(waSpanContent);
-  wa.appendChild(waSpan);
-
-  modalContent.appendChild(wa);
-
   // Telegram
   let telegram = document.createElement("a");
   telegram.id = "mailgo-telegram";
@@ -229,6 +213,22 @@ const mailgoTelInit = () => {
   telegram.appendChild(telegramSpan);
 
   modalContent.appendChild(telegram);
+
+  // WhatsApp
+  let wa = document.createElement("a");
+  wa.id = "mailgo-wa";
+  wa.href = "#mailgo-wa";
+  wa.classList.add("mailgo-open");
+  wa.classList.add("mailgo-wa");
+  let waContent = document.createTextNode("open in ");
+  wa.appendChild(waContent);
+  let waSpan = document.createElement("span");
+  waSpan.className = "mailgo-weight-500";
+  let waSpanContent = document.createTextNode("WhatsApp");
+  waSpan.appendChild(waSpanContent);
+  wa.appendChild(waSpan);
+
+  modalContent.appendChild(wa);
 
   // call default
   let call = document.createElement("a");
