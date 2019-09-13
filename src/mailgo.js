@@ -194,7 +194,7 @@ const mailgoTelInit = () => {
 
   // title (email address)
   let title = document.createElement("strong");
-  title.id = "mailgo-title";
+  title.id = "mailgo-tel-title";
   title.className = "mailgo-title";
   modalContent.appendChild(title);
 
@@ -235,7 +235,7 @@ const mailgoTelInit = () => {
   call.id = "mailgo-call";
   call.href = "#mailgo-call";
   call.classList.add("mailgo-open");
-  call.classList.add("mailgo-open");
+  call.classList.add("mailgo-default");
   let callSpan = document.createElement("span");
   callSpan.className = "mailgo-weight-500";
   let callSpanContent = document.createTextNode("call");
@@ -248,7 +248,7 @@ const mailgoTelInit = () => {
 
   // copy
   let copy = document.createElement("a");
-  copy.id = "mailgo-copy";
+  copy.id = "mailgo-tel-copy";
   copy.href = "#mailgo-copy";
   copy.classList.add("mailgo-copy");
   copy.classList.add("mailgo-weight-500");
@@ -430,16 +430,18 @@ const mailgoTelRender = mailgo => {
     );
   }
 
+  console.log(tel);
+
   // information
-  let titleEl = getE("mailgo-title");
+  let titleEl = getE("mailgo-tel-title");
 
   // actions
   let waButton = getE("mailgo-wa");
   let telegramButton = getE("mailgo-telegram");
   let callButton = getE("mailgo-call");
-  let copyButton = getE("mailgo-copy");
+  let copyButton = getE("mailgo-tel-copy");
 
-  // the title of the modal (email address)
+  // the title of the modal (tel)
   titleEl.innerHTML = tel;
 
   // add the actions
@@ -639,7 +641,10 @@ const showMailgo = () => (getE("mailgo").style.display = "flex");
 const showMailgoTel = () => (getE("mailgo-tel").style.display = "flex");
 
 // hide the modal
-const hideMailgo = () => (getE("mailgo").style.display = "none");
+const hideMailgo = () => (
+  (getE("mailgo").style.display = "none"),
+  (getE("mailgo-tel").style.display = "none")
+);
 
 // is the modal hidden?
 const mailgoIsShowing = () => getE("mailgo").style.display === "flex";
