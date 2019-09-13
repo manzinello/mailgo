@@ -2,6 +2,7 @@
 const V = "MAILGO_VERSION";
 const MAILTO = "mailto:";
 const TEL = "tel:";
+const CALLTO = "callto:";
 
 // mailgo style (gulp)
 const mailgoCSS = document.createElement("style");
@@ -197,61 +198,6 @@ const mailgoTelInit = () => {
   title.className = "mailgo-title";
   modalContent.appendChild(title);
 
-  // details
-  let details = document.createElement("div");
-  details.id = "mailgo-details";
-  details.className = "mailgo-details";
-
-  let detailCc = document.createElement("p");
-  detailCc.id = "mailgo-cc";
-  let ccSpan = document.createElement("span");
-  ccSpan.className = "mailgo-weight-500";
-  let ccContent = document.createTextNode("cc ");
-  ccSpan.appendChild(ccContent);
-  let ccValue = document.createElement("span");
-  ccValue.id = "mailgo-cc-value";
-  detailCc.appendChild(ccSpan);
-  detailCc.appendChild(ccValue);
-  details.appendChild(detailCc);
-
-  let detailBcc = document.createElement("p");
-  detailBcc.id = "mailgo-bcc";
-  let bccSpan = document.createElement("span");
-  bccSpan.className = "mailgo-weight-500";
-  let bccContent = document.createTextNode("bcc ");
-  bccSpan.appendChild(bccContent);
-  let bccValue = document.createElement("span");
-  bccValue.id = "mailgo-bcc-value";
-  detailBcc.appendChild(bccSpan);
-  detailBcc.appendChild(bccValue);
-  details.appendChild(detailBcc);
-
-  let detailSubject = document.createElement("p");
-  detailSubject.id = "mailgo-subject";
-  let subjectSpan = document.createElement("span");
-  subjectSpan.className = "mailgo-weight-500";
-  let subjectContent = document.createTextNode("subject ");
-  subjectSpan.appendChild(subjectContent);
-  let subjectValue = document.createElement("span");
-  subjectValue.id = "mailgo-subject-value";
-  detailSubject.appendChild(subjectSpan);
-  detailSubject.appendChild(subjectValue);
-  details.appendChild(detailSubject);
-
-  let detailBody = document.createElement("p");
-  detailBody.id = "mailgo-body";
-  let bodySpan = document.createElement("span");
-  bodySpan.className = "mailgo-weight-500";
-  let bodyContent = document.createTextNode("body ");
-  bodySpan.appendChild(bodyContent);
-  let bodyValue = document.createElement("span");
-  bodyValue.id = "mailgo-body-value";
-  detailBody.appendChild(bodySpan);
-  detailBody.appendChild(bodyValue);
-  details.appendChild(detailBody);
-
-  modalContent.appendChild(details);
-
   // WhatsApp
   let wa = document.createElement("a");
   wa.id = "mailgo-wa";
@@ -284,7 +230,7 @@ const mailgoTelInit = () => {
 
   modalContent.appendChild(telegram);
 
-  // open default
+  // call default
   let call = document.createElement("a");
   call.id = "mailgo-open";
   call.href = "#mailgo-open";
@@ -466,78 +412,54 @@ const mailgoTelRender = mailgo => {
   let tel = "",
     msg = "";
 
-  mail = decodeURIComponent(
-    mailgo.href
-      .split("?")[0]
-      .split(TEL)[1]
-      .trim()
-  );
+  if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
+    tel = decodeURIComponent(
+      mailgo.href
+        .split("?")[0]
+        .split(TEL)[1]
+        .trim()
+    );
+  }
 
-  url = new URL(mailgo.href);
-  let urlParams = new URLSearchParams(url.search);
+  if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
+    tel = decodeURIComponent(
+      mailgo.href
+        .split("?")[0]
+        .split(CALLTO)[1]
+        .trim()
+    );
+  }
 
   // information
   let titleEl = getE("mailgo-title");
-  let detailsEl = getE("mailgo-details");
-  let ccEl = getE("mailgo-cc");
-  let ccValueEl = getE("mailgo-cc-value");
-  let bccEl = getE("mailgo-bcc");
-  let bccValueEl = getE("mailgo-bcc-value");
-  let subjectEl = getE("mailgo-subject");
-  let subjectValueEl = getE("mailgo-subject-value");
-  let bodyEl = getE("mailgo-body");
-  let bodyValueEl = getE("mailgo-body-value");
 
   // actions
-  let gmailButton = getE("mailgo-gmail");
-  let outlookButton = getE("mailgo-outlook");
-  let openButton = getE("mailgo-open");
+  let waButton = getE("mailgo-wa");
+  let telegramButton = getE("mailgo-telegram");
+  let callButton = getE("mailgo-call");
   let copyButton = getE("mailgo-copy");
 
   // the title of the modal (email address)
-  titleEl.innerHTML = mail.split(",").join("<br/>");
-
-  // add the details if provided
-  cc
-    ? ((ccEl.style.display = "block"),
-      (ccValueEl.innerHTML = cc.split(",").join("<br/>")))
-    : (ccEl.style.display = "none");
-
-  bcc
-    ? ((bccEl.style.display = "block"),
-      (bccValueEl.innerHTML = bcc.split(",").join("<br/>")))
-    : (bccEl.style.display = "none");
-
-  subject
-    ? ((subjectEl.style.display = "block"),
-      (subjectValueEl.textContent = subject))
-    : (subjectEl.style.display = "none");
-
-  bodyMail
-    ? ((bodyEl.style.display = "block"), (bodyValueEl.textContent = bodyMail))
-    : (bodyEl.style.display = "none");
+  titleEl.innerHTML = tel;
 
   // add the actions
-  gmailButton.addEventListener("click", () =>
-    actions.openGmail(mail, cc, bcc, subject, bodyMail)
-  );
+  waButton.addEventListener("click", () => actions.openWhatsApp(tel));
 
-  outlookButton.addEventListener("click", () =>
-    actions.openOutlook(mail, subject, bodyMail)
-  );
+  telegramButton.addEventListener("click", () => actions.openTelegram(tel));
 
-  let encEmail = encodeEmail(mail);
-  openButton.addEventListener("click", () => actions.openDefault(encEmail));
+  callButton.addEventListener("click", () => actions.callDefault(tel));
 
-  copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
+  copyButton.addEventListener("click", () => actions.copy(tel, copyButton));
 
   // show the mailgo
   showMailgoTel();
 
   // listener keyDown
+  /*
   document.addEventListener("keydown", () =>
     mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton)
   );
+  */
 };
 
 // actions
@@ -579,6 +501,11 @@ const actions = {
     window.open(tgUrl, "_blank");
   },
 
+  callDefault: tel => {
+    let callUrl = "tel:" + tel;
+    window.open(callUrl, "_blank");
+  },
+
   copy: (mail, copyButton) => {
     copyToClipboard(mail);
     copyButton.textContent = "copied";
@@ -601,7 +528,8 @@ const isMailgo = element =>
 const isMailgoTel = element =>
   // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
   element.href &&
-  element.href.toLowerCase().startsWith(TEL) &&
+  (element.href.toLowerCase().startsWith(TEL) ||
+    element.href.toLowerCase().startsWith(CALLTO)) &&
   !element.classList.contains("no-mailgo");
 
 /**
@@ -630,6 +558,15 @@ const mailgoCheckRender = event => {
 
         // render mailgo
         mailgoRender(element);
+
+        return;
+      }
+      if (isMailgoTel(element)) {
+        // stop the normal execution of the element click
+        event.preventDefault();
+
+        // render mailgo
+        mailgoTelRender(element);
 
         return;
       }
@@ -697,6 +634,9 @@ const validateEmail = email => {
 
 // show the modal
 const showMailgo = () => (getE("mailgo").style.display = "flex");
+
+// show the tel modal
+const showMailgoTel = () => (getE("mailgo-tel").style.display = "flex");
 
 // hide the modal
 const hideMailgo = () => (getE("mailgo").style.display = "none");
