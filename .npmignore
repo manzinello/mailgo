@@ -7,3 +7,7 @@ CONTRIBUTING.md
 webpack.config.js
 .prettierrc
 .travis.yml
+wdio.conf.js
+.github/FUNDING.yml
+.flowconfig
+babel.config.js
