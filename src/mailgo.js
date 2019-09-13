@@ -493,19 +493,19 @@ const actions = {
     mailToEncoded(encEmail);
   },
 
-  openWhatsApp: (tel, msg = "") => {
-    let waUrl = "https://wa.me/" + tel;
-    window.open(waUrl, "_blank");
-  },
-
   openTelegram: (tel, msg = "") => {
     let tgUrl = "tg://msg?text=" + msg + "&to=" + tel;
     window.open(tgUrl, "_blank");
   },
 
+  openWhatsApp: (tel, msg = "") => {
+    let waUrl = "https://wa.me/" + tel;
+    window.open(waUrl, "_blank");
+  },
+
   callDefault: tel => {
     let callUrl = "tel:" + tel;
-    window.open(callUrl, "_blank");
+    window.open(callUrl);
   },
 
   copy: (mail, copyButton) => {
