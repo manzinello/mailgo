@@ -4,9 +4,7 @@
 
 ![mailgo screencast](https://github.com/manzinello/mailgo/raw/master/assets/video/mailgo.gif)
 
-## Product Hunt
-
-<iframe style="border: none;" src="https://cards.producthunt.com/cards/posts/157026?v=1" width="500" height="405" frameborder="0" scrolling="no" allowfullscreen></iframe>
+<a href="https://www.producthunt.com/posts/mailgo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-mailgo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=157026&theme=dark" alt="mailgo - A more intuitive mail-to alternative | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
 ## Contributors
 
