@@ -232,10 +232,10 @@ const mailgoTelInit = () => {
 
   // call default
   let call = document.createElement("a");
-  call.id = "mailgo-open";
-  call.href = "#mailgo-open";
+  call.id = "mailgo-call";
+  call.href = "#mailgo-call";
   call.classList.add("mailgo-open");
-  call.classList.add("mailgo-default");
+  call.classList.add("mailgo-open");
   let callSpan = document.createElement("span");
   callSpan.className = "mailgo-weight-500";
   let callSpanContent = document.createTextNode("call");
