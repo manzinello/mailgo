@@ -240,7 +240,7 @@ const mailgoTelInit = () => {
   callSpan.className = "mailgo-weight-500";
   let callSpanContent = document.createTextNode("call");
   callSpan.appendChild(callSpanContent);
-  let callContent = document.createTextNode(" default");
+  let callContent = document.createTextNode(" as default");
   call.appendChild(callSpan);
   call.appendChild(callContent);
 
@@ -409,8 +409,7 @@ const mailgoRender = mailgo => {
  * function to render a single tel mailgo
  */
 const mailgoTelRender = mailgo => {
-  let tel = "",
-    msg = "";
+  let tel = "";
 
   if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
     tel = decodeURIComponent(
