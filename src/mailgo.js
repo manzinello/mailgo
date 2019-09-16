@@ -8,6 +8,17 @@ const CALLTO = "callto:";
 const MAIL_TYPE = "mail";
 const TEL_TYPE = "tel";
 
+let url = "",
+  mail = "",
+  encEmail = "",
+  cc = "",
+  bcc = "",
+  subject = "",
+  bodyMail = "";
+
+let tel = "",
+  msg = "";
+
 // mailgo style (gulp)
 const mailgoCSS = document.createElement("style");
 mailgoCSS.id = "mailgo-style";
@@ -283,186 +294,164 @@ const mailgoTelInit = () => {
  * mailgoRender
  * function to render a single mailgo
  */
-const mailgoRender = mailgo => {
-  let url = "",
-    mail = "",
-    cc = "",
-    bcc = "",
-    subject = "",
-    bodyMail = "";
+const mailgoRender = (type = MAIL_TYPE, mailgo) => {
+  // mailgo mail
+  if (type === MAIL_TYPE) {
+    // if the element href=^"mailto:"
+    if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
+      mail = decodeURIComponent(
+        mailgo.href
+          .split("?")[0]
+          .split(MAILTO)[1]
+          .trim()
+      );
 
-  // if the element href=^"mailto:"
-  if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
-    mail = decodeURIComponent(
-      mailgo.href
-        .split("?")[0]
-        .split(MAILTO)[1]
-        .trim()
+      url = new URL(mailgo.href);
+      let urlParams = new URLSearchParams(url.search);
+
+      // optional parameters for the email
+      cc = urlParams.get("cc");
+      bcc = urlParams.get("bcc");
+      subject = urlParams.get("subject");
+      bodyMail = urlParams.get("body");
+    } else {
+      // if the element href="#mailgo" or class="mailgo"
+      // mail = data-address + @ + data-domain
+      mail =
+        mailgo.getAttribute("data-address") +
+        "@" +
+        mailgo.getAttribute("data-domain");
+
+      url = new URL(MAILTO + encodeURIComponent(mail));
+
+      // cc = data-cc-address + @ + data-cc-domain
+      cc =
+        mailgo.getAttribute("data-cc-address") +
+        "@" +
+        mailgo.getAttribute("data-cc-domain");
+
+      // bcc = data-bcc-address + @ + data-bcc-domain
+      bcc =
+        mailgo.getAttribute("data-bcc-address") +
+        "@" +
+        mailgo.getAttribute("data-bcc-domain");
+
+      // subject = data-subject
+      subject = mailgo.getAttribute("data-subject");
+
+      // body = data-body
+      bodyMail = mailgo.getAttribute("data-body");
+    }
+
+    // validate the email address
+    if (!validateEmails(mail.split(","))) return;
+
+    // if cc, bcc is not valid cc, bcc = ""
+    if (cc && !validateEmails(cc.split(","))) cc = "";
+    if (bcc && !validateEmails(bcc.split(","))) bcc = "";
+
+    // information
+    let titleEl = getE("mailgo-title");
+    let detailsEl = getE("mailgo-details");
+    let ccEl = getE("mailgo-cc");
+    let ccValueEl = getE("mailgo-cc-value");
+    let bccEl = getE("mailgo-bcc");
+    let bccValueEl = getE("mailgo-bcc-value");
+    let subjectEl = getE("mailgo-subject");
+    let subjectValueEl = getE("mailgo-subject-value");
+    let bodyEl = getE("mailgo-body");
+    let bodyValueEl = getE("mailgo-body-value");
+
+    // actions
+    let gmailButton = getE("mailgo-gmail");
+    let outlookButton = getE("mailgo-outlook");
+    let openButton = getE("mailgo-open");
+    let copyButton = getE("mailgo-copy");
+
+    // the title of the modal (email address)
+    titleEl.innerHTML = mail.split(",").join("<br/>");
+
+    // add the details if provided
+    cc
+      ? ((ccEl.style.display = "block"),
+        (ccValueEl.innerHTML = cc.split(",").join("<br/>")))
+      : (ccEl.style.display = "none");
+
+    bcc
+      ? ((bccEl.style.display = "block"),
+        (bccValueEl.innerHTML = bcc.split(",").join("<br/>")))
+      : (bccEl.style.display = "none");
+
+    subject
+      ? ((subjectEl.style.display = "block"),
+        (subjectValueEl.textContent = subject))
+      : (subjectEl.style.display = "none");
+
+    bodyMail
+      ? ((bodyEl.style.display = "block"), (bodyValueEl.textContent = bodyMail))
+      : (bodyEl.style.display = "none");
+
+    // add the actions
+    gmailButton.addEventListener("click", () =>
+      actions.openGmail(mail, cc, bcc, subject, bodyMail)
     );
 
-    url = new URL(mailgo.href);
-    let urlParams = new URLSearchParams(url.search);
+    outlookButton.addEventListener("click", () =>
+      actions.openOutlook(mail, subject, bodyMail)
+    );
 
-    // optional parameters for the email
-    cc = urlParams.get("cc");
-    bcc = urlParams.get("bcc");
-    subject = urlParams.get("subject");
-    bodyMail = urlParams.get("body");
-  } else {
-    // if the element href="#mailgo" or class="mailgo"
-    // mail = data-address + @ + data-domain
-    mail =
-      mailgo.getAttribute("data-address") +
-      "@" +
-      mailgo.getAttribute("data-domain");
+    encEmail = encodeEmail(mail);
+    openButton.addEventListener("click", () => actions.openDefault(encEmail));
 
-    url = new URL(MAILTO + encodeURIComponent(mail));
-
-    // cc = data-cc-address + @ + data-cc-domain
-    cc =
-      mailgo.getAttribute("data-cc-address") +
-      "@" +
-      mailgo.getAttribute("data-cc-domain");
-
-    // bcc = data-bcc-address + @ + data-bcc-domain
-    bcc =
-      mailgo.getAttribute("data-bcc-address") +
-      "@" +
-      mailgo.getAttribute("data-bcc-domain");
-
-    // subject = data-subject
-    subject = mailgo.getAttribute("data-subject");
-
-    // body = data-body
-    bodyMail = mailgo.getAttribute("data-body");
+    copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
   }
+  // mailgo tel
+  if (type === TEL_TYPE) {
+    if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
+      tel = decodeURIComponent(
+        mailgo.href
+          .split("?")[0]
+          .split(TEL)[1]
+          .trim()
+      );
+    }
 
-  // validate the email address
-  if (!validateEmails(mail.split(","))) return;
+    if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
+      tel = decodeURIComponent(
+        mailgo.href
+          .split("?")[0]
+          .split(CALLTO)[1]
+          .trim()
+      );
+    }
 
-  // if cc, bcc is not valid cc, bcc = ""
-  if (cc && !validateEmails(cc.split(","))) cc = "";
-  if (bcc && !validateEmails(bcc.split(","))) bcc = "";
+    // information
+    let titleEl = getE("mailgo-tel-title");
 
-  // information
-  let titleEl = getE("mailgo-title");
-  let detailsEl = getE("mailgo-details");
-  let ccEl = getE("mailgo-cc");
-  let ccValueEl = getE("mailgo-cc-value");
-  let bccEl = getE("mailgo-bcc");
-  let bccValueEl = getE("mailgo-bcc-value");
-  let subjectEl = getE("mailgo-subject");
-  let subjectValueEl = getE("mailgo-subject-value");
-  let bodyEl = getE("mailgo-body");
-  let bodyValueEl = getE("mailgo-body-value");
+    // actions
+    let waButton = getE("mailgo-wa");
+    let telegramButton = getE("mailgo-telegram");
+    let callButton = getE("mailgo-call");
+    let copyButton = getE("mailgo-tel-copy");
 
-  // actions
-  let gmailButton = getE("mailgo-gmail");
-  let outlookButton = getE("mailgo-outlook");
-  let openButton = getE("mailgo-open");
-  let copyButton = getE("mailgo-copy");
+    // the title of the modal (tel)
+    titleEl.innerHTML = tel;
 
-  // the title of the modal (email address)
-  titleEl.innerHTML = mail.split(",").join("<br/>");
+    // add the actions
+    waButton.addEventListener("click", () => actions.openWhatsApp(tel));
 
-  // add the details if provided
-  cc
-    ? ((ccEl.style.display = "block"),
-      (ccValueEl.innerHTML = cc.split(",").join("<br/>")))
-    : (ccEl.style.display = "none");
+    telegramButton.addEventListener("click", () => actions.openTelegram(tel));
 
-  bcc
-    ? ((bccEl.style.display = "block"),
-      (bccValueEl.innerHTML = bcc.split(",").join("<br/>")))
-    : (bccEl.style.display = "none");
+    callButton.addEventListener("click", () => actions.callDefault(tel));
 
-  subject
-    ? ((subjectEl.style.display = "block"),
-      (subjectValueEl.textContent = subject))
-    : (subjectEl.style.display = "none");
-
-  bodyMail
-    ? ((bodyEl.style.display = "block"), (bodyValueEl.textContent = bodyMail))
-    : (bodyEl.style.display = "none");
-
-  // add the actions
-  gmailButton.addEventListener("click", () =>
-    actions.openGmail(mail, cc, bcc, subject, bodyMail)
-  );
-
-  outlookButton.addEventListener("click", () =>
-    actions.openOutlook(mail, subject, bodyMail)
-  );
-
-  let encEmail = encodeEmail(mail);
-  openButton.addEventListener("click", () => actions.openDefault(encEmail));
-
-  copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
+    copyButton.addEventListener("click", () => actions.copy(tel, copyButton));
+  }
 
   // show the mailgo
-  showMailgo();
+  showMailgo(type);
 
   // listener keyDown
-  document.addEventListener("keydown", () =>
-    mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton)
-  );
-};
-
-/**
- * mailgoTelRender
- * function to render a single tel mailgo
- */
-const mailgoTelRender = mailgo => {
-  let tel = "";
-
-  if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
-    tel = decodeURIComponent(
-      mailgo.href
-        .split("?")[0]
-        .split(TEL)[1]
-        .trim()
-    );
-  }
-
-  if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
-    tel = decodeURIComponent(
-      mailgo.href
-        .split("?")[0]
-        .split(CALLTO)[1]
-        .trim()
-    );
-  }
-
-  // information
-  let titleEl = getE("mailgo-tel-title");
-
-  // actions
-  let waButton = getE("mailgo-wa");
-  let telegramButton = getE("mailgo-telegram");
-  let callButton = getE("mailgo-call");
-  let copyButton = getE("mailgo-tel-copy");
-
-  // the title of the modal (tel)
-  titleEl.innerHTML = tel;
-
-  // add the actions
-  waButton.addEventListener("click", () => actions.openWhatsApp(tel));
-
-  telegramButton.addEventListener("click", () => actions.openTelegram(tel));
-
-  callButton.addEventListener("click", () => actions.callDefault(tel));
-
-  copyButton.addEventListener("click", () => actions.copy(tel, copyButton));
-
-  // show the mailgo
-  showMailgoTel();
-
-  // listener keyDown
-  /*
-  document.addEventListener("keydown", () =>
-    mailgoKeydown(mail, cc, bcc, subject, bodyMail, encEmail, copyButton)
-  );
-  */
+  document.addEventListener("keydown", mailgoKeydown);
 };
 
 // actions
@@ -560,7 +549,7 @@ const mailgoCheckRender = event => {
         event.preventDefault();
 
         // render mailgo
-        mailgoRender(element);
+        mailgoRender(MAIL_TYPE, element);
 
         return;
       }
@@ -569,7 +558,7 @@ const mailgoCheckRender = event => {
         event.preventDefault();
 
         // render mailgo
-        mailgoTelRender(element);
+        mailgoRender(TEL_TYPE, element);
 
         return;
       }
@@ -583,41 +572,35 @@ const mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-const mailgoKeydown = (
-  mail,
-  cc,
-  bcc,
-  subject,
-  bodyMail,
-  encEmail,
-  copyButton
-) => {
-  // if mailgo is not showing do nothing
-  if (!mailgoIsShowing()) return;
-  switch (event.keyCode) {
-    case 27:
-      // Escape
-      hideMailgo();
-      break;
-    case 71:
-      // g -> open GMail
-      actions.openGmail(mail, cc, bcc, subject, bodyMail);
-      break;
-    case 79:
-      // o -> open Outlook
-      actions.openOutlook(mail, subject, bodyMail);
-      break;
-    case 32:
-    case 13:
-      // spacebar or enter -> open default
-      actions.openDefault(encEmail);
-      break;
-    case 67:
-      // c -> copy
-      actions.copy(mail, copyButton);
-      break;
-    default:
-      return;
+const mailgoKeydown = () => {
+  // if mailgo is showing
+  if (mailgoIsShowing(MAIL_TYPE)) {
+    switch (event.keyCode) {
+      case 27:
+        // Escape
+        hideMailgo();
+        break;
+      case 71:
+        // g -> open GMail
+        actions.openGmail(mail, cc, bcc, subject, bodyMail);
+        break;
+      case 79:
+        // o -> open Outlook
+        actions.openOutlook(mail, subject, bodyMail);
+        break;
+      case 32:
+      case 13:
+        // spacebar or enter -> open default
+        actions.openDefault(encEmail);
+        break;
+      case 67:
+        // c -> copy
+        actions.copy(mail, copyButton);
+        break;
+      default:
+        return;
+    }
+  } else if (mailgoIsShowing(TEL_TYPE)) {
   }
   return;
 };
@@ -629,17 +612,11 @@ document.addEventListener("DOMContentLoaded", mailgoTelInit);
 // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 document.addEventListener("click", mailgoCheckRender);
 
-// validate a single email with regex
-const validateEmail = email => {
-  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-  return re.test(email);
-};
-
 // show the modal
-const showMailgo = type => {
+const showMailgo = (type = MAIL_TYPE) => {
   type === TEL_TYPE
-    ? setDisplay("mailgo", "flex")
-    : setDisplay("mailgo-tel", "flex");
+    ? setDisplay("mailgo-tel", "flex")
+    : setDisplay("mailgo", "flex");
 };
 
 // hide the modal
@@ -649,10 +626,10 @@ const hideMailgo = () => {
 };
 
 // is the mailgo modal hidden?
-const mailgoIsShowing = (type = "mail") => {
+const mailgoIsShowing = (type = MAIL_TYPE) => {
   type === TEL_TYPE
-    ? getDisplay("mailgo") === "flex"
-    : getDisplay("mailgo-tel") === "flex";
+    ? getDisplay("mailgo-tel") === "flex"
+    : getDisplay("mailgo") === "flex";
 };
 
 // decrypt email
@@ -686,6 +663,12 @@ const composedPath = el => {
 
     el = el.parentElement;
   }
+};
+
+// validate a single email with regex
+const validateEmail = email => {
+  let re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+  return re.test(email);
 };
 
 // validate an array of emails

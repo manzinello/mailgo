@@ -129,14 +129,14 @@ $telegram-color: #0088cc;
         color: $outlook-color;
       }
 
-      &.mailgo-wa:hover {
-        background-color: rgba(0, 114, 198, 0.08);
-        color: $wa-color;
-      }
-
       &.mailgo-telegram:hover {
         background-color: rgba(0, 114, 198, 0.08);
         color: $telegram-color;
+      }
+
+      &.mailgo-wa:hover {
+        background-color: rgba(0, 191, 165, 0.08);
+        color: $wa-color;
       }
 
       &.mailgo-by {
