@@ -638,13 +638,13 @@ const mailgoKeydown = event => {
         // Escape
         hideMailgo();
         break;
-      case 71:
-        // g -> open GMail
-        actions.openGmail();
+      case 84:
+        // t -> open Telegram
+        actions.openTelegram();
         break;
-      case 79:
-        // o -> open Outlook
-        actions.openOutlook();
+      case 87:
+        // w -> open WhatsApp
+        actions.openWhatsApp();
         break;
       case 32:
       case 13:
