@@ -450,7 +450,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
   // show the mailgo
   showMailgo(type);
 
-  // listener keyDown
+  // add listener keyDown
   document.addEventListener("keydown", mailgoKeydown);
 };
 
@@ -662,6 +662,9 @@ const showMailgo = (type = MAIL_TYPE) => {
 const hideMailgo = () => {
   setDisplay("mailgo", "none");
   setDisplay("mailgo-tel", "none");
+
+  // remove listener keyDown
+  document.removeEventListener("keydown", mailgoKeydown);
 };
 
 // is the mailgo modal hidden?
