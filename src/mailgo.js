@@ -1,8 +1,12 @@
 // @flow
 const V = "MAILGO_VERSION";
+
 const MAILTO = "mailto:";
 const TEL = "tel:";
 const CALLTO = "callto:";
+
+const MAIL_TYPE = "mail";
+const TEL_TYPE = "tel";
 
 // mailgo style (gulp)
 const mailgoCSS = document.createElement("style");
@@ -638,16 +642,17 @@ const showMailgo = () => (getE("mailgo").style.display = "flex");
 const showMailgoTel = () => (getE("mailgo-tel").style.display = "flex");
 
 // hide the modal
-const hideMailgo = () => (
-  (getE("mailgo").style.display = "none"),
-  (getE("mailgo-tel").style.display = "none")
-);
+const hideMailgo = () => {
+  getE("mailgo").style.display = "none";
+  getE("mailgo-tel").style.display = "none";
+};
 
 // is the mailgo modal hidden?
-const mailgoIsShowing = () => getE("mailgo").style.display === "flex";
-
-// is the mailgo tel modal hidden?
-const mailgoTelIsShowing = () => getE("mailgo-tel").style.display === "flex";
+const mailgoIsShowing = type => {
+  type === TEL_TYPE
+    ? getE("mailgo").style.display === "flex"
+    : getE("mailgo-tel").style.display === "flex";
+};
 
 // decrypt email
 const mailToEncoded = encoded =>
@@ -658,6 +663,12 @@ const encodeEmail = email => btoa(email);
 
 // getE shorthand
 const getE = id => document.getElementById(id);
+
+// get display value
+const getDisplay = id => getE(id).style.display;
+
+// get display value
+const setDisplay = (id, value) => (getE(id).style.display = value);
 
 // custom composedPath if path or event.composedPath() are not defined
 const composedPath = el => {
