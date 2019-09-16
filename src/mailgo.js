@@ -497,8 +497,8 @@ const actions = {
     window.open(callUrl);
   },
 
-  copy: (mail, copyButton) => {
-    copyToClipboard(mail);
+  copy: (content, copyButton) => {
+    copyToClipboard(content);
     copyButton.textContent = "copied";
     setTimeout(() => (copyButton.textContent = "copy"), 999);
   }
@@ -510,18 +510,26 @@ const isMailgo = element =>
   (element.href &&
     element.href.toLowerCase().startsWith(MAILTO) &&
     !element.classList.contains("no-mailgo")) ||
-  // second case: the href=#mailgo
-  (element.href && element.getAttribute("href").toLowerCase() === "#mailgo") ||
-  // third case: the classList contains mailgo
-  (element.classList && element.classList.contains("mailgo"));
+  (element.hasAttribute("data-address") &&
+    // second case: the href=#mailgo
+    ((element.href &&
+      element.getAttribute("href").toLowerCase() === "#mailgo") ||
+      // third case: the classList contains mailgo
+      (element.classList && element.classList.contains("mailgo"))));
 
 // function that returns if an element is a mailgo-tel
 const isMailgoTel = element =>
-  // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-  element.href &&
-  (element.href.toLowerCase().startsWith(TEL) ||
-    element.href.toLowerCase().startsWith(CALLTO)) &&
-  !element.classList.contains("no-mailgo");
+  // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
+  (element.href &&
+    (element.href.toLowerCase().startsWith(TEL) ||
+      element.href.toLowerCase().startsWith(CALLTO)) &&
+    !element.classList.contains("no-mailgo")) ||
+  ((element.hasAttribute("data-tel") &&
+    // second case: the href=#mailgo
+    (element.href &&
+      element.getAttribute("href").toLowerCase() === "#mailgo")) ||
+    // third case: the classList contains mailgo
+    (element.classList && element.classList.contains("mailgo")));
 
 /**
  * mailgoCheckRender
@@ -607,6 +615,31 @@ const mailgoKeydown = () => {
         return;
     }
   } else if (mailgoIsShowing(TEL_TYPE)) {
+    switch (event.keyCode) {
+      case 27:
+        // Escape
+        hideMailgo();
+        break;
+      case 71:
+        // g -> open GMail
+        actions.openGmail(mail, cc, bcc, subject, bodyMail);
+        break;
+      case 79:
+        // o -> open Outlook
+        actions.openOutlook(mail, subject, bodyMail);
+        break;
+      case 32:
+      case 13:
+        // spacebar or enter -> open default
+        actions.openDefault(encEmail);
+        break;
+      case 67:
+        // c -> copy
+        actions.copy(tel, copyButton);
+        break;
+      default:
+        return;
+    }
   }
   return;
 };
