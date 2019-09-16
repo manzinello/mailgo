@@ -520,7 +520,10 @@ const actions = {
       ? (copyButton = getE("mailgo-copy"))
       : (copyButton = getE("mailgo-tel-copy"));
     copyButton.textContent = "copied";
-    setTimeout(() => (copyButton.textContent = "copy"), 999);
+    setTimeout(() => {
+      copyButton.textContent = "copy";
+      hideMailgo();
+    }, 999);
   }
 };
 
