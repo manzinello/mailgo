@@ -1,13 +1,24 @@
 // @flow
 const V = "MAILGO_VERSION";
 
+// mailgo style (gulp)
+const mailgoCSS = document.createElement("style");
+mailgoCSS.id = "mailgo-style";
+mailgoCSS.type = "text/css";
+const mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+mailgoCSS.appendChild(mailgoCSSContent);
+document.head.appendChild(mailgoCSS);
+
+// links
 const MAILTO = "mailto:";
 const TEL = "tel:";
 const CALLTO = "callto:";
 
+// mailgo types
 const MAIL_TYPE = "mail";
 const TEL_TYPE = "tel";
 
+// mailgo variables
 let url = "",
   mail = "",
   encEmail = "",
@@ -16,16 +27,18 @@ let url = "",
   subject = "",
   bodyMail = "";
 
+// mailgo tel variables
 let tel = "",
   msg = "";
 
-// mailgo style (gulp)
-const mailgoCSS = document.createElement("style");
-mailgoCSS.id = "mailgo-style";
-mailgoCSS.type = "text/css";
-const mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
-mailgoCSS.appendChild(mailgoCSSContent);
-document.head.appendChild(mailgoCSS);
+// mailgo buttons
+let gmailButton,
+  outlookButton,
+  openButton,
+  waButton,
+  telegramButton,
+  callButton,
+  copyButton;
 
 /**
  * mailgoInit
@@ -362,10 +375,10 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     let bodyValueEl = getE("mailgo-body-value");
 
     // actions
-    let gmailButton = getE("mailgo-gmail");
-    let outlookButton = getE("mailgo-outlook");
-    let openButton = getE("mailgo-open");
-    let copyButton = getE("mailgo-copy");
+    gmailButton = getE("mailgo-gmail");
+    outlookButton = getE("mailgo-outlook");
+    openButton = getE("mailgo-open");
+    copyButton = getE("mailgo-copy");
 
     // the title of the modal (email address)
     titleEl.innerHTML = mail.split(",").join("<br/>");
@@ -391,18 +404,14 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
       : (bodyEl.style.display = "none");
 
     // add the actions
-    gmailButton.addEventListener("click", () =>
-      actions.openGmail(mail, cc, bcc, subject, bodyMail)
-    );
+    gmailButton.addEventListener("click", () => actions.openGmail());
 
-    outlookButton.addEventListener("click", () =>
-      actions.openOutlook(mail, subject, bodyMail)
-    );
+    outlookButton.addEventListener("click", () => actions.openOutlook());
 
     encEmail = encodeEmail(mail);
-    openButton.addEventListener("click", () => actions.openDefault(encEmail));
+    openButton.addEventListener("click", () => actions.openDefault());
 
-    copyButton.addEventListener("click", () => actions.copy(mail, copyButton));
+    copyButton.addEventListener("click", () => actions.copy());
   }
   // mailgo tel
   if (type === TEL_TYPE) {
@@ -429,22 +438,22 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     let titleEl = getE("mailgo-tel-title");
 
     // actions
-    let waButton = getE("mailgo-wa");
-    let telegramButton = getE("mailgo-telegram");
-    let callButton = getE("mailgo-call");
-    let copyButton = getE("mailgo-tel-copy");
+    waButton = getE("mailgo-wa");
+    telegramButton = getE("mailgo-telegram");
+    callButton = getE("mailgo-call");
+    copyButton = getE("mailgo-tel-copy");
 
     // the title of the modal (tel)
     titleEl.innerHTML = tel;
 
     // add the actions
-    waButton.addEventListener("click", () => actions.openWhatsApp(tel));
+    waButton.addEventListener("click", () => actions.openWhatsApp());
 
-    telegramButton.addEventListener("click", () => actions.openTelegram(tel));
+    telegramButton.addEventListener("click", () => actions.openTelegram());
 
-    callButton.addEventListener("click", () => actions.callDefault(tel));
+    callButton.addEventListener("click", () => actions.callDefault());
 
-    copyButton.addEventListener("click", () => actions.copy(tel, copyButton));
+    copyButton.addEventListener("click", () => actions.copy(tel));
   }
 
   // show the mailgo
@@ -456,7 +465,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
 
 // actions
 const actions = {
-  openGmail: (mail, cc, bcc, subject, bodyMail) => {
+  openGmail: () => {
     let gmailUrl =
       "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
       encodeURIComponent(mail);
@@ -469,7 +478,7 @@ const actions = {
     window.open(gmailUrl, "_blank");
   },
 
-  openOutlook: (mail, subject, bodyMail) => {
+  openOutlook: () => {
     let outlookUrl =
       "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
       encodeURIComponent(mail);
@@ -479,27 +488,30 @@ const actions = {
     window.open(outlookUrl, "_blank");
   },
 
-  openDefault: encEmail => {
+  openDefault: () => {
     mailToEncoded(encEmail);
   },
 
-  openTelegram: (tel, msg = "") => {
+  openTelegram: () => {
     let tgUrl = "tg://msg?text=" + msg + "&to=" + tel;
     window.open(tgUrl, "_blank");
   },
 
-  openWhatsApp: (tel, msg = "") => {
+  openWhatsApp: () => {
     let waUrl = "https://wa.me/" + tel;
     window.open(waUrl, "_blank");
   },
 
-  callDefault: tel => {
+  callDefault: () => {
     let callUrl = "tel:" + tel;
     window.open(callUrl);
   },
 
-  copy: (content, copyButton) => {
+  copy: content => {
     copyToClipboard(content);
+    mailgoIsShowing(MAIL_TYPE)
+      ? (copyButton = getE("mailgo-copy"))
+      : (copyButton = getE("mailgo-tel-copy"));
     copyButton.textContent = "copied";
     setTimeout(() => (copyButton.textContent = "copy"), 999);
   }
@@ -558,6 +570,9 @@ const mailgoCheckRender = event => {
 
   if (path) {
     path.forEach(element => {
+      console.log(element);
+      if (element instanceof HTMLDocument || element instanceof Window) return;
+
       // go in the event.path to find if the user has clicked on a mailgo element
       if (isMailgo(element)) {
         // stop the normal execution of the element click
@@ -587,9 +602,11 @@ const mailgoCheckRender = event => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-const mailgoKeydown = () => {
+const mailgoKeydown = event => {
+  console.log(event);
   // if mailgo is showing
   if (mailgoIsShowing(MAIL_TYPE)) {
+    console.log("son qui");
     switch (event.keyCode) {
       case 27:
         // Escape
@@ -597,20 +614,20 @@ const mailgoKeydown = () => {
         break;
       case 71:
         // g -> open GMail
-        actions.openGmail(mail, cc, bcc, subject, bodyMail);
+        actions.openGmail();
         break;
       case 79:
         // o -> open Outlook
-        actions.openOutlook(mail, subject, bodyMail);
+        actions.openOutlook();
         break;
       case 32:
       case 13:
         // spacebar or enter -> open default
-        actions.openDefault(encEmail);
+        actions.openDefault();
         break;
       case 67:
         // c -> copy
-        actions.copy(mail, copyButton);
+        actions.copy(mail);
         break;
       default:
         return;
@@ -623,20 +640,20 @@ const mailgoKeydown = () => {
         break;
       case 71:
         // g -> open GMail
-        actions.openGmail(mail, cc, bcc, subject, bodyMail);
+        actions.openGmail();
         break;
       case 79:
         // o -> open Outlook
-        actions.openOutlook(mail, subject, bodyMail);
+        actions.openOutlook();
         break;
       case 32:
       case 13:
         // spacebar or enter -> open default
-        actions.openDefault(encEmail);
+        actions.openDefault();
         break;
       case 67:
         // c -> copy
-        actions.copy(tel, copyButton);
+        actions.copy(tel);
         break;
       default:
         return;
@@ -669,9 +686,12 @@ const hideMailgo = () => {
 
 // is the mailgo modal hidden?
 const mailgoIsShowing = (type = MAIL_TYPE) => {
-  type === TEL_TYPE
-    ? getDisplay("mailgo-tel") === "flex"
-    : getDisplay("mailgo") === "flex";
+  if (type === MAIL_TYPE) {
+    return getDisplay("mailgo") === "flex";
+  } else if (type === TEL_TYPE) {
+    return getDisplay("mailgo-tel") === "flex";
+  }
+  return false;
 };
 
 // decrypt email
