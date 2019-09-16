@@ -476,6 +476,8 @@ const actions = {
     if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
 
     window.open(gmailUrl, "_blank");
+
+    hideMailgo();
   },
 
   openOutlook: () => {
@@ -486,25 +488,30 @@ const actions = {
     if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
 
     window.open(outlookUrl, "_blank");
+    hideMailgo();
   },
 
   openDefault: () => {
     mailToEncoded(encEmail);
+    hideMailgo();
   },
 
   openTelegram: () => {
     let tgUrl = "tg://msg?text=" + msg + "&to=" + tel;
     window.open(tgUrl, "_blank");
+    hideMailgo();
   },
 
   openWhatsApp: () => {
     let waUrl = "https://wa.me/" + tel;
     window.open(waUrl, "_blank");
+    hideMailgo();
   },
 
   callDefault: () => {
     let callUrl = "tel:" + tel;
     window.open(callUrl);
+    hideMailgo();
   },
 
   copy: content => {
