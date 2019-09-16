@@ -413,15 +413,16 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
           .split(TEL)[1]
           .trim()
       );
-    }
-
-    if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
+    } else if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
       tel = decodeURIComponent(
         mailgo.href
           .split("?")[0]
           .split(CALLTO)[1]
           .trim()
       );
+    } else if (mailgo.hasAttribute("data-tel")) {
+      tel = mailgo.getAttribute("data-tel");
+      msg = mailgo.getAttribute("data-msg");
     }
 
     // information
