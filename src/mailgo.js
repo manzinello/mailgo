@@ -636,22 +636,23 @@ const validateEmail = email => {
 };
 
 // show the modal
-const showMailgo = () => (getE("mailgo").style.display = "flex");
-
-// show the tel modal
-const showMailgoTel = () => (getE("mailgo-tel").style.display = "flex");
+const showMailgo = type => {
+  type === TEL_TYPE
+    ? setDisplay("mailgo", "flex")
+    : setDisplay("mailgo-tel", "flex");
+};
 
 // hide the modal
 const hideMailgo = () => {
-  getE("mailgo").style.display = "none";
-  getE("mailgo-tel").style.display = "none";
+  setDisplay("mailgo", "none");
+  setDisplay("mailgo-tel", "none");
 };
 
 // is the mailgo modal hidden?
-const mailgoIsShowing = type => {
+const mailgoIsShowing = (type = "mail") => {
   type === TEL_TYPE
-    ? getE("mailgo").style.display === "flex"
-    : getE("mailgo-tel").style.display === "flex";
+    ? getDisplay("mailgo") === "flex"
+    : getDisplay("mailgo-tel") === "flex";
 };
 
 // decrypt email
