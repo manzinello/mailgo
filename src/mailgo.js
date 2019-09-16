@@ -429,8 +429,6 @@ const mailgoTelRender = mailgo => {
     );
   }
 
-  console.log(tel);
-
   // information
   let titleEl = getE("mailgo-tel-title");
 
@@ -645,8 +643,11 @@ const hideMailgo = () => (
   (getE("mailgo-tel").style.display = "none")
 );
 
-// is the modal hidden?
+// is the mailgo modal hidden?
 const mailgoIsShowing = () => getE("mailgo").style.display === "flex";
+
+// is the mailgo tel modal hidden?
+const mailgoTelIsShowing = () => getE("mailgo-tel").style.display === "flex";
 
 // decrypt email
 const mailToEncoded = encoded =>
