@@ -562,6 +562,9 @@ const mailgoCheckRender = event => {
   )
     return;
 
+  // if a mailgo is already showing do nothing
+  if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return;
+
   // the path of the event
   let path =
     event.path ||
@@ -570,7 +573,6 @@ const mailgoCheckRender = event => {
 
   if (path) {
     path.forEach(element => {
-      console.log(element);
       if (element instanceof HTMLDocument || element instanceof Window) return;
 
       // go in the event.path to find if the user has clicked on a mailgo element
@@ -603,10 +605,8 @@ const mailgoCheckRender = event => {
  * function to manage the keydown event when the modal is showing
  */
 const mailgoKeydown = event => {
-  console.log(event);
   // if mailgo is showing
   if (mailgoIsShowing(MAIL_TYPE)) {
-    console.log("son qui");
     switch (event.keyCode) {
       case 27:
         // Escape
