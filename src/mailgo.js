@@ -304,7 +304,7 @@ const mailgoInit = () => {
 
 /**
  * mailgoRender
- * function to render a single mailgo
+ * function to render a mailgo (mail or tel)
  */
 const mailgoRender = (type = MAIL_TYPE, mailgo) => {
   // mailgo mail
@@ -446,13 +446,10 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     // the title of the modal (tel)
     titleEl.innerHTML = tel;
 
-    // add the actions
+    // add the actions to buttons
     waButton.addEventListener("click", () => actions.openWhatsApp());
-
     telegramButton.addEventListener("click", () => actions.openTelegram());
-
     callButton.addEventListener("click", () => actions.callDefault());
-
     copyButton.addEventListener("click", () => actions.copy(tel));
   }
 
@@ -466,28 +463,38 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
 // actions
 const actions = {
   openGmail: () => {
+    // Gmail url
     let gmailUrl =
       "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
       encodeURIComponent(mail);
 
+    // the details if provided
     if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
     if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
     if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
     if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
 
+    // open the link
     window.open(gmailUrl, "_blank");
 
+    // hide the modal
     hideMailgo();
   },
 
   openOutlook: () => {
+    // Outlook url
     let outlookUrl =
       "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
       encodeURIComponent(mail);
+
+    // the details if provided
     if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
     if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
 
+    // open the link
     window.open(outlookUrl, "_blank");
+
+    // hide the modal
     hideMailgo();
   },
 
@@ -497,14 +504,20 @@ const actions = {
   },
 
   openTelegram: () => {
+    // Telegram url
     let tgUrl = "tg://msg?text=" + msg + "&to=" + tel;
+    // open the url
     window.open(tgUrl, "_blank");
+    // hide the modal
     hideMailgo();
   },
 
   openWhatsApp: () => {
+    // WhatsApp url
     let waUrl = "https://wa.me/" + tel;
+    // open the url
     window.open(waUrl, "_blank");
+    // hide the modal
     hideMailgo();
   },
 
@@ -516,43 +529,56 @@ const actions = {
 
   copy: content => {
     copyToClipboard(content);
+    // the correct copyButton (mail or tel)
     mailgoIsShowing(MAIL_TYPE)
       ? (copyButton = getE("mailgo-copy"))
       : (copyButton = getE("mailgo-tel-copy"));
     copyButton.textContent = "copied";
     setTimeout(() => {
       copyButton.textContent = "copy";
+      // hide after the timeout
       hideMailgo();
     }, 999);
   }
 };
 
 // function that returns if an element is a mailgo
-const isMailgo = element =>
-  // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-  (element.href &&
-    element.href.toLowerCase().startsWith(MAILTO) &&
-    !element.classList.contains("no-mailgo")) ||
-  (element.hasAttribute("data-address") &&
-    // second case: the href=#mailgo
-    ((element.href &&
-      element.getAttribute("href").toLowerCase() === "#mailgo") ||
-      // third case: the classList contains mailgo
-      (element.classList && element.classList.contains("mailgo"))));
+const isMailgo = (element, type = MAIL_TYPE) => {
+  // mailgo type mail
+  if (type === MAIL_TYPE) {
+    return (
+      // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+      (element.href &&
+        element.href.toLowerCase().startsWith(MAILTO) &&
+        !element.classList.contains("no-mailgo")) ||
+      (element.hasAttribute("data-address") &&
+        // second case: the href=#mailgo
+        ((element.href &&
+          element.getAttribute("href").toLowerCase() === "#mailgo") ||
+          // third case: the classList contains mailgo
+          (element.classList && element.classList.contains("mailgo"))))
+    );
+  }
 
-// function that returns if an element is a mailgo-tel
-const isMailgoTel = element =>
-  // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
-  (element.href &&
-    (element.href.toLowerCase().startsWith(TEL) ||
-      element.href.toLowerCase().startsWith(CALLTO)) &&
-    !element.classList.contains("no-mailgo")) ||
-  ((element.hasAttribute("data-tel") &&
-    // second case: the href=#mailgo
-    (element.href &&
-      element.getAttribute("href").toLowerCase() === "#mailgo")) ||
-    // third case: the classList contains mailgo
-    (element.classList && element.classList.contains("mailgo")));
+  // mailgo type tel
+  if (type === TEL_TYPE) {
+    return (
+      // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
+      (element.href &&
+        (element.href.toLowerCase().startsWith(TEL) ||
+          element.href.toLowerCase().startsWith(CALLTO)) &&
+        !element.classList.contains("no-mailgo")) ||
+      ((element.hasAttribute("data-tel") &&
+        // second case: the href=#mailgo
+        (element.href &&
+          element.getAttribute("href").toLowerCase() === "#mailgo")) ||
+        // third case: the classList contains mailgo
+        (element.classList && element.classList.contains("mailgo")))
+    );
+  }
+
+  return false;
+};
 
 /**
  * mailgoCheckRender
@@ -586,7 +612,7 @@ const mailgoCheckRender = event => {
       if (element instanceof HTMLDocument || element instanceof Window) return;
 
       // go in the event.path to find if the user has clicked on a mailgo element
-      if (isMailgo(element)) {
+      if (isMailgo(element, MAIL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault();
 
@@ -595,7 +621,7 @@ const mailgoCheckRender = event => {
 
         return;
       }
-      if (isMailgoTel(element)) {
+      if (isMailgo(element, TEL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault();
 
