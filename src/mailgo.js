@@ -448,8 +448,11 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
 
     // add the actions to buttons
     waButton.addEventListener("click", () => actions.openWhatsApp());
+
     telegramButton.addEventListener("click", () => actions.openTelegram());
+
     callButton.addEventListener("click", () => actions.callDefault());
+
     copyButton.addEventListener("click", () => actions.copy(tel));
   }
 
@@ -582,12 +585,18 @@ const isMailgo = (element, type = MAIL_TYPE) => {
 
 /**
  * mailgoCheckRender
- * function to check if an element is mailgo-enabled or not referencing to the old
+ * function to check if an element is mailgo-enabled or not referencing to
+ * mail:
  * document.querySelectorAll(
  *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
+ * tel:
  * document.querySelectorAll(
  *   'a[href^="tel:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * or
+ * document.querySelectorAll(
+ *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
 const mailgoCheckRender = event => {
@@ -706,9 +715,16 @@ document.addEventListener("click", mailgoCheckRender);
 
 // show the modal
 const showMailgo = (type = MAIL_TYPE) => {
-  type === TEL_TYPE
-    ? setDisplay("mailgo-tel", "flex")
-    : setDisplay("mailgo", "flex");
+  // show mailgo type mail
+  if (type === MAIL_TYPE) {
+    setDisplay("mailgo", "flex");
+    return;
+  }
+  // show mailgo type tel
+  if (type === TEL_TYPE) {
+    setDisplay("mailgo-tel", "flex");
+    return;
+  }
 };
 
 // hide the modal
@@ -773,7 +789,7 @@ const validateEmail = email => {
 const validateEmails = arr => arr.every(validateEmail);
 
 // TODO
-// clean a telephone number (removes +, - ...)
+// clean a telephone number (removes - ...)
 const cleanTel = tel => tel;
 
 // copy of a string
