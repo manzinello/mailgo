@@ -218,7 +218,7 @@ const mailgoInit = () => {
     modalContent.className = "mailgo-modal-content";
     modal.appendChild(modalContent);
 
-    // title (email address)
+    // title (telephone number)
     let title = document.createElement("strong");
     title.id = "mailgo-tel-title";
     title.className = "mailgo-title";
