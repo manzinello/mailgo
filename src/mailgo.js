@@ -788,10 +788,6 @@ const validateEmail = email => {
 // validate an array of emails
 const validateEmails = arr => arr.every(validateEmail);
 
-// TODO
-// clean a telephone number (removes - ...)
-const cleanTel = tel => tel;
-
 // copy of a string
 const copyToClipboard = str => {
   let el = document.createElement("textarea");
