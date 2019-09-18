@@ -693,8 +693,8 @@ const mailgoKeydown = event => {
         break;
       case 32:
       case 13:
-        // spacebar or enter -> open default
-        actions.openDefault();
+        // spacebar or enter -> call default
+        actions.callDefault();
         break;
       case 67:
         // c -> copy
