@@ -1,7 +1,7 @@
 {
   "name": "mailgo",
-  "version": "0.6.10",
-  "description": "a different mailto",
+  "version": "0.7.0",
+  "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "gulp && webpack",
     "test": "jest"
@@ -14,7 +14,9 @@
   "module": "./mailgo.js",
   "keywords": [
     "mailto",
-    "mail"
+    "mail",
+    "tel",
+    "callto"
   ],
   "author": "Matteo Manzinello",
   "license": "MIT",
