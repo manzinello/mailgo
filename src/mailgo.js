@@ -30,7 +30,8 @@ let url = "",
 // mailgo tel variables
 let tel = "",
   msg = "",
-  telegramUsername = "";
+  telegramUsername = "",
+  skypeUsername = "";
 
 // mailgo buttons
 let gmailButton,
@@ -260,6 +261,22 @@ const mailgoInit = () => {
     wa.appendChild(waSpan);
 
     modalContent.appendChild(wa);
+
+    // Skype
+    let skype = document.createElement("a");
+    skype.id = "mailgo-skype";
+    skype.href = "#mailgo-skype";
+    skype.classList.add("mailgo-open");
+    skype.classList.add("mailgo-skype");
+    let skypeContent = document.createTextNode("open in ");
+    skype.appendChild(skypeContent);
+    let skypeSpan = document.createElement("span");
+    skypeSpan.className = "mailgo-weight-500";
+    let skypeSpanContent = document.createTextNode("Skype");
+    skypeSpan.appendChild(skypeSpanContent);
+    skype.appendChild(skypeSpan);
+
+    modalContent.appendChild(skype);
 
     // call default
     let call = document.createElement("a");
@@ -524,6 +541,16 @@ const actions = {
     let tgUrl = "https://t.me/" + telegramUsername;
     // open the url
     window.open(tgUrl, "_blank");
+    // hide the modal
+    hideMailgo();
+  },
+
+  openSkype: () => {
+    let skype = skypeUsername !== "" ? skypeUsername : tel;
+    // Telegram url
+    let skypeUrl = "skype:" + skype;
+    // open the url
+    window.open(skypeUrl, "_blank");
     // hide the modal
     hideMailgo();
   },
