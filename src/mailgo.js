@@ -454,7 +454,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     copyButton = getE("mailgo-tel-copy");
 
     if (telegramUsername) {
-      telegramButton.setDisplay("block");
+      setDisplay("mailgo-telegram", "block");
     }
 
     // the title of the modal (tel)
