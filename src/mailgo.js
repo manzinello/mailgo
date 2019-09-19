@@ -465,6 +465,11 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
       telegramUsername = mailgo.getAttribute("data-telegram");
     }
 
+    // Telegram username
+    if (mailgo.hasAttribute("data-skype")) {
+      skypeUsername = mailgo.getAttribute("data-skype");
+    }
+
     // actions
     telegramButton = getE("mailgo-telegram");
     waButton = getE("mailgo-wa");
