@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.7.0",
+  "version": "0.7.1",
   "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "gulp && webpack",
