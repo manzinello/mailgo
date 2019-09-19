@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.7.2",
+  "version": "0.7.3",
   "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "gulp && webpack",
@@ -16,7 +16,12 @@
     "mailto",
     "mail",
     "tel",
-    "callto"
+    "callto",
+    "gmail",
+    "outlook",
+    "telegram",
+    "whatsapp",
+    "skype"
   ],
   "author": "Matteo Manzinello",
   "license": "MIT",
