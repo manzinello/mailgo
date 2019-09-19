@@ -37,8 +37,9 @@ let tel = "",
 let gmailButton,
   outlookButton,
   openButton,
-  waButton,
   telegramButton,
+  waButton,
+  skypeButton,
   callButton,
   copyButton;
 
@@ -465,8 +466,9 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     }
 
     // actions
-    waButton = getE("mailgo-wa");
     telegramButton = getE("mailgo-telegram");
+    waButton = getE("mailgo-wa");
+    skypeButton = getE("mailgo-skype");
     callButton = getE("mailgo-call");
     copyButton = getE("mailgo-tel-copy");
 
@@ -480,6 +482,8 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
       setDisplay("mailgo-telegram", "block");
       telegramButton.addEventListener("click", () => actions.openTelegram());
     }
+
+    skypeButton.addEventListener("click", () => actions.openSkype());
 
     callButton.addEventListener("click", () => actions.callDefault());
 
