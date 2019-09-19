@@ -29,7 +29,8 @@ let url = "",
 
 // mailgo tel variables
 let tel = "",
-  msg = "";
+  msg = "",
+  telegramUsername = "";
 
 // mailgo buttons
 let gmailButton,
@@ -230,6 +231,10 @@ const mailgoInit = () => {
     telegram.href = "#mailgo-telegram";
     telegram.classList.add("mailgo-open");
     telegram.classList.add("mailgo-telegram");
+
+    // by default not display
+    telegram.style.display = "none";
+
     let telegramContent = document.createTextNode("open in ");
     telegram.appendChild(telegramContent);
     let telegramSpan = document.createElement("span");
@@ -437,11 +442,20 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     // information
     let titleEl = getE("mailgo-tel-title");
 
+    // Telegram username
+    if (mailgo.hasAttribute("data-telegram")) {
+      telegramUsername = mailgo.getAttribute("data-telegram");
+    }
+
     // actions
     waButton = getE("mailgo-wa");
     telegramButton = getE("mailgo-telegram");
     callButton = getE("mailgo-call");
     copyButton = getE("mailgo-tel-copy");
+
+    if (telegramUsername) {
+      telegramButton.setDisplay("block");
+    }
 
     // the title of the modal (tel)
     titleEl.innerHTML = tel;
@@ -508,7 +522,7 @@ const actions = {
 
   openTelegram: () => {
     // Telegram url
-    let tgUrl = "https://t.me/" + tel;
+    let tgUrl = "https://t.me/" + telegramUsername;
     // open the url
     window.open(tgUrl, "_blank");
     // hide the modal
