@@ -453,17 +453,16 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     callButton = getE("mailgo-call");
     copyButton = getE("mailgo-tel-copy");
 
-    if (telegramUsername) {
-      setDisplay("mailgo-telegram", "block");
-    }
-
     // the title of the modal (tel)
     titleEl.innerHTML = tel;
 
     // add the actions to buttons
     waButton.addEventListener("click", () => actions.openWhatsApp());
 
-    telegramButton.addEventListener("click", () => actions.openTelegram());
+    if (telegramUsername) {
+      setDisplay("mailgo-telegram", "block");
+      telegramButton.addEventListener("click", () => actions.openTelegram());
+    }
 
     callButton.addEventListener("click", () => actions.callDefault());
 
