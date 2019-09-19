@@ -508,7 +508,7 @@ const actions = {
 
   openTelegram: () => {
     // Telegram url
-    let tgUrl = "tg://msg?text=" + msg + "&to=" + tel;
+    let tgUrl = "https://t.me/" + tel;
     // open the url
     window.open(tgUrl, "_blank");
     // hide the modal
