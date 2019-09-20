@@ -1,6 +1,8 @@
-# 💌 mailgo, a different mailto: more possibilities, less spam (wip)
+# 💌 mailgo, a different mailto and another tel
 
-## see the docs on <https://mailgo.js.org>
+Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities! Open directly Gmail, Outlook for mails; Telegram, WhatsApp or Skype for phone numbers.
+
+## <https://mailgo.js.org>
 
 ![mailgo screencast](https://github.com/manzinello/mailgo/raw/master/assets/video/mailgo.gif)
 
