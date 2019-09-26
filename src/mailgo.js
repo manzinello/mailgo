@@ -434,7 +434,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo) => {
     encEmail = encodeEmail(mail);
     openButton.addEventListener("click", () => actions.openDefault());
 
-    copyButton.addEventListener("click", () => actions.copy());
+    copyButton.addEventListener("click", () => actions.copy(mail || tel));
   }
   // mailgo tel
   if (type === TEL_TYPE) {
