@@ -18,6 +18,8 @@ const CALLTO = "callto:";
 const MAIL_TYPE = "mail";
 const TEL_TYPE = "tel";
 
+const DEFAULT_BTN_HREF = "javascript:void(0);";
+
 // mailgo variables
 let url = "",
   mail = "",
@@ -130,7 +132,7 @@ const mailgoInit = () => {
     // Gmail
     let gmail = document.createElement("a");
     gmail.id = "mailgo-gmail";
-    gmail.href = "#mailgo-gmail";
+    gmail.href = DEFAULT_BTN_HREF;
     gmail.classList.add("mailgo-open");
     gmail.classList.add("mailgo-gmail");
     let gmailContent = document.createTextNode("open in ");
@@ -146,7 +148,7 @@ const mailgoInit = () => {
     // Outlook
     let outlook = document.createElement("a");
     outlook.id = "mailgo-outlook";
-    outlook.href = "#mailgo-outlook";
+    outlook.href = DEFAULT_BTN_HREF;
     outlook.classList.add("mailgo-open");
     outlook.classList.add("mailgo-outlook");
     let outlookContent = document.createTextNode("open in ");
@@ -162,7 +164,7 @@ const mailgoInit = () => {
     // open default
     let open = document.createElement("a");
     open.id = "mailgo-open";
-    open.href = "#mailgo-open";
+    open.href = DEFAULT_BTN_HREF;
     open.classList.add("mailgo-open");
     open.classList.add("mailgo-default");
     let openSpan = document.createElement("span");
@@ -178,7 +180,7 @@ const mailgoInit = () => {
     // copy
     let copy = document.createElement("a");
     copy.id = "mailgo-copy";
-    copy.href = "#mailgo-copy";
+    copy.href = DEFAULT_BTN_HREF;
     copy.classList.add("mailgo-copy");
     copy.classList.add("mailgo-weight-500");
     let copyContent = document.createTextNode("copy");
@@ -230,7 +232,7 @@ const mailgoInit = () => {
     // Telegram
     let telegram = document.createElement("a");
     telegram.id = "mailgo-telegram";
-    telegram.href = "#mailgo-telegram";
+    telegram.href = DEFAULT_BTN_HREF;
     telegram.classList.add("mailgo-open");
     telegram.classList.add("mailgo-telegram");
 
@@ -250,7 +252,7 @@ const mailgoInit = () => {
     // WhatsApp
     let wa = document.createElement("a");
     wa.id = "mailgo-wa";
-    wa.href = "#mailgo-wa";
+    wa.href = DEFAULT_BTN_HREF;
     wa.classList.add("mailgo-open");
     wa.classList.add("mailgo-wa");
     let waContent = document.createTextNode("open in ");
@@ -266,7 +268,7 @@ const mailgoInit = () => {
     // Skype
     let skype = document.createElement("a");
     skype.id = "mailgo-skype";
-    skype.href = "#mailgo-skype";
+    skype.href = DEFAULT_BTN_HREF;
     skype.classList.add("mailgo-open");
     skype.classList.add("mailgo-skype");
     let skypeContent = document.createTextNode("open in ");
@@ -282,7 +284,7 @@ const mailgoInit = () => {
     // call default
     let call = document.createElement("a");
     call.id = "mailgo-call";
-    call.href = "#mailgo-call";
+    call.href = DEFAULT_BTN_HREF;
     call.classList.add("mailgo-open");
     call.classList.add("mailgo-default");
     let callSpan = document.createElement("span");
@@ -298,7 +300,7 @@ const mailgoInit = () => {
     // copy
     let copy = document.createElement("a");
     copy.id = "mailgo-tel-copy";
-    copy.href = "#mailgo-copy";
+    copy.href = DEFAULT_BTN_HREF;
     copy.classList.add("mailgo-copy");
     copy.classList.add("mailgo-weight-500");
     let copyContent = document.createTextNode("copy");
