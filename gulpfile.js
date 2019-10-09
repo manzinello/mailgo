@@ -2,6 +2,7 @@ const { src, dest, parallel, series } = require("gulp");
 
 const rename = require("gulp-rename");
 const csso = require("gulp-csso");
+const autoprefixer = require("gulp-autoprefixer");
 const replace = require("gulp-replace");
 const uglify = require("gulp-uglify");
 
@@ -17,6 +18,7 @@ let version = require("./package.json").version;
 function style() {
   return src("src/*.scss")
     .pipe(sass().on("error", sass.logError))
+    .pipe(autoprefixer())
     .pipe(csso())
     .pipe(
       rename({
