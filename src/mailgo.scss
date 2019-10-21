@@ -62,6 +62,7 @@ $skype-color: #00aff0;
     display: block;
     overflow: auto;
     padding: 20px;
+    transition: 0.5s box-shadow;
 
     &:hover {
       opacity: 1;
