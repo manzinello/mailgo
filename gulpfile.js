@@ -1,17 +1,18 @@
 const { src, dest, parallel, series } = require("gulp");
 
 const rename = require("gulp-rename");
-const csso = require("gulp-csso");
-const autoprefixer = require("gulp-autoprefixer");
 const replace = require("gulp-replace");
-const uglify = require("gulp-uglify");
 
-const fs = require("fs");
-
-const babel = require("gulp-babel");
-
+const csso = require("gulp-csso");
+const cleanCSS = require("gulp-clean-css");
+const autoprefixer = require("gulp-autoprefixer");
 const sass = require("gulp-sass");
 sass.compiler = require("node-sass");
+
+const uglify = require("gulp-uglify");
+const babel = require("gulp-babel");
+
+const fs = require("fs");
 
 let version = require("./package.json").version;
 
@@ -19,7 +20,7 @@ function style() {
   return src("src/*.scss")
     .pipe(sass().on("error", sass.logError))
     .pipe(autoprefixer())
-    .pipe(csso())
+    .pipe(cleanCSS({ compatibility: "ie8" }))
     .pipe(
       rename({
         suffix: ".min"
