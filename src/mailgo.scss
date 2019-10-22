@@ -93,7 +93,6 @@ $default-border-radius: 8px;
     }
 
     a {
-      display: block;
       padding: 10px;
       color: $default-color;
       border-radius: 5px;
@@ -156,10 +155,9 @@ $default-border-radius: 8px;
       }
 
       &.mailgo-by {
-        display: block;
         font-size: 8px;
-        margin-top: 1rem;
-        padding: 0px;
+        margin-top: 0.8rem;
+        padding: 5px;
         color: $default-color;
         opacity: 0.5;
       }
