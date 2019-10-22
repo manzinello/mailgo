@@ -64,7 +64,8 @@ $default-border-radius: 8px;
     border-radius: $default-border-radius;
     box-shadow: 0px 3px 20px rgba(32, 35, 42, 0.5);
     color: $default-color;
-    display: block;
+    display: flex;
+    flex-direction: column;
     overflow: auto;
     padding: 20px;
     transition: 0.5s box-shadow;
@@ -75,7 +76,6 @@ $default-border-radius: 8px;
     }
 
     .mailgo-title {
-      display: block;
       margin-bottom: $default-border-radius;
       overflow: hidden;
       white-space: nowrap;
