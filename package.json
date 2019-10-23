@@ -29,9 +29,6 @@
     "url": "https://github.com/manzinello/mailgo/issues"
   },
   "homepage": "https://mailgo.js.org",
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "devDependencies": {
     "@babel/cli": "^7.6.4",
     "@babel/core": "^7.6.4",
