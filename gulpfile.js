@@ -3,7 +3,6 @@ const { src, dest, parallel, series } = require("gulp");
 const rename = require("gulp-rename");
 const replace = require("gulp-replace");
 
-const csso = require("gulp-csso");
 const cleanCSS = require("gulp-clean-css");
 const autoprefixer = require("gulp-autoprefixer");
 const sass = require("gulp-sass");
