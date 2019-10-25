@@ -10,15 +10,8 @@ const CALLTO = "callto:";
 const MAIL_TYPE = "mail";
 const TEL_TYPE = "tel";
 
+// default href for links
 const DEFAULT_BTN_HREF = "javascript:void(0);";
-
-// mailgo style (gulp)
-let mailgoCSS = document.createElement("style");
-mailgoCSS.id = "mailgo-style";
-mailgoCSS.type = "text/css";
-let mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
-mailgoCSS.appendChild(mailgoCSSContent);
-document.head.appendChild(mailgoCSS);
 
 // mailgo variables
 let url = "",
@@ -44,6 +37,14 @@ let gmailButton,
   skypeButton,
   callButton,
   copyButton;
+
+// mailgo style (gulp)
+let mailgoCSS = document.createElement("style");
+mailgoCSS.id = "mailgo-style";
+mailgoCSS.type = "text/css";
+let mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+mailgoCSS.appendChild(mailgoCSSContent);
+document.head.appendChild(mailgoCSS);
 
 /**
  * mailgoInit
