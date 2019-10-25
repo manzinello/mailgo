@@ -1,14 +1,6 @@
 // @flow
 const V = "MAILGO_VERSION";
 
-// mailgo style (gulp)
-const mailgoCSS = document.createElement("style");
-mailgoCSS.id = "mailgo-style";
-mailgoCSS.type = "text/css";
-const mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
-mailgoCSS.appendChild(mailgoCSSContent);
-document.head.appendChild(mailgoCSS);
-
 // links
 const MAILTO = "mailto:";
 const TEL = "tel:";
@@ -19,6 +11,14 @@ const MAIL_TYPE = "mail";
 const TEL_TYPE = "tel";
 
 const DEFAULT_BTN_HREF = "javascript:void(0);";
+
+// mailgo style (gulp)
+let mailgoCSS = document.createElement("style");
+mailgoCSS.id = "mailgo-style";
+mailgoCSS.type = "text/css";
+let mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+mailgoCSS.appendChild(mailgoCSSContent);
+document.head.appendChild(mailgoCSS);
 
 // mailgo variables
 let url = "",
