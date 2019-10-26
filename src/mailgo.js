@@ -38,13 +38,15 @@ let gmailButton,
   callButton,
   copyButton;
 
-// mailgo style (gulp)
-let mailgoCSS = document.createElement("style");
-mailgoCSS.id = "mailgo-style";
-mailgoCSS.type = "text/css";
-let mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
-mailgoCSS.appendChild(mailgoCSSContent);
-document.head.appendChild(mailgoCSS);
+if (windowExists()) {
+  // mailgo style (gulp)
+  let mailgoCSS = document.createElement("style");
+  mailgoCSS.id = "mailgo-style";
+  mailgoCSS.type = "text/css";
+  let mailgoCSSContent = document.createTextNode(`MAILGO_STYLE`);
+  mailgoCSS.appendChild(mailgoCSSContent);
+  document.head.appendChild(mailgoCSS);
+}
 
 /**
  * mailgoInit
@@ -759,11 +761,14 @@ const mailgoKeydown = event => {
   return;
 };
 
-// DOMContentLoaded -> mailgoInit (creates the modals)
-document.addEventListener("DOMContentLoaded", mailgoInit);
+// if the window object exists...
+if (windowExists()) {
+  // DOMContentLoaded -> mailgoInit (creates the modals)
+  document.addEventListener("DOMContentLoaded", mailgoInit);
 
-// event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-document.addEventListener("click", mailgoCheckRender);
+  // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+  document.addEventListener("click", mailgoCheckRender);
+}
 
 // show the modal
 const showMailgo = (type = MAIL_TYPE) => {
@@ -807,6 +812,9 @@ const encodeEmail = email => btoa(email);
 
 // getE shorthand
 const getE = id => document.getElementById(id);
+
+// window exists
+const windowExists = () => window && typeof window !== "undefined";
 
 // get display value
 const getDisplay = id => getE(id).style.display;
