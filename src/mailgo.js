@@ -544,18 +544,23 @@
     openTelegram: () => {
       // Telegram url
       let tgUrl = "https://t.me/" + telegramUsername;
+
       // open the url
       window.open(tgUrl, "_blank");
+
       // hide the modal
       hideMailgo();
     },
 
     openSkype: () => {
       let skype = skypeUsername !== "" ? skypeUsername : tel;
+
       // Telegram url
       let skypeUrl = "skype:" + skype;
+
       // open the url
       window.open(skypeUrl, "_blank");
+
       // hide the modal
       hideMailgo();
     },
@@ -563,8 +568,13 @@
     openWhatsApp: () => {
       // WhatsApp url
       let waUrl = "https://wa.me/" + tel;
+
+      // the details if provided
+      if (msg) waUrl + "?text=" + msg;
+
       // open the url
       window.open(waUrl, "_blank");
+
       // hide the modal
       hideMailgo();
     },
