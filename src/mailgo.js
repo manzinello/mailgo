@@ -1,5 +1,7 @@
-// @flow
 const V = "MAILGO_VERSION";
+
+// window exists
+const windowExists = () => window && typeof window !== "undefined";
 
 // links
 const MAILTO = "mailto:";
@@ -812,9 +814,6 @@ const encodeEmail = email => btoa(email);
 
 // getE shorthand
 const getE = id => document.getElementById(id);
-
-// window exists
-const windowExists = () => window && typeof window !== "undefined";
 
 // get display value
 const getDisplay = id => getE(id).style.display;

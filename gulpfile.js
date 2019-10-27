@@ -34,7 +34,13 @@ function js() {
     .pipe(replace("MAILGO_VERSION", version))
     .pipe(replace("MAILGO_STYLE", cssMinContent))
     .pipe(babel())
-    .pipe(uglify())
+    .pipe(
+      uglify({
+        mangle: {
+          keep_fnames: true // keep function names
+        }
+      })
+    )
     .pipe(
       rename({
         suffix: ".min"
