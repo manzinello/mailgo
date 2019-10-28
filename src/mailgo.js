@@ -499,7 +499,7 @@
   };
 
   // actions
-  openGmail = () => {
+  const openGmail = () => {
     // Gmail url
     let gmailUrl =
       "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
@@ -518,7 +518,7 @@
     hideMailgo();
   };
 
-  openOutlook = () => {
+  const openOutlook = () => {
     // Outlook url
     let outlookUrl =
       "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
@@ -535,12 +535,12 @@
     hideMailgo();
   };
 
-  openDefault = () => {
+  const openDefault = () => {
     mailToEncoded(encEmail);
     hideMailgo();
   };
 
-  openTelegram = () => {
+  const openTelegram = () => {
     // Telegram url
     let tgUrl = "https://t.me/" + telegramUsername;
 
@@ -551,7 +551,7 @@
     hideMailgo();
   };
 
-  openSkype = () => {
+  const openSkype = () => {
     let skype = skypeUsername !== "" ? skypeUsername : tel;
 
     // Telegram url
@@ -564,7 +564,7 @@
     hideMailgo();
   };
 
-  openWhatsApp = () => {
+  const openWhatsApp = () => {
     // WhatsApp url
     let waUrl = "https://wa.me/" + tel;
 
@@ -578,13 +578,13 @@
     hideMailgo();
   };
 
-  callDefault = () => {
+  const callDefault = () => {
     let callUrl = "tel:" + tel;
     window.open(callUrl);
     hideMailgo();
   };
 
-  copy = content => {
+  const copy = content => {
     copyToClipboard(content);
     // the correct copyButton (mail or tel)
     mailgoIsShowing(MAIL_TYPE)
