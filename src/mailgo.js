@@ -183,6 +183,7 @@
 
       // by
       let by = document.createElement("a");
+      by.id = "mailgo.js.org";
       by.href = "https://mailgo.js.org?ref=mailgo-modal";
       by.className = "mailgo-by";
       by.target = "_blank";
