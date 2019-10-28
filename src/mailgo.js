@@ -787,12 +787,11 @@
 
   // is the mailgo modal hidden?
   const mailgoIsShowing = (type = MAIL_TYPE) => {
-    if (type === MAIL_TYPE) {
-      return getDisplay("mailgo") === "flex";
-    } else if (type === TEL_TYPE) {
-      return getDisplay("mailgo-tel") === "flex";
-    }
-    return false;
+    return type === MAIL_TYPE
+      ? getDisplay("mailgo") === "flex"
+      : type === TEL_TYPE
+      ? getDisplay("mailgo-tel") === "flex"
+      : false;
   };
 
   // window exists
