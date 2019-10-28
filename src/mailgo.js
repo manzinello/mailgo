@@ -567,13 +567,14 @@
 
   const copy = content => {
     copyToClipboard(content);
+    let activeCopy;
     // the correct copyButton (mail or tel)
     mailgoIsShowing(MAIL_TYPE)
-      ? (copyButton = getE("mailgo-copy"))
-      : (copyButton = getE("mailgo-tel-copy"));
-    copyButton.textContent = "copied";
+      ? (activeCopy = copyMail)
+      : (activeCopy = copyTel);
+    activeCopy.textContent = "copied";
     setTimeout(() => {
-      copyButton.textContent = "copy";
+      activeCopy.textContent = "copy";
       // hide after the timeout
       hideMailgo();
     }, 999);
