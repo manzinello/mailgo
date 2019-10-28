@@ -392,7 +392,7 @@
       let bodyEl = getE("mailgo-body");
       let bodyValueEl = getE("mailgo-body-value");
 
-      // actions
+      // action buttons
       gmailButton = getE("mailgo-gmail");
       outlookButton = getE("mailgo-outlook");
       openButton = getE("mailgo-open");
@@ -423,14 +423,14 @@
         : (bodyEl.style.display = "none");
 
       // add the actions
-      gmailButton.addEventListener("click", () => actions.openGmail());
+      gmailButton.addEventListener("click", () => openGmail());
 
-      outlookButton.addEventListener("click", () => actions.openOutlook());
+      outlookButton.addEventListener("click", () => openOutlook());
 
       encEmail = encodeEmail(mail);
-      openButton.addEventListener("click", () => actions.openDefault());
+      openButton.addEventListener("click", () => openDefault());
 
-      copyButton.addEventListener("click", () => actions.copy(mail || tel));
+      copyButton.addEventListener("click", () => copy(mail || tel));
     }
     // mailgo tel
     if (type === TEL_TYPE) {
@@ -477,18 +477,18 @@
       titleEl.innerHTML = tel;
 
       // add the actions to buttons
-      waButton.addEventListener("click", () => actions.openWhatsApp());
+      waButton.addEventListener("click", () => openWhatsApp());
 
       if (telegramUsername) {
         setDisplay("mailgo-telegram", "block");
-        telegramButton.addEventListener("click", () => actions.openTelegram());
+        telegramButton.addEventListener("click", () => openTelegram());
       }
 
-      skypeButton.addEventListener("click", () => actions.openSkype());
+      skypeButton.addEventListener("click", () => openSkype());
 
-      callButton.addEventListener("click", () => actions.callDefault());
+      callButton.addEventListener("click", () => callDefault());
 
-      copyButton.addEventListener("click", () => actions.copy(tel));
+      copyButton.addEventListener("click", () => copy(tel));
     }
 
     // show the mailgo
@@ -499,105 +499,103 @@
   };
 
   // actions
-  const actions = {
-    openGmail: () => {
-      // Gmail url
-      let gmailUrl =
-        "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
-        encodeURIComponent(mail);
+  openGmail = () => {
+    // Gmail url
+    let gmailUrl =
+      "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
+      encodeURIComponent(mail);
 
-      // the details if provided
-      if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
-      if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
-      if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
-      if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
+    // the details if provided
+    if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
+    if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
+    if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
+    if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
 
-      // open the link
-      window.open(gmailUrl, "_blank");
+    // open the link
+    window.open(gmailUrl, "_blank");
 
-      // hide the modal
+    // hide the modal
+    hideMailgo();
+  };
+
+  openOutlook = () => {
+    // Outlook url
+    let outlookUrl =
+      "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
+      encodeURIComponent(mail);
+
+    // the details if provided
+    if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
+    if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+
+    // open the link
+    window.open(outlookUrl, "_blank");
+
+    // hide the modal
+    hideMailgo();
+  };
+
+  openDefault = () => {
+    mailToEncoded(encEmail);
+    hideMailgo();
+  };
+
+  openTelegram = () => {
+    // Telegram url
+    let tgUrl = "https://t.me/" + telegramUsername;
+
+    // open the url
+    window.open(tgUrl, "_blank");
+
+    // hide the modal
+    hideMailgo();
+  };
+
+  openSkype = () => {
+    let skype = skypeUsername !== "" ? skypeUsername : tel;
+
+    // Telegram url
+    let skypeUrl = "skype:" + skype;
+
+    // open the url
+    window.open(skypeUrl, "_blank");
+
+    // hide the modal
+    hideMailgo();
+  };
+
+  openWhatsApp = () => {
+    // WhatsApp url
+    let waUrl = "https://wa.me/" + tel;
+
+    // the details if provided
+    if (msg) waUrl + "?text=" + msg;
+
+    // open the url
+    window.open(waUrl, "_blank");
+
+    // hide the modal
+    hideMailgo();
+  };
+
+  callDefault = () => {
+    let callUrl = "tel:" + tel;
+    window.open(callUrl);
+    hideMailgo();
+  };
+
+  copy = content => {
+    copyToClipboard(content);
+    // the correct copyButton (mail or tel)
+    mailgoIsShowing(MAIL_TYPE)
+      ? (copyButton = getE("mailgo-copy"))
+      : (copyButton = getE("mailgo-tel-copy"));
+    copyButton.textContent = "copied";
+    setTimeout(() => {
+      copyButton.textContent = "copy";
+      // hide after the timeout
       hideMailgo();
-    },
-
-    openOutlook: () => {
-      // Outlook url
-      let outlookUrl =
-        "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
-        encodeURIComponent(mail);
-
-      // the details if provided
-      if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
-      if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
-
-      // open the link
-      window.open(outlookUrl, "_blank");
-
-      // hide the modal
-      hideMailgo();
-    },
-
-    openDefault: () => {
-      mailToEncoded(encEmail);
-      hideMailgo();
-    },
-
-    openTelegram: () => {
-      // Telegram url
-      let tgUrl = "https://t.me/" + telegramUsername;
-
-      // open the url
-      window.open(tgUrl, "_blank");
-
-      // hide the modal
-      hideMailgo();
-    },
-
-    openSkype: () => {
-      let skype = skypeUsername !== "" ? skypeUsername : tel;
-
-      // Telegram url
-      let skypeUrl = "skype:" + skype;
-
-      // open the url
-      window.open(skypeUrl, "_blank");
-
-      // hide the modal
-      hideMailgo();
-    },
-
-    openWhatsApp: () => {
-      // WhatsApp url
-      let waUrl = "https://wa.me/" + tel;
-
-      // the details if provided
-      if (msg) waUrl + "?text=" + msg;
-
-      // open the url
-      window.open(waUrl, "_blank");
-
-      // hide the modal
-      hideMailgo();
-    },
-
-    callDefault: () => {
-      let callUrl = "tel:" + tel;
-      window.open(callUrl);
-      hideMailgo();
-    },
-
-    copy: content => {
-      copyToClipboard(content);
-      // the correct copyButton (mail or tel)
-      mailgoIsShowing(MAIL_TYPE)
-        ? (copyButton = getE("mailgo-copy"))
-        : (copyButton = getE("mailgo-tel-copy"));
-      copyButton.textContent = "copied";
-      setTimeout(() => {
-        copyButton.textContent = "copy";
-        // hide after the timeout
-        hideMailgo();
-      }, 999);
-    }
+    }, 999);
   };
 
   // function that returns if an element is a mailgo
@@ -715,20 +713,20 @@
           break;
         case 71:
           // g -> open GMail
-          actions.openGmail();
+          openGmail();
           break;
         case 79:
           // o -> open Outlook
-          actions.openOutlook();
+          openOutlook();
           break;
         case 32:
         case 13:
           // spacebar or enter -> open default
-          actions.openDefault();
+          openDefault();
           break;
         case 67:
           // c -> copy
-          actions.copy(mail);
+          copy(mail);
           break;
         default:
           return;
@@ -741,20 +739,20 @@
           break;
         case 84:
           // t -> open Telegram
-          actions.openTelegram();
+          openTelegram();
           break;
         case 87:
           // w -> open WhatsApp
-          actions.openWhatsApp();
+          openWhatsApp();
           break;
         case 32:
         case 13:
           // spacebar or enter -> call default
-          actions.callDefault();
+          callDefault();
           break;
         case 67:
           // c -> copy
-          actions.copy(tel);
+          copy(tel);
           break;
         default:
           return;
