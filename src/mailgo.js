@@ -297,7 +297,7 @@
       modalContent.appendChild(call);
 
       // copy
-      let copyTel = document.createElement("a");
+      copyTel = document.createElement("a");
       copyTel.id = "mailgo-tel-copy";
       copyTel.href = DEFAULT_BTN_HREF;
       copyTel.classList.add("mailgo-copy");
