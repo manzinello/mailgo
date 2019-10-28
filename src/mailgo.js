@@ -54,73 +54,73 @@
       let modal = document.createElement("div");
       modal.style.display = "none";
       modal.id = "mailgo";
-      modal.classList.add("mailgo-modal");
+      modal.classList.add("m-modal");
 
       // background
       let modalBackground = document.createElement("div");
-      modalBackground.className = "mailgo-modal-background";
+      modalBackground.className = "m-modal-back";
       modal.appendChild(modalBackground);
 
       // modal content
       let modalContent = document.createElement("div");
-      modalContent.className = "mailgo-modal-content";
+      modalContent.className = "m-modal-content";
       modal.appendChild(modalContent);
 
       // title (email address)
       title = document.createElement("strong");
-      title.id = "mailgo-title";
-      title.className = "mailgo-title";
+      title.id = "m-title";
+      title.className = "m-title";
       modalContent.appendChild(title);
 
       // details
       let details = document.createElement("div");
-      details.id = "mailgo-details";
-      details.className = "mailgo-details";
+      details.id = "m-details";
+      details.className = "m-details";
 
       detailCc = document.createElement("p");
-      detailCc.id = "mailgo-cc";
+      detailCc.id = "m-cc";
       let ccSpan = document.createElement("span");
       ccSpan.className = "w-500";
       let ccContent = document.createTextNode("cc ");
       ccSpan.appendChild(ccContent);
       ccValue = document.createElement("span");
-      ccValue.id = "mailgo-cc-value";
+      ccValue.id = "m-cc-value";
       detailCc.appendChild(ccSpan);
       detailCc.appendChild(ccValue);
       details.appendChild(detailCc);
 
       detailBcc = document.createElement("p");
-      detailBcc.id = "mailgo-bcc";
+      detailBcc.id = "m-bcc";
       let bccSpan = document.createElement("span");
       bccSpan.className = "w-500";
       let bccContent = document.createTextNode("bcc ");
       bccSpan.appendChild(bccContent);
       bccValue = document.createElement("span");
-      bccValue.id = "mailgo-bcc-value";
+      bccValue.id = "m-bcc-value";
       detailBcc.appendChild(bccSpan);
       detailBcc.appendChild(bccValue);
       details.appendChild(detailBcc);
 
       detailSubject = document.createElement("p");
-      detailSubject.id = "mailgo-subject";
+      detailSubject.id = "m-subject";
       let subjectSpan = document.createElement("span");
       subjectSpan.className = "w-500";
       let subjectContent = document.createTextNode("subject ");
       subjectSpan.appendChild(subjectContent);
       subjectValue = document.createElement("span");
-      subjectValue.id = "mailgo-subject-value";
+      subjectValue.id = "m-subject-value";
       detailSubject.appendChild(subjectSpan);
       detailSubject.appendChild(subjectValue);
       details.appendChild(detailSubject);
 
       detailBody = document.createElement("p");
-      detailBody.id = "mailgo-body";
+      detailBody.id = "m-body";
       let bodySpan = document.createElement("span");
       bodySpan.className = "w-500";
       let bodyContent = document.createTextNode("body ");
       bodySpan.appendChild(bodyContent);
       bodyValue = document.createElement("span");
-      bodyValue.id = "mailgo-body-value";
+      bodyValue.id = "m-body-value";
       detailBody.appendChild(bodySpan);
       detailBody.appendChild(bodyValue);
       details.appendChild(detailBody);
@@ -129,10 +129,10 @@
 
       // Gmail
       gmail = document.createElement("a");
-      gmail.id = "mailgo-gmail";
+      gmail.id = "m-gmail";
       gmail.href = DEFAULT_BTN_HREF;
-      gmail.classList.add("mailgo-open");
-      gmail.classList.add("mailgo-gmail");
+      gmail.classList.add("m-open");
+      gmail.classList.add("m-gmail");
       let gmailContent = document.createTextNode("open in ");
       gmail.appendChild(gmailContent);
       let gmailSpan = document.createElement("span");
@@ -145,10 +145,10 @@
 
       // Outlook
       outlook = document.createElement("a");
-      outlook.id = "mailgo-outlook";
+      outlook.id = "m-outlook";
       outlook.href = DEFAULT_BTN_HREF;
-      outlook.classList.add("mailgo-open");
-      outlook.classList.add("mailgo-outlook");
+      outlook.classList.add("m-open");
+      outlook.classList.add("m-outlook");
       let outlookContent = document.createTextNode("open in ");
       outlook.appendChild(outlookContent);
       let outlookSpan = document.createElement("span");
@@ -161,10 +161,10 @@
 
       // open default
       open = document.createElement("a");
-      open.id = "mailgo-open";
+      open.id = "m-open";
       open.href = DEFAULT_BTN_HREF;
-      open.classList.add("mailgo-open");
-      open.classList.add("mailgo-default");
+      open.classList.add("m-open");
+      open.classList.add("m-default");
       let openSpan = document.createElement("span");
       openSpan.className = "w-500";
       let openSpanContent = document.createTextNode("open");
@@ -177,9 +177,9 @@
 
       // copy
       copyMail = document.createElement("a");
-      copyMail.id = "mailgo-copy";
+      copyMail.id = "m-copy";
       copyMail.href = DEFAULT_BTN_HREF;
-      copyMail.classList.add("mailgo-copy");
+      copyMail.classList.add("m-copy");
       copyMail.classList.add("w-500");
       let copyContent = document.createTextNode("copy");
       copyMail.appendChild(copyContent);
@@ -200,30 +200,30 @@
       let modal = document.createElement("div");
       modal.style.display = "none";
       modal.id = "mailgo-tel";
-      modal.classList.add("mailgo-modal");
+      modal.classList.add("m-modal");
 
       // background
       let modalBackground = document.createElement("div");
-      modalBackground.className = "mailgo-modal-background";
+      modalBackground.className = "m-modal-back";
       modal.appendChild(modalBackground);
 
       // modal content
       let modalContent = document.createElement("div");
-      modalContent.className = "mailgo-modal-content";
+      modalContent.className = "m-modal-content";
       modal.appendChild(modalContent);
 
       // title (telephone number)
       titleTel = document.createElement("strong");
-      titleTel.id = "mailgo-tel-title";
-      titleTel.className = "mailgo-title";
+      titleTel.id = "m-tel-title";
+      titleTel.className = "m-title";
       modalContent.appendChild(titleTel);
 
       // Telegram
       telegram = document.createElement("a");
-      telegram.id = "mailgo-telegram";
+      telegram.id = "m-tg";
       telegram.href = DEFAULT_BTN_HREF;
-      telegram.classList.add("mailgo-open");
-      telegram.classList.add("mailgo-telegram");
+      telegram.classList.add("m-open");
+      telegram.classList.add("m-tg");
 
       // by default not display
       telegram.style.display = "none";
@@ -240,10 +240,10 @@
 
       // WhatsApp
       wa = document.createElement("a");
-      wa.id = "mailgo-wa";
+      wa.id = "m-wa";
       wa.href = DEFAULT_BTN_HREF;
-      wa.classList.add("mailgo-open");
-      wa.classList.add("mailgo-wa");
+      wa.classList.add("m-open");
+      wa.classList.add("m-wa");
       let waContent = document.createTextNode("open in ");
       wa.appendChild(waContent);
       let waSpan = document.createElement("span");
@@ -256,10 +256,10 @@
 
       // Skype
       skype = document.createElement("a");
-      skype.id = "mailgo-skype";
+      skype.id = "m-skype";
       skype.href = DEFAULT_BTN_HREF;
-      skype.classList.add("mailgo-open");
-      skype.classList.add("mailgo-skype");
+      skype.classList.add("m-open");
+      skype.classList.add("m-skype");
       let skypeContent = document.createTextNode("open in ");
       skype.appendChild(skypeContent);
       let skypeSpan = document.createElement("span");
@@ -272,10 +272,10 @@
 
       // call default
       call = document.createElement("a");
-      call.id = "mailgo-call";
+      call.id = "m-call";
       call.href = DEFAULT_BTN_HREF;
-      call.classList.add("mailgo-open");
-      call.classList.add("mailgo-default");
+      call.classList.add("m-open");
+      call.classList.add("m-default");
       let callSpan = document.createElement("span");
       callSpan.className = "w-500";
       let callSpanContent = document.createTextNode("call");
@@ -288,9 +288,9 @@
 
       // copy
       copyTel = document.createElement("a");
-      copyTel.id = "mailgo-tel-copy";
+      copyTel.id = "m-tel-copy";
       copyTel.href = DEFAULT_BTN_HREF;
-      copyTel.classList.add("mailgo-copy");
+      copyTel.classList.add("m-copy");
       copyTel.classList.add("w-500");
       let copyContent = document.createTextNode("copy");
       copyTel.appendChild(copyContent);
@@ -423,7 +423,7 @@
       }
 
       // information
-      // let titleEl = getE("mailgo-tel-title");
+      // let titleEl = getE("m-tel-title");
 
       // Telegram username
       if (mailgo.hasAttribute("data-telegram")) {
@@ -442,7 +442,7 @@
       wa.addEventListener("click", openWhatsApp);
 
       if (telegramUsername) {
-        setDisplay("mailgo-telegram", "block");
+        setDisplay("m-tg", "block");
         telegram.addEventListener("click", openTelegram);
       }
 
@@ -760,7 +760,7 @@
     // by
     let by = document.createElement("a");
     by.href = "https://mailgo.js.org?ref=mailgo-modal";
-    by.className = "mailgo-by";
+    by.className = "m-by";
     by.target = "_blank";
     by.rel = "noopener noreferrer";
     let textBy = document.createTextNode("mailgo.js.org");

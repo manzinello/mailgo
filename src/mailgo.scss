@@ -13,7 +13,7 @@ $skype-color: #00aff0;
 // other vars
 $default-border-radius: 8px;
 
-.mailgo-modal {
+.m-modal {
   position: fixed;
   top: 0;
   right: 0;
@@ -41,7 +41,7 @@ $default-border-radius: 8px;
     font-weight: 700;
   }
 
-  .mailgo-modal-background {
+  .m-modal-back {
     position: absolute;
     z-index: 10001;
     top: 0;
@@ -52,7 +52,7 @@ $default-border-radius: 8px;
     opacity: 0.8;
   }
 
-  .mailgo-modal-content {
+  .m-modal-content {
     position: relative;
     z-index: 10002;
     box-sizing: content-box;
@@ -75,21 +75,20 @@ $default-border-radius: 8px;
       box-shadow: 0px 7px 20px rgba(32, 35, 42, 0.85);
     }
 
-    .mailgo-title {
+    .m-title {
       margin-bottom: $default-border-radius;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
     }
 
-    .mailgo-details {
+    .m-details {
       margin-bottom: 10px;
-    }
-
-    .mailgo-details p {
-      font-size: 12px;
-      margin-top: 3px;
-      margin-bottom: 3px;
+      p {
+        font-size: 12px;
+        margin-top: 3px;
+        margin-bottom: 3px;
+      }
     }
 
     a {
@@ -98,63 +97,58 @@ $default-border-radius: 8px;
       border-radius: 5px;
       text-decoration: none;
 
-      &.mailgo-gmail {
+      &.m-gmail {
         color: $gmail-color;
+        &:hover {
+          background-color: rgba(212, 70, 56, 0.08);
+          color: $gmail-color;
+        }
       }
 
-      &.mailgo-outlook {
+      &.m-outlook {
         color: $outlook-color;
+        &:hover {
+          background-color: rgba(0, 114, 198, 0.08);
+          color: $outlook-color;
+        }
       }
 
-      &.mailgo-wa {
-        color: $wa-color;
-      }
-
-      &.mailgo-telegram {
+      &.m-tg {
         color: $telegram-color;
+        &:hover {
+          background-color: rgba(0, 114, 198, 0.08);
+          color: $telegram-color;
+        }
       }
 
-      &.mailgo-skype {
+      &.m-wa {
+        color: $wa-color;
+        &:hover {
+          background-color: rgba(0, 191, 165, 0.08);
+          color: $wa-color;
+        }
+      }
+
+      &.m-skype {
         color: $skype-color;
+        &:hover {
+          background-color: rgba(0, 175, 240, 0.08);
+          color: $skype-color;
+        }
       }
 
-      &.mailgo-copy {
+      &.m-copy {
         padding: 16px 10px;
         font-size: 16px;
       }
 
-      &.mailgo-default:hover,
-      &.mailgo-copy:hover {
+      &.m-default:hover,
+      &.m-copy:hover {
         background-color: rgba(0, 0, 0, 0.08);
         color: $default-color;
       }
 
-      &.mailgo-gmail:hover {
-        background-color: rgba(212, 70, 56, 0.08);
-        color: $gmail-color;
-      }
-
-      &.mailgo-outlook:hover {
-        background-color: rgba(0, 114, 198, 0.08);
-        color: $outlook-color;
-      }
-
-      &.mailgo-telegram:hover {
-        background-color: rgba(0, 114, 198, 0.08);
-        color: $telegram-color;
-      }
-
-      &.mailgo-wa:hover {
-        background-color: rgba(0, 191, 165, 0.08);
-        color: $wa-color;
-      }
-
-      &.mailgo-skype:hover {
-        background-color: rgba(0, 175, 240, 0.08);
-        color: $skype-color;
-      }
-
-      &.mailgo-by {
+      &.m-by {
         font-size: 8px;
         margin-top: 0.8rem;
         padding: 5px;
