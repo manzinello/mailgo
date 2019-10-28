@@ -40,7 +40,7 @@
     subjectValue,
     bodyValue;
 
-  // mailgo buttons
+  // mailgo buttons (actions)
   let gmail, outlook, open, telegram, wa, skype, call, copyMail, copyTel;
 
   /**
@@ -186,17 +186,7 @@
 
       modalContent.appendChild(copyMail);
 
-      // by
-      let by = document.createElement("a");
-      by.id = "mailgo.js.org";
-      by.href = "https://mailgo.js.org?ref=mailgo-modal";
-      by.className = "mailgo-by";
-      by.target = "_blank";
-      by.rel = "noopener noreferrer";
-      let textBy = document.createTextNode("mailgo.js.org");
-      by.appendChild(textBy);
-
-      modalContent.appendChild(by);
+      modalContent.appendChild(byElement());
 
       // add the modal at the end of the body
       document.body.appendChild(modal);
@@ -307,16 +297,7 @@
 
       modalContent.appendChild(copyTel);
 
-      // by
-      let by = document.createElement("a");
-      by.href = "https://mailgo.js.org?ref=mailgo-modal";
-      by.className = "mailgo-by";
-      by.target = "_blank";
-      by.rel = "noopener noreferrer";
-      let textBy = document.createTextNode("mailgo.js.org");
-      by.appendChild(textBy);
-
-      modalContent.appendChild(by);
+      modalContent.appendChild(byElement());
 
       // add the modal at the end of the body
       document.body.appendChild(modal);
@@ -773,6 +754,19 @@
       : type === TEL_TYPE
       ? getDisplay("mailgo-tel") === "flex"
       : false;
+  };
+
+  const byElement = () => {
+    // by
+    let by = document.createElement("a");
+    by.href = "https://mailgo.js.org?ref=mailgo-modal";
+    by.className = "mailgo-by";
+    by.target = "_blank";
+    by.rel = "noopener noreferrer";
+    let textBy = document.createTextNode("mailgo.js.org");
+    by.appendChild(textBy);
+
+    return by;
   };
 
   // window exists
