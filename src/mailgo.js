@@ -80,7 +80,7 @@
       detailCc = document.createElement("p");
       detailCc.id = "mailgo-cc";
       let ccSpan = document.createElement("span");
-      ccSpan.className = "mailgo-weight-500";
+      ccSpan.className = "w-500";
       let ccContent = document.createTextNode("cc ");
       ccSpan.appendChild(ccContent);
       ccValue = document.createElement("span");
@@ -92,7 +92,7 @@
       detailBcc = document.createElement("p");
       detailBcc.id = "mailgo-bcc";
       let bccSpan = document.createElement("span");
-      bccSpan.className = "mailgo-weight-500";
+      bccSpan.className = "w-500";
       let bccContent = document.createTextNode("bcc ");
       bccSpan.appendChild(bccContent);
       bccValue = document.createElement("span");
@@ -104,7 +104,7 @@
       detailSubject = document.createElement("p");
       detailSubject.id = "mailgo-subject";
       let subjectSpan = document.createElement("span");
-      subjectSpan.className = "mailgo-weight-500";
+      subjectSpan.className = "w-500";
       let subjectContent = document.createTextNode("subject ");
       subjectSpan.appendChild(subjectContent);
       subjectValue = document.createElement("span");
@@ -116,7 +116,7 @@
       detailBody = document.createElement("p");
       detailBody.id = "mailgo-body";
       let bodySpan = document.createElement("span");
-      bodySpan.className = "mailgo-weight-500";
+      bodySpan.className = "w-500";
       let bodyContent = document.createTextNode("body ");
       bodySpan.appendChild(bodyContent);
       bodyValue = document.createElement("span");
@@ -136,7 +136,7 @@
       let gmailContent = document.createTextNode("open in ");
       gmail.appendChild(gmailContent);
       let gmailSpan = document.createElement("span");
-      gmailSpan.className = "mailgo-weight-500";
+      gmailSpan.className = "w-500";
       let gmailSpanContent = document.createTextNode("Gmail");
       gmailSpan.appendChild(gmailSpanContent);
       gmail.appendChild(gmailSpan);
@@ -152,7 +152,7 @@
       let outlookContent = document.createTextNode("open in ");
       outlook.appendChild(outlookContent);
       let outlookSpan = document.createElement("span");
-      outlookSpan.className = "mailgo-weight-500";
+      outlookSpan.className = "w-500";
       let outlookSpanContent = document.createTextNode("Outlook");
       outlookSpan.appendChild(outlookSpanContent);
       outlook.appendChild(outlookSpan);
@@ -166,7 +166,7 @@
       open.classList.add("mailgo-open");
       open.classList.add("mailgo-default");
       let openSpan = document.createElement("span");
-      openSpan.className = "mailgo-weight-500";
+      openSpan.className = "w-500";
       let openSpanContent = document.createTextNode("open");
       openSpan.appendChild(openSpanContent);
       let openContent = document.createTextNode(" default");
@@ -180,7 +180,7 @@
       copyMail.id = "mailgo-copy";
       copyMail.href = DEFAULT_BTN_HREF;
       copyMail.classList.add("mailgo-copy");
-      copyMail.classList.add("mailgo-weight-500");
+      copyMail.classList.add("w-500");
       let copyContent = document.createTextNode("copy");
       copyMail.appendChild(copyContent);
 
@@ -241,7 +241,7 @@
       let telegramContent = document.createTextNode("open in ");
       telegram.appendChild(telegramContent);
       let telegramSpan = document.createElement("span");
-      telegramSpan.className = "mailgo-weight-500";
+      telegramSpan.className = "w-500";
       let telegramSpanContent = document.createTextNode("Telegram");
       telegramSpan.appendChild(telegramSpanContent);
       telegram.appendChild(telegramSpan);
@@ -257,7 +257,7 @@
       let waContent = document.createTextNode("open in ");
       wa.appendChild(waContent);
       let waSpan = document.createElement("span");
-      waSpan.className = "mailgo-weight-500";
+      waSpan.className = "w-500";
       let waSpanContent = document.createTextNode("WhatsApp");
       waSpan.appendChild(waSpanContent);
       wa.appendChild(waSpan);
@@ -273,7 +273,7 @@
       let skypeContent = document.createTextNode("open in ");
       skype.appendChild(skypeContent);
       let skypeSpan = document.createElement("span");
-      skypeSpan.className = "mailgo-weight-500";
+      skypeSpan.className = "w-500";
       let skypeSpanContent = document.createTextNode("Skype");
       skypeSpan.appendChild(skypeSpanContent);
       skype.appendChild(skypeSpan);
@@ -287,7 +287,7 @@
       call.classList.add("mailgo-open");
       call.classList.add("mailgo-default");
       let callSpan = document.createElement("span");
-      callSpan.className = "mailgo-weight-500";
+      callSpan.className = "w-500";
       let callSpanContent = document.createTextNode("call");
       callSpan.appendChild(callSpanContent);
       let callContent = document.createTextNode(" as default");
@@ -301,7 +301,7 @@
       copyTel.id = "mailgo-tel-copy";
       copyTel.href = DEFAULT_BTN_HREF;
       copyTel.classList.add("mailgo-copy");
-      copyTel.classList.add("mailgo-weight-500");
+      copyTel.classList.add("w-500");
       let copyContent = document.createTextNode("copy");
       copyTel.appendChild(copyContent);
 

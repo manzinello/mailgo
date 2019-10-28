@@ -160,14 +160,13 @@ $default-border-radius: 8px;
         padding: 5px;
         color: $default-color;
         opacity: 0.5;
-      }
-
-      &.mailgo-by:hover {
-        opacity: 1;
+        &:hover {
+          opacity: 1;
+        }
       }
     }
 
-    .mailgo-weight-500 {
+    .w-500 {
       font-weight: 500;
     }
   }
