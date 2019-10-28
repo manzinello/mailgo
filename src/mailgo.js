@@ -1,6 +1,6 @@
-(() => {
-  const V = "MAILGO_VERSION";
+const mailgoVersion = "MAILGO_VERSION";
 
+(() => {
   // links
   const MAILTO = "mailto:";
   const TEL = "tel:";
