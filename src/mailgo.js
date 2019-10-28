@@ -424,12 +424,12 @@
         : (bodyEl.style.display = "none");
 
       // add the actions
-      gmailButton.addEventListener("click", () => openGmail());
+      gmailButton.addEventListener("click", openGmail);
 
-      outlookButton.addEventListener("click", () => openOutlook());
+      outlookButton.addEventListener("click", openOutlook);
 
       encEmail = encodeEmail(mail);
-      openButton.addEventListener("click", () => openDefault());
+      openButton.addEventListener("click", openDefault);
 
       copyButton.addEventListener("click", () => copy(mail || tel));
     }
@@ -478,16 +478,16 @@
       titleEl.innerHTML = tel;
 
       // add the actions to buttons
-      waButton.addEventListener("click", () => openWhatsApp());
+      waButton.addEventListener("click", openWhatsApp);
 
       if (telegramUsername) {
         setDisplay("mailgo-telegram", "block");
-        telegramButton.addEventListener("click", () => openTelegram());
+        telegramButton.addEventListener("click", openTelegram);
       }
 
-      skypeButton.addEventListener("click", () => openSkype());
+      skypeButton.addEventListener("click", openSkype);
 
-      callButton.addEventListener("click", () => callDefault());
+      callButton.addEventListener("click", callDefault);
 
       copyButton.addEventListener("click", () => copy(tel));
     }
