@@ -94,7 +94,7 @@ $default-border-radius: 8px;
     a {
       padding: 10px;
       color: $default-color;
-      border-radius: 5px;
+      border-radius: $default-border-radius;
       text-decoration: none;
 
       &.m-gmail {
