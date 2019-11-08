@@ -51,7 +51,7 @@
   },
   "dependencies": {},
   "browserslist": "cover 99.5%",
-  "collective": {
+  "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mailgo"
   }
