@@ -587,12 +587,12 @@ const mailgoVersion = "MAILGO_VERSION";
           (element.href.toLowerCase().startsWith(TEL) ||
             element.href.toLowerCase().startsWith(CALLTO)) &&
           !element.classList.contains("no-mailgo")) ||
-        ((element.hasAttribute("data-tel") &&
+        (element.hasAttribute("data-tel") &&
           // second case: the href=#mailgo
-          (element.href &&
-            element.getAttribute("href").toLowerCase() === "#mailgo")) ||
-          // third case: the classList contains mailgo
-          (element.classList && element.classList.contains("mailgo")))
+          element.href &&
+          element.getAttribute("href").toLowerCase() === "#mailgo") ||
+        // third case: the classList contains mailgo
+        (element.classList && element.classList.contains("mailgo"))
       );
     }
 
