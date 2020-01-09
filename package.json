@@ -34,7 +34,7 @@
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-flow": "^7.7.4",
-    "flow-bin": "^0.114.0",
+    "flow-bin": "^0.115.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
     "gulp-babel": "^8.0.0",
