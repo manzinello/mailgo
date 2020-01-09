@@ -59,18 +59,18 @@ const mailgoVersion = "MAILGO_VERSION";
       // background
       let modalBackground = createElement("div");
       modalBackground.className = "m-modal-back";
-      modal.appendChild(modalBackground);
+      modal.ac(modalBackground);
 
       // modal content
       let modalContent = createElement("div");
       modalContent.className = "m-modal-content";
-      modal.appendChild(modalContent);
+      modal.ac(modalContent);
 
       // title (email address)
       title = createElement("strong");
       title.id = "m-title";
       title.className = "m-title";
-      modalContent.appendChild(title);
+      modalContent.ac(title);
 
       // details
       let details = createElement("div");
@@ -82,50 +82,50 @@ const mailgoVersion = "MAILGO_VERSION";
       let ccSpan = createElement("span");
       ccSpan.className = "w-500";
       let ccContent = createTextNode("cc ");
-      ccSpan.appendChild(ccContent);
+      ccSpan.ac(ccContent);
       ccValue = createElement("span");
       ccValue.id = "m-cc-value";
-      detailCc.appendChild(ccSpan);
-      detailCc.appendChild(ccValue);
-      details.appendChild(detailCc);
+      detailCc.ac(ccSpan);
+      detailCc.ac(ccValue);
+      details.ac(detailCc);
 
       detailBcc = createElement("p");
       detailBcc.id = "m-bcc";
       let bccSpan = createElement("span");
       bccSpan.className = "w-500";
       let bccContent = createTextNode("bcc ");
-      bccSpan.appendChild(bccContent);
+      bccSpan.ac(bccContent);
       bccValue = createElement("span");
       bccValue.id = "m-bcc-value";
-      detailBcc.appendChild(bccSpan);
-      detailBcc.appendChild(bccValue);
-      details.appendChild(detailBcc);
+      detailBcc.ac(bccSpan);
+      detailBcc.ac(bccValue);
+      details.ac(detailBcc);
 
       detailSubject = createElement("p");
       detailSubject.id = "m-subject";
       let subjectSpan = createElement("span");
       subjectSpan.className = "w-500";
       let subjectContent = createTextNode("subject ");
-      subjectSpan.appendChild(subjectContent);
+      subjectSpan.ac(subjectContent);
       subjectValue = createElement("span");
       subjectValue.id = "m-subject-value";
-      detailSubject.appendChild(subjectSpan);
-      detailSubject.appendChild(subjectValue);
-      details.appendChild(detailSubject);
+      detailSubject.ac(subjectSpan);
+      detailSubject.ac(subjectValue);
+      details.ac(detailSubject);
 
       detailBody = createElement("p");
       detailBody.id = "m-body";
       let bodySpan = createElement("span");
       bodySpan.className = "w-500";
       let bodyContent = createTextNode("body ");
-      bodySpan.appendChild(bodyContent);
+      bodySpan.ac(bodyContent);
       bodyValue = createElement("span");
       bodyValue.id = "m-body-value";
-      detailBody.appendChild(bodySpan);
-      detailBody.appendChild(bodyValue);
-      details.appendChild(detailBody);
+      detailBody.ac(bodySpan);
+      detailBody.ac(bodyValue);
+      details.ac(detailBody);
 
-      modalContent.appendChild(details);
+      modalContent.ac(details);
 
       // Gmail
       gmail = createElement("a");
@@ -134,14 +134,14 @@ const mailgoVersion = "MAILGO_VERSION";
       gmail.classList.add("m-open");
       gmail.classList.add("m-gmail");
       let gmailContent = createTextNode("open in ");
-      gmail.appendChild(gmailContent);
+      gmail.ac(gmailContent);
       let gmailSpan = createElement("span");
       gmailSpan.className = "w-500";
       let gmailSpanContent = createTextNode("Gmail");
-      gmailSpan.appendChild(gmailSpanContent);
-      gmail.appendChild(gmailSpan);
+      gmailSpan.ac(gmailSpanContent);
+      gmail.ac(gmailSpan);
 
-      modalContent.appendChild(gmail);
+      modalContent.ac(gmail);
 
       // Outlook
       outlook = createElement("a");
@@ -150,14 +150,14 @@ const mailgoVersion = "MAILGO_VERSION";
       outlook.classList.add("m-open");
       outlook.classList.add("m-outlook");
       let outlookContent = createTextNode("open in ");
-      outlook.appendChild(outlookContent);
+      outlook.ac(outlookContent);
       let outlookSpan = createElement("span");
       outlookSpan.className = "w-500";
       let outlookSpanContent = createTextNode("Outlook");
-      outlookSpan.appendChild(outlookSpanContent);
-      outlook.appendChild(outlookSpan);
+      outlookSpan.ac(outlookSpanContent);
+      outlook.ac(outlookSpan);
 
-      modalContent.appendChild(outlook);
+      modalContent.ac(outlook);
 
       // open default
       open = createElement("a");
@@ -168,12 +168,12 @@ const mailgoVersion = "MAILGO_VERSION";
       let openSpan = createElement("span");
       openSpan.className = "w-500";
       let openSpanContent = createTextNode("open");
-      openSpan.appendChild(openSpanContent);
+      openSpan.ac(openSpanContent);
       let openContent = createTextNode(" default");
-      open.appendChild(openSpan);
-      open.appendChild(openContent);
+      open.ac(openSpan);
+      open.ac(openContent);
 
-      modalContent.appendChild(open);
+      modalContent.ac(open);
 
       // copy
       copyMail = createElement("a");
@@ -182,14 +182,14 @@ const mailgoVersion = "MAILGO_VERSION";
       copyMail.classList.add("m-copy");
       copyMail.classList.add("w-500");
       let copyContent = createTextNode("copy");
-      copyMail.appendChild(copyContent);
+      copyMail.ac(copyContent);
 
-      modalContent.appendChild(copyMail);
+      modalContent.ac(copyMail);
 
-      modalContent.appendChild(byElement());
+      modalContent.ac(byElement());
 
       // add the modal at the end of the body
-      document.body.appendChild(modal);
+      document.body.ac(modal);
 
       // every click outside the modal will hide the modal
       modalBackground.addEventListener("click", hideMailgo);
@@ -205,18 +205,18 @@ const mailgoVersion = "MAILGO_VERSION";
       // background
       let modalBackground = createElement("div");
       modalBackground.className = "m-modal-back";
-      modal.appendChild(modalBackground);
+      modal.ac(modalBackground);
 
       // modal content
       let modalContent = createElement("div");
       modalContent.className = "m-modal-content";
-      modal.appendChild(modalContent);
+      modal.ac(modalContent);
 
       // title (telephone number)
       titleTel = createElement("strong");
       titleTel.id = "m-tel-title";
       titleTel.className = "m-title";
-      modalContent.appendChild(titleTel);
+      modalContent.ac(titleTel);
 
       // Telegram
       telegram = createElement("a");
@@ -229,14 +229,14 @@ const mailgoVersion = "MAILGO_VERSION";
       telegram.style.display = "none";
 
       let telegramContent = createTextNode("open in ");
-      telegram.appendChild(telegramContent);
+      telegram.ac(telegramContent);
       let telegramSpan = createElement("span");
       telegramSpan.className = "w-500";
       let telegramSpanContent = createTextNode("Telegram");
-      telegramSpan.appendChild(telegramSpanContent);
-      telegram.appendChild(telegramSpan);
+      telegramSpan.ac(telegramSpanContent);
+      telegram.ac(telegramSpan);
 
-      modalContent.appendChild(telegram);
+      modalContent.ac(telegram);
 
       // WhatsApp
       wa = createElement("a");
@@ -245,14 +245,14 @@ const mailgoVersion = "MAILGO_VERSION";
       wa.classList.add("m-open");
       wa.classList.add("m-wa");
       let waContent = createTextNode("open in ");
-      wa.appendChild(waContent);
+      wa.ac(waContent);
       let waSpan = createElement("span");
       waSpan.className = "w-500";
       let waSpanContent = createTextNode("WhatsApp");
-      waSpan.appendChild(waSpanContent);
-      wa.appendChild(waSpan);
+      waSpan.ac(waSpanContent);
+      wa.ac(waSpan);
 
-      modalContent.appendChild(wa);
+      modalContent.ac(wa);
 
       // Skype
       skype = createElement("a");
@@ -261,14 +261,14 @@ const mailgoVersion = "MAILGO_VERSION";
       skype.classList.add("m-open");
       skype.classList.add("m-skype");
       let skypeContent = createTextNode("open in ");
-      skype.appendChild(skypeContent);
+      skype.ac(skypeContent);
       let skypeSpan = createElement("span");
       skypeSpan.className = "w-500";
       let skypeSpanContent = createTextNode("Skype");
-      skypeSpan.appendChild(skypeSpanContent);
-      skype.appendChild(skypeSpan);
+      skypeSpan.ac(skypeSpanContent);
+      skype.ac(skypeSpan);
 
-      modalContent.appendChild(skype);
+      modalContent.ac(skype);
 
       // call default
       call = createElement("a");
@@ -279,12 +279,12 @@ const mailgoVersion = "MAILGO_VERSION";
       let callSpan = createElement("span");
       callSpan.className = "w-500";
       let callSpanContent = createTextNode("call");
-      callSpan.appendChild(callSpanContent);
+      callSpan.ac(callSpanContent);
       let callContent = createTextNode(" as default");
-      call.appendChild(callSpan);
-      call.appendChild(callContent);
+      call.ac(callSpan);
+      call.ac(callContent);
 
-      modalContent.appendChild(call);
+      modalContent.ac(call);
 
       // copy
       copyTel = createElement("a");
@@ -293,14 +293,14 @@ const mailgoVersion = "MAILGO_VERSION";
       copyTel.classList.add("m-copy");
       copyTel.classList.add("w-500");
       let copyContent = createTextNode("copy");
-      copyTel.appendChild(copyContent);
+      copyTel.ac(copyContent);
 
-      modalContent.appendChild(copyTel);
+      modalContent.ac(copyTel);
 
-      modalContent.appendChild(byElement());
+      modalContent.ac(byElement());
 
       // add the modal at the end of the body
-      document.body.appendChild(modal);
+      document.body.ac(modal);
 
       // every click outside the modal will hide the modal
       modalBackground.addEventListener("click", hideMailgo);
@@ -764,7 +764,7 @@ const mailgoVersion = "MAILGO_VERSION";
     by.target = "_blank";
     by.rel = "noopener noreferrer";
     let textBy = createTextNode("mailgo.js.org");
-    by.appendChild(textBy);
+    by.ac(textBy);
 
     return by;
   };
@@ -774,6 +774,11 @@ const mailgoVersion = "MAILGO_VERSION";
 
   // create element
   const createElement = element => document.createElement(element);
+
+  // append child (prototype)
+  HTMLElement.prototype.ac = function(childElement) {
+    return this.appendChild(childElement);
+  };
 
   // create text node
   const createTextNode = element => document.createTextNode(element);
@@ -827,7 +832,7 @@ const mailgoVersion = "MAILGO_VERSION";
     el.setAttribute("readonly", "");
     el.style.position = "absolute";
     el.style.left = "-9999px";
-    document.body.appendChild(el);
+    document.body.ac(el);
     let selected =
       document.getSelection().rangeCount > 0
         ? document.getSelection().getRangeAt(0)
@@ -850,8 +855,8 @@ const mailgoVersion = "MAILGO_VERSION";
       mailgoCSS.id = "mailgo-style";
       mailgoCSS.type = "text/css";
       let mailgoCSSContent = createTextNode(`MAILGO_STYLE`);
-      mailgoCSS.appendChild(mailgoCSSContent);
-      document.head.appendChild(mailgoCSS);
+      mailgoCSS.ac(mailgoCSSContent);
+      document.head.ac(mailgoCSS);
 
       // DOMContentLoaded -> mailgoInit (creates the modals)
       document.addEventListener("DOMContentLoaded", mailgoInit);
