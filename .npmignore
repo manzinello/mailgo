@@ -1,5 +1,6 @@
 assets
 src
+test
 gulpfile.js
 index.html
 .DS_Store
