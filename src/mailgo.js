@@ -13,6 +13,9 @@ const mailgoVersion = "MAILGO_VERSION";
   // default href for links
   const DEFAULT_BTN_HREF = "javascript:void(0);";
 
+  // html tags
+  const span = "span";
+
   // mailgo variables
   let url = "",
     mail = "",
@@ -51,18 +54,18 @@ const mailgoVersion = "MAILGO_VERSION";
     // mailgo mail
     {
       // modal
-      let modal = createElement("div");
+      let modal = createElement();
       modal.style.display = "none";
       modal.id = "mailgo";
       modal.classList.add("m-modal");
 
       // background
-      let modalBackground = createElement("div");
+      let modalBackground = createElement();
       modalBackground.className = "m-modal-back";
       modal.aC(modalBackground);
 
       // modal content
-      let modalContent = createElement("div");
+      let modalContent = createElement();
       modalContent.className = "m-modal-content";
       modal.aC(modalContent);
 
@@ -73,16 +76,16 @@ const mailgoVersion = "MAILGO_VERSION";
       modalContent.aC(title);
 
       // details
-      let details = createElement("div");
+      let details = createElement();
       details.id = "m-details";
       details.className = "m-details";
 
       detailCc = createElement("p");
       detailCc.id = "m-cc";
-      let ccSpan = createElement("span");
+      let ccSpan = createElement(span);
       ccSpan.className = "w-500";
       ccSpan.aC(createTextNode("cc "));
-      ccValue = createElement("span");
+      ccValue = createElement(span);
       ccValue.id = "m-cc-value";
       detailCc.aC(ccSpan);
       detailCc.aC(ccValue);
@@ -90,10 +93,10 @@ const mailgoVersion = "MAILGO_VERSION";
 
       detailBcc = createElement("p");
       detailBcc.id = "m-bcc";
-      let bccSpan = createElement("span");
+      let bccSpan = createElement(span);
       bccSpan.className = "w-500";
       bccSpan.aC(createTextNode("bcc "));
-      bccValue = createElement("span");
+      bccValue = createElement(span);
       bccValue.id = "m-bcc-value";
       detailBcc.aC(bccSpan);
       detailBcc.aC(bccValue);
@@ -101,10 +104,10 @@ const mailgoVersion = "MAILGO_VERSION";
 
       detailSubject = createElement("p");
       detailSubject.id = "m-subject";
-      let subjectSpan = createElement("span");
+      let subjectSpan = createElement(span);
       subjectSpan.className = "w-500";
       subjectSpan.aC(createTextNode("subject "));
-      subjectValue = createElement("span");
+      subjectValue = createElement(span);
       subjectValue.id = "m-subject-value";
       detailSubject.aC(subjectSpan);
       detailSubject.aC(subjectValue);
@@ -112,10 +115,10 @@ const mailgoVersion = "MAILGO_VERSION";
 
       detailBody = createElement("p");
       detailBody.id = "m-body";
-      let bodySpan = createElement("span");
+      let bodySpan = createElement(span);
       bodySpan.className = "w-500";
       bodySpan.aC(createTextNode("body "));
-      bodyValue = createElement("span");
+      bodyValue = createElement(span);
       bodyValue.id = "m-body-value";
       detailBody.aC(bodySpan);
       detailBody.aC(bodyValue);
@@ -130,7 +133,7 @@ const mailgoVersion = "MAILGO_VERSION";
       gmail.classList.add("m-open");
       gmail.classList.add("m-gmail");
       gmail.aC(createTextNode("open in "));
-      let gmailSpan = createElement("span");
+      let gmailSpan = createElement(span);
       gmailSpan.className = "w-500";
       gmailSpan.aC(createTextNode("Gmail"));
       gmail.aC(gmailSpan);
@@ -144,7 +147,7 @@ const mailgoVersion = "MAILGO_VERSION";
       outlook.classList.add("m-open");
       outlook.classList.add("m-outlook");
       outlook.aC(createTextNode("open in "));
-      let outlookSpan = createElement("span");
+      let outlookSpan = createElement(span);
       outlookSpan.className = "w-500";
       outlookSpan.aC(createTextNode("Outlook"));
       outlook.aC(outlookSpan);
@@ -157,7 +160,7 @@ const mailgoVersion = "MAILGO_VERSION";
       open.href = DEFAULT_BTN_HREF;
       open.classList.add("m-open");
       open.classList.add("m-default");
-      let openSpan = createElement("span");
+      let openSpan = createElement(span);
       openSpan.className = "w-500";
       openSpan.aC(createTextNode("open"));
       open.aC(openSpan);
@@ -186,18 +189,18 @@ const mailgoVersion = "MAILGO_VERSION";
     // mailgo tel
     {
       // modal
-      let modal = createElement("div");
+      let modal = createElement();
       modal.style.display = "none";
       modal.id = "mailgo-tel";
       modal.classList.add("m-modal");
 
       // background
-      let modalBackground = createElement("div");
+      let modalBackground = createElement();
       modalBackground.className = "m-modal-back";
       modal.aC(modalBackground);
 
       // modal content
-      let modalContent = createElement("div");
+      let modalContent = createElement();
       modalContent.className = "m-modal-content";
       modal.aC(modalContent);
 
@@ -218,7 +221,7 @@ const mailgoVersion = "MAILGO_VERSION";
       telegram.style.display = "none";
 
       telegram.aC(createTextNode("open in "));
-      let telegramSpan = createElement("span");
+      let telegramSpan = createElement(span);
       telegramSpan.className = "w-500";
       telegramSpan.aC(createTextNode("Telegram"));
       telegram.aC(telegramSpan);
@@ -232,7 +235,7 @@ const mailgoVersion = "MAILGO_VERSION";
       wa.classList.add("m-open");
       wa.classList.add("m-wa");
       wa.aC(createTextNode("open in "));
-      let waSpan = createElement("span");
+      let waSpan = createElement(span);
       waSpan.className = "w-500";
       waSpan.aC(createTextNode("WhatsApp"));
       wa.aC(waSpan);
@@ -246,7 +249,7 @@ const mailgoVersion = "MAILGO_VERSION";
       skype.classList.add("m-open");
       skype.classList.add("m-skype");
       skype.aC(createTextNode("open in "));
-      let skypeSpan = createElement("span");
+      let skypeSpan = createElement(span);
       skypeSpan.className = "w-500";
       skypeSpan.aC(createTextNode("Skype"));
       skype.aC(skypeSpan);
@@ -259,7 +262,7 @@ const mailgoVersion = "MAILGO_VERSION";
       call.href = DEFAULT_BTN_HREF;
       call.classList.add("m-open");
       call.classList.add("m-default");
-      let callSpan = createElement("span");
+      let callSpan = createElement(span);
       callSpan.className = "w-500";
       callSpan.aC(createTextNode("call"));
       call.aC(callSpan);
@@ -752,7 +755,7 @@ const mailgoVersion = "MAILGO_VERSION";
   const windowExists = () => window && typeof window !== "undefined";
 
   // create element
-  const createElement = element => document.createElement(element);
+  const createElement = (element = "div") => document.createElement(element);
 
   // append child (prototype)
   HTMLElement.prototype.aC = function(childElement) {
