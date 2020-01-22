@@ -6,6 +6,10 @@ Transform all your `mailto` and `tel` link in a beautiful modal with more possib
 
 <a href="https://www.producthunt.com/posts/mailgo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-mailgo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=157026&theme=dark" alt="mailgo - A more intuitive mail-to alternative | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
 
+## Pika
+
+[![Join the package community on Pika](https://img.shields.io/badge/Pika%20Community-Ask%20questions,%20get%20answers-blue?style=flag-square)](https://www.pika.dev/npm/mailgo)
+
 ## thanks
 
 <a target="_blank" href="https://www.browserstack.com">
