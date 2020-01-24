@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.8.3",
+  "version": "0.8.4",
   "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "gulp && webpack",
@@ -26,7 +26,7 @@
   "author": {
     "name": "Matteo Manzinello",
     "email": "matteo@manzinello.dev",
-    "url": "http://matteomanzinello.com"
+    "url": "https://matteomanzinello.com"
   },
   "license": "MIT",
   "bugs": {
