@@ -1,5 +1,8 @@
 const { src, dest, parallel, series } = require("gulp");
 
+const ts = require("gulp-typescript");
+const tsProject = ts.createProject("tsconfig.json");
+
 const rename = require("gulp-rename");
 const replace = require("gulp-replace");
 
@@ -22,7 +25,7 @@ function style() {
     .pipe(cleanCSS({ compatibility: "ie8" }))
     .pipe(
       rename({
-        suffix: ".min"
+        suffix: ".min",
       })
     )
     .pipe(dest("dist"));
@@ -33,11 +36,12 @@ function js() {
   return src("src/*.js")
     .pipe(replace("MAILGO_VERSION", version))
     .pipe(replace("MAILGO_STYLE", cssMinContent))
+    .pipe(tsProject())
     .pipe(babel())
     .pipe(uglify())
     .pipe(
       rename({
-        suffix: ".min"
+        suffix: ".min",
       })
     )
     .pipe(dest("dist"));

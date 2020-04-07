@@ -2,49 +2,57 @@ const mailgoVersion = "MAILGO_VERSION";
 
 (() => {
   // links
-  const MAILTO = "mailto:";
-  const TEL = "tel:";
-  const CALLTO = "callto:";
+  const MAILTO: string = "mailto:";
+  const TEL: string = "tel:";
+  const CALLTO: string = "callto:";
 
   // mailgo types
-  const MAIL_TYPE = "mail";
-  const TEL_TYPE = "tel";
+  const MAIL_TYPE: string = "mail";
+  const TEL_TYPE: string = "tel";
 
   // default href for links
-  const DEFAULT_BTN_HREF = "javascript:void(0);";
+  const DEFAULT_BTN_HREF: string = "javascript:void(0);";
 
   // html tags
-  const span = "span";
+  const span: string = "span";
 
   // mailgo variables
-  let url = "",
-    mail = "",
-    encEmail = "",
-    cc = "",
-    bcc = "",
-    subject = "",
-    bodyMail = "";
+  let url: string = "",
+    mail: string = "",
+    encEmail: string = "",
+    cc: string = "",
+    bcc: string = "",
+    subject: string = "",
+    bodyMail: string = "";
 
   // mailgo tel variables
-  let tel = "",
-    msg = "",
-    telegramUsername = "",
-    skypeUsername = "";
+  let tel: string = "",
+    msg: string = "",
+    telegramUsername: string = "",
+    skypeUsername: string = "";
 
   // the DOM elements
-  let title,
-    titleTel,
-    detailCc,
-    detailBcc,
-    detailSubject,
-    detailBody,
-    ccValue,
-    bccValue,
-    subjectValue,
-    bodyValue;
+  let title: HTMLElement,
+    titleTel: HTMLElement,
+    detailCc: HTMLElement,
+    detailBcc: HTMLElement,
+    detailSubject: HTMLElement,
+    detailBody: HTMLElement,
+    ccValue: HTMLElement,
+    bccValue: HTMLElement,
+    subjectValue: HTMLElement,
+    bodyValue: HTMLElement;
 
   // mailgo buttons (actions)
-  let gmail, outlook, open, telegram, wa, skype, call, copyMail, copyTel;
+  let gmail: HTMLElement,
+    outlook: HTMLElement,
+    open: HTMLElement,
+    telegram: HTMLElement,
+    wa: HTMLElement,
+    skype: HTMLElement,
+    call: HTMLElement,
+    copyMail: HTMLElement,
+    copyTel: HTMLElement;
 
   /**
    * mailgoInit
@@ -300,10 +308,7 @@ const mailgoVersion = "MAILGO_VERSION";
       // if the element href=^"mailto:"
       if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
         mail = decodeURIComponent(
-          mailgo.href
-            .split("?")[0]
-            .split(MAILTO)[1]
-            .trim()
+          mailgo.href.split("?")[0].split(MAILTO)[1].trim()
         );
 
         url = new URL(mailgo.href);
@@ -388,17 +393,11 @@ const mailgoVersion = "MAILGO_VERSION";
     if (type === TEL_TYPE) {
       if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
         tel = decodeURIComponent(
-          mailgo.href
-            .split("?")[0]
-            .split(TEL)[1]
-            .trim()
+          mailgo.href.split("?")[0].split(TEL)[1].trim()
         );
       } else if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
         tel = decodeURIComponent(
-          mailgo.href
-            .split("?")[0]
-            .split(CALLTO)[1]
-            .trim()
+          mailgo.href.split("?")[0].split(CALLTO)[1].trim()
         );
       } else if (mailgo.hasAttribute("data-tel")) {
         tel = mailgo.getAttribute("data-tel");
@@ -529,7 +528,7 @@ const mailgoVersion = "MAILGO_VERSION";
     hideMailgo();
   };
 
-  const copy = content => {
+  const copy = (content) => {
     copyToClipboard(content);
     let activeCopy;
     // the correct copyButton (mail or tel)
@@ -598,7 +597,7 @@ const mailgoVersion = "MAILGO_VERSION";
    *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
    * );
    */
-  const mailgoCheckRender = event => {
+  const mailgoCheckRender = (event: MouseEvent) => {
     // check if the id=mailgo exists in the body
     if (
       !document.contains(getE("mailgo")) ||
@@ -611,12 +610,11 @@ const mailgoVersion = "MAILGO_VERSION";
 
     // the path of the event
     let path =
-      event.path ||
       (event.composedPath && event.composedPath()) ||
       composedPath(event.target);
 
     if (path) {
-      path.forEach(element => {
+      path.forEach((element: HTMLElement) => {
         if (element instanceof HTMLDocument || element instanceof Window)
           return;
 
@@ -649,7 +647,7 @@ const mailgoVersion = "MAILGO_VERSION";
    * mailgoKeydown
    * function to manage the keydown event when the modal is showing
    */
-  const mailgoKeydown = event => {
+  const mailgoKeydown = (event: KeyboardEvent) => {
     // if mailgo is showing
     if (mailgoIsShowing(MAIL_TYPE)) {
       switch (event.keyCode) {
@@ -741,7 +739,7 @@ const mailgoVersion = "MAILGO_VERSION";
 
   const byElement = () => {
     // by
-    let by = createElement("a");
+    let by: HTMLElement = createElement("a");
     by.href = "https://mailgo.js.org?ref=mailgo-modal";
     by.className = "m-by";
     by.target = "_blank";
@@ -758,31 +756,31 @@ const mailgoVersion = "MAILGO_VERSION";
   const createElement = (element = "div") => document.createElement(element);
 
   // append child (prototype)
-  HTMLElement.prototype.aC = function(childElement) {
+  HTMLElement.prototype.aC = function (childElement) {
     return this.appendChild(childElement);
   };
 
   // create text node
-  const createTextNode = element => document.createTextNode(element);
+  const createTextNode = (element) => document.createTextNode(element);
 
   // decrypt email
-  const mailToEncoded = encoded =>
+  const mailToEncoded = (encoded: string) =>
     (window.location.href = MAILTO + atob(encoded));
 
   // encode email
-  const encodeEmail = email => btoa(email);
+  const encodeEmail = (email) => btoa(email);
 
   // getE shorthand
-  const getE = id => document.getElementById(id);
+  const getE = (id) => document.getElementById(id);
 
   // get display value
-  const getDisplay = id => getE(id).style.display;
+  const getDisplay = (id) => getE(id).style.display;
 
   // get display value
   const setDisplay = (id, value) => (getE(id).style.display = value);
 
   // custom composedPath if path or event.composedPath() are not defined
-  const composedPath = el => {
+  const composedPath = (el) => {
     let path = [];
 
     while (el) {
@@ -799,16 +797,16 @@ const mailgoVersion = "MAILGO_VERSION";
   };
 
   // validate a single email with regex
-  const validateEmail = email =>
+  const validateEmail = (email) =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
 
   // validate an array of emails
-  const validateEmails = arr => arr.every(validateEmail);
+  const validateEmails = (arr) => arr.every(validateEmail);
 
   // copy of a string
-  const copyToClipboard = str => {
+  const copyToClipboard = (str) => {
     let el = createElement("textarea");
     el.value = str;
     el.setAttribute("readonly", "");
