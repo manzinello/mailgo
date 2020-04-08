@@ -33,7 +33,7 @@ function style() {
 
 function js() {
   let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
-  return src("src/*.js")
+  return src("src/*.ts")
     .pipe(replace("MAILGO_VERSION", version))
     .pipe(replace("MAILGO_STYLE", cssMinContent))
     .pipe(tsProject())

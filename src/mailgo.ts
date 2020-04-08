@@ -1,4 +1,4 @@
-const mailgoVersion = "MAILGO_VERSION";
+const mailgoVersion: string = "MAILGO_VERSION";
 
 (() => {
   // links
@@ -58,7 +58,7 @@ const mailgoVersion = "MAILGO_VERSION";
    * mailgoInit
    * the function that creates the mailgo elements in DOM
    */
-  const mailgoInit = () => {
+  const mailgoInit = (): void => {
     // mailgo mail
     {
       // modal

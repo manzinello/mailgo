@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.8.5",
+  "version": "0.9.0",
   "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "gulp && webpack",
@@ -36,8 +36,10 @@
   "devDependencies": {
     "@babel/cli": "^7.8.4",
     "@babel/core": "^7.9.0",
+    "@babel/parser": "^7.9.4",
     "@babel/preset-env": "^7.9.0",
     "@babel/preset-flow": "^7.9.0",
+    "@babel/types": "^7.9.5",
     "flow-bin": "^0.122.0",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
