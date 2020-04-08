@@ -17,7 +17,7 @@ const mailgoVersion = "MAILGO_VERSION";
   const span: string = "span";
 
   // mailgo variables
-  let url: string = "",
+  let url: URL,
     mail: string = "",
     encEmail: string = "",
     cc: string = "",
@@ -44,15 +44,15 @@ const mailgoVersion = "MAILGO_VERSION";
     bodyValue: HTMLElement;
 
   // mailgo buttons (actions)
-  let gmail: HTMLElement,
-    outlook: HTMLElement,
-    open: HTMLElement,
-    telegram: HTMLElement,
-    wa: HTMLElement,
-    skype: HTMLElement,
-    call: HTMLElement,
-    copyMail: HTMLElement,
-    copyTel: HTMLElement;
+  let gmail: HTMLLinkElement,
+    outlook: HTMLLinkElement,
+    open: HTMLLinkElement,
+    telegram: HTMLLinkElement,
+    wa: HTMLLinkElement,
+    skype: HTMLLinkElement,
+    call: HTMLLinkElement,
+    copyMail: HTMLLinkElement,
+    copyTel: HTMLLinkElement;
 
   /**
    * mailgoInit
@@ -70,18 +70,18 @@ const mailgoVersion = "MAILGO_VERSION";
       // background
       let modalBackground = createElement();
       modalBackground.className = "m-modal-back";
-      modal.aC(modalBackground);
+      modal.appendChild(modalBackground);
 
       // modal content
       let modalContent = createElement();
       modalContent.className = "m-modal-content";
-      modal.aC(modalContent);
+      modal.appendChild(modalContent);
 
       // title (email address)
       title = createElement("strong");
       title.id = "m-title";
       title.className = "m-title";
-      modalContent.aC(title);
+      modalContent.appendChild(title);
 
       // details
       let details = createElement();
@@ -92,104 +92,104 @@ const mailgoVersion = "MAILGO_VERSION";
       detailCc.id = "m-cc";
       let ccSpan = createElement(span);
       ccSpan.className = "w-500";
-      ccSpan.aC(createTextNode("cc "));
+      ccSpan.appendChild(createTextNode("cc "));
       ccValue = createElement(span);
       ccValue.id = "m-cc-value";
-      detailCc.aC(ccSpan);
-      detailCc.aC(ccValue);
-      details.aC(detailCc);
+      detailCc.appendChild(ccSpan);
+      detailCc.appendChild(ccValue);
+      details.appendChild(detailCc);
 
       detailBcc = createElement("p");
       detailBcc.id = "m-bcc";
       let bccSpan = createElement(span);
       bccSpan.className = "w-500";
-      bccSpan.aC(createTextNode("bcc "));
+      bccSpan.appendChild(createTextNode("bcc "));
       bccValue = createElement(span);
       bccValue.id = "m-bcc-value";
-      detailBcc.aC(bccSpan);
-      detailBcc.aC(bccValue);
-      details.aC(detailBcc);
+      detailBcc.appendChild(bccSpan);
+      detailBcc.appendChild(bccValue);
+      details.appendChild(detailBcc);
 
       detailSubject = createElement("p");
       detailSubject.id = "m-subject";
       let subjectSpan = createElement(span);
       subjectSpan.className = "w-500";
-      subjectSpan.aC(createTextNode("subject "));
+      subjectSpan.appendChild(createTextNode("subject "));
       subjectValue = createElement(span);
       subjectValue.id = "m-subject-value";
-      detailSubject.aC(subjectSpan);
-      detailSubject.aC(subjectValue);
-      details.aC(detailSubject);
+      detailSubject.appendChild(subjectSpan);
+      detailSubject.appendChild(subjectValue);
+      details.appendChild(detailSubject);
 
       detailBody = createElement("p");
       detailBody.id = "m-body";
       let bodySpan = createElement(span);
       bodySpan.className = "w-500";
-      bodySpan.aC(createTextNode("body "));
+      bodySpan.appendChild(createTextNode("body "));
       bodyValue = createElement(span);
       bodyValue.id = "m-body-value";
-      detailBody.aC(bodySpan);
-      detailBody.aC(bodyValue);
-      details.aC(detailBody);
+      detailBody.appendChild(bodySpan);
+      detailBody.appendChild(bodyValue);
+      details.appendChild(detailBody);
 
-      modalContent.aC(details);
+      modalContent.appendChild(details);
 
       // Gmail
-      gmail = createElement("a");
+      gmail = <HTMLLinkElement>createElement("a");
       gmail.id = "m-gmail";
       gmail.href = DEFAULT_BTN_HREF;
       gmail.classList.add("m-open");
       gmail.classList.add("m-gmail");
-      gmail.aC(createTextNode("open in "));
+      gmail.appendChild(createTextNode("open in "));
       let gmailSpan = createElement(span);
       gmailSpan.className = "w-500";
-      gmailSpan.aC(createTextNode("Gmail"));
-      gmail.aC(gmailSpan);
+      gmailSpan.appendChild(createTextNode("Gmail"));
+      gmail.appendChild(gmailSpan);
 
-      modalContent.aC(gmail);
+      modalContent.appendChild(gmail);
 
       // Outlook
-      outlook = createElement("a");
+      outlook = <HTMLLinkElement>createElement("a");
       outlook.id = "m-outlook";
       outlook.href = DEFAULT_BTN_HREF;
       outlook.classList.add("m-open");
       outlook.classList.add("m-outlook");
-      outlook.aC(createTextNode("open in "));
+      outlook.appendChild(createTextNode("open in "));
       let outlookSpan = createElement(span);
       outlookSpan.className = "w-500";
-      outlookSpan.aC(createTextNode("Outlook"));
-      outlook.aC(outlookSpan);
+      outlookSpan.appendChild(createTextNode("Outlook"));
+      outlook.appendChild(outlookSpan);
 
-      modalContent.aC(outlook);
+      modalContent.appendChild(outlook);
 
       // open default
-      open = createElement("a");
+      open = <HTMLLinkElement>createElement("a");
       open.id = "m-open";
       open.href = DEFAULT_BTN_HREF;
       open.classList.add("m-open");
       open.classList.add("m-default");
       let openSpan = createElement(span);
       openSpan.className = "w-500";
-      openSpan.aC(createTextNode("open"));
-      open.aC(openSpan);
-      open.aC(createTextNode(" default"));
+      openSpan.appendChild(createTextNode("open"));
+      open.appendChild(openSpan);
+      open.appendChild(createTextNode(" default"));
 
-      modalContent.aC(open);
+      modalContent.appendChild(open);
 
       // copy
-      copyMail = createElement("a");
+      copyMail = <HTMLLinkElement>createElement("a");
       copyMail.id = "m-copy";
       copyMail.href = DEFAULT_BTN_HREF;
       copyMail.classList.add("m-copy");
       copyMail.classList.add("w-500");
-      copyMail.aC(createTextNode("copy"));
+      copyMail.appendChild(createTextNode("copy"));
 
-      modalContent.aC(copyMail);
+      modalContent.appendChild(copyMail);
 
-      modalContent.aC(byElement());
+      modalContent.appendChild(byElement());
 
       // add the modal at the end of the body
-      document.body.aC(modal);
+      document.body.appendChild(modal);
 
       // every click outside the modal will hide the modal
       modalBackground.addEventListener("click", hideMailgo);
@@ -205,21 +205,21 @@ const mailgoVersion = "MAILGO_VERSION";
       // background
       let modalBackground = createElement();
       modalBackground.className = "m-modal-back";
-      modal.aC(modalBackground);
+      modal.appendChild(modalBackground);
 
       // modal content
       let modalContent = createElement();
       modalContent.className = "m-modal-content";
-      modal.aC(modalContent);
+      modal.appendChild(modalContent);
 
       // title (telephone number)
       titleTel = createElement("strong");
       titleTel.id = "m-tel-title";
       titleTel.className = "m-title";
-      modalContent.aC(titleTel);
+      modalContent.appendChild(titleTel);
 
       // Telegram
-      telegram = createElement("a");
+      telegram = <HTMLLinkElement>createElement("a");
       telegram.id = "m-tg";
       telegram.href = DEFAULT_BTN_HREF;
       telegram.classList.add("m-open");
@@ -228,70 +228,70 @@ const mailgoVersion = "MAILGO_VERSION";
       // by default not display
       telegram.style.display = "none";
 
-      telegram.aC(createTextNode("open in "));
+      telegram.appendChild(createTextNode("open in "));
       let telegramSpan = createElement(span);
       telegramSpan.className = "w-500";
-      telegramSpan.aC(createTextNode("Telegram"));
-      telegram.aC(telegramSpan);
+      telegramSpan.appendChild(createTextNode("Telegram"));
+      telegram.appendChild(telegramSpan);
 
-      modalContent.aC(telegram);
+      modalContent.appendChild(telegram);
 
       // WhatsApp
-      wa = createElement("a");
+      wa = <HTMLLinkElement>createElement("a");
       wa.id = "m-wa";
       wa.href = DEFAULT_BTN_HREF;
       wa.classList.add("m-open");
       wa.classList.add("m-wa");
-      wa.aC(createTextNode("open in "));
+      wa.appendChild(createTextNode("open in "));
       let waSpan = createElement(span);
       waSpan.className = "w-500";
-      waSpan.aC(createTextNode("WhatsApp"));
-      wa.aC(waSpan);
+      waSpan.appendChild(createTextNode("WhatsApp"));
+      wa.appendChild(waSpan);
 
-      modalContent.aC(wa);
+      modalContent.appendChild(wa);
 
       // Skype
-      skype = createElement("a");
+      skype = <HTMLLinkElement>createElement("a");
       skype.id = "m-skype";
       skype.href = DEFAULT_BTN_HREF;
       skype.classList.add("m-open");
       skype.classList.add("m-skype");
-      skype.aC(createTextNode("open in "));
+      skype.appendChild(createTextNode("open in "));
       let skypeSpan = createElement(span);
       skypeSpan.className = "w-500";
-      skypeSpan.aC(createTextNode("Skype"));
-      skype.aC(skypeSpan);
+      skypeSpan.appendChild(createTextNode("Skype"));
+      skype.appendChild(skypeSpan);
 
-      modalContent.aC(skype);
+      modalContent.appendChild(skype);
 
       // call default
-      call = createElement("a");
+      call = <HTMLLinkElement>createElement("a");
       call.id = "m-call";
       call.href = DEFAULT_BTN_HREF;
       call.classList.add("m-open");
       call.classList.add("m-default");
       let callSpan = createElement(span);
       callSpan.className = "w-500";
-      callSpan.aC(createTextNode("call"));
-      call.aC(callSpan);
-      call.aC(createTextNode(" as default"));
+      callSpan.appendChild(createTextNode("call"));
+      call.appendChild(callSpan);
+      call.appendChild(createTextNode(" as default"));
 
-      modalContent.aC(call);
+      modalContent.appendChild(call);
 
       // copy
-      copyTel = createElement("a");
+      copyTel = <HTMLLinkElement>createElement("a");
       copyTel.id = "m-tel-copy";
       copyTel.href = DEFAULT_BTN_HREF;
       copyTel.classList.add("m-copy");
       copyTel.classList.add("w-500");
-      copyTel.aC(createTextNode("copy"));
+      copyTel.appendChild(createTextNode("copy"));
 
-      modalContent.aC(copyTel);
+      modalContent.appendChild(copyTel);
 
-      modalContent.aC(byElement());
+      modalContent.appendChild(byElement());
 
       // add the modal at the end of the body
-      document.body.aC(modal);
+      document.body.appendChild(modal);
 
       // every click outside the modal will hide the modal
       modalBackground.addEventListener("click", hideMailgo);
@@ -302,7 +302,7 @@ const mailgoVersion = "MAILGO_VERSION";
    * mailgoRender
    * function to render a mailgo (mail or tel)
    */
-  const mailgoRender = (type = MAIL_TYPE, mailgo) => {
+  const mailgoRender = (type = MAIL_TYPE, mailgo: any) => {
     // mailgo mail
     if (type === MAIL_TYPE) {
       // if the element href=^"mailto:"
@@ -312,7 +312,7 @@ const mailgoVersion = "MAILGO_VERSION";
         );
 
         url = new URL(mailgo.href);
-        let urlParams = new URLSearchParams(url.search);
+        let urlParams: URLSearchParams = url.searchParams;
 
         // optional parameters for the email
         cc = urlParams.get("cc");
@@ -528,9 +528,9 @@ const mailgoVersion = "MAILGO_VERSION";
     hideMailgo();
   };
 
-  const copy = (content) => {
+  const copy = (content: string) => {
     copyToClipboard(content);
-    let activeCopy;
+    let activeCopy: HTMLElement;
     // the correct copyButton (mail or tel)
     mailgoIsShowing(MAIL_TYPE)
       ? (activeCopy = copyMail)
@@ -544,18 +544,19 @@ const mailgoVersion = "MAILGO_VERSION";
   };
 
   // function that returns if an element is a mailgo
-  const isMailgo = (element, type = MAIL_TYPE) => {
+  const isMailgo = (element: HTMLElement, type: string = MAIL_TYPE) => {
+    let href: string = (element as HTMLLinkElement).href;
+
     // mailgo type mail
     if (type === MAIL_TYPE) {
       return (
         // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-        (element.href &&
-          element.href.toLowerCase().startsWith(MAILTO) &&
+        (href &&
+          href.toLowerCase().startsWith(MAILTO) &&
           !element.classList.contains("no-mailgo")) ||
         (element.hasAttribute("data-address") &&
           // second case: the href=#mailgo
-          ((element.href &&
-            element.getAttribute("href").toLowerCase() === "#mailgo") ||
+          ((href && element.getAttribute("href").toLowerCase() === "#mailgo") ||
             // third case: the classList contains mailgo
             (element.classList && element.classList.contains("mailgo"))))
       );
@@ -565,13 +566,13 @@ const mailgoVersion = "MAILGO_VERSION";
     if (type === TEL_TYPE) {
       return (
         // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
-        (element.href &&
-          (element.href.toLowerCase().startsWith(TEL) ||
-            element.href.toLowerCase().startsWith(CALLTO)) &&
+        (href &&
+          (href.toLowerCase().startsWith(TEL) ||
+            href.toLowerCase().startsWith(CALLTO)) &&
           !element.classList.contains("no-mailgo")) ||
         (element.hasAttribute("data-tel") &&
           // second case: the href=#mailgo
-          element.href &&
+          href &&
           element.getAttribute("href").toLowerCase() === "#mailgo") ||
         // third case: the classList contains mailgo
         (element.classList && element.classList.contains("mailgo"))
@@ -597,7 +598,7 @@ const mailgoVersion = "MAILGO_VERSION";
    *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
    * );
    */
-  const mailgoCheckRender = (event: MouseEvent) => {
+  const mailgoCheckRender = (event: Event) => {
     // check if the id=mailgo exists in the body
     if (
       !document.contains(getE("mailgo")) ||
@@ -611,7 +612,7 @@ const mailgoVersion = "MAILGO_VERSION";
     // the path of the event
     let path =
       (event.composedPath && event.composedPath()) ||
-      composedPath(event.target);
+      composedPath(event.target as HTMLElement);
 
     if (path) {
       path.forEach((element: HTMLElement) => {
@@ -739,12 +740,12 @@ const mailgoVersion = "MAILGO_VERSION";
 
   const byElement = () => {
     // by
-    let by: HTMLElement = createElement("a");
+    let by: HTMLLinkElement = <HTMLLinkElement>createElement("a");
     by.href = "https://mailgo.js.org?ref=mailgo-modal";
     by.className = "m-by";
     by.target = "_blank";
     by.rel = "noopener noreferrer";
-    by.aC(createTextNode("mailgo.js.org"));
+    by.appendChild(createTextNode("mailgo.js.org"));
 
     return by;
   };
@@ -753,34 +754,31 @@ const mailgoVersion = "MAILGO_VERSION";
   const windowExists = () => window && typeof window !== "undefined";
 
   // create element
-  const createElement = (element = "div") => document.createElement(element);
-
-  // append child (prototype)
-  HTMLElement.prototype.aC = function (childElement) {
-    return this.appendChild(childElement);
-  };
+  const createElement = (element: string = "div") =>
+    document.createElement(element);
 
   // create text node
-  const createTextNode = (element) => document.createTextNode(element);
+  const createTextNode = (element: string) => document.createTextNode(element);
 
   // decrypt email
   const mailToEncoded = (encoded: string) =>
     (window.location.href = MAILTO + atob(encoded));
 
   // encode email
-  const encodeEmail = (email) => btoa(email);
+  const encodeEmail = (email: string) => btoa(email);
 
   // getE shorthand
-  const getE = (id) => document.getElementById(id);
+  const getE = (id: string) => document.getElementById(id);
 
   // get display value
-  const getDisplay = (id) => getE(id).style.display;
+  const getDisplay = (id: string) => getE(id).style.display;
 
   // get display value
-  const setDisplay = (id, value) => (getE(id).style.display = value);
+  const setDisplay = (id: string, value: string) =>
+    (getE(id).style.display = value);
 
   // custom composedPath if path or event.composedPath() are not defined
-  const composedPath = (el) => {
+  const composedPath = (el: HTMLElement) => {
     let path = [];
 
     while (el) {
@@ -797,22 +795,22 @@ const mailgoVersion = "MAILGO_VERSION";
   };
 
   // validate a single email with regex
-  const validateEmail = (email) =>
+  const validateEmail = (email: string) =>
     /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
       email
     );
 
   // validate an array of emails
-  const validateEmails = (arr) => arr.every(validateEmail);
+  const validateEmails = (arr: string[]) => arr.every(validateEmail);
 
   // copy of a string
-  const copyToClipboard = (str) => {
-    let el = createElement("textarea");
+  const copyToClipboard = (str: string) => {
+    let el: HTMLInputElement = <HTMLInputElement>createElement("textarea");
     el.value = str;
     el.setAttribute("readonly", "");
     el.style.position = "absolute";
     el.style.left = "-9999px";
-    document.body.aC(el);
+    document.body.appendChild(el);
     let selected =
       document.getSelection().rangeCount > 0
         ? document.getSelection().getRangeAt(0)
@@ -831,11 +829,13 @@ const mailgoVersion = "MAILGO_VERSION";
     // if the window object exists...
     if (windowExists()) {
       // mailgo style (gulp)
-      let mailgoCSS = createElement("style");
+      let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>(
+        createElement("style")
+      );
       mailgoCSS.id = "mailgo-style";
       mailgoCSS.type = "text/css";
-      mailgoCSS.aC(createTextNode(`MAILGO_STYLE`));
-      document.head.aC(mailgoCSS);
+      mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
+      document.head.appendChild(mailgoCSS);
 
       // DOMContentLoaded -> mailgoInit (creates the modals)
       document.addEventListener("DOMContentLoaded", mailgoInit);
