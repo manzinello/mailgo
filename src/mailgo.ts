@@ -839,8 +839,10 @@ const mailgo = () => {
   })();
 };
 
+// if mailgo is included as a script
 if (window && typeof window !== "undefined") {
   mailgo();
 }
 
+// export mailgo
 export default mailgo();
