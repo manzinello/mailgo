@@ -29,7 +29,7 @@ function style() {
     .pipe(dest("dist"));
 }
 
-function js() {
+function jsScript() {
   let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
   return src("src/*.ts")
     .pipe(replace("MAILGO_STYLE", cssMinContent))
@@ -44,21 +44,17 @@ function js() {
     .pipe(dest("dist"));
 }
 
-function jsUmd() {
+function js() {
   let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
-  return (
-    src("src/*.ts")
-      .pipe(replace("MAILGO_STYLE", cssMinContent))
-      .pipe(tsProject())
-      // .pipe(babel())
-      // .pipe(uglify())
-      .pipe(dest("./"))
-  );
+  return src("src/*.ts")
+    .pipe(replace("MAILGO_STYLE", cssMinContent))
+    .pipe(tsProject())
+    .pipe(dest("./"));
 }
 
+exports.jsScript = jsScript;
 exports.js = js;
-exports.jsUmd = jsUmd;
 
 exports.style = style;
 
-exports.default = series(style, js, jsUmd);
+exports.default = series(style, jsScript, js);
