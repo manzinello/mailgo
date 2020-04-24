@@ -4,4 +4,4 @@
 
 export as namespace Mailgo;
 
-export function mailgo(mailgoConfig: any | undefined): void;
+export function mailgo(mailgoConfig?: any): void;

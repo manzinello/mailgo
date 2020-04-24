@@ -823,28 +823,18 @@ const mailgoStyle = () => {
 };
 
 // start default mailgo
-export const mailgoDOMContentLoaded = () => {
+export const mailgo = (mailgoConfig?: any) => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
     mailgoStyle();
 
-    // DOMContentLoaded -> mailgoInit (creates the modals)
-    document.addEventListener("DOMContentLoaded", mailgoInit);
-
-    // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-    document.addEventListener("click", mailgoCheckRender);
-  }
-};
-
-export const mailgo = () => {
-  // if the window is defined...
-  if (window && typeof window !== "undefined") {
-    // add the style for mailgo
-    mailgoStyle();
-
-    // mailgo init
-    mailgoInit();
+    // if is set an initEvent add the listener
+    if (mailgoConfig.initEvent) {
+      document.addEventListener(mailgoConfig.initEvent, mailgoInit);
+    } else {
+      mailgoInit();
+    }
 
     // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
     document.addEventListener("click", mailgoCheckRender);

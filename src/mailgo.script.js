@@ -1,2 +1,3 @@
 import { mailgoDOMContentLoaded } from "../mailgo";
-mailgoDOMContentLoaded();
+
+mailgoDOMContentLoaded({ initEvent: "DOMContentLoaded" });
