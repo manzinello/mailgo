@@ -822,8 +822,8 @@ const mailgoStyle = () => {
   document.head.appendChild(mailgoCSS);
 };
 
-// start default mailgo
-export const mailgo = (mailgoConfig?: any) => {
+// export default for mailgo
+export default (mailgoConfig?: any) => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
