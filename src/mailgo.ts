@@ -825,19 +825,24 @@ const mailgo = (config?: MailgoConfig) => {
 
   // start mailgo
   (() => {
-    // if the window object exists...
-    // mailgo style (gulp)
-    let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>createElement("style");
-    mailgoCSS.id = "mailgo-style";
-    mailgoCSS.type = "text/css";
-    mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
-    document.head.appendChild(mailgoCSS);
+    // if the window is defined...
+    if (window && typeof window !== "undefined") {
+      // if the window object exists...
+      // mailgo style (gulp)
+      let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>(
+        createElement("style")
+      );
+      mailgoCSS.id = "mailgo-style";
+      mailgoCSS.type = "text/css";
+      mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
+      document.head.appendChild(mailgoCSS);
 
-    // DOMContentLoaded -> mailgoInit (creates the modals)
-    document.addEventListener("DOMContentLoaded", mailgoInit);
+      // DOMContentLoaded -> mailgoInit (creates the modals)
+      document.addEventListener("DOMContentLoaded", mailgoInit);
 
-    // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-    document.addEventListener("click", mailgoCheckRender);
+      // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+      document.addEventListener("click", mailgoCheckRender);
+    }
   })();
 };
 
