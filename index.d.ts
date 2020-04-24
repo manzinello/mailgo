@@ -4,6 +4,4 @@
 
 export as namespace Mailgo;
 
-/*~ If this module has methods, declare them as functions like so.
- */
-export function mailgo(mailgoConfig: any): void;
+export function mailgo(mailgoConfig: any | undefined): void;
