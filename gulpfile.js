@@ -47,7 +47,22 @@ function js() {
     .pipe(dest("dist"));
 }
 
+function jsUmd() {
+  let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
+  return (
+    src("src/*.ts")
+      .pipe(replace("MAILGO_VERSION", version))
+      .pipe(replace("MAILGO_STYLE", cssMinContent))
+      // .pipe(tsProject())
+      // .pipe(babel())
+      // .pipe(uglify())
+      .pipe(dest("./"))
+  );
+}
+
 exports.js = js;
+exports.jsUmd = jsUmd;
+
 exports.style = style;
 
-exports.default = series(style, js);
+exports.default = series(style, js, jsUmd);
