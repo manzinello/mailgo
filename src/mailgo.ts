@@ -1,6 +1,8 @@
+type MailgoConfig = {};
+
 const mailgoVersion: string = "MAILGO_VERSION";
 
-const mailgo = () => {
+const mailgo = (config?: MailgoConfig) => {
   // links
   const MAILTO: string = "mailto:";
   const TEL: string = "tel:";
@@ -845,4 +847,4 @@ if (window && typeof window !== "undefined") {
 }
 
 // export mailgo
-export default mailgo();
+export default mailgo;
