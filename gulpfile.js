@@ -1,4 +1,4 @@
-const { src, dest, parallel, series } = require("gulp");
+const { src, dest, series } = require("gulp");
 
 const ts = require("gulp-typescript");
 const tsProject = ts.createProject("tsconfig.json");
@@ -15,8 +15,6 @@ const uglify = require("gulp-uglify");
 const babel = require("gulp-babel");
 
 const fs = require("fs");
-
-let version = require("./package.json").version;
 
 function style() {
   return src("src/*.scss")

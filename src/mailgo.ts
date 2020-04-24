@@ -813,17 +813,21 @@ const copyToClipboard = (str: string) => {
   }
 };
 
+const mailgoStyle = () => {
+  // mailgo style
+  let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>createElement("style");
+  mailgoCSS.id = "mailgo-style";
+  mailgoCSS.type = "text/css";
+  mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
+  document.head.appendChild(mailgoCSS);
+};
+
 // start default mailgo
-export const defaultMailgo = () => {
+export const mailgoDOMContentLoaded = () => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
-    // if the window object exists...
-    // mailgo style (gulp)
-    let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>createElement("style");
-    mailgoCSS.id = "mailgo-style";
-    mailgoCSS.type = "text/css";
-    mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
-    document.head.appendChild(mailgoCSS);
+    // add the style for mailgo
+    mailgoStyle();
 
     // DOMContentLoaded -> mailgoInit (creates the modals)
     document.addEventListener("DOMContentLoaded", mailgoInit);
@@ -836,14 +840,10 @@ export const defaultMailgo = () => {
 export const mailgo = () => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
-    // if the window object exists...
-    // mailgo style (gulp)
-    let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>createElement("style");
-    mailgoCSS.id = "mailgo-style";
-    mailgoCSS.type = "text/css";
-    mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
-    document.head.appendChild(mailgoCSS);
+    // add the style for mailgo
+    mailgoStyle();
 
+    // mailgo init
     mailgoInit();
 
     // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
