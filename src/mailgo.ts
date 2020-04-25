@@ -1,3 +1,5 @@
+import { MailgoConfig } from "../mailgo";
+
 // links
 const MAILTO: string = "mailto:";
 const TEL: string = "tel:";
@@ -830,7 +832,7 @@ const mailgoStyle = (): void => {
 };
 
 // mailgo
-const mailgo = (mailgoConfig?: any): void => {
+const mailgo = (mailgoConfig?: MailgoConfig): void => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
