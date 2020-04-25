@@ -474,32 +474,32 @@ const mailgoCheckRender = (event) => {
         return;
     // if a mailgo is already showing do nothing
     if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE))
-        return;
+        return false;
     // the path of the event
     let path = (event.composedPath && event.composedPath()) ||
         composedPath(event.target);
     if (path) {
         path.forEach((element) => {
             if (element instanceof HTMLDocument || element instanceof Window)
-                return;
+                return false;
             // go in the event.path to find if the user has clicked on a mailgo element
             if (isMailgo(element, MAIL_TYPE)) {
                 // stop the normal execution of the element click
                 event.preventDefault();
                 // render mailgo
                 mailgoRender(MAIL_TYPE, element);
-                return;
+                return true;
             }
             if (isMailgo(element, TEL_TYPE)) {
                 // stop the normal execution of the element click
                 event.preventDefault();
                 // render mailgo
                 mailgoRender(TEL_TYPE, element);
-                return;
+                return true;
             }
         });
     }
-    return;
+    return false;
 };
 /**
  * mailgoKeydown
@@ -568,13 +568,14 @@ const showMailgo = (type = MAIL_TYPE) => {
     // show mailgo type mail
     if (type === MAIL_TYPE) {
         setDisplay("mailgo", "flex");
-        return;
+        return true;
     }
     // show mailgo type tel
     if (type === TEL_TYPE) {
         setDisplay("mailgo-tel", "flex");
-        return;
+        return true;
     }
+    return false;
 };
 // hide the modal
 const hideMailgo = () => {
@@ -649,7 +650,9 @@ const copyToClipboard = (str) => {
     if (selected) {
         document.getSelection().removeAllRanges();
         document.getSelection().addRange(selected);
+        return true;
     }
+    return false;
 };
 const mailgoStyle = () => {
     // mailgo style
