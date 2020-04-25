@@ -2,4 +2,9 @@
 import mailgo from "../mailgo";
 
 // call init mailgo attached to the event DOMContentLoaded
-mailgo({ initEvent: "DOMContentLoaded" });
+
+const mailgoConfig = {
+  initEvent: "DOMContentLoaded",
+};
+
+mailgo(mailgoConfig);
