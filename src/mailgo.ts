@@ -132,7 +132,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(details);
 
     // Gmail
-    gmail = <HTMLLinkElement>createElement("a");
+    gmail = createElement("a") as HTMLLinkElement;
     gmail.id = "m-gmail";
     gmail.href = DEFAULT_BTN_HREF;
     gmail.classList.add("m-open");
@@ -146,7 +146,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(gmail);
 
     // Outlook
-    outlook = <HTMLLinkElement>createElement("a");
+    outlook = createElement("a") as HTMLLinkElement;
     outlook.id = "m-outlook";
     outlook.href = DEFAULT_BTN_HREF;
     outlook.classList.add("m-open");
@@ -160,7 +160,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(outlook);
 
     // open default
-    open = <HTMLLinkElement>createElement("a");
+    open = createElement("a") as HTMLLinkElement;
     open.id = "m-open";
     open.href = DEFAULT_BTN_HREF;
     open.classList.add("m-open");
@@ -174,7 +174,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(open);
 
     // copy
-    copyMail = <HTMLLinkElement>createElement("a");
+    copyMail = createElement("a") as HTMLLinkElement;
     copyMail.id = "m-copy";
     copyMail.href = DEFAULT_BTN_HREF;
     copyMail.classList.add("m-copy");
@@ -216,7 +216,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(titleTel);
 
     // Telegram
-    telegram = <HTMLLinkElement>createElement("a");
+    telegram = createElement("a") as HTMLLinkElement;
     telegram.id = "m-tg";
     telegram.href = DEFAULT_BTN_HREF;
     telegram.classList.add("m-open");
@@ -234,7 +234,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(telegram);
 
     // WhatsApp
-    wa = <HTMLLinkElement>createElement("a");
+    wa = createElement("a") as HTMLLinkElement;
     wa.id = "m-wa";
     wa.href = DEFAULT_BTN_HREF;
     wa.classList.add("m-open");
@@ -248,7 +248,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(wa);
 
     // Skype
-    skype = <HTMLLinkElement>createElement("a");
+    skype = createElement("a") as HTMLLinkElement;
     skype.id = "m-skype";
     skype.href = DEFAULT_BTN_HREF;
     skype.classList.add("m-open");
@@ -262,7 +262,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(skype);
 
     // call default
-    call = <HTMLLinkElement>createElement("a");
+    call = createElement("a") as HTMLLinkElement;
     call.id = "m-call";
     call.href = DEFAULT_BTN_HREF;
     call.classList.add("m-open");
@@ -276,7 +276,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(call);
 
     // copy
-    copyTel = <HTMLLinkElement>createElement("a");
+    copyTel = createElement("a") as HTMLLinkElement;
     copyTel.id = "m-tel-copy";
     copyTel.href = DEFAULT_BTN_HREF;
     copyTel.classList.add("m-copy");
@@ -299,7 +299,7 @@ const mailgoInit = (): void => {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-const mailgoRender = (type = MAIL_TYPE, mailgo: any): void => {
+const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
@@ -618,7 +618,7 @@ const mailgoCheckRender = (event: Event): boolean => {
         event.preventDefault();
 
         // render mailgo
-        mailgoRender(MAIL_TYPE, element);
+        mailgoRender(MAIL_TYPE, element as HTMLLinkElement);
 
         return true;
       }
@@ -627,7 +627,7 @@ const mailgoCheckRender = (event: Event): boolean => {
         event.preventDefault();
 
         // render mailgo
-        mailgoRender(TEL_TYPE, element);
+        mailgoRender(TEL_TYPE, element as HTMLLinkElement);
 
         return true;
       }
@@ -734,7 +734,7 @@ const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
 
 const byElement = (): HTMLLinkElement => {
   // by
-  let by: HTMLLinkElement = <HTMLLinkElement>createElement("a");
+  let by: HTMLLinkElement = createElement("a") as HTMLLinkElement;
   by.href = "https://mailgo.js.org?ref=mailgo-modal";
   by.className = "m-by";
   by.target = "_blank";
@@ -799,7 +799,7 @@ const validateEmails = (arr: string[]): boolean => arr.every(validateEmail);
 
 // copy of a string
 const copyToClipboard = (str: string): boolean => {
-  let el: HTMLInputElement = <HTMLInputElement>createElement("textarea");
+  let el: HTMLInputElement = createElement("textarea") as HTMLInputElement;
   el.value = str;
   el.setAttribute("readonly", "");
   el.style.position = "absolute";
@@ -822,7 +822,7 @@ const copyToClipboard = (str: string): boolean => {
 
 const mailgoStyle = (): void => {
   // mailgo style
-  let mailgoCSS: HTMLStyleElement = <HTMLStyleElement>createElement("style");
+  let mailgoCSS: HTMLStyleElement = createElement("style") as HTMLStyleElement;
   mailgoCSS.id = "mailgo-style";
   mailgoCSS.type = "text/css";
   mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
