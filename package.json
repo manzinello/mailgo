@@ -39,6 +39,7 @@
     "@babel/parser": "^7.9.4",
     "@babel/preset-env": "^7.9.5",
     "@babel/preset-flow": "^7.9.0",
+    "@babel/preset-typescript": "^7.9.0",
     "@babel/types": "^7.9.5",
     "flow-bin": "^0.123.0",
     "gulp": "^4.0.2",
