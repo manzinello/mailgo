@@ -822,15 +822,15 @@ const mailgoStyle = () => {
   document.head.appendChild(mailgoCSS);
 };
 
-// export default for mailgo
-export default (mailgoConfig?: any) => {
+// mailgo
+const mailgo = (mailgoConfig?: any) => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
     mailgoStyle();
 
     // if is set an initEvent add the listener
-    if (mailgoConfig.initEvent) {
+    if (mailgoConfig?.initEvent) {
       document.addEventListener(mailgoConfig.initEvent, mailgoInit);
     } else {
       mailgoInit();
@@ -840,3 +840,5 @@ export default (mailgoConfig?: any) => {
     document.addEventListener("click", mailgoCheckRender);
   }
 };
+
+export default mailgo;
