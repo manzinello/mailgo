@@ -4,6 +4,7 @@
 
 export type MailgoConfig = {
   initEvent?: string;
+  // TODO here mailgo configurations!
 };
 
 export default function mailgo(mailgoConfig?: MailgoConfig): void;
