@@ -11,8 +11,8 @@ const autoprefixer = require("gulp-autoprefixer");
 const sass = require("gulp-sass");
 sass.compiler = require("node-sass");
 
-const uglify = require("gulp-uglify");
-const babel = require("gulp-babel");
+// const uglify = require("gulp-uglify");
+// const babel = require("gulp-babel");
 
 const fs = require("fs");
 
@@ -40,18 +40,7 @@ function js() {
   );
 }
 
-/*
-function ts() {
-  let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
-  return src("src/*.ts")
-    .pipe(replace("MAILGO_STYLE", cssMinContent))
-    .pipe(babel())
-    .pipe(dest("./"));
-}
-*/
-
-exports.js = js;
-// exports.ts = ts;
 exports.style = style;
+exports.js = js;
 
 exports.default = series(style, js);
