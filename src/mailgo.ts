@@ -827,7 +827,7 @@ const mailgoStyle = (): void => {
   let mailgoCSS: HTMLStyleElement = createElement("style") as HTMLStyleElement;
   mailgoCSS.id = "mailgo-style";
   mailgoCSS.type = "text/css";
-  mailgoCSS.appendChild(createTextNode(`MAILGO_STYLE`));
+  mailgoCSS.appendChild(createTextNode(`{{MAILGO_STYLE}}`));
   document.head.appendChild(mailgoCSS);
 };
 

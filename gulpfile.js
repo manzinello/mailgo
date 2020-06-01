@@ -1,5 +1,7 @@
 const { src, dest, series } = require("gulp");
 
+const MAILGO_STYLE_TAG = "{{MAILGO_STYLE}}";
+
 const tsGulp = require("gulp-typescript");
 const tsProject = tsGulp.createProject("tsconfig.json");
 
@@ -33,7 +35,7 @@ function js() {
   let cssMinContent = fs.readFileSync("dist/mailgo.min.css", "utf8");
   return (
     src("src/*.ts")
-      .pipe(replace("MAILGO_STYLE", cssMinContent))
+      .pipe(replace(MAILGO_STYLE_TAG, cssMinContent))
       .pipe(tsProject())
       // .pipe(babel())
       .pipe(dest("./"))
