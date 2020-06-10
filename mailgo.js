@@ -1,3 +1,7 @@
+// i18n for mailgo
+import i18n from "./i18n/i18n";
+// default lang
+const DEFAULT_LANG = "en";
 // links
 const MAILTO = "mailto:";
 const TEL = "tel:";
@@ -22,6 +26,17 @@ let gmail, outlook, open, telegram, wa, skype, call, copyMail, copyTel;
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (mailgoConfig) => {
+    // default language
+    let lang = DEFAULT_LANG;
+    // translations
+    let translations = i18n.translations;
+    // if a default language is defined use it
+    if (mailgoConfig.defaultLang &&
+        i18n.languages.includes(mailgoConfig.defaultLang)) {
+        lang = mailgoConfig.defaultLang;
+    }
+    // strings
+    let strings = translations[lang];
     // mailgo mail
     {
         // modal
@@ -93,7 +108,7 @@ const mailgoInit = (mailgoConfig) => {
         gmail.href = DEFAULT_BTN_HREF;
         gmail.classList.add("m-open");
         gmail.classList.add("m-gmail");
-        gmail.appendChild(createTextNode("open in "));
+        gmail.appendChild(createTextNode(strings.open_in));
         let gmailSpan = createElement(span);
         gmailSpan.className = "w-500";
         gmailSpan.appendChild(createTextNode("Gmail"));
@@ -105,7 +120,7 @@ const mailgoInit = (mailgoConfig) => {
         outlook.href = DEFAULT_BTN_HREF;
         outlook.classList.add("m-open");
         outlook.classList.add("m-outlook");
-        outlook.appendChild(createTextNode("open in "));
+        outlook.appendChild(createTextNode(strings.open_in));
         let outlookSpan = createElement(span);
         outlookSpan.className = "w-500";
         outlookSpan.appendChild(createTextNode("Outlook"));
@@ -165,7 +180,7 @@ const mailgoInit = (mailgoConfig) => {
         telegram.classList.add("m-tg");
         // by default not display
         telegram.style.display = "none";
-        telegram.appendChild(createTextNode("open in "));
+        telegram.appendChild(createTextNode(strings.open_in));
         let telegramSpan = createElement(span);
         telegramSpan.className = "w-500";
         telegramSpan.appendChild(createTextNode("Telegram"));
@@ -177,7 +192,7 @@ const mailgoInit = (mailgoConfig) => {
         wa.href = DEFAULT_BTN_HREF;
         wa.classList.add("m-open");
         wa.classList.add("m-wa");
-        wa.appendChild(createTextNode("open in "));
+        wa.appendChild(createTextNode(strings.open_in));
         let waSpan = createElement(span);
         waSpan.className = "w-500";
         waSpan.appendChild(createTextNode("WhatsApp"));
@@ -189,7 +204,7 @@ const mailgoInit = (mailgoConfig) => {
         skype.href = DEFAULT_BTN_HREF;
         skype.classList.add("m-open");
         skype.classList.add("m-skype");
-        skype.appendChild(createTextNode("open in "));
+        skype.appendChild(createTextNode(strings.open_in));
         let skypeSpan = createElement(span);
         skypeSpan.className = "w-500";
         skypeSpan.appendChild(createTextNode("Skype"));
