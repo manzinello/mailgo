@@ -1,5 +1,5 @@
 // import mailgo
-import mailgo from "../mailgo";
+import mailgo from "./mailgo.m.js";
 
 // call init mailgo attached to the event DOMContentLoaded
 

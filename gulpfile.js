@@ -38,7 +38,12 @@ function js() {
       .pipe(replace(MAILGO_STYLE_TAG, cssMinContent))
       .pipe(tsProject())
       // .pipe(babel())
-      .pipe(dest("./"))
+      .pipe(
+        rename({
+          suffix: ".m",
+        })
+      )
+      .pipe(dest("src"))
   );
 }
 

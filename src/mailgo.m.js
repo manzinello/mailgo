@@ -35,6 +35,9 @@ const mailgoInit = (mailgoConfig) => {
         i18n.languages.includes(mailgoConfig.defaultLang)) {
         lang = mailgoConfig.defaultLang;
     }
+    if (!mailgoConfig.forceLang) {
+        lang = document.documentElement.lang;
+    }
     // strings
     let strings = translations[lang];
     // mailgo mail

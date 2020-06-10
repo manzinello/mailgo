@@ -10,8 +10,8 @@
     "type": "git",
     "url": "git+https://github.com/manzinello/mailgo.git"
   },
-  "main": "./mailgo.js",
-  "module": "./mailgo.js",
+  "main": "./mailgo.m.js",
+  "module": "./mailgo.m.js",
   "keywords": [
     "mailto",
     "mail",

@@ -78,6 +78,11 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     lang = mailgoConfig.defaultLang;
   }
 
+  // if is defined <html lang=""> use it!
+  if (!mailgoConfig.forceLang && document.documentElement.lang) {
+    lang = document.documentElement.lang;
+  }
+
   // strings
   let strings: any = translations[lang];
 
