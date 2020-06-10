@@ -21,7 +21,7 @@ let gmail, outlook, open, telegram, wa, skype, call, copyMail, copyTel;
  * mailgoInit
  * the function that creates the mailgo elements in DOM
  */
-const mailgoInit = () => {
+const mailgoInit = (mailgoConfig) => {
     // mailgo mail
     {
         // modal
@@ -221,6 +221,8 @@ const mailgoInit = () => {
         // every click outside the modal will hide the modal
         modalBackground.addEventListener("click", hideMailgo);
     }
+    // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+    document.addEventListener("click", mailgoCheckRender);
 };
 /**
  * mailgoRender
@@ -670,13 +672,13 @@ const mailgo = (mailgoConfig) => {
         mailgoStyle();
         // if is set an initEvent add the listener
         if (mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.initEvent) {
-            document.addEventListener(mailgoConfig.initEvent, mailgoInit);
+            document.addEventListener(mailgoConfig.initEvent, () => {
+                mailgoInit(mailgoConfig);
+            });
         }
         else {
-            mailgoInit();
+            mailgoInit(mailgoConfig);
         }
-        // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-        document.addEventListener("click", mailgoCheckRender);
     }
 };
 export default mailgo;

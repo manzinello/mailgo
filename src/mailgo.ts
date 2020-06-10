@@ -57,7 +57,7 @@ let gmail: HTMLLinkElement,
  * mailgoInit
  * the function that creates the mailgo elements in DOM
  */
-const mailgoInit = (): void => {
+const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // mailgo mail
   {
     // modal
@@ -295,6 +295,9 @@ const mailgoInit = (): void => {
     // every click outside the modal will hide the modal
     modalBackground.addEventListener("click", hideMailgo);
   }
+
+  // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
+  document.addEventListener("click", mailgoCheckRender);
 };
 
 /**
@@ -840,13 +843,12 @@ const mailgo = (mailgoConfig?: MailgoConfig): void => {
 
     // if is set an initEvent add the listener
     if (mailgoConfig?.initEvent) {
-      document.addEventListener(mailgoConfig.initEvent, mailgoInit);
+      document.addEventListener(mailgoConfig.initEvent, () => {
+        mailgoInit(mailgoConfig);
+      });
     } else {
-      mailgoInit();
+      mailgoInit(mailgoConfig);
     }
-
-    // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-    document.addEventListener("click", mailgoCheckRender);
   }
 };
 
