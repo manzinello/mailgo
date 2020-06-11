@@ -41,6 +41,7 @@
     "@babel/preset-flow": "^7.10.1",
     "@babel/preset-typescript": "^7.10.1",
     "@babel/types": "^7.10.2",
+    "css-loader": "^3.5.3",
     "flow-bin": "^0.126.1",
     "gulp": "^4.0.2",
     "gulp-autoprefixer": "^7.0.1",
