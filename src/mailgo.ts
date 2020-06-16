@@ -3,7 +3,7 @@ import { MailgoConfig } from "../mailgo";
 // i18n for mailgo
 import i18n from "./i18n/i18n";
 
-const css = require("./mailgo.css").toString();
+const mailgoCSS = require("../dist/mailgo.min.css").toString();
 
 // default lang
 const DEFAULT_LANG = "en";
@@ -857,11 +857,13 @@ const copyToClipboard = (str: string): boolean => {
 
 const mailgoStyle = (): void => {
   // mailgo style
-  let mailgoCSS: HTMLStyleElement = createElement("style") as HTMLStyleElement;
-  mailgoCSS.id = "mailgo-style";
-  mailgoCSS.type = "text/css";
-  mailgoCSS.appendChild(createTextNode(`{{MAILGO_STYLE}}`));
-  document.head.appendChild(mailgoCSS);
+  let mailgoCSSElement: HTMLStyleElement = createElement(
+    "style"
+  ) as HTMLStyleElement;
+  mailgoCSSElement.id = "mailgo-style";
+  mailgoCSSElement.type = "text/css";
+  mailgoCSSElement.appendChild(createTextNode(mailgoCSS));
+  document.head.appendChild(mailgoCSSElement);
 };
 
 // mailgo
