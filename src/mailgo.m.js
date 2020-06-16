@@ -1,5 +1,6 @@
 // i18n for mailgo
 import i18n from "./i18n/i18n";
+// mailgo css
 const mailgoCSS = require("../dist/mailgo.min.css").toString();
 // default lang
 const DEFAULT_LANG = "en";
