@@ -6,6 +6,7 @@ export type MailgoConfig = {
   initEvent?: string;
   defaultLang?: string;
   forceLang?: boolean;
+  additionalCSS?: string;
   // TODO here mailgo configurations!
 };
 
