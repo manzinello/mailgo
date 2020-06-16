@@ -1,5 +1,6 @@
 // i18n for mailgo
 import i18n from "./i18n/i18n";
+const css = require("./mailgo.css").toString();
 // default lang
 const DEFAULT_LANG = "en";
 // links
@@ -35,7 +36,8 @@ const mailgoInit = (mailgoConfig) => {
         i18n.languages.includes(mailgoConfig.defaultLang)) {
         lang = mailgoConfig.defaultLang;
     }
-    if (!mailgoConfig.forceLang) {
+    // if is defined <html lang=""> use it!
+    if (!mailgoConfig.forceLang && document.documentElement.lang) {
         lang = document.documentElement.lang;
     }
     // strings
