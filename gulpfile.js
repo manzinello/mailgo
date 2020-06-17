@@ -1,4 +1,4 @@
-const { src, dest, series } = require("gulp");
+const { src, dest, parallel } = require("gulp");
 
 const tsGulp = require("gulp-typescript");
 const tsProject = tsGulp.createProject("tsconfig.json");
@@ -37,4 +37,4 @@ function js() {
 exports.style = style;
 exports.js = js;
 
-exports.default = series(style, js);
+exports.default = parallel(style, js);
