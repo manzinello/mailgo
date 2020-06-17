@@ -15,7 +15,7 @@ const mailgoRules = [
 
 module.exports = [
   {
-    mode: "development",
+    mode: "production",
     entry: "./mailgo.webpack.ts",
     context: path.join(__dirname, "src"),
     module: {
