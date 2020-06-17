@@ -802,7 +802,7 @@ const mailgo = (mailgoConfig) => {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"languages\":[\"en\",\"it\"],\"translations\":{\"en\":{\"open_in\":\"open in \",\"cc\":\"cc \",\"bcc\":\"bcc \",\"subject\":\"subject \",\"body\":\"body \"},\"it\":{\"open_in\":\"apri con \"}}}");
+module.exports = JSON.parse("{\"languages\":[\"en\",\"it\"],\"translations\":{\"en\":{\"open_in\":\"open in \",\"cc\":\"cc \",\"bcc\":\"bcc \",\"subject\":\"subject \",\"body\":\"body \"},\"it\":{\"open_in\":\"apri con \",\"cc\":\"cc \",\"bcc\":\"ccn \",\"subject\":\"oggetto \",\"body\":\"testo \"}}}");
 
 /***/ }),
 /* 2 */

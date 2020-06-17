@@ -5,6 +5,4 @@ const mailgoConfig = {
   initEvent: "DOMContentLoaded",
 };
 
-console.log(mailgo);
-
 mailgo(mailgoConfig);

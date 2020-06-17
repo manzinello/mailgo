@@ -9,7 +9,11 @@
       "body": "body "
     },
     "it": {
-      "open_in": "apri con "
+      "open_in": "apri con ",
+      "cc": "cc ",
+      "bcc": "ccn ",
+      "subject": "oggetto ",
+      "body": "testo "
     }
   }
 }
