@@ -1,7 +1,7 @@
 import { MailgoConfig } from "../mailgo";
 
 // i18n for mailgo
-import i18n from "./i18n/i18n";
+const i18n = require("./i18n/i18n.json");
 
 // mailgo css
 const mailgoCSS = require("../dist/mailgo.min.css").toString();
@@ -87,6 +87,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   }
 
   // strings
+  let defaultStrings: any = translations[DEFAULT_LANG];
   let strings: any = translations[lang];
 
   // mailgo mail
@@ -122,7 +123,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailCc.id = "m-cc";
     let ccSpan = createElement(span);
     ccSpan.className = "w-500";
-    ccSpan.appendChild(createTextNode("cc "));
+    ccSpan.appendChild(createTextNode(strings.cc));
     ccValue = createElement(span);
     ccValue.id = "m-cc-value";
     detailCc.appendChild(ccSpan);
@@ -133,7 +134,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailBcc.id = "m-bcc";
     let bccSpan = createElement(span);
     bccSpan.className = "w-500";
-    bccSpan.appendChild(createTextNode("bcc "));
+    bccSpan.appendChild(createTextNode(strings.bcc));
     bccValue = createElement(span);
     bccValue.id = "m-bcc-value";
     detailBcc.appendChild(bccSpan);
@@ -144,7 +145,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailSubject.id = "m-subject";
     let subjectSpan = createElement(span);
     subjectSpan.className = "w-500";
-    subjectSpan.appendChild(createTextNode("subject "));
+    subjectSpan.appendChild(createTextNode(strings.subject));
     subjectValue = createElement(span);
     subjectValue.id = "m-subject-value";
     detailSubject.appendChild(subjectSpan);
@@ -155,7 +156,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailBody.id = "m-body";
     let bodySpan = createElement(span);
     bodySpan.className = "w-500";
-    bodySpan.appendChild(createTextNode("body "));
+    bodySpan.appendChild(createTextNode(strings.body));
     bodyValue = createElement(span);
     bodyValue.id = "m-body-value";
     detailBody.appendChild(bodySpan);

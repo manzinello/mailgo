@@ -1,0 +1,15 @@
+{
+  "languages": ["en", "it"],
+  "translations": {
+    "en": {
+      "open_in": "open in ",
+      "cc": "cc ",
+      "bcc": "bcc ",
+      "subject": "subject ",
+      "body": "body "
+    },
+    "it": {
+      "open_in": "apri con "
+    }
+  }
+}
