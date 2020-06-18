@@ -75,14 +75,14 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
   // if a default language is defined use it
   if (
-    mailgoConfig.defaultLang &&
+    mailgoConfig?.defaultLang &&
     i18n.languages.includes(mailgoConfig.defaultLang)
   ) {
     lang = mailgoConfig.defaultLang;
   }
 
   // if is defined <html lang=""> use it!
-  if (!mailgoConfig.forceLang && document.documentElement.lang) {
+  if (!mailgoConfig?.forceLang && document.documentElement.lang) {
     lang = document.documentElement.lang;
   }
 

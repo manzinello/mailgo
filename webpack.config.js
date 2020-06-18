@@ -41,6 +41,9 @@ module.exports = [
     },
     output: {
       filename: "mailgo.main.js",
+      library: "mailgo",
+      libraryTarget: "commonjs2",
+      auxiliaryComment: "mailgo",
       path: path.resolve(__dirname),
     },
   },

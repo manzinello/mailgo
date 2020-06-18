@@ -1,3 +1,4 @@
+module.exports =
 /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -125,12 +126,12 @@ const mailgoInit = (mailgoConfig) => {
     // translations
     let translations = i18n.translations;
     // if a default language is defined use it
-    if (mailgoConfig.defaultLang &&
+    if ((mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.defaultLang) &&
         i18n.languages.includes(mailgoConfig.defaultLang)) {
         lang = mailgoConfig.defaultLang;
     }
     // if is defined <html lang=""> use it!
-    if (!mailgoConfig.forceLang && document.documentElement.lang) {
+    if (!(mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.forceLang) && document.documentElement.lang) {
         lang = document.documentElement.lang;
     }
     // strings
