@@ -40,8 +40,8 @@ module.exports = [
       minimize: false,
     },
     output: {
-      filename: "mailgo.js",
-      path: path.resolve(__dirname, "dist"),
+      filename: "mailgo.main.js",
+      path: path.resolve(__dirname),
     },
   },
 ];
