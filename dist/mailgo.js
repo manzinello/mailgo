@@ -164,7 +164,7 @@ const mailgoInit = (mailgoConfig) => {
         detailCc.id = "m-cc";
         let ccSpan = createElement(span);
         ccSpan.className = "w-500";
-        ccSpan.appendChild(createTextNode(strings.cc));
+        ccSpan.appendChild(createTextNode(strings.cc || defaultStrings.cc));
         ccValue = createElement(span);
         ccValue.id = "m-cc-value";
         detailCc.appendChild(ccSpan);
@@ -174,7 +174,7 @@ const mailgoInit = (mailgoConfig) => {
         detailBcc.id = "m-bcc";
         let bccSpan = createElement(span);
         bccSpan.className = "w-500";
-        bccSpan.appendChild(createTextNode(strings.bcc));
+        bccSpan.appendChild(createTextNode(strings.bcc || defaultStrings.bcc));
         bccValue = createElement(span);
         bccValue.id = "m-bcc-value";
         detailBcc.appendChild(bccSpan);
@@ -184,7 +184,7 @@ const mailgoInit = (mailgoConfig) => {
         detailSubject.id = "m-subject";
         let subjectSpan = createElement(span);
         subjectSpan.className = "w-500";
-        subjectSpan.appendChild(createTextNode(strings.subject));
+        subjectSpan.appendChild(createTextNode(strings.subject || defaultStrings.subject));
         subjectValue = createElement(span);
         subjectValue.id = "m-subject-value";
         detailSubject.appendChild(subjectSpan);
@@ -194,7 +194,7 @@ const mailgoInit = (mailgoConfig) => {
         detailBody.id = "m-body";
         let bodySpan = createElement(span);
         bodySpan.className = "w-500";
-        bodySpan.appendChild(createTextNode(strings.body));
+        bodySpan.appendChild(createTextNode(strings.body || defaultStrings.body));
         bodyValue = createElement(span);
         bodyValue.id = "m-body-value";
         detailBody.appendChild(bodySpan);
@@ -207,7 +207,7 @@ const mailgoInit = (mailgoConfig) => {
         gmail.href = DEFAULT_BTN_HREF;
         gmail.classList.add("m-open");
         gmail.classList.add("m-gmail");
-        gmail.appendChild(createTextNode(strings.open_in));
+        gmail.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let gmailSpan = createElement(span);
         gmailSpan.className = "w-500";
         gmailSpan.appendChild(createTextNode("Gmail"));
@@ -219,7 +219,7 @@ const mailgoInit = (mailgoConfig) => {
         outlook.href = DEFAULT_BTN_HREF;
         outlook.classList.add("m-open");
         outlook.classList.add("m-outlook");
-        outlook.appendChild(createTextNode(strings.open_in));
+        outlook.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let outlookSpan = createElement(span);
         outlookSpan.className = "w-500";
         outlookSpan.appendChild(createTextNode("Outlook"));
@@ -279,7 +279,7 @@ const mailgoInit = (mailgoConfig) => {
         telegram.classList.add("m-tg");
         // by default not display
         telegram.style.display = "none";
-        telegram.appendChild(createTextNode(strings.open_in));
+        telegram.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let telegramSpan = createElement(span);
         telegramSpan.className = "w-500";
         telegramSpan.appendChild(createTextNode("Telegram"));
@@ -291,7 +291,7 @@ const mailgoInit = (mailgoConfig) => {
         wa.href = DEFAULT_BTN_HREF;
         wa.classList.add("m-open");
         wa.classList.add("m-wa");
-        wa.appendChild(createTextNode(strings.open_in));
+        wa.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let waSpan = createElement(span);
         waSpan.className = "w-500";
         waSpan.appendChild(createTextNode("WhatsApp"));
@@ -303,7 +303,7 @@ const mailgoInit = (mailgoConfig) => {
         skype.href = DEFAULT_BTN_HREF;
         skype.classList.add("m-open");
         skype.classList.add("m-skype");
-        skype.appendChild(createTextNode(strings.open_in));
+        skype.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let skypeSpan = createElement(span);
         skypeSpan.className = "w-500";
         skypeSpan.appendChild(createTextNode("Skype"));
