@@ -3,10 +3,20 @@
   "translations": {
     "en": {
       "open_in": "open in ",
-      "cc": "cc ",
-      "bcc": "bcc ",
-      "subject": "subject ",
-      "body": "body "
+      "cc_": "cc ",
+      "bcc_": "bcc ",
+      "subject_": "subject ",
+      "body_": "body ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "call",
+      "open": "open",
+      "_default": " default",
+      "_as_default": " as default",
+      "copy": "copy"
     },
     "it": {
       "open_in": "apri con ",
