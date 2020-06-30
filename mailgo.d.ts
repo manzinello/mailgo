@@ -2,6 +2,8 @@
 // Project: mailgo
 // Definitions by: Matteo Manzinello <https://matteomanzinello.com>
 
+declare module "mailgo";
+
 export type MailgoConfig = {
   initEvent?: string;
   defaultLang?: string;

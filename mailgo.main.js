@@ -780,7 +780,7 @@ const mailgoStyle = () => {
     document.head.appendChild(mailgoCSSElement);
 };
 // mailgo
-const mailgo = (mailgoConfig) => {
+function mailgo(mailgoConfig) {
     // if the window is defined...
     if (window && typeof window !== "undefined") {
         // add the style for mailgo
@@ -795,7 +795,7 @@ const mailgo = (mailgoConfig) => {
             mailgoInit(mailgoConfig);
         }
     }
-};
+}
 /* harmony default export */ __webpack_exports__["default"] = (mailgo);
 
 
