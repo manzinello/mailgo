@@ -59,5 +59,8 @@
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mailgo"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   }
 }
