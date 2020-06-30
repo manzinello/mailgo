@@ -211,7 +211,7 @@ const mailgoInit = (mailgoConfig) => {
         gmail.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let gmailSpan = createElement(span);
         gmailSpan.className = "w-500";
-        gmailSpan.appendChild(createTextNode("Gmail"));
+        gmailSpan.appendChild(createTextNode(strings.gmail || defaultStrings.gmail));
         gmail.appendChild(gmailSpan);
         modalContent.appendChild(gmail);
         // Outlook
@@ -223,7 +223,7 @@ const mailgoInit = (mailgoConfig) => {
         outlook.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let outlookSpan = createElement(span);
         outlookSpan.className = "w-500";
-        outlookSpan.appendChild(createTextNode("Outlook"));
+        outlookSpan.appendChild(createTextNode(strings.outlook || defaultStrings.outlook));
         outlook.appendChild(outlookSpan);
         modalContent.appendChild(outlook);
         // open default
@@ -234,9 +234,9 @@ const mailgoInit = (mailgoConfig) => {
         open.classList.add("m-default");
         let openSpan = createElement(span);
         openSpan.className = "w-500";
-        openSpan.appendChild(createTextNode("open"));
+        openSpan.appendChild(createTextNode(strings.open || defaultStrings.open));
         open.appendChild(openSpan);
-        open.appendChild(createTextNode(" default"));
+        open.appendChild(createTextNode(strings._default || defaultStrings._default));
         modalContent.appendChild(open);
         // copy
         copyMail = createElement("a");
@@ -244,7 +244,7 @@ const mailgoInit = (mailgoConfig) => {
         copyMail.href = DEFAULT_BTN_HREF;
         copyMail.classList.add("m-copy");
         copyMail.classList.add("w-500");
-        copyMail.appendChild(createTextNode("copy"));
+        copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
         modalContent.appendChild(copyMail);
         modalContent.appendChild(byElement());
         // add the modal at the end of the body
@@ -283,7 +283,7 @@ const mailgoInit = (mailgoConfig) => {
         telegram.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let telegramSpan = createElement(span);
         telegramSpan.className = "w-500";
-        telegramSpan.appendChild(createTextNode("Telegram"));
+        telegramSpan.appendChild(createTextNode(strings.telegram || defaultStrings.telegram));
         telegram.appendChild(telegramSpan);
         modalContent.appendChild(telegram);
         // WhatsApp
@@ -295,7 +295,7 @@ const mailgoInit = (mailgoConfig) => {
         wa.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let waSpan = createElement(span);
         waSpan.className = "w-500";
-        waSpan.appendChild(createTextNode("WhatsApp"));
+        waSpan.appendChild(createTextNode(strings.whatsapp || defaultStrings.whatsapp));
         wa.appendChild(waSpan);
         modalContent.appendChild(wa);
         // Skype
@@ -307,7 +307,7 @@ const mailgoInit = (mailgoConfig) => {
         skype.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
         let skypeSpan = createElement(span);
         skypeSpan.className = "w-500";
-        skypeSpan.appendChild(createTextNode("Skype"));
+        skypeSpan.appendChild(createTextNode(strings.skype || defaultStrings.skype));
         skype.appendChild(skypeSpan);
         modalContent.appendChild(skype);
         // call default
@@ -318,9 +318,9 @@ const mailgoInit = (mailgoConfig) => {
         call.classList.add("m-default");
         let callSpan = createElement(span);
         callSpan.className = "w-500";
-        callSpan.appendChild(createTextNode("call"));
+        callSpan.appendChild(createTextNode(strings.call || defaultStrings.call));
         call.appendChild(callSpan);
-        call.appendChild(createTextNode(" as default"));
+        call.appendChild(createTextNode(strings._as_default || defaultStrings._as_default));
         modalContent.appendChild(call);
         // copy
         copyTel = createElement("a");
@@ -328,7 +328,7 @@ const mailgoInit = (mailgoConfig) => {
         copyTel.href = DEFAULT_BTN_HREF;
         copyTel.classList.add("m-copy");
         copyTel.classList.add("w-500");
-        copyTel.appendChild(createTextNode("copy"));
+        copyTel.appendChild(createTextNode(strings.copy || defaultStrings.copy));
         modalContent.appendChild(copyTel);
         modalContent.appendChild(byElement());
         // add the modal at the end of the body
@@ -803,7 +803,7 @@ const mailgo = (mailgoConfig) => {
 /* 1 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"languages\":[\"en\",\"it\"],\"translations\":{\"en\":{\"open_in\":\"open in \",\"cc\":\"cc \",\"bcc\":\"bcc \",\"subject\":\"subject \",\"body\":\"body \"},\"it\":{\"open_in\":\"apri con \",\"cc\":\"cc \",\"bcc\":\"ccn \",\"subject\":\"oggetto \",\"body\":\"testo \"}}}");
+module.exports = JSON.parse("{\"languages\":[\"en\",\"it\"],\"translations\":{\"en\":{\"open_in\":\"open in \",\"cc_\":\"cc \",\"bcc_\":\"bcc \",\"subject_\":\"subject \",\"body_\":\"body \",\"gmail\":\"Gmail\",\"outlook\":\"Outlook\",\"telegram\":\"Telegram\",\"whatsapp\":\"WhatsApp\",\"skype\":\"Skype\",\"call\":\"call\",\"open\":\"open\",\"_default\":\" default\",\"_as_default\":\" as default\",\"copy\":\"copy\"},\"it\":{\"open_in\":\"apri con \",\"cc\":\"cc \",\"bcc\":\"ccn \",\"subject\":\"oggetto \",\"body\":\"testo \",\"gmail\":\"Gmail\",\"outlook\":\"Outlook\",\"telegram\":\"Telegram\",\"whatsapp\":\"WhatsApp\",\"skype\":\"Skype\",\"call\":\"chiama\",\"open\":\"apri\",\"_default\":\" \",\"_as_default\":\" \",\"copy\":\"copia\"}}}");
 
 /***/ }),
 /* 2 */

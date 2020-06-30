@@ -23,7 +23,17 @@
       "cc": "cc ",
       "bcc": "ccn ",
       "subject": "oggetto ",
-      "body": "testo "
+      "body": "testo ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "chiama",
+      "open": "apri",
+      "_default": " ",
+      "_as_default": " ",
+      "copy": "copia"
     }
   }
 }
