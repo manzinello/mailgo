@@ -27,8 +27,8 @@ const mailgoRules = [
 module.exports = [
   {
     mode: "production",
-    entry: "./mailgo.webpack.ts",
-    context: path.join(__dirname, "src"),
+    entry: "./mailgo.dist.ts",
+    context: path.join(__dirname, "webpack"),
     module: {
       rules: mailgoRules,
     },
@@ -37,6 +37,8 @@ module.exports = [
     },
     output: {
       filename: "mailgo.min.js",
+      library: "mailgo",
+      libraryTarget: "window",
       path: path.resolve(__dirname, "dist"),
     },
   },
@@ -44,7 +46,7 @@ module.exports = [
   {
     mode: "production",
     entry: "./mailgo.lib.ts",
-    context: path.join(__dirname, "src"),
+    context: path.join(__dirname, "webpack"),
     module: {
       rules: mailgoRules,
     },
@@ -60,7 +62,6 @@ module.exports = [
       libraryTarget: "umd",
       libraryExport: "default",
       globalObject: "typeof self !== 'undefined' ? self : this",
-      // auxiliaryComment: "mailgo",
       path: path.resolve(__dirname),
     },
   },
