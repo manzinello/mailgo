@@ -228,7 +228,7 @@ __webpack_require__.r(__webpack_exports__);
 
 // CONCATENATED MODULE: ../src/mailgo.ts
 // i18n for mailgo
-var i18n = __webpack_require__(0); // mailgo css
+var i18n = __webpack_require__(0); // mailgo scss
 
 
 var mailgoCSS = __webpack_require__(1).toString(); // default lang
@@ -274,13 +274,18 @@ var mailgoInit = function mailgoInit(mailgoConfig) {
 
   var translations = i18n.translations; // if a default language is defined use it
 
-  if ((mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.defaultLang) && i18n.languages.includes(mailgoConfig.defaultLang)) {
-    lang = mailgoConfig.defaultLang;
+  if ((mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.lang) && i18n.languages.includes(mailgoConfig.lang)) {
+    lang = mailgoConfig.lang;
   } // if is defined <html lang=""> use it!
 
 
-  if (!(mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.forceLang) && document.documentElement.lang) {
-    lang = document.documentElement.lang;
+  if (!(mailgoConfig === null || mailgoConfig === void 0 ? void 0 : mailgoConfig.forceLang)) {
+    // keep the lang from html
+    var htmlLang = document.documentElement.lang; // if there are translations...
+
+    if (i18n.languages.includes(htmlLang)) {
+      lang = document.documentElement.lang;
+    }
   } // strings
 
 
