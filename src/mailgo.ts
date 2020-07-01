@@ -3,7 +3,7 @@ import { MailgoConfig } from "../mailgo";
 // i18n for mailgo
 const i18n = require("../i18n/i18n.json");
 
-// mailgo css
+// mailgo scss
 const mailgoCSS = require("./mailgo.scss").toString();
 
 // default lang
