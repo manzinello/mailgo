@@ -1,32 +1,31 @@
 const path = require("path");
-const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
+const { presets } = require("./babel.config");
 
 const mailgoRules = [
   {
     test: /\.tsx?$/,
     include: path.resolve(__dirname, "./src/"),
-    use: "ts-loader",
+    use: [
+      "ts-loader",
+      /*{
+        loader: "babel-loader",
+        options: {
+          presets: presets,
+        },
+      },*/
+    ],
     exclude: /node_modules/,
   },
   {
     test: /\.s[ac]ss$/i,
     use: ["to-string-loader", "css-loader", "sass-loader"],
   },
-  {
-    test: /\.m?js$/,
-    exclude: /(node_modules|bower_components)/,
-    use: {
-      loader: "babel-loader",
-      options: {
-        presets: ["@babel/preset-env"],
-      },
-    },
-  },
 ];
 
 module.exports = [
   {
     mode: "production",
+    target: "web",
     entry: "./mailgo.dist.ts",
     context: path.join(__dirname, "webpack"),
     module: {
@@ -42,9 +41,30 @@ module.exports = [
       path: path.resolve(__dirname, "dist"),
     },
   },
-
   {
     mode: "production",
+    target: "web",
+    entry: "./mailgo.dist.ts",
+    context: path.join(__dirname, "webpack"),
+    module: {
+      rules: mailgoRules,
+    },
+    optimization: {
+      minimize: false,
+    },
+    resolve: {
+      extensions: [".ts", ".js"],
+    },
+    output: {
+      filename: "mailgo.js",
+      library: "mailgo",
+      libraryTarget: "window",
+      path: path.resolve(__dirname, "dist"),
+    },
+  },
+  {
+    mode: "production",
+    target: "node",
     entry: "./mailgo.lib.ts",
     context: path.join(__dirname, "webpack"),
     module: {

@@ -1,7 +1,7 @@
 import { MailgoConfig } from "../mailgo";
 
 // i18n for mailgo
-const i18n = require("./i18n/i18n.json");
+const i18n = require("../i18n/i18n.json");
 
 // mailgo css
 const mailgoCSS = require("./mailgo.scss").toString();
@@ -578,7 +578,7 @@ const openWhatsApp = (): void => {
   hideMailgo();
 };
 
-const callDefault = (): void => {
+const callDefault = (event?: any): void => {
   let callUrl = "tel:" + tel;
   window.open(callUrl);
   hideMailgo();

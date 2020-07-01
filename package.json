@@ -42,6 +42,7 @@
     "@babel/preset-flow": "^7.10.1",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/types": "^7.10.3",
+    "babel-loader": "^8.1.0",
     "css-loader": "^3.6.0",
     "cssnano": "^4.1.10",
     "flow-bin": "^0.128.0",
