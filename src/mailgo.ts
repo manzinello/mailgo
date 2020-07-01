@@ -578,7 +578,7 @@ const openWhatsApp = (): void => {
   hideMailgo();
 };
 
-const callDefault = (event?: any): void => {
+const callDefault = () => {
   let callUrl = "tel:" + tel;
   window.open(callUrl);
   hideMailgo();

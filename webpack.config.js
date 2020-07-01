@@ -1,19 +1,10 @@
 const path = require("path");
-const { presets } = require("./babel.config");
 
 const mailgoRules = [
   {
     test: /\.tsx?$/,
     include: path.resolve(__dirname, "./src/"),
-    use: [
-      "ts-loader",
-      /*{
-        loader: "babel-loader",
-        options: {
-          presets: presets,
-        },
-      },*/
-    ],
+    use: ["babel-loader"],
     exclude: /node_modules/,
   },
   {
