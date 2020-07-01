@@ -1020,3 +1020,4 @@ src_mailgo(mailgoConfig);
 
 /***/ })
 /******/ ]);
+//# sourceMappingURL=mailgo.js.map

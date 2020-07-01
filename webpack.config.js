@@ -17,6 +17,7 @@ module.exports = [
   {
     mode: "production",
     target: "web",
+    devtool: "source-map",
     entry: "./mailgo.dist.ts",
     context: path.join(__dirname, "webpack"),
     module: {
@@ -35,6 +36,7 @@ module.exports = [
   {
     mode: "production",
     target: "web",
+    devtool: "source-map",
     entry: "./mailgo.dist.ts",
     context: path.join(__dirname, "webpack"),
     module: {
@@ -56,6 +58,7 @@ module.exports = [
   {
     mode: "production",
     target: "node",
+    devtool: "source-map",
     entry: "./mailgo.lib.ts",
     context: path.join(__dirname, "webpack"),
     module: {
