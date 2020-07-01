@@ -6,9 +6,9 @@ declare module "mailgo";
 
 export type MailgoConfig = {
   initEvent?: string;
-  defaultLang?: string;
+  lang?: string;
   forceLang?: boolean;
-  additionalCSS?: string;
+  // additionalCSS?: string;
   // TODO here mailgo configurations!
 };
 
