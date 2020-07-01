@@ -59,7 +59,6 @@
     "webpack-cli": "^3.3.12"
   },
   "dependencies": {},
-  "browserslist": "cover 99.5%",
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mailgo"
