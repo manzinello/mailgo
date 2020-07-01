@@ -1,4 +1,5 @@
 const path = require("path");
+const UglifyJsPlugin = require("uglifyjs-webpack-plugin");
 
 const mailgoRules = [
   {
@@ -10,6 +11,16 @@ const mailgoRules = [
   {
     test: /\.s[ac]ss$/i,
     use: ["to-string-loader", "css-loader", "sass-loader"],
+  },
+  {
+    test: /\.m?js$/,
+    exclude: /(node_modules|bower_components)/,
+    use: {
+      loader: "babel-loader",
+      options: {
+        presets: ["@babel/preset-env"],
+      },
+    },
   },
 ];
 
@@ -29,9 +40,10 @@ module.exports = [
       path: path.resolve(__dirname, "dist"),
     },
   },
+
   {
     mode: "production",
-    entry: "./mailgo.ts",
+    entry: "./mailgo.lib.ts",
     context: path.join(__dirname, "src"),
     module: {
       rules: mailgoRules,
@@ -39,11 +51,16 @@ module.exports = [
     optimization: {
       minimize: false,
     },
+    resolve: {
+      extensions: [".ts", ".js"],
+    },
     output: {
-      filename: "mailgo.main.js",
+      filename: "lib/mailgo.js",
       library: "mailgo",
-      libraryTarget: "commonjs2",
-      auxiliaryComment: "mailgo",
+      libraryTarget: "umd",
+      libraryExport: "default",
+      globalObject: "typeof self !== 'undefined' ? self : this",
+      // auxiliaryComment: "mailgo",
       path: path.resolve(__dirname),
     },
   },

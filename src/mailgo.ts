@@ -893,7 +893,7 @@ const mailgoStyle = (): void => {
 };
 
 // mailgo
-function mailgo(mailgoConfig?: MailgoConfig) {
+export const mailgo = (mailgoConfig?: MailgoConfig) => {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
@@ -908,6 +908,6 @@ function mailgo(mailgoConfig?: MailgoConfig) {
       mailgoInit(mailgoConfig);
     }
   }
-}
+};
 
 export default mailgo;
