@@ -49,7 +49,7 @@ $default-border-radius: 20px;
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: rgb(217, 217, 217);
+    background-color: rgb(200, 200, 200);
     opacity: 0.8;
   }
 
@@ -61,7 +61,7 @@ $default-border-radius: 20px;
     min-width: 200px;
     max-width: 240px;
     background-color: #fff;
-    opacity: 0.97;
+    opacity: 0.95;
     border-radius: $default-border-radius;
     box-shadow: 30px -30px 60px #d9d9d9, -30px 30px 60px #ffffff;
     color: $default-color;
@@ -73,7 +73,6 @@ $default-border-radius: 20px;
 
     &:hover {
       opacity: 1;
-      box-shadow: 30px -30px 60px #d9d9d9, -30px 30px 60px #ffffff;
     }
 
     .m-title {
@@ -167,5 +166,17 @@ $default-border-radius: 20px;
   }
 
   &.m-dark {
+    .m-modal-back {
+      background-color: rgb(20, 20, 20);
+    }
+    .m-modal-content {
+      color: white;
+      box-shadow: 30px -30px 60px rgb(38, 38, 38),
+        -30px 30px 60px rgb(10, 10, 10);
+      background-color: rgb(30, 30, 30);
+      a {
+        color: white;
+      }
+    }
   }
 }

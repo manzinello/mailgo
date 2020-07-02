@@ -131,7 +131,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailCc.id = "m-cc";
     let ccSpan = createElement(span);
     ccSpan.className = "w-500";
-    ccSpan.appendChild(createTextNode(strings.cc || defaultStrings.cc));
+    ccSpan.appendChild(createTextNode(strings.cc_ || defaultStrings.cc_));
     ccValue = createElement(span);
     ccValue.id = "m-cc-value";
     detailCc.appendChild(ccSpan);
@@ -142,7 +142,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailBcc.id = "m-bcc";
     let bccSpan = createElement(span);
     bccSpan.className = "w-500";
-    bccSpan.appendChild(createTextNode(strings.bcc || defaultStrings.bcc));
+    bccSpan.appendChild(createTextNode(strings.bcc_ || defaultStrings.bcc_));
     bccValue = createElement(span);
     bccValue.id = "m-bcc-value";
     detailBcc.appendChild(bccSpan);
@@ -154,7 +154,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     let subjectSpan = createElement(span);
     subjectSpan.className = "w-500";
     subjectSpan.appendChild(
-      createTextNode(strings.subject || defaultStrings.subject)
+      createTextNode(strings.subject_ || defaultStrings.subject_)
     );
     subjectValue = createElement(span);
     subjectValue.id = "m-subject-value";
@@ -166,7 +166,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     detailBody.id = "m-body";
     let bodySpan = createElement(span);
     bodySpan.className = "w-500";
-    bodySpan.appendChild(createTextNode(strings.body || defaultStrings.body));
+    bodySpan.appendChild(createTextNode(strings.body_ || defaultStrings.body_));
     bodyValue = createElement(span);
     bodyValue.id = "m-body-value";
     detailBody.appendChild(bodySpan);
@@ -252,6 +252,11 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modal.style.display = "none";
     modal.id = "mailgo-tel";
     modal.classList.add("m-modal");
+
+    // if dark is in config
+    if (mailgoConfig?.dark) {
+      modal.classList.add("m-dark");
+    }
 
     // background
     let modalBackground = createElement();
