@@ -63,21 +63,21 @@ $default-border-radius: 20px;
     background-color: #fff;
     opacity: 0.97;
     border-radius: $default-border-radius;
-    box-shadow: 30px 30px 60px rgb(217, 217, 217), -30px -30px 60px #ffffff;
+    box-shadow: 30px -30px 60px #d9d9d9, -30px 30px 60px #ffffff;
     color: $default-color;
     display: flex;
     flex-direction: column;
     overflow: auto;
-    padding: 20px;
+    padding: 24px;
     transition: 0.5s box-shadow;
 
     &:hover {
       opacity: 1;
-      box-shadow: 30px 30px 60px #d9d9d9, -30px -30px 60px #ffffff;
+      box-shadow: 30px -30px 60px #d9d9d9, -30px 30px 60px #ffffff;
     }
 
     .m-title {
-      margin-bottom: $default-border-radius;
+      margin-bottom: 8px;
       overflow: hidden;
       white-space: nowrap;
       text-overflow: ellipsis;
