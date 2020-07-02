@@ -1,14 +1,14 @@
-# 💌 mailgo, a different mailto and another tel <https://mailgo.js.org>
+# 💌 mailgo
+
+## a different mailto and another tel <https://mailgo.js.org>
 
 Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities! Open directly Gmail, Outlook for mails; Telegram, WhatsApp or Skype for phone numbers.
 
 ![mailgo screencast](https://github.com/manzinello/mailgo/raw/master/assets/video/mailgo.gif)
 
-<a href="https://www.producthunt.com/posts/mailgo?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-mailgo" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=157026&theme=dark" alt="mailgo - A more intuitive mail-to alternative | Product Hunt Embed" style="width: 250px; height: 54px;" width="250px" height="54px" /></a>
+## docs
 
-## Pika
-
-[![Join the package community on Pika](https://img.shields.io/badge/Pika%20Community-Ask%20questions,%20get%20answers-blue?style=flag-square)](https://www.pika.dev/npm/mailgo)
+<https://mailgo.js.org>
 
 ## thanks
 
