@@ -10,5 +10,10 @@
     "moduleResolution": "node",
     "resolveJsonModule": true
   },
-  "include": ["src", "webpack/mailgo.lib.ts", "webpack/mailgo.dist.ts"]
+  "include": [
+    "src",
+    "mailgo.d.ts",
+    "webpack/mailgo.lib.ts",
+    "webpack/mailgo.dist.ts"
+  ]
 }
