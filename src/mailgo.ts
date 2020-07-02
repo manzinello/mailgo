@@ -101,6 +101,11 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modal.id = "mailgo";
     modal.classList.add("m-modal");
 
+    // if dark is in config
+    if (mailgoConfig?.dark) {
+      modal.classList.add("m-dark");
+    }
+
     // background
     let modalBackground = createElement();
     modalBackground.className = "m-modal-back";

@@ -9,7 +9,6 @@ export type MailgoConfig = {
   lang?: string;
   forceLang?: boolean;
   dark?: boolean;
-  // additionalCSS?: string;
   // TODO here mailgo configurations!
 };
 
