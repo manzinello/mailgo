@@ -8,6 +8,7 @@ export type MailgoConfig = {
   initEvent?: string;
   lang?: string;
   forceLang?: boolean;
+  dark?: boolean;
   // additionalCSS?: string;
   // TODO here mailgo configurations!
 };
