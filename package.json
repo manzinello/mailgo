@@ -58,9 +58,6 @@
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
   },
-  "publishConfig": {
-    "registry": "https://npm.pkg.github.com/"
-  },
   "dependencies": {},
   "funding": {
     "type": "opencollective",
