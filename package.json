@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.9.2",
+  "version": "0.9.3",
   "description": "a different mailto: and another tel:",
   "scripts": {
     "build": "webpack",
@@ -57,6 +57,9 @@
     "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.12"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
   },
   "dependencies": {},
   "funding": {
