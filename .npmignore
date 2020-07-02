@@ -13,3 +13,4 @@ wdio.conf.js
 .flowconfig
 babel.config.js
 webpack
+examples
