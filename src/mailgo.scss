@@ -168,8 +168,7 @@ $default-border-radius: 20px;
   &.m-dark {
     .m-modal-content {
       color: white;
-      box-shadow: 0 3px 20px rgba(32, 35, 42, 0.5);
-      background-color: rgb(32, 35, 42);
+      background-color: #20232a;
       a {
         color: white;
       }
