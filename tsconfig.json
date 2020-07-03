@@ -8,7 +8,8 @@
     "jsx": "react",
     "allowJs": true,
     "moduleResolution": "node",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "declaration": true
   },
   "include": [
     "src",

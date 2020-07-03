@@ -10,5 +10,5 @@ declare module "mailgo" {
     forceLang?: boolean;
   };
 
-  export function mailgo(mailgoConfig?: MailgoConfig): void;
+  export default function mailgo(mailgoConfig?: MailgoConfig): void;
 }
