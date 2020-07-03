@@ -73,10 +73,10 @@ let gmail: HTMLLinkElement,
  */
 const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // default language
-  let lang = DEFAULT_LANG;
+  let lang: string = DEFAULT_LANG;
 
   // translations
-  let translations: MailgoTranslations = i18n.translations;
+  let { translations }: { translations: MailgoTranslations } = i18n;
 
   // if a default language is defined use it
   if (mailgoConfig?.lang && i18n.languages.includes(mailgoConfig.lang)) {
@@ -101,7 +101,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // mailgo mail
   {
     // modal
-    let modal = createElement();
+    let modal: HTMLElement = createElement();
     modal.style.display = "none";
     modal.id = "mailgo";
     modal.classList.add("m-modal");
@@ -112,12 +112,12 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     }
 
     // background
-    let modalBackground = createElement();
+    let modalBackground: HTMLElement = createElement();
     modalBackground.className = "m-modal-back";
     modal.appendChild(modalBackground);
 
     // modal content
-    let modalContent = createElement();
+    let modalContent: HTMLElement = createElement();
     modalContent.className = "m-modal-content";
     modal.appendChild(modalContent);
 
@@ -128,13 +128,13 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(title);
 
     // details
-    let details = createElement();
+    let details: HTMLElement = createElement();
     details.id = "m-details";
     details.className = "m-details";
 
     detailCc = createElement("p");
     detailCc.id = "m-cc";
-    let ccSpan = createElement(span);
+    let ccSpan: HTMLElement = createElement(span);
     ccSpan.className = "w-500";
     ccSpan.appendChild(createTextNode(strings.cc_ || defaultStrings.cc_));
     ccValue = createElement(span);
@@ -145,7 +145,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
     detailBcc = createElement("p");
     detailBcc.id = "m-bcc";
-    let bccSpan = createElement(span);
+    let bccSpan: HTMLElement = createElement(span);
     bccSpan.className = "w-500";
     bccSpan.appendChild(createTextNode(strings.bcc_ || defaultStrings.bcc_));
     bccValue = createElement(span);
@@ -156,7 +156,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
     detailSubject = createElement("p");
     detailSubject.id = "m-subject";
-    let subjectSpan = createElement(span);
+    let subjectSpan: HTMLElement = createElement(span);
     subjectSpan.className = "w-500";
     subjectSpan.appendChild(
       createTextNode(strings.subject_ || defaultStrings.subject_)
@@ -169,7 +169,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
     detailBody = createElement("p");
     detailBody.id = "m-body";
-    let bodySpan = createElement(span);
+    let bodySpan: HTMLElement = createElement(span);
     bodySpan.className = "w-500";
     bodySpan.appendChild(createTextNode(strings.body_ || defaultStrings.body_));
     bodyValue = createElement(span);
@@ -189,7 +189,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     gmail.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let gmailSpan = createElement(span);
+    let gmailSpan: HTMLElement = createElement(span);
     gmailSpan.className = "w-500";
     gmailSpan.appendChild(
       createTextNode(strings.gmail || defaultStrings.gmail)
@@ -207,7 +207,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     outlook.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let outlookSpan = createElement(span);
+    let outlookSpan: HTMLElement = createElement(span);
     outlookSpan.className = "w-500";
     outlookSpan.appendChild(
       createTextNode(strings.outlook || defaultStrings.outlook)
@@ -222,7 +222,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     open.href = DEFAULT_BTN_HREF;
     open.classList.add("m-open");
     open.classList.add("m-default");
-    let openSpan = createElement(span);
+    let openSpan: HTMLElement = createElement(span);
     openSpan.className = "w-500";
     openSpan.appendChild(createTextNode(strings.open || defaultStrings.open));
     open.appendChild(openSpan);
@@ -253,7 +253,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // mailgo tel
   {
     // modal
-    let modal = createElement();
+    let modal: HTMLElement = createElement();
     modal.style.display = "none";
     modal.id = "mailgo-tel";
     modal.classList.add("m-modal");
@@ -264,12 +264,12 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     }
 
     // background
-    let modalBackground = createElement();
+    let modalBackground: HTMLElement = createElement();
     modalBackground.className = "m-modal-back";
     modal.appendChild(modalBackground);
 
     // modal content
-    let modalContent = createElement();
+    let modalContent: HTMLElement = createElement();
     modalContent.className = "m-modal-content";
     modal.appendChild(modalContent);
 
@@ -292,7 +292,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     telegram.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let telegramSpan = createElement(span);
+    let telegramSpan: HTMLElement = createElement(span);
     telegramSpan.className = "w-500";
     telegramSpan.appendChild(
       createTextNode(strings.telegram || defaultStrings.telegram)
@@ -308,7 +308,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     wa.classList.add("m-open");
     wa.classList.add("m-wa");
     wa.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
-    let waSpan = createElement(span);
+    let waSpan: HTMLElement = createElement(span);
     waSpan.className = "w-500";
     waSpan.appendChild(
       createTextNode(strings.whatsapp || defaultStrings.whatsapp)
@@ -326,7 +326,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     skype.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let skypeSpan = createElement(span);
+    let skypeSpan: HTMLElement = createElement(span);
     skypeSpan.className = "w-500";
     skypeSpan.appendChild(
       createTextNode(strings.skype || defaultStrings.skype)
@@ -341,7 +341,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     call.href = DEFAULT_BTN_HREF;
     call.classList.add("m-open");
     call.classList.add("m-default");
-    let callSpan = createElement(span);
+    let callSpan: HTMLElement = createElement(span);
     callSpan.className = "w-500";
     callSpan.appendChild(createTextNode(strings.call || defaultStrings.call));
     call.appendChild(callSpan);
@@ -519,7 +519,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
 // actions
 const openGmail = (): void => {
   // Gmail url
-  let gmailUrl =
+  let gmailUrl: string =
     "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
     encodeURIComponent(mail);
 
@@ -538,7 +538,7 @@ const openGmail = (): void => {
 
 const openOutlook = (): void => {
   // Outlook url
-  let outlookUrl =
+  let outlookUrl: string =
     "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
     encodeURIComponent(mail);
 
@@ -560,7 +560,7 @@ const openDefault = (): void => {
 
 const openTelegram = (): void => {
   // Telegram url
-  let tgUrl = "https://t.me/" + telegramUsername;
+  let tgUrl: string = "https://t.me/" + telegramUsername;
 
   // open the url
   window.open(tgUrl, "_blank");
@@ -570,10 +570,10 @@ const openTelegram = (): void => {
 };
 
 const openSkype = (): void => {
-  let skype = skypeUsername !== "" ? skypeUsername : tel;
+  let skype: string = skypeUsername !== "" ? skypeUsername : tel;
 
   // Telegram url
-  let skypeUrl = "skype:" + skype;
+  let skypeUrl: string = "skype:" + skype;
 
   // open the url
   window.open(skypeUrl, "_blank");
@@ -584,7 +584,7 @@ const openSkype = (): void => {
 
 const openWhatsApp = (): void => {
   // WhatsApp url
-  let waUrl = "https://wa.me/" + tel;
+  let waUrl: string = "https://wa.me/" + tel;
 
   // the details if provided
   if (msg) waUrl + "?text=" + msg;
@@ -597,7 +597,7 @@ const openWhatsApp = (): void => {
 };
 
 const callDefault = () => {
-  let callUrl = "tel:" + tel;
+  let callUrl: string = "tel:" + tel;
   window.open(callUrl);
   hideMailgo();
 };
@@ -676,7 +676,7 @@ const mailgoCheckRender = (event: Event): boolean => {
     !document.contains(getE("mailgo")) ||
     !document.contains(getE("mailgo-tel"))
   )
-    return;
+    return false;
 
   // if a mailgo is already showing do nothing
   if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return false;
@@ -884,7 +884,7 @@ const copyToClipboard = (str: string): boolean => {
   el.style.position = "absolute";
   el.style.left = "-9999px";
   document.body.appendChild(el);
-  let selected =
+  let selected: Range | boolean =
     document.getSelection().rangeCount > 0
       ? document.getSelection().getRangeAt(0)
       : false;
