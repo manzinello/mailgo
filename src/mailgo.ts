@@ -1,13 +1,18 @@
-import { MailgoConfig } from "mailgo";
+import {
+  MailgoConfig,
+  MailgoTranslations,
+  MailgoTranslation,
+  MailgoI18n,
+} from "mailgo";
 
 // i18n for mailgo
-const i18n = require("../i18n/i18n.json");
+const i18n: MailgoI18n = require("../i18n/i18n.json");
 
 // mailgo scss
-const mailgoCSS = require("./mailgo.scss").toString();
+const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // default lang
-const DEFAULT_LANG = "en";
+const DEFAULT_LANG: string = "en";
 
 // links
 const MAILTO: string = "mailto:";
@@ -71,7 +76,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   let lang = DEFAULT_LANG;
 
   // translations
-  let translations: any = i18n.translations;
+  let translations: MailgoTranslations = i18n.translations;
 
   // if a default language is defined use it
   if (mailgoConfig?.lang && i18n.languages.includes(mailgoConfig.lang)) {
@@ -81,7 +86,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // if is defined <html lang=""> use it!
   if (!mailgoConfig?.forceLang) {
     // keep the lang from html
-    let htmlLang = document.documentElement.lang;
+    let htmlLang: string = document.documentElement.lang;
 
     // if there are translations...
     if (i18n.languages.includes(htmlLang)) {
@@ -90,8 +95,8 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   }
 
   // strings
-  let defaultStrings: any = translations[DEFAULT_LANG];
-  let strings: any = translations[lang];
+  let defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+  let strings: MailgoTranslation = translations[lang];
 
   // mailgo mail
   {
