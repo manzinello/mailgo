@@ -160,8 +160,9 @@ $default-border-radius: 20px;
         margin-top: 0.8rem;
         padding: 5px;
         color: $default-color;
+        opacity: 0.55;
         &:hover {
-          color: $default-color;
+          opacity: 1;
         }
       }
     }
