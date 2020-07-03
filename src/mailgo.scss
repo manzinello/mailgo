@@ -166,13 +166,10 @@ $default-border-radius: 20px;
   }
 
   &.m-dark {
-    .m-modal-back {
-      background-color: rgb(20, 20, 20);
-    }
     .m-modal-content {
       color: white;
       box-shadow: 0 3px 20px rgba(32, 35, 42, 0.5);
-      background-color: rgb(30, 30, 30);
+      background-color: rgb(32, 35, 42);
       a {
         color: white;
       }
