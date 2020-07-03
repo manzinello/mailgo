@@ -6,7 +6,7 @@ import {
 } from "mailgo";
 
 // i18n for mailgo
-const i18n: MailgoI18n = require("../i18n/i18n.json");
+import * as i18n from "../i18n/i18n.json";
 
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
