@@ -53,7 +53,7 @@ module.exports = [
     },
   },
   {
-    mode: "production",
+    mode: "development",
     target: "node",
     devtool: "source-map",
     entry: "./mailgo.lib.ts",
