@@ -62,5 +62,6 @@
   "funding": {
     "type": "opencollective",
     "url": "https://opencollective.com/mailgo"
-  }
+  },
+  "sideEffects": false
 }
