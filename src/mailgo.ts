@@ -26,8 +26,13 @@ const TEL_TYPE: string = "tel";
 // default href for links
 const DEFAULT_BTN_HREF: string = "javascript:void(0);";
 
-// html tags
-const span: string = "span";
+// useful html tags
+const spanHTMLTag: string = "span";
+const aHTMLTag: string = "a";
+const pHTMLTag: string = "p";
+
+// default language
+let lang: string = DEFAULT_LANG;
 
 // mailgo variables
 let url: URL,
@@ -72,11 +77,10 @@ let gmail: HTMLLinkElement,
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
-  // default language
-  let lang: string = DEFAULT_LANG;
-
   // translations
-  let { translations }: { translations: MailgoTranslations } = i18n;
+  let {
+    translations,
+  }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
   // if a default language is defined use it
   if (mailgoConfig?.lang && i18n.languages.includes(mailgoConfig.lang)) {
@@ -132,47 +136,47 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     details.id = "m-details";
     details.className = "m-details";
 
-    detailCc = createElement("p");
+    detailCc = createElement(pHTMLTag);
     detailCc.id = "m-cc";
-    let ccSpan: HTMLElement = createElement(span);
+    let ccSpan: HTMLElement = createElement(spanHTMLTag);
     ccSpan.className = "w-500";
     ccSpan.appendChild(createTextNode(strings.cc_ || defaultStrings.cc_));
-    ccValue = createElement(span);
+    ccValue = createElement(spanHTMLTag);
     ccValue.id = "m-cc-value";
     detailCc.appendChild(ccSpan);
     detailCc.appendChild(ccValue);
     details.appendChild(detailCc);
 
-    detailBcc = createElement("p");
+    detailBcc = createElement(pHTMLTag);
     detailBcc.id = "m-bcc";
-    let bccSpan: HTMLElement = createElement(span);
+    let bccSpan: HTMLElement = createElement(spanHTMLTag);
     bccSpan.className = "w-500";
     bccSpan.appendChild(createTextNode(strings.bcc_ || defaultStrings.bcc_));
-    bccValue = createElement(span);
+    bccValue = createElement(spanHTMLTag);
     bccValue.id = "m-bcc-value";
     detailBcc.appendChild(bccSpan);
     detailBcc.appendChild(bccValue);
     details.appendChild(detailBcc);
 
-    detailSubject = createElement("p");
+    detailSubject = createElement(pHTMLTag);
     detailSubject.id = "m-subject";
-    let subjectSpan: HTMLElement = createElement(span);
+    let subjectSpan: HTMLElement = createElement(spanHTMLTag);
     subjectSpan.className = "w-500";
     subjectSpan.appendChild(
       createTextNode(strings.subject_ || defaultStrings.subject_)
     );
-    subjectValue = createElement(span);
+    subjectValue = createElement(spanHTMLTag);
     subjectValue.id = "m-subject-value";
     detailSubject.appendChild(subjectSpan);
     detailSubject.appendChild(subjectValue);
     details.appendChild(detailSubject);
 
-    detailBody = createElement("p");
+    detailBody = createElement(pHTMLTag);
     detailBody.id = "m-body";
-    let bodySpan: HTMLElement = createElement(span);
+    let bodySpan: HTMLElement = createElement(spanHTMLTag);
     bodySpan.className = "w-500";
     bodySpan.appendChild(createTextNode(strings.body_ || defaultStrings.body_));
-    bodyValue = createElement(span);
+    bodyValue = createElement(spanHTMLTag);
     bodyValue.id = "m-body-value";
     detailBody.appendChild(bodySpan);
     detailBody.appendChild(bodyValue);
@@ -181,7 +185,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(details);
 
     // Gmail
-    gmail = createElement("a") as HTMLLinkElement;
+    gmail = createElement(aHTMLTag) as HTMLLinkElement;
     gmail.id = "m-gmail";
     gmail.href = DEFAULT_BTN_HREF;
     gmail.classList.add("m-open");
@@ -189,7 +193,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     gmail.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let gmailSpan: HTMLElement = createElement(span);
+    let gmailSpan: HTMLElement = createElement(spanHTMLTag);
     gmailSpan.className = "w-500";
     gmailSpan.appendChild(
       createTextNode(strings.gmail || defaultStrings.gmail)
@@ -199,7 +203,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(gmail);
 
     // Outlook
-    outlook = createElement("a") as HTMLLinkElement;
+    outlook = createElement(aHTMLTag) as HTMLLinkElement;
     outlook.id = "m-outlook";
     outlook.href = DEFAULT_BTN_HREF;
     outlook.classList.add("m-open");
@@ -207,7 +211,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     outlook.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let outlookSpan: HTMLElement = createElement(span);
+    let outlookSpan: HTMLElement = createElement(spanHTMLTag);
     outlookSpan.className = "w-500";
     outlookSpan.appendChild(
       createTextNode(strings.outlook || defaultStrings.outlook)
@@ -217,12 +221,12 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(outlook);
 
     // open default
-    open = createElement("a") as HTMLLinkElement;
+    open = createElement(aHTMLTag) as HTMLLinkElement;
     open.id = "m-open";
     open.href = DEFAULT_BTN_HREF;
     open.classList.add("m-open");
     open.classList.add("m-default");
-    let openSpan: HTMLElement = createElement(span);
+    let openSpan: HTMLElement = createElement(spanHTMLTag);
     openSpan.className = "w-500";
     openSpan.appendChild(createTextNode(strings.open || defaultStrings.open));
     open.appendChild(openSpan);
@@ -233,7 +237,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(open);
 
     // copy
-    copyMail = createElement("a") as HTMLLinkElement;
+    copyMail = createElement(aHTMLTag) as HTMLLinkElement;
     copyMail.id = "m-copy";
     copyMail.href = DEFAULT_BTN_HREF;
     copyMail.classList.add("m-copy");
@@ -280,7 +284,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(titleTel);
 
     // Telegram
-    telegram = createElement("a") as HTMLLinkElement;
+    telegram = createElement(aHTMLTag) as HTMLLinkElement;
     telegram.id = "m-tg";
     telegram.href = DEFAULT_BTN_HREF;
     telegram.classList.add("m-open");
@@ -292,7 +296,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     telegram.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let telegramSpan: HTMLElement = createElement(span);
+    let telegramSpan: HTMLElement = createElement(spanHTMLTag);
     telegramSpan.className = "w-500";
     telegramSpan.appendChild(
       createTextNode(strings.telegram || defaultStrings.telegram)
@@ -302,13 +306,13 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(telegram);
 
     // WhatsApp
-    wa = createElement("a") as HTMLLinkElement;
+    wa = createElement(aHTMLTag) as HTMLLinkElement;
     wa.id = "m-wa";
     wa.href = DEFAULT_BTN_HREF;
     wa.classList.add("m-open");
     wa.classList.add("m-wa");
     wa.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
-    let waSpan: HTMLElement = createElement(span);
+    let waSpan: HTMLElement = createElement(spanHTMLTag);
     waSpan.className = "w-500";
     waSpan.appendChild(
       createTextNode(strings.whatsapp || defaultStrings.whatsapp)
@@ -318,7 +322,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(wa);
 
     // Skype
-    skype = createElement("a") as HTMLLinkElement;
+    skype = createElement(aHTMLTag) as HTMLLinkElement;
     skype.id = "m-skype";
     skype.href = DEFAULT_BTN_HREF;
     skype.classList.add("m-open");
@@ -326,7 +330,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     skype.appendChild(
       createTextNode(strings.open_in || defaultStrings.open_in)
     );
-    let skypeSpan: HTMLElement = createElement(span);
+    let skypeSpan: HTMLElement = createElement(spanHTMLTag);
     skypeSpan.className = "w-500";
     skypeSpan.appendChild(
       createTextNode(strings.skype || defaultStrings.skype)
@@ -336,12 +340,12 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(skype);
 
     // call default
-    call = createElement("a") as HTMLLinkElement;
+    call = createElement(aHTMLTag) as HTMLLinkElement;
     call.id = "m-call";
     call.href = DEFAULT_BTN_HREF;
     call.classList.add("m-open");
     call.classList.add("m-default");
-    let callSpan: HTMLElement = createElement(span);
+    let callSpan: HTMLElement = createElement(spanHTMLTag);
     callSpan.className = "w-500";
     callSpan.appendChild(createTextNode(strings.call || defaultStrings.call));
     call.appendChild(callSpan);
@@ -352,7 +356,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(call);
 
     // copy
-    copyTel = createElement("a") as HTMLLinkElement;
+    copyTel = createElement(aHTMLTag) as HTMLLinkElement;
     copyTel.id = "m-tel-copy";
     copyTel.href = DEFAULT_BTN_HREF;
     copyTel.classList.add("m-copy");
@@ -813,7 +817,7 @@ const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
 
 const byElement = (): HTMLLinkElement => {
   // by
-  let by: HTMLLinkElement = createElement("a") as HTMLLinkElement;
+  let by: HTMLLinkElement = createElement(a) as HTMLLinkElement;
   by.href = "https://mailgo.js.org?ref=mailgo-modal";
   by.className = "m-by";
   by.target = "_blank";
