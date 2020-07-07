@@ -1,6 +1,6 @@
 # 💌 mailgo
 
-## a different mailto and another tel <https://mailgo.js.org>
+## a new concept of `mailto` and `tel` links <https://mailgo.js.org>
 
 Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities! Open directly Gmail, Outlook for mails; Telegram, WhatsApp or Skype for phone numbers.
 
