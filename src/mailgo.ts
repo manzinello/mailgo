@@ -31,6 +31,9 @@ const spanHTMLTag: string = "span";
 const aHTMLTag: string = "a";
 const pHTMLTag: string = "p";
 
+// global mailgo config object
+let config: MailgoConfig;
+
 // default language
 let lang: string = DEFAULT_LANG;
 
@@ -77,18 +80,21 @@ let gmail: HTMLLinkElement,
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
+  // set the global config
+  config = mailgoConfig;
+
   // translations
   let {
     translations,
   }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
   // if a default language is defined use it
-  if (mailgoConfig?.lang && i18n.languages.includes(mailgoConfig.lang)) {
-    lang = mailgoConfig.lang;
+  if (config?.lang && i18n.languages.includes(config.lang)) {
+    lang = config.lang;
   }
 
   // if is defined <html lang=""> use it!
-  if (!mailgoConfig?.forceLang) {
+  if (!config?.forceLang) {
     // keep the lang from html
     let htmlLang: string = document.documentElement.lang;
 
@@ -111,7 +117,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modal.classList.add("m-modal");
 
     // if dark is in config
-    if (mailgoConfig?.dark) {
+    if (config?.dark) {
       modal.classList.add("m-dark");
     }
 
@@ -263,7 +269,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modal.classList.add("m-modal");
 
     // if dark is in config
-    if (mailgoConfig?.dark) {
+    if (config?.dark) {
       modal.classList.add("m-dark");
     }
 
@@ -924,19 +930,19 @@ const mailgoStyle = (): void => {
 };
 
 // mailgo
-function mailgo(mailgoConfig?: MailgoConfig): void {
+function mailgo(config?: MailgoConfig): void {
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
     mailgoStyle();
 
     // if is set an initEvent add the listener
-    if (mailgoConfig?.initEvent) {
-      document.addEventListener(mailgoConfig.initEvent, () => {
-        mailgoInit(mailgoConfig);
+    if (config?.initEvent) {
+      document.addEventListener(config.initEvent, () => {
+        mailgoInit(config);
       });
     } else {
-      mailgoInit(mailgoConfig);
+      mailgoInit(config);
     }
   }
 }

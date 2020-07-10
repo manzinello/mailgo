@@ -8,6 +8,8 @@ declare module "mailgo" {
     dark?: boolean;
     lang?: string;
     forceLang?: boolean;
+    validateEmail?: boolean;
+    validateTel?: boolean;
   };
 
   export type MailgoTranslation = {
