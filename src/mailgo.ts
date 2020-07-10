@@ -818,11 +818,11 @@ const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
 const byElement = (): HTMLLinkElement => {
   // by
   let by: HTMLLinkElement = createElement(aHTMLTag) as HTMLLinkElement;
-  by.href = "https://mailgo.js.org?ref=mailgo-modal";
+  by.href = "https://mailgo.dev?ref=mailgo-modal";
   by.className = "m-by";
   by.target = "_blank";
   by.rel = "noopener noreferrer";
-  by.appendChild(createTextNode("mailgo.js.org"));
+  by.appendChild(createTextNode("mailgo.dev"));
 
   return by;
 };

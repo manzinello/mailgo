@@ -1,6 +1,6 @@
 # 💌 mailgo
 
-## a new concept of `mailto` and `tel` links <https://mailgo.js.org>
+## a new concept of `mailto` and `tel` links <https://mailgo.dev>
 
 Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities! Open directly Gmail, Outlook for mails; Telegram, WhatsApp or Skype for phone numbers.
 
@@ -8,12 +8,12 @@ Transform all your `mailto` and `tel` link in a beautiful modal with more possib
 
 ## docs
 
-<https://mailgo.js.org>
+<https://mailgo.dev>
 
 ## thanks
 
 <a target="_blank" href="https://www.browserstack.com">
-<img src="https://mailgo.js.org/img/browserstack.png" />
+<img src="https://mailgo.dev/img/browserstack.png" />
 </a>
 
 <br/>

@@ -33,7 +33,7 @@
   "bugs": {
     "url": "https://github.com/manzinello/mailgo/issues"
   },
-  "homepage": "https://mailgo.js.org",
+  "homepage": "https://mailgo.dev",
   "devDependencies": {
     "@babel/cli": "^7.10.4",
     "@babel/core": "^7.10.4",
