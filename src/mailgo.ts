@@ -434,6 +434,7 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
       bodyMail = mailgo.getAttribute("data-body");
     }
 
+    // TODO test this
     if (
       typeof config?.validateEmail === "undefined" ||
       config?.validateEmail === true
