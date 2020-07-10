@@ -482,6 +482,9 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
       msg = mailgo.getAttribute("data-msg");
     }
 
+    // validate the phone number
+    if (!validateTel(tel)) return;
+
     // information
     // let titleEl = getE("m-tel-title");
 
@@ -882,7 +885,7 @@ const validateEmails = (arr: string[]): boolean => arr.every(validateEmail);
 
 // validate a single tel with regex
 const validateTel = (tel: string): boolean => {
-  // TODO
+  // TODO: find a good regex for telephone numbers
   return true;
 };
 
