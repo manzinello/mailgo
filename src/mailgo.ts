@@ -434,12 +434,17 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
       bodyMail = mailgo.getAttribute("data-body");
     }
 
-    // validate the email address
-    if (!validateEmails(mail.split(","))) return;
+    if (
+      typeof config?.validateEmail === "undefined" ||
+      config?.validateEmail === true
+    ) {
+      // validate the email address
+      if (!validateEmails(mail.split(","))) return;
 
-    // if cc, bcc is not valid cc, bcc = ""
-    if (cc && !validateEmails(cc.split(","))) cc = "";
-    if (bcc && !validateEmails(bcc.split(","))) bcc = "";
+      // if cc, bcc are not valid cc, bcc = ""
+      if (cc && !validateEmails(cc.split(","))) cc = "";
+      if (bcc && !validateEmails(bcc.split(","))) bcc = "";
+    }
 
     // the title of the modal (email address)
     title.innerHTML = mail.split(",").join("<br/>");
