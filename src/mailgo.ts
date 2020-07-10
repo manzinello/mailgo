@@ -880,6 +880,12 @@ const validateEmail = (email: string): boolean =>
 // validate an array of emails
 const validateEmails = (arr: string[]): boolean => arr.every(validateEmail);
 
+// validate a single tel with regex
+const validateTel = (tel: string): boolean => {
+  // TODO
+  return true;
+};
+
 // copy of a string
 const copyToClipboard = (str: string): boolean => {
   let el: HTMLInputElement = createElement("textarea") as HTMLInputElement;
