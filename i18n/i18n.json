@@ -34,6 +34,23 @@
       "_default": " ",
       "_as_default": " ",
       "copy": "copia"
+    },
+    "es": {
+      "open_in": "abrir con ",
+      "cc_": "cc ",
+      "bcc_": "cco ",
+      "subject_": "asunto ",
+      "body_": "cuerpo ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "llamar",
+      "open": "abrir",
+      "_default": " predefinido",
+      "_as_default": " por defecto",
+      "copy": "copiar"
     }
   }
 }
