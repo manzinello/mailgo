@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it"],
+  "languages": ["en", "it", "es"],
   "translations": {
     "en": {
       "open_in": "open in ",
