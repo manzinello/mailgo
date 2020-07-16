@@ -500,9 +500,6 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
     // validate the phone number
     if (!validateTel(tel)) return;
 
-    // information
-    // let titleEl = getE("m-tel-title");
-
     // Telegram username
     if (mailgo.hasAttribute("data-telegram")) {
       telegramUsername = mailgo.getAttribute("data-telegram");
@@ -694,10 +691,7 @@ const isMailgo = (element: HTMLElement, type: string = MAIL_TYPE): boolean => {
  */
 const mailgoCheckRender = (event: Event): boolean => {
   // check if the id=mailgo exists in the body
-  if (
-    !document.contains(getE("mailgo")) ||
-    !document.contains(getE("mailgo-tel"))
-  )
+  if (!document.contains(modalMailto) || !document.contains(modalTel))
     return false;
 
   // if a mailgo is already showing do nothing
@@ -742,10 +736,10 @@ const mailgoCheckRender = (event: Event): boolean => {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
-const mailgoKeydown = (event: KeyboardEvent): void => {
+const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
   // if mailgo is showing
   if (mailgoIsShowing(MAIL_TYPE)) {
-    switch (event.keyCode) {
+    switch (keyboardEvent.keyCode) {
       case 27:
         // Escape
         hideMailgo();
@@ -771,7 +765,7 @@ const mailgoKeydown = (event: KeyboardEvent): void => {
         return;
     }
   } else if (mailgoIsShowing(TEL_TYPE)) {
-    switch (event.keyCode) {
+    switch (keyboardEvent.keyCode) {
       case 27:
         // Escape
         hideMailgo();
@@ -801,24 +795,16 @@ const mailgoKeydown = (event: KeyboardEvent): void => {
 };
 
 // show the modal
-const showMailgo = (type = MAIL_TYPE): boolean => {
-  // show mailgo type mail
-  if (type === MAIL_TYPE) {
-    setDisplay("mailgo", "flex");
-    return true;
-  }
-  // show mailgo type tel
-  if (type === TEL_TYPE) {
-    setDisplay("mailgo-tel", "flex");
-    return true;
-  }
-  return false;
+const showMailgo = (type = MAIL_TYPE): void => {
+  // show the correct modal
+  setDisplay(type, "flex");
 };
 
 // hide the modal
 const hideMailgo = (): void => {
-  setDisplay("mailgo", "none");
-  setDisplay("mailgo-tel", "none");
+  // hide all the modals
+  setDisplay(MAIL_TYPE, "none");
+  setDisplay(TEL_TYPE, "none");
 
   // remove listener keyDown
   document.removeEventListener("keydown", mailgoKeydown);
@@ -826,11 +812,7 @@ const hideMailgo = (): void => {
 
 // is the mailgo modal hidden?
 const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
-  return type === MAIL_TYPE
-    ? getDisplay("mailgo") === "flex"
-    : type === TEL_TYPE
-    ? getDisplay("mailgo-tel") === "flex"
-    : false;
+  return getDisplay(type) === "flex";
 };
 
 const byElement = (): HTMLLinkElement => {
@@ -860,15 +842,32 @@ const mailToEncoded = (encoded: string): string =>
 // encode email
 const encodeEmail = (email: string): string => btoa(email);
 
-// getE shorthand
-const getE = (id: string): HTMLElement => document.getElementById(id);
+// get the correct HTMLElement from a type
+const getModalHTMLElement = (type: string = MAIL_TYPE) => {
+  return type === TEL_TYPE ? modalTel : modalMailto;
+};
 
 // get display value
-const getDisplay = (id: string): string => getE(id).style.display;
+const getDisplay = (ref: string = MAIL_TYPE): string => {
+  if (ref === MAIL_TYPE || ref === TEL_TYPE) {
+    // if a type is passed return the display of the modals
+    return getModalHTMLElement(ref).style.display;
+  } else {
+    // else return the element get by ID
+    return document.getElementById(ref).style.display;
+  }
+};
 
 // get display value
-const setDisplay = (id: string, value: string): string =>
-  (getE(id).style.display = value);
+const setDisplay = (ref: string = MAIL_TYPE, value: string): string => {
+  if (ref === MAIL_TYPE || ref === TEL_TYPE) {
+    // if a type is passed return the display of the modals
+    return (getModalHTMLElement(ref).style.display = value);
+  } else {
+    // else return the element get by ID
+    return (document.getElementById(ref).style.display = value);
+  }
+};
 
 // custom composedPath if path or event.composedPath() are not defined
 const composedPath = (
