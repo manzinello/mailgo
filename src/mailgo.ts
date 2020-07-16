@@ -121,7 +121,9 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
     // if dark is in config
     if (config?.dark) {
-      modalMailto.classList.add("m-dark");
+      enableDarkMode(MAIL_TYPE);
+    } else {
+      disableDarkMode(MAIL_TYPE);
     }
 
     // background
@@ -273,7 +275,9 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
 
     // if dark is in config
     if (config?.dark) {
-      modalTel.classList.add("m-dark");
+      enableDarkMode(TEL_TYPE);
+    } else {
+      disableDarkMode(TEL_TYPE);
     }
 
     // background
@@ -848,19 +852,24 @@ const mailToEncoded = (encoded: string): string =>
 const encodeEmail = (email: string): string => btoa(email);
 
 // get the correct HTMLElement from a type
-const getModalHTMLElement = (type: string = MAIL_TYPE) => {
-  return type === TEL_TYPE ? modalTel : modalMailto;
-};
+const getModalHTMLElement = (type: string = MAIL_TYPE) =>
+  type === TEL_TYPE ? modalTel : modalMailto;
 
 // get display value
-const getModalDisplay = (ref: string = MAIL_TYPE): string => {
-  return getModalHTMLElement(ref).style.display;
-};
+const getModalDisplay = (ref: string = MAIL_TYPE): string =>
+  getModalHTMLElement(ref).style.display;
 
 // get display value
-const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string => {
-  return (getModalHTMLElement(ref).style.display = value);
-};
+const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string =>
+  (getModalHTMLElement(ref).style.display = value);
+
+// enable dark mode
+const enableDarkMode = (type: string = MAIL_TYPE) =>
+  getModalHTMLElement(type).classList.add("m-dark");
+
+// disable dark mode
+const disableDarkMode = (type: string = MAIL_TYPE) =>
+  getModalHTMLElement(type).classList.remove("m-dark");
 
 // custom composedPath if path or event.composedPath() are not defined
 const composedPath = (
