@@ -37,6 +37,9 @@ let config: MailgoConfig;
 // default language
 let lang: string = DEFAULT_LANG;
 
+// modals global object
+let modalMailto: HTMLElement, modalTel: HTMLElement;
+
 // mailgo variables
 let url: URL,
   mail: string = "",
@@ -111,25 +114,25 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // mailgo mail
   {
     // modal
-    let modal: HTMLElement = createElement();
-    modal.style.display = "none";
-    modal.id = "mailgo";
-    modal.classList.add("m-modal");
+    modalMailto = createElement() as HTMLElement;
+    modalMailto.style.display = "none";
+    modalMailto.id = "mailgo";
+    modalMailto.classList.add("m-modal");
 
     // if dark is in config
     if (config?.dark) {
-      modal.classList.add("m-dark");
+      modalMailto.classList.add("m-dark");
     }
 
     // background
     let modalBackground: HTMLElement = createElement();
     modalBackground.className = "m-modal-back";
-    modal.appendChild(modalBackground);
+    modalMailto.appendChild(modalBackground);
 
     // modal content
     let modalContent: HTMLElement = createElement();
     modalContent.className = "m-modal-content";
-    modal.appendChild(modalContent);
+    modalMailto.appendChild(modalContent);
 
     // title (email address)
     title = createElement("strong");
@@ -255,7 +258,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(byElement());
 
     // add the modal at the end of the body
-    document.body.appendChild(modal);
+    document.body.appendChild(modalMailto);
 
     // every click outside the modal will hide the modal
     modalBackground.addEventListener("click", hideMailgo);
@@ -263,25 +266,25 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
   // mailgo tel
   {
     // modal
-    let modal: HTMLElement = createElement();
-    modal.style.display = "none";
-    modal.id = "mailgo-tel";
-    modal.classList.add("m-modal");
+    modalTel = createElement() as HTMLElement;
+    modalTel.style.display = "none";
+    modalTel.id = "mailgo-tel";
+    modalTel.classList.add("m-modal");
 
     // if dark is in config
     if (config?.dark) {
-      modal.classList.add("m-dark");
+      modalTel.classList.add("m-dark");
     }
 
     // background
     let modalBackground: HTMLElement = createElement();
     modalBackground.className = "m-modal-back";
-    modal.appendChild(modalBackground);
+    modalTel.appendChild(modalBackground);
 
     // modal content
     let modalContent: HTMLElement = createElement();
     modalContent.className = "m-modal-content";
-    modal.appendChild(modalContent);
+    modalTel.appendChild(modalContent);
 
     // title (telephone number)
     titleTel = createElement("strong");
@@ -374,7 +377,7 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
     modalContent.appendChild(byElement());
 
     // add the modal at the end of the body
-    document.body.appendChild(modal);
+    document.body.appendChild(modalTel);
 
     // every click outside the modal will hide the modal
     modalBackground.addEventListener("click", hideMailgo);
