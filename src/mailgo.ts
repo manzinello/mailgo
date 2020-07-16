@@ -395,16 +395,22 @@ const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
+const mailgoRender = (
+  type = MAIL_TYPE,
+  mailgoElement: HTMLLinkElement
+): void => {
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
-    if (mailgo.href && mailgo.href.toLowerCase().startsWith(MAILTO)) {
+    if (
+      mailgoElement.href &&
+      mailgoElement.href.toLowerCase().startsWith(MAILTO)
+    ) {
       mail = decodeURIComponent(
-        mailgo.href.split("?")[0].split(MAILTO)[1].trim()
+        mailgoElement.href.split("?")[0].split(MAILTO)[1].trim()
       );
 
-      url = new URL(mailgo.href);
+      url = new URL(mailgoElement.href);
       let urlParams: URLSearchParams = url.searchParams;
 
       // optional parameters for the email
@@ -416,29 +422,29 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
       // if the element href="#mailgo" or class="mailgo"
       // mail = data-address + @ + data-domain
       mail =
-        mailgo.getAttribute("data-address") +
+        mailgoElement.getAttribute("data-address") +
         "@" +
-        mailgo.getAttribute("data-domain");
+        mailgoElement.getAttribute("data-domain");
 
       url = new URL(MAILTO + encodeURIComponent(mail));
 
       // cc = data-cc-address + @ + data-cc-domain
       cc =
-        mailgo.getAttribute("data-cc-address") +
+        mailgoElement.getAttribute("data-cc-address") +
         "@" +
-        mailgo.getAttribute("data-cc-domain");
+        mailgoElement.getAttribute("data-cc-domain");
 
       // bcc = data-bcc-address + @ + data-bcc-domain
       bcc =
-        mailgo.getAttribute("data-bcc-address") +
+        mailgoElement.getAttribute("data-bcc-address") +
         "@" +
-        mailgo.getAttribute("data-bcc-domain");
+        mailgoElement.getAttribute("data-bcc-domain");
 
       // subject = data-subject
-      subject = mailgo.getAttribute("data-subject");
+      subject = mailgoElement.getAttribute("data-subject");
 
       // body = data-body
-      bodyMail = mailgo.getAttribute("data-body");
+      bodyMail = mailgoElement.getAttribute("data-body");
     }
 
     // TODO test this
@@ -489,31 +495,39 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
     copyMail.addEventListener("click", () => copy(mail));
   }
   // mailgo tel
-  if (type === TEL_TYPE) {
-    if (mailgo.href && mailgo.href.toLowerCase().startsWith(TEL)) {
-      tel = decodeURIComponent(mailgo.href.split("?")[0].split(TEL)[1].trim());
-    } else if (mailgo.href && mailgo.href.toLowerCase().startsWith(CALLTO)) {
+  else if (type === TEL_TYPE) {
+    if (
+      mailgoElement.href &&
+      mailgoElement.href.toLowerCase().startsWith(TEL)
+    ) {
       tel = decodeURIComponent(
-        mailgo.href.split("?")[0].split(CALLTO)[1].trim()
+        mailgoElement.href.split("?")[0].split(TEL)[1].trim()
       );
-    } else if (mailgo.hasAttribute("data-tel")) {
-      tel = mailgo.getAttribute("data-tel");
-      msg = mailgo.getAttribute("data-msg");
+    } else if (
+      mailgoElement.href &&
+      mailgoElement.href.toLowerCase().startsWith(CALLTO)
+    ) {
+      tel = decodeURIComponent(
+        mailgoElement.href.split("?")[0].split(CALLTO)[1].trim()
+      );
+    } else if (mailgoElement.hasAttribute("data-tel")) {
+      tel = mailgoElement.getAttribute("data-tel");
+      msg = mailgoElement.getAttribute("data-msg");
     }
 
     // validate the phone number
     if (!validateTel(tel)) return;
 
     // Telegram username
-    if (mailgo.hasAttribute("data-telegram")) {
-      telegramUsername = mailgo.getAttribute("data-telegram");
+    if (mailgoElement.hasAttribute("data-telegram")) {
+      telegramUsername = mailgoElement.getAttribute("data-telegram");
     } else {
       telegramUsername = null;
     }
 
     // Telegram username
-    if (mailgo.hasAttribute("data-skype")) {
-      skypeUsername = mailgo.getAttribute("data-skype");
+    if (mailgoElement.hasAttribute("data-skype")) {
+      skypeUsername = mailgoElement.getAttribute("data-skype");
     }
 
     // the title of the modal (tel)
@@ -535,6 +549,12 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
     call.addEventListener("click", callDefault);
 
     copyTel.addEventListener("click", () => copy(tel));
+  }
+
+  // dark mode as class of the element
+  // check only if is present to set the dark mode, because if the dark mode is set in config it have not to be disabled
+  if (mailgoElement.classList.contains("dark")) {
+    enableDarkMode(type);
   }
 
   // show the mailgo
