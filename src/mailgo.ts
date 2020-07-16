@@ -520,10 +520,10 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
 
     // telegram must be shown only if data-telegram is provided
     if (telegramUsername) {
-      setDisplay("m-tg", "block");
+      document.getElementById("m-tg").style.display = "block";
       telegram.addEventListener("click", openTelegram);
     } else {
-      setDisplay("m-tg", "none");
+      document.getElementById("m-tg").style.display = "none";
     }
 
     skype.addEventListener("click", openSkype);
@@ -802,14 +802,14 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
 // show the modal
 const showMailgo = (type = MAIL_TYPE): void => {
   // show the correct modal
-  setDisplay(type, "flex");
+  setModalDisplay(type, "flex");
 };
 
 // hide the modal
 const hideMailgo = (): void => {
   // hide all the modals
-  setDisplay(MAIL_TYPE, "none");
-  setDisplay(TEL_TYPE, "none");
+  setModalDisplay(MAIL_TYPE, "none");
+  setModalDisplay(TEL_TYPE, "none");
 
   // remove listener keyDown
   document.removeEventListener("keydown", mailgoKeydown);
@@ -817,7 +817,7 @@ const hideMailgo = (): void => {
 
 // is the mailgo modal hidden?
 const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
-  return getDisplay(type) === "flex";
+  return getModalDisplay(type) === "flex";
 };
 
 const byElement = (): HTMLLinkElement => {
@@ -853,25 +853,13 @@ const getModalHTMLElement = (type: string = MAIL_TYPE) => {
 };
 
 // get display value
-const getDisplay = (ref: string = MAIL_TYPE): string => {
-  if (ref === MAIL_TYPE || ref === TEL_TYPE) {
-    // if a type is passed return the display of the modals
-    return getModalHTMLElement(ref).style.display;
-  } else {
-    // else return the element get by ID
-    return document.getElementById(ref).style.display;
-  }
+const getModalDisplay = (ref: string = MAIL_TYPE): string => {
+  return getModalHTMLElement(ref).style.display;
 };
 
 // get display value
-const setDisplay = (ref: string = MAIL_TYPE, value: string): string => {
-  if (ref === MAIL_TYPE || ref === TEL_TYPE) {
-    // if a type is passed return the display of the modals
-    return (getModalHTMLElement(ref).style.display = value);
-  } else {
-    // else return the element get by ID
-    return (document.getElementById(ref).style.display = value);
-  }
+const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string => {
+  return (getModalHTMLElement(ref).style.display = value);
 };
 
 // custom composedPath if path or event.composedPath() are not defined
