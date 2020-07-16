@@ -503,6 +503,8 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
     // Telegram username
     if (mailgo.hasAttribute("data-telegram")) {
       telegramUsername = mailgo.getAttribute("data-telegram");
+    } else {
+      telegramUsername = null;
     }
 
     // Telegram username
@@ -516,9 +518,12 @@ const mailgoRender = (type = MAIL_TYPE, mailgo: HTMLLinkElement): void => {
     // add the actions to buttons
     wa.addEventListener("click", openWhatsApp);
 
+    // telegram must be shown only if data-telegram is provided
     if (telegramUsername) {
       setDisplay("m-tg", "block");
       telegram.addEventListener("click", openTelegram);
+    } else {
+      setDisplay("m-tg", "none");
     }
 
     skype.addEventListener("click", openSkype);
