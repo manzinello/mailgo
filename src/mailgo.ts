@@ -551,10 +551,14 @@ const mailgoRender = (
     copyTel.addEventListener("click", () => copy(tel));
   }
 
-  // dark mode as class of the element
-  // check only if is present to set the dark mode, because if the dark mode is set in config it have not to be disabled
-  if (mailgoElement.classList.contains("dark")) {
-    enableDarkMode(type);
+  // if config.dark is set to true then all the modals will be in dark mode
+  if (!config?.dark) {
+    // if the element contains dark as class enable dark mode
+    if (mailgoElement.classList.contains("dark")) {
+      enableDarkMode(type);
+    } else {
+      disableDarkMode(type);
+    }
   }
 
   // show the mailgo
