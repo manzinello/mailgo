@@ -891,10 +891,8 @@ const validateEmail = (email: string): boolean =>
 const validateEmails = (arr: string[]): boolean => arr.every(validateEmail);
 
 // validate a single tel with regex
-const validateTel = (tel: string): boolean => {
-  // TODO: find a good regex for telephone numbers
-  return true;
-};
+const validateTel = (tel: string): boolean =>
+  /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(tel);
 
 // copy of a string
 const copyToClipboard = (str: string): boolean => {
