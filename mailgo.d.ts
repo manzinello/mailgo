@@ -5,6 +5,7 @@
 declare module "mailgo" {
   export type MailgoConfig = {
     initEvent?: string;
+    listenerOptions?: ListenerOptions | boolean;
     dark?: boolean;
     lang?: string;
     forceLang?: boolean;
@@ -37,6 +38,12 @@ declare module "mailgo" {
   export type MailgoI18n = {
     languages: string[];
     translations: MailgoTranslations;
+  };
+
+  export type ListenerOptions = {
+    capture?: boolean;
+    once?: boolean;
+    passive?: boolean;
   };
 
   export default function mailgo(mailgoConfig?: MailgoConfig): void;

@@ -82,10 +82,7 @@ let gmail: HTMLLinkElement,
  * mailgoInit
  * the function that creates the mailgo elements in DOM
  */
-const mailgoInit = (mailgoConfig?: MailgoConfig): void => {
-  // set the global config
-  config = mailgoConfig;
-
+const mailgoInit = (): void => {
   // translations
   let {
     translations,
@@ -962,7 +959,10 @@ const mailgoStyle = (): void => {
 };
 
 // mailgo
-function mailgo(config?: MailgoConfig): void {
+function mailgo(mailgoConfig?: MailgoConfig): void {
+  // set the global config
+  config = mailgoConfig;
+
   // if the window is defined...
   if (window && typeof window !== "undefined") {
     // add the style for mailgo
@@ -970,11 +970,23 @@ function mailgo(config?: MailgoConfig): void {
 
     // if is set an initEvent add the listener
     if (config?.initEvent) {
-      document.addEventListener(config.initEvent, () => {
-        mailgoInit(config);
-      });
+      if (config?.listenerOptions) {
+        // listener options specified
+        document.addEventListener(
+          config.initEvent,
+          () => {
+            mailgoInit();
+          },
+          config.listenerOptions
+        );
+      } else {
+        // no listener options
+        document.addEventListener(config.initEvent, () => {
+          mailgoInit();
+        });
+      }
     } else {
-      mailgoInit(config);
+      mailgoInit();
     }
   }
 }
