@@ -199,7 +199,7 @@ const mailgoInit = (): void => {
     gmail.classList.add("m-open");
     gmail.classList.add("m-gmail");
     gmail.appendChild(
-      createTextNode(strings.open_in || defaultStrings.open_in)
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
     );
     let gmailSpan: HTMLElement = createElement(spanHTMLTag);
     gmailSpan.className = "w-500";
@@ -217,7 +217,7 @@ const mailgoInit = (): void => {
     outlook.classList.add("m-open");
     outlook.classList.add("m-outlook");
     outlook.appendChild(
-      createTextNode(strings.open_in || defaultStrings.open_in)
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
     );
     let outlookSpan: HTMLElement = createElement(spanHTMLTag);
     outlookSpan.className = "w-500";
@@ -304,7 +304,7 @@ const mailgoInit = (): void => {
     telegram.style.display = "none";
 
     telegram.appendChild(
-      createTextNode(strings.open_in || defaultStrings.open_in)
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
     );
     let telegramSpan: HTMLElement = createElement(spanHTMLTag);
     telegramSpan.className = "w-500";
@@ -321,7 +321,7 @@ const mailgoInit = (): void => {
     wa.href = DEFAULT_BTN_HREF;
     wa.classList.add("m-open");
     wa.classList.add("m-wa");
-    wa.appendChild(createTextNode(strings.open_in || defaultStrings.open_in));
+    wa.appendChild(createTextNode(strings.open_in_ || defaultStrings.open_in_));
     let waSpan: HTMLElement = createElement(spanHTMLTag);
     waSpan.className = "w-500";
     waSpan.appendChild(
@@ -338,7 +338,7 @@ const mailgoInit = (): void => {
     skype.classList.add("m-open");
     skype.classList.add("m-skype");
     skype.appendChild(
-      createTextNode(strings.open_in || defaultStrings.open_in)
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
     );
     let skypeSpan: HTMLElement = createElement(spanHTMLTag);
     skypeSpan.className = "w-500";

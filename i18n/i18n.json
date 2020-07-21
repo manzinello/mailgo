@@ -2,7 +2,7 @@
   "languages": ["en", "it", "es", "de"],
   "translations": {
     "en": {
-      "open_in": "open in ",
+      "open_in_": "open in ",
       "cc_": "cc ",
       "bcc_": "bcc ",
       "subject_": "subject ",
@@ -19,7 +19,7 @@
       "copy": "copy"
     },
     "it": {
-      "open_in": "apri con ",
+      "open_in_": "apri con ",
       "cc_": "cc ",
       "bcc_": "ccn ",
       "subject_": "oggetto ",
@@ -36,7 +36,7 @@
       "copy": "copia"
     },
     "es": {
-      "open_in": "abrir con ",
+      "open_in_": "abrir con ",
       "cc_": "cc ",
       "bcc_": "cco ",
       "subject_": "asunto ",
@@ -53,7 +53,7 @@
       "copy": "copiar"
     },
     "de": {
-      "open_in": "Öffnen in",
+      "open_in_": "Öffnen in ",
       "cc_": "cc ",
       "bcc_": "bcc ",
       "subject_": "Betreff ",

@@ -14,7 +14,7 @@ declare module "mailgo" {
   };
 
   export type MailgoTranslation = {
-    open_in?: string;
+    open_in_?: string;
     cc_?: string;
     bcc_?: string;
     subject_?: string;
