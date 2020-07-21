@@ -46,5 +46,14 @@ declare module "mailgo" {
     passive?: boolean;
   };
 
+  export function mailgoRender(
+    type: string,
+    mailgoElement: HTMLLinkElement
+  ): void;
+
+  export function isMailgo(element: HTMLElement, type?: string): boolean;
+
+  export function mailgoCheckRender(event: Event): boolean;
+
   export default function mailgo(mailgoConfig?: MailgoConfig): void;
 }

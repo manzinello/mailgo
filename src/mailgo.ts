@@ -392,10 +392,10 @@ const mailgoInit = (): void => {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-const mailgoRender = (
-  type = MAIL_TYPE,
+export function mailgoRender(
+  type: string = MAIL_TYPE,
   mailgoElement: HTMLLinkElement
-): void => {
+): void {
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
@@ -444,7 +444,6 @@ const mailgoRender = (
       bodyMail = mailgoElement.getAttribute("data-body");
     }
 
-    // TODO test this
     if (
       typeof config?.validateEmail === "undefined" ||
       config?.validateEmail === true
@@ -563,7 +562,7 @@ const mailgoRender = (
 
   // add listener keyDown
   document.addEventListener("keydown", mailgoKeydown);
-};
+}
 
 // actions
 const openGmail = (): void => {
@@ -665,7 +664,10 @@ const copy = (content: string): void => {
 };
 
 // function that returns if an element is a mailgo
-const isMailgo = (element: HTMLElement, type: string = MAIL_TYPE): boolean => {
+export function isMailgo(
+  element: HTMLElement,
+  type: string = MAIL_TYPE
+): boolean {
   let href: string = (element as HTMLLinkElement).href;
 
   // mailgo type mail
@@ -701,7 +703,7 @@ const isMailgo = (element: HTMLElement, type: string = MAIL_TYPE): boolean => {
   }
 
   return false;
-};
+}
 
 /**
  * mailgoCheckRender
@@ -719,7 +721,7 @@ const isMailgo = (element: HTMLElement, type: string = MAIL_TYPE): boolean => {
  *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
-const mailgoCheckRender = (event: Event): boolean => {
+export function mailgoCheckRender(event: Event): boolean {
   // check if the id=mailgo exists in the body
   if (!document.contains(modalMailto) || !document.contains(modalTel))
     return false;
@@ -760,7 +762,7 @@ const mailgoCheckRender = (event: Event): boolean => {
   }
 
   return false;
-};
+}
 
 /**
  * mailgoKeydown
