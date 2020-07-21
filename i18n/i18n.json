@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es"],
+  "languages": ["en", "it", "es", "de"],
   "translations": {
     "en": {
       "open_in": "open in ",
@@ -51,6 +51,23 @@
       "_default": " predefinido",
       "_as_default": " por defecto",
       "copy": "copiar"
+    },
+    "de": {
+      "open_in": "Öffnen in",
+      "cc_": "cc ",
+      "bcc_": "bcc ",
+      "subject_": "Betreff ",
+      "body_": "Nachricht ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "Anrufen",
+      "open": "Öffnen",
+      "_default": " mit Standard",
+      "_as_default": " mit Standard",
+      "copy": "kopieren"
     }
   }
 }
