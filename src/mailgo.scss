@@ -10,12 +10,12 @@ $wa-color: #00bfa5;
 $telegram-color: #0088cc;
 $skype-color: #00aff0;
 
-$default-dark-color: #bbbbbb;
-$gmail-dark-color: #faeceb;
-$outlook-dark-color: #e5f0f9;
-$wa-dark-color: #e5f8f6;
-$telegram-dark-color: #e5f3f9;
-$skype-dark-color: #e5f7fd;
+$default-dark-color: #eaeaea;
+$gmail-dark-color: #e07d73;
+$outlook-dark-color: #4c9cd7;
+$wa-dark-color: #4cd2c0;
+$telegram-dark-color: #4cabdb;
+$skype-dark-color: #4cc7f4;
 
 // other vars
 $default-border-radius: 20px;
@@ -175,40 +175,49 @@ $default-border-radius: 20px;
 
   &.m-dark {
     .m-modal-content {
-      color: #fff;
       background-color: #20232a;
+      &,
+      & p,
+      & p span,
+      & strong {
+        color: #fff;
+      }
       a {
-        color: $default-dark-color;
-
+        &,
         &:hover {
-          color: #fff;
+          color: $default-dark-color;
         }
 
         &.m-gmail {
+          &,
           &:hover {
             color: $gmail-dark-color;
           }
         }
 
         &.m-outlook {
+          &,
           &:hover {
             color: $outlook-dark-color;
           }
         }
 
         &.m-tg {
+          &,
           &:hover {
             color: $telegram-dark-color;
           }
         }
 
         &.m-wa {
+          &,
           &:hover {
             color: $wa-dark-color;
           }
         }
 
         &.m-skype {
+          &,
           &:hover {
             color: $skype-dark-color;
           }
