@@ -183,42 +183,54 @@ $default-border-radius: 20px;
         color: #fff;
       }
       a {
-        &,
-        &:hover {
+        color: $default-dark-color;
+
+        &:not(.m-by):hover {
+          background-color: rgba(134, 134, 134, 0.08);
           color: $default-dark-color;
         }
 
         &.m-gmail {
-          &,
+          color: $gmail-dark-color;
+
           &:hover {
+            background-color: rgba(212, 70, 56, 0.08);
             color: $gmail-dark-color;
           }
         }
 
         &.m-outlook {
-          &,
+          color: $outlook-dark-color;
+
           &:hover {
+            background-color: rgba(0, 114, 198, 0.08);
             color: $outlook-dark-color;
           }
         }
 
         &.m-tg {
-          &,
+          color: $telegram-dark-color;
+
           &:hover {
+            background-color: rgba(0, 136, 204, 0.08);
             color: $telegram-dark-color;
           }
         }
 
         &.m-wa {
-          &,
+          color: $wa-dark-color;
+
           &:hover {
+            background-color: rgba(0, 191, 165, 0.08);
             color: $wa-dark-color;
           }
         }
 
         &.m-skype {
-          &,
+          color: $skype-dark-color;
+
           &:hover {
+            background-color: rgba(0, 175, 240, 0.08);
             color: $skype-dark-color;
           }
         }
