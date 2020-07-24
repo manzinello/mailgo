@@ -69,7 +69,7 @@
       "_as_default": " mit Standard",
       "copy": "kopieren"
     },
-     "pt": {
+    "pt": {
       "open_in_": "abrir com ",
       "cc_": "cc ",
       "bcc_": "cco ",
@@ -98,4 +98,5 @@
       "_as_default": " par défaut",
       "copy": "Copier"
     }
+  }
 }
