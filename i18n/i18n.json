@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es", "de", "pt"],
+  "languages": ["en", "it", "es", "de", "fr", "pt"],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -75,16 +75,27 @@
       "bcc_": "cco ",
       "subject_": "assunto ",
       "body_": "corpo ",
-      "gmail": "Gmail",
-      "outlook": "Outlook",
-      "telegram": "Telegram",
-      "whatsapp": "WhatsApp",
-      "skype": "Skype",
       "call": "ligar",
       "open": "abrir",
       "_default": " padrão",
       "_as_default": " por padrão",
       "copy": "copiar"
+    },
+    "fr": {
+      "open_in_": "Ouvrir dans ",
+      "cc_": "cc ",
+      "bcc_": "cci ",
+      "subject_": "sujet ",
+      "body_": "contenu ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "Appeler",
+      "open": "Ouvrir",
+      "_default": " par défaut",
+      "_as_default": " par défaut",
+      "copy": "Copier"
     }
-  }
 }
