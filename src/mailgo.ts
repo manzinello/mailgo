@@ -890,50 +890,59 @@ const getModalDisplay = (ref: string = MAIL_TYPE): string =>
   getModalHTMLElement(ref).style.display;
 
 // set display value
-const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string => {
+const setModalDisplay = (ref: string = MAIL_TYPE, value: string): void => {
   let modal = getModalHTMLElement(ref);
   modal.style.display = value;
 
-  if ( value === 'flex' ) {
+  if (value === "flex") {
     // "save" the activated link.
-    activatedLink = document.activeElement;
-    modal.setAttribute('aria-hidden', false);
+    activatedLink = document.activeElement as HTMLElement;
+    modal.setAttribute("aria-hidden", "false");
 
     // Focus on the modal container.
-    modal.setAttribute('tabindex', "0");
+    modal.setAttribute("tabindex", "0");
     modal.focus();
     setFocusLoop(modal);
   } else {
-    modal.setAttribute('aria-hidden', true);
+    modal.setAttribute("aria-hidden", "true");
 
     // focus back the activated link for getting back to the context.
-    modal.setAttribute('tabindex', '-1');
+    modal.setAttribute("tabindex", "-1");
     activatedLink.focus();
   }
-}
+};
 
 // set focus loop within modal
-const setFocusLoop = (ref: HTMLElement): string => {
+const setFocusLoop = (ref: HTMLElement): void => {
   let modal = ref;
-  modal.querySelector('.m-modal-content a:last-of-type').addEventListener('keydown', leaveLastLink);
-  modal.querySelector('.m-modal-content a:first-of-type').addEventListener('keydown', leaveFirstLink);
-}
+  modal
+    .querySelector(".m-modal-content a:last-of-type")
+    .addEventListener("keydown", leaveLastLink);
+  modal
+    .querySelector(".m-modal-content a:first-of-type")
+    .addEventListener("keydown", leaveFirstLink);
+};
 
-const leaveLastLink = (e): void => {
+const leaveLastLink = (e: KeyboardEvent): void => {
   // going back to the first link to force looping
-  if ( e.code === 'Tab' && e.shiftKey === false ) {
+  if (e.code === "Tab" && e.shiftKey === false) {
     e.preventDefault();
-    e.target.closest('div').querySelector('a:first-of-type').focus();
-  }
-}
 
-const leaveFirstLink = (e): void => {
-  // going back to the first link to force looping
-  if ( e.code === 'Tab' && e.shiftKey === true ) {
-    e.preventDefault();
-    e.target.closest('div').querySelector('a:last-of-type').focus();
+    ((e.target as HTMLElement)
+      .closest("div")
+      .querySelector("a:first-of-type") as HTMLElement).focus();
   }
-}
+};
+
+const leaveFirstLink = (e: KeyboardEvent): void => {
+  // going back to the first link to force looping
+  if (e.code === "Tab" && e.shiftKey === true) {
+    e.preventDefault();
+    ((e.target as HTMLElement)
+      .closest("div")
+      .querySelector("a:last-of-type") as HTMLElement).focus();
+  }
+};
 
 // enable dark mode
 const enableDarkMode = (type: string = MAIL_TYPE) =>
