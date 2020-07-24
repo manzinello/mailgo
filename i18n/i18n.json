@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es", "de", "fr"],
+  "languages": ["en", "it", "es", "de", "fr", "pt"],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -69,6 +69,18 @@
       "_as_default": " mit Standard",
       "copy": "kopieren"
     },
+     "pt": {
+      "open_in_": "abrir com ",
+      "cc_": "cc ",
+      "bcc_": "cco ",
+      "subject_": "assunto ",
+      "body_": "corpo ",
+      "call": "ligar",
+      "open": "abrir",
+      "_default": " padrão",
+      "_as_default": " por padrão",
+      "copy": "copiar"
+    },
     "fr": {
       "open_in_": "Ouvrir dans ",
       "cc_": "cc ",
@@ -86,5 +98,4 @@
       "_as_default": " par défaut",
       "copy": "Copier"
     }
-  }
 }
