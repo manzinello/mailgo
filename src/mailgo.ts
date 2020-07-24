@@ -65,7 +65,8 @@ let title: HTMLElement,
   ccValue: HTMLElement,
   bccValue: HTMLElement,
   subjectValue: HTMLElement,
-  bodyValue: HTMLElement;
+  bodyValue: HTMLElement,
+  activatedLink: HTMLElement;
 
 // mailgo buttons (actions)
 let gmail: HTMLLinkElement,
@@ -115,6 +116,9 @@ const mailgoInit = (): void => {
     modalMailto.style.display = "none";
     modalMailto.id = "mailgo";
     modalMailto.classList.add("m-modal");
+    modalMailto.setAttribute("role", "dialog");
+    modalMailto.setAttribute("tabindex", "-1");
+    modalMailto.setAttribute("aria-labelledby", "m-title");
 
     // if dark is in config
     if (config?.dark) {
@@ -269,6 +273,9 @@ const mailgoInit = (): void => {
     modalTel.style.display = "none";
     modalTel.id = "mailgo-tel";
     modalTel.classList.add("m-modal");
+    modalTel.setAttribute("role", "dialog");
+    modalTel.setAttribute("tabindex", "-1");
+    modalTel.setAttribute("aria-labelledby", "m-tel-title");
 
     // if dark is in config
     if (config?.dark) {
@@ -882,9 +889,51 @@ const getModalHTMLElement = (type: string = MAIL_TYPE) =>
 const getModalDisplay = (ref: string = MAIL_TYPE): string =>
   getModalHTMLElement(ref).style.display;
 
-// get display value
-const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string =>
-  (getModalHTMLElement(ref).style.display = value);
+// set display value
+const setModalDisplay = (ref: string = MAIL_TYPE, value: string): string => {
+  let modal = getModalHTMLElement(ref);
+  modal.style.display = value;
+
+  if ( value === 'flex' ) {
+    // "save" the activated link.
+    activatedLink = document.activeElement;
+    modal.setAttribute('aria-hidden', false);
+
+    // Focus on the modal container.
+    modal.setAttribute('tabindex', "0");
+    modal.focus();
+    setFocusLoop(modal);
+  } else {
+    modal.setAttribute('aria-hidden', true);
+
+    // focus back the activated link for getting back to the context.
+    modal.setAttribute('tabindex', '-1');
+    activatedLink.focus();
+  }
+}
+
+// set focus loop within modal
+const setFocusLoop = (ref: HTMLElement): string => {
+  let modal = ref;
+  modal.querySelector('.m-modal-content a:last-of-type').addEventListener('keydown', leaveLastLink);
+  modal.querySelector('.m-modal-content a:first-of-type').addEventListener('keydown', leaveFirstLink);
+}
+
+const leaveLastLink = (e): void => {
+  // going back to the first link to force looping
+  if ( e.code === 'Tab' && e.shiftKey === false ) {
+    e.preventDefault();
+    e.target.closest('div').querySelector('a:first-of-type').focus();
+  }
+}
+
+const leaveFirstLink = (e): void => {
+  // going back to the first link to force looping
+  if ( e.code === 'Tab' && e.shiftKey === true ) {
+    e.preventDefault();
+    e.target.closest('div').querySelector('a:last-of-type').focus();
+  }
+}
 
 // enable dark mode
 const enableDarkMode = (type: string = MAIL_TYPE) =>
