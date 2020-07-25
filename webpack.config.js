@@ -37,7 +37,7 @@ module.exports = [
     mode: "production",
     target: "web",
     devtool: "source-map",
-    entry: "./mailgo.direct.ts",
+    entry: "./mailgo.firefox.ts",
     context: path.join(__dirname, "webpack"),
     module: {
       rules: mailgoRules,
@@ -46,7 +46,7 @@ module.exports = [
       extensions: [".ts", ".js"],
     },
     output: {
-      filename: "mailgo.direct.min.js",
+      filename: "mailgo.firefox.min.js",
       library: "mailgo",
       libraryTarget: "window",
       path: path.resolve(__dirname, "dist"),
