@@ -1,6 +1,6 @@
-// webpack > dist/mailgo.firefox.js
-// script to add in Firefox addon
-// https://github.com/manzinello/mailgo-firefox-addon
+// webpack > dist/mailgo.chrome.js
+// script to add in Chrome extension
+// https://github.com/manzinello/mailgo-chrome-extension
 
 import mailgo from "../src/mailgo";
 
