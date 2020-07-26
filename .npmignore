@@ -12,8 +12,11 @@ wdio.conf.js
 .github/FUNDING.yml
 .flowconfig
 babel.config.js
+
 webpack
 examples
 
 mailgo.firefox.min.js
 mailgo.firefox.min.js.map
+mailgo.chrome.min.js
+mailgo.chrome.min.js.map
