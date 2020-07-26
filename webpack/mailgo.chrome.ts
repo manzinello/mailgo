@@ -1,4 +1,4 @@
-// webpack > dist/mailgo.chrome.js
+// webpack > extensions/mailgo.chrome.js
 // script to add in Chrome extension
 // https://github.com/manzinello/mailgo-chrome-extension
 

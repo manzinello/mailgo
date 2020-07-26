@@ -1,4 +1,4 @@
-// webpack > dist/mailgo.firefox.js
+// webpack > extensions/mailgo.firefox.js
 // script to add in Firefox addon
 // https://github.com/manzinello/mailgo-firefox-addon
 

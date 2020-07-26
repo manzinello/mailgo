@@ -49,7 +49,7 @@ module.exports = [
       filename: "mailgo.firefox.min.js",
       library: "mailgo",
       libraryTarget: "window",
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "extensions"),
     },
   },
   {
@@ -68,7 +68,7 @@ module.exports = [
       filename: "mailgo.chrome.min.js",
       library: "mailgo",
       libraryTarget: "window",
-      path: path.resolve(__dirname, "dist"),
+      path: path.resolve(__dirname, "extensions"),
     },
   },
   {
