@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es", "de", "fr", "pt"],
+  "languages": ["en", "it", "es", "de", "fr", "pt", "nl"],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -97,6 +97,23 @@
       "_default": " par défaut",
       "_as_default": " par défaut",
       "copy": "Copier"
+    },
+     "nl": {
+      "open_in_": "open in ",
+      "cc_": "cc ",
+      "bcc_": "bcc ",
+      "subject_": "onderwerp ",
+      "body_": "bericht ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "bellen",
+      "open": "openen",
+      "_default": " standaard",
+      "_as_default": " als standaard",
+      "copy": "kopiëren"
     }
   }
 }
