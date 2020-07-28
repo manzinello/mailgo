@@ -9,7 +9,16 @@ const mailgoRules = [
   },
   {
     test: /\.s[ac]ss$/i,
-    use: ["to-string-loader", "css-loader", "sass-loader"],
+    use: [
+      "to-string-loader",
+      {
+        loader: "css-loader",
+        options: {
+          esModule: false,
+        },
+      },
+      "sass-loader",
+    ],
   },
 ];
 
