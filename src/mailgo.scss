@@ -78,7 +78,9 @@ $default-border-radius: 20px;
     padding: 24px;
     transition: 0.5s box-shadow;
 
-    &:hover {
+    &:hover,
+    &:focus,
+    &:active {
       opacity: 1;
     }
 
@@ -108,7 +110,9 @@ $default-border-radius: 20px;
 
       &.m-gmail {
         color: $gmail-color;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           background-color: rgba(212, 70, 56, 0.08);
           color: $gmail-color;
         }
@@ -116,7 +120,9 @@ $default-border-radius: 20px;
 
       &.m-outlook {
         color: $outlook-color;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           background-color: rgba(0, 114, 198, 0.08);
           color: $outlook-color;
         }
@@ -124,7 +130,9 @@ $default-border-radius: 20px;
 
       &.m-tg {
         color: $telegram-color;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           background-color: rgba(0, 136, 204, 0.08);
           color: $telegram-color;
         }
@@ -132,7 +140,9 @@ $default-border-radius: 20px;
 
       &.m-wa {
         color: $wa-color;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           background-color: rgba(0, 191, 165, 0.08);
           color: $wa-color;
         }
@@ -140,7 +150,9 @@ $default-border-radius: 20px;
 
       &.m-skype {
         color: $skype-color;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           background-color: rgba(0, 175, 240, 0.08);
           color: $skype-color;
         }
@@ -151,10 +163,14 @@ $default-border-radius: 20px;
         font-size: 16px;
       }
 
-      &.m-default:hover,
-      &.m-copy:hover {
-        background-color: rgba(0, 0, 0, 0.08);
-        color: $default-color;
+      &.m-default,
+      &.m-copy {
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: rgba(0, 0, 0, 0.08);
+          color: $default-color;
+        }
       }
 
       &.m-by {
@@ -163,7 +179,9 @@ $default-border-radius: 20px;
         padding: 5px;
         color: $default-color;
         opacity: 0.55;
-        &:hover {
+        &:hover,
+        &:focus,
+        &:active {
           opacity: 1;
         }
       }
@@ -186,15 +204,21 @@ $default-border-radius: 20px;
       a {
         color: $default-dark-color;
 
-        &:not(.m-by):hover {
-          background-color: rgba(134, 134, 134, 0.08);
-          color: $default-dark-color;
+        &:not(.m-by) {
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: rgba(134, 134, 134, 0.08);
+            color: $default-dark-color;
+          }
         }
 
         &.m-gmail {
           color: $gmail-dark-color;
 
-          &:hover {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: rgba(212, 70, 56, 0.08);
             color: $gmail-dark-color;
           }
@@ -203,7 +227,9 @@ $default-border-radius: 20px;
         &.m-outlook {
           color: $outlook-dark-color;
 
-          &:hover {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: rgba(0, 114, 198, 0.08);
             color: $outlook-dark-color;
           }
@@ -212,7 +238,9 @@ $default-border-radius: 20px;
         &.m-tg {
           color: $telegram-dark-color;
 
-          &:hover {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: rgba(0, 136, 204, 0.08);
             color: $telegram-dark-color;
           }
@@ -221,7 +249,9 @@ $default-border-radius: 20px;
         &.m-wa {
           color: $wa-dark-color;
 
-          &:hover {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: rgba(0, 191, 165, 0.08);
             color: $wa-dark-color;
           }
@@ -230,7 +260,9 @@ $default-border-radius: 20px;
         &.m-skype {
           color: $skype-dark-color;
 
-          &:hover {
+          &:hover,
+          &:focus,
+          &:active {
             background-color: rgba(0, 175, 240, 0.08);
             color: $skype-dark-color;
           }
