@@ -263,7 +263,7 @@ const mailgoInit = (): void => {
 
     // show mailgo.dev in footer only if showFooter == true
     if (
-      typeof config?.showFooter !== "undefined" &&
+      typeof config?.showFooter === "undefined" ||
       config?.showFooter === false
     ) {
       modalContent.appendChild(byElement());
@@ -393,7 +393,7 @@ const mailgoInit = (): void => {
 
     // show mailgo.dev in footer only if showFooter == true
     if (
-      typeof config?.showFooter !== "undefined" &&
+      typeof config?.showFooter === "undefined" ||
       config?.showFooter === false
     ) {
       modalContent.appendChild(byElement());
@@ -1035,8 +1035,8 @@ const mailgoStyle = (): void => {
 
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
-  // set the global config
-  config = mailgoConfig;
+  // set the global config if passed as parameter or keep it from window
+  config = mailgoConfig || (window as any)?.mailgoConfig;
 
   // if the window is defined...
   if (window && typeof window !== "undefined") {
