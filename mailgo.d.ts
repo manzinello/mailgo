@@ -11,6 +11,7 @@ declare module "mailgo" {
     forceLang?: boolean;
     validateEmail?: boolean;
     validateTel?: boolean;
+    showFooter?: boolean;
   };
 
   export type MailgoTranslation = {

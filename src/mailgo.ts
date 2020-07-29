@@ -261,7 +261,13 @@ const mailgoInit = (): void => {
 
     modalContent.appendChild(copyMail);
 
-    modalContent.appendChild(byElement());
+    // show mailgo.dev in footer only if showFooter == true
+    if (
+      typeof config?.showFooter !== "undefined" &&
+      config?.showFooter === false
+    ) {
+      modalContent.appendChild(byElement());
+    }
 
     // add the modal at the end of the body
     document.body.appendChild(modalMailto);
@@ -385,7 +391,13 @@ const mailgoInit = (): void => {
 
     modalContent.appendChild(copyTel);
 
-    modalContent.appendChild(byElement());
+    // show mailgo.dev in footer only if showFooter == true
+    if (
+      typeof config?.showFooter !== "undefined" &&
+      config?.showFooter === false
+    ) {
+      modalContent.appendChild(byElement());
+    }
 
     // add the modal at the end of the body
     document.body.appendChild(modalTel);
