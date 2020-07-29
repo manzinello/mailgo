@@ -19,6 +19,9 @@ const MAILTO: string = "mailto:";
 const TEL: string = "tel:";
 const CALLTO: string = "callto:";
 
+// deep linking
+const outlookDeepLink: string = "ms-outlook://";
+
 // mailgo types
 const MAIL_TYPE: string = "mail";
 const TEL_TYPE: string = "tel";
