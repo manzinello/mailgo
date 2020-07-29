@@ -10,6 +10,8 @@ $wa-color: #00bfa5;
 $telegram-color: #0088cc;
 $skype-color: #00aff0;
 
+$default-color-hover: #3d3d3d;
+
 $default-dark-color: #eaeaea;
 $gmail-dark-color: #e07d73;
 $outlook-dark-color: #4c9cd7;
@@ -178,11 +180,10 @@ $default-border-radius: 20px;
         margin-top: 0.8rem;
         padding: 5px;
         color: $default-color;
-        opacity: 0.55;
         &:hover,
         &:focus,
         &:active {
-          opacity: 1;
+          color: $default-color-hover;
         }
       }
     }
@@ -265,6 +266,14 @@ $default-border-radius: 20px;
           &:active {
             background-color: rgba(0, 175, 240, 0.08);
             color: $skype-dark-color;
+          }
+        }
+
+        &.m-by {
+          &:hover,
+          &:focus,
+          &:active {
+            color: #fff;
           }
         }
       }
