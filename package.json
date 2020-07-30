@@ -3,8 +3,7 @@
   "version": "0.9.13",
   "description": "a new concept of mailto and tel links",
   "scripts": {
-    "build": "webpack",
-    "test": "jest"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -39,21 +38,16 @@
     "@babel/core": "^7.10.5",
     "@babel/parser": "^7.10.5",
     "@babel/preset-env": "^7.10.4",
-    "@babel/preset-flow": "^7.10.4",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/types": "^7.10.5",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.1.1",
-    "file-loader": "^6.0.0",
-    "jest": "^26.2.0",
     "node-sass": "^4.14.1",
     "sass-loader": "^9.0.2",
     "style-loader": "^1.2.1",
-    "terser-webpack-plugin": "^3.0.8",
     "to-string-loader": "^1.1.6",
     "ts-loader": "^8.0.1",
     "typescript": "^3.9.7",
-    "uglifyjs-webpack-plugin": "^2.2.0",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },
