@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es", "de", "fr", "pt", "nl"],
+  "languages": ["en", "it", "es", "de", "fr", "pt", "nl", "ru"],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -98,7 +98,7 @@
       "_as_default": " par défaut",
       "copy": "Copier"
     },
-     "nl": {
+    "nl": {
       "open_in_": "open in ",
       "cc_": "cc ",
       "bcc_": "bcc ",
@@ -114,6 +114,23 @@
       "_default": " standaard",
       "_as_default": " als standaard",
       "copy": "kopiëren"
+    },
+    "ru": {
+      "open_in_": "открыть в ",
+      "cc_": "cc ",
+      "bcc_": "bcc ",
+      "subject_": "тема ",
+      "body_": "тело ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "позвонить",
+      "open": "открыть",
+      "_default": " по умолчанию",
+      "_as_default": " по умолчанию",
+      "copy": "скопировать"
     }
   }
 }
