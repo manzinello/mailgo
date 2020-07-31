@@ -93,7 +93,7 @@ const mailgoInit = (): void => {
   }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
   // if a default language is defined use it
-  if (config?.lang && i18n.languages.includes(config.lang)) {
+  if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
     lang = config.lang;
   }
 
@@ -103,7 +103,7 @@ const mailgoInit = (): void => {
     let htmlLang: string = document.documentElement.lang;
 
     // if there are translations...
-    if (i18n.languages.includes(htmlLang)) {
+    if (i18n.languages.indexOf(htmlLang) !== -1) {
       lang = document.documentElement.lang;
     }
   }
