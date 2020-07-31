@@ -112,8 +112,8 @@ const mailgoInit = (): void => {
   let defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
   let strings: MailgoTranslation = translations[lang];
 
-  // mailgo mail
-  {
+  // mailgo tel, if mailgo not already exists
+  if (!document.getElementById("mailgo")) {
     // modal
     modalMailto = createElement() as HTMLElement;
     modalMailto.style.display = "none";
@@ -275,8 +275,9 @@ const mailgoInit = (): void => {
     // every click outside the modal will hide the modal
     modalBackground.addEventListener("click", hideMailgo);
   }
-  // mailgo tel
-  {
+
+  // mailgo tel, if mailgo-tel not already exists
+  if (!document.getElementById("mailgo-tel")) {
     // modal
     modalTel = createElement() as HTMLElement;
     modalTel.style.display = "none";
