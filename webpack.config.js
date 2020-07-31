@@ -15,6 +15,7 @@ const mailgoRules = [
         loader: "css-loader",
         options: {
           esModule: false,
+          sourceMap: false,
         },
       },
       "sass-loader",
