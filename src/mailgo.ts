@@ -112,8 +112,10 @@ const mailgoInit = (): void => {
   let defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
   let strings: MailgoTranslation = translations[lang];
 
-  // mailgo tel, if mailgo not already exists
-  if (!document.getElementById("mailgo")) {
+  // mailgo, if mailgo not already exists
+  let mailgoExists = !!document.getElementById("mailgo");
+
+  if (!mailgoExists) {
     // modal
     modalMailto = createElement() as HTMLElement;
     modalMailto.style.display = "none";
@@ -277,7 +279,9 @@ const mailgoInit = (): void => {
   }
 
   // mailgo tel, if mailgo-tel not already exists
-  if (!document.getElementById("mailgo-tel")) {
+  let mailgoTelExists = !!document.getElementById("mailgo-tel");
+
+  if (!mailgoTelExists) {
     // modal
     modalTel = createElement() as HTMLElement;
     modalTel.style.display = "none";
