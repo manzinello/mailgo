@@ -18,6 +18,7 @@ const DEFAULT_LANG: string = "en";
 const MAILTO: string = "mailto:";
 const TEL: string = "tel:";
 const CALLTO: string = "callto:";
+const SMS: string = "sms:";
 
 // deep linking
 const outlookDeepLink: string = "ms-outlook://";
@@ -672,7 +673,7 @@ const openWhatsApp = (): void => {
 };
 
 const callDefault = () => {
-  let callUrl: string = "tel:" + tel;
+  let callUrl: string = TEL + tel;
   window.open(callUrl);
   hideMailgo();
 };
