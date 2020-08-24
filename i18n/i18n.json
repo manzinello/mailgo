@@ -1,5 +1,5 @@
 {
-  "languages": ["en", "it", "es", "de", "fr", "pt", "nl", "ru"],
+  "languages": ["en", "it", "es", "de", "fr", "pt", "nl", "ru", "sv"],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -90,6 +90,23 @@
       "_default": " по умолчанию",
       "_as_default": " по умолчанию",
       "copy": "скопировать"
+    },
+    "sv": {
+      "open_in_": "öppna i ",
+      "cc_": "cc ",
+      "bcc_": "bcc ",
+      "subject_": "ämne ",
+      "body_": "meddelandetext ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "ring",
+      "open": "öppna",
+      "_default": " förval",
+      "_as_default": " som förval",
+      "copy": "kopiera"
     }
   }
 }
