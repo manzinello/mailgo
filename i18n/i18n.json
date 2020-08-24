@@ -1,5 +1,17 @@
 {
-  "languages": ["en", "it", "es", "de", "fr", "pt", "nl", "ru", "sv", "no", "dk"],
+  "languages": [
+    "en",
+    "it",
+    "es",
+    "de",
+    "fr",
+    "pt",
+    "nl",
+    "ru",
+    "sv",
+    "no",
+    "dk"
+  ],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -112,7 +124,6 @@
     "dk": {
       "open_in_": "åpne i ",
       "subject_": "emne ",
-      "body_": "body ",
       "call": "ringe op",
       "open": "åben",
       "_as_default": " som standard",
