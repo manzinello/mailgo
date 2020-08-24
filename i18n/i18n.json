@@ -10,7 +10,8 @@
     "ru",
     "sv",
     "no",
-    "dk"
+    "dk",
+    "is"
   ],
   "translations": {
     "en": {
@@ -128,6 +129,16 @@
       "open": "åben",
       "_as_default": " som standard",
       "copy": "kopi"
+    },
+    "is": {
+      "open_in_": "opið inn ",
+      "subject_": "viðfangsefni ",
+      "body_": "líkami ",
+      "call": "hringja",
+      "open": "opið",
+      "_default": " sjálfgefið",
+      "_as_default": " sem sjálfgefið",
+      "copy": "afrita"
     }
   }
 }
