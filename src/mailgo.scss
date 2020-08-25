@@ -6,6 +6,7 @@ $mailgo-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
 $default-color: #4a4a4a;
 $gmail-color: #c0372a;
 $outlook-color: #0967aa;
+$yahoo-color: #4a00a0;
 $wa-color: #067466;
 $telegram-color: #086da0;
 $skype-color: #076d92;
@@ -15,6 +16,7 @@ $default-color-hover: #3d3d3d;
 $default-dark-color: #eaeaea;
 $gmail-dark-color: #e07d73;
 $outlook-dark-color: #4c9cd7;
+$yahoo-dark-color: #9266c6;
 $wa-dark-color: #4cd2c0;
 $telegram-dark-color: #4cabdb;
 $skype-dark-color: #4cc7f4;
@@ -130,6 +132,16 @@ $default-border-radius: 20px;
         }
       }
 
+      &.m-yahoo {
+        color: $yahoo-color;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: rgba(74, 0, 160, 0.08);
+          color: $yahoo-color;
+        }
+      }
+
       &.m-tg {
         color: $telegram-color;
         &:hover,
@@ -233,6 +245,17 @@ $default-border-radius: 20px;
           &:active {
             background-color: rgba(0, 114, 198, 0.08);
             color: $outlook-dark-color;
+          }
+        }
+
+        &.m-yahoo {
+          color: $yahoo-dark-color;
+
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: rgba(146, 102, 198, 0.08);
+            color: $yahoo-dark-color;
           }
         }
 
