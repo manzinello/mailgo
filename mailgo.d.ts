@@ -22,6 +22,7 @@ declare module "mailgo" {
     body_?: string;
     gmail?: string;
     outlook?: string;
+    yahoo?: string;
     telegram?: string;
     whatsapp?: string;
     skype?: string;

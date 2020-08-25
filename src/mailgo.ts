@@ -75,6 +75,7 @@ let title: HTMLElement,
 // mailgo buttons (actions)
 let gmail: HTMLLinkElement,
   outlook: HTMLLinkElement,
+  yahoo: HTMLLinkElement,
   open: HTMLLinkElement,
   telegram: HTMLLinkElement,
   wa: HTMLLinkElement,
@@ -237,6 +238,24 @@ const mailgoInit = (): void => {
     outlook.appendChild(outlookSpan);
 
     modalContent.appendChild(outlook);
+
+    // Outlook
+    yahoo = createElement(aHTMLTag) as HTMLLinkElement;
+    yahoo.id = "m-outlook";
+    yahoo.href = DEFAULT_BTN_HREF;
+    yahoo.classList.add("m-open");
+    yahoo.classList.add("m-yahoo");
+    yahoo.appendChild(
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
+    );
+    let yahooSpan: HTMLElement = createElement(spanHTMLTag);
+    yahooSpan.className = "w-500";
+    yahooSpan.appendChild(
+      createTextNode(strings.yahoo || defaultStrings.yahoo)
+    );
+    yahoo.appendChild(yahooSpan);
+
+    modalContent.appendChild(yahoo);
 
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
@@ -512,6 +531,8 @@ export function mailgoRender(
     gmail.addEventListener("click", openGmail);
 
     outlook.addEventListener("click", openOutlook);
+
+    yahoo.addEventListener("click", openYahooMail);
 
     encEmail = encodeEmail(mail);
     open.addEventListener("click", openDefault);
