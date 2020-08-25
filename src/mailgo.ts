@@ -629,6 +629,22 @@ const openOutlook = (): void => {
   hideMailgo();
 };
 
+const openYahooMail = (): void => {
+  // Yahoo url
+  let yahooUrl: string =
+    "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail);
+
+  // the details if provided
+  if (subject) yahooUrl = yahooUrl.concat("&subject=" + subject);
+  if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+
+  // open the link
+  window.open(yahooUrl, "_blank");
+
+  // hide the modal
+  hideMailgo();
+};
+
 const openDefault = (): void => {
   mailToEncoded(encEmail);
   hideMailgo();
