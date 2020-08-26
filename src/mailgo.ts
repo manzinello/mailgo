@@ -27,9 +27,6 @@ const outlookDeepLink: string = "ms-outlook://";
 const MAIL_TYPE: string = "mail";
 const TEL_TYPE: string = "tel";
 
-// default href for links
-const DEFAULT_BTN_HREF: string = "javascript:void(0);";
-
 // useful html tags
 const spanHTMLTag: string = "span";
 const aHTMLTag: string = "a";
@@ -206,7 +203,7 @@ const mailgoInit = (): void => {
     // Gmail
     gmail = createElement(aHTMLTag) as HTMLLinkElement;
     gmail.id = "m-gmail";
-    gmail.href = DEFAULT_BTN_HREF;
+    gmail.href = "#mailgo-gmail";
     gmail.classList.add("m-open");
     gmail.classList.add("m-gmail");
     gmail.appendChild(
@@ -224,7 +221,7 @@ const mailgoInit = (): void => {
     // Outlook
     outlook = createElement(aHTMLTag) as HTMLLinkElement;
     outlook.id = "m-outlook";
-    outlook.href = DEFAULT_BTN_HREF;
+    outlook.href = "#mailgo-outlook";
     outlook.classList.add("m-open");
     outlook.classList.add("m-outlook");
     outlook.appendChild(
@@ -242,7 +239,7 @@ const mailgoInit = (): void => {
     // Outlook
     yahoo = createElement(aHTMLTag) as HTMLLinkElement;
     yahoo.id = "m-outlook";
-    yahoo.href = DEFAULT_BTN_HREF;
+    yahoo.href = "#mailgo-yahoo";
     yahoo.classList.add("m-open");
     yahoo.classList.add("m-yahoo");
     yahoo.appendChild(
@@ -260,7 +257,7 @@ const mailgoInit = (): void => {
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
     open.id = "m-open";
-    open.href = DEFAULT_BTN_HREF;
+    open.href = "#mailgo-open";
     open.classList.add("m-open");
     open.classList.add("m-default");
     let openSpan: HTMLElement = createElement(spanHTMLTag);
@@ -276,7 +273,7 @@ const mailgoInit = (): void => {
     // copy
     copyMail = createElement(aHTMLTag) as HTMLLinkElement;
     copyMail.id = "m-copy";
-    copyMail.href = DEFAULT_BTN_HREF;
+    copyMail.href = "#mailgo-copy";
     copyMail.classList.add("m-copy");
     copyMail.classList.add("w-500");
     copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
@@ -337,7 +334,7 @@ const mailgoInit = (): void => {
     // Telegram
     telegram = createElement(aHTMLTag) as HTMLLinkElement;
     telegram.id = "m-tg";
-    telegram.href = DEFAULT_BTN_HREF;
+    telegram.href = "#mailgo-telegram";
     telegram.classList.add("m-open");
     telegram.classList.add("m-tg");
 
@@ -359,7 +356,7 @@ const mailgoInit = (): void => {
     // WhatsApp
     wa = createElement(aHTMLTag) as HTMLLinkElement;
     wa.id = "m-wa";
-    wa.href = DEFAULT_BTN_HREF;
+    wa.href = "#mailgo-whatsapp";
     wa.classList.add("m-open");
     wa.classList.add("m-wa");
     wa.appendChild(createTextNode(strings.open_in_ || defaultStrings.open_in_));
@@ -375,7 +372,7 @@ const mailgoInit = (): void => {
     // Skype
     skype = createElement(aHTMLTag) as HTMLLinkElement;
     skype.id = "m-skype";
-    skype.href = DEFAULT_BTN_HREF;
+    skype.href = "#mailgo-skype";
     skype.classList.add("m-open");
     skype.classList.add("m-skype");
     skype.appendChild(
@@ -393,7 +390,7 @@ const mailgoInit = (): void => {
     // call default
     call = createElement(aHTMLTag) as HTMLLinkElement;
     call.id = "m-call";
-    call.href = DEFAULT_BTN_HREF;
+    call.href = "#mailgo-open";
     call.classList.add("m-open");
     call.classList.add("m-default");
     let callSpan: HTMLElement = createElement(spanHTMLTag);
@@ -409,7 +406,7 @@ const mailgoInit = (): void => {
     // copy
     copyTel = createElement(aHTMLTag) as HTMLLinkElement;
     copyTel.id = "m-tel-copy";
-    copyTel.href = DEFAULT_BTN_HREF;
+    copyTel.href = "#mailgo-copy";
     copyTel.classList.add("m-copy");
     copyTel.classList.add("w-500");
     copyTel.appendChild(createTextNode(strings.copy || defaultStrings.copy));
