@@ -534,7 +534,10 @@ export function mailgoRender(
     encEmail = encodeEmail(mail);
     open.addEventListener("click", openDefault);
 
-    copyMail.addEventListener("click", () => copy(mail));
+    copyMail.addEventListener("click", (event) => {
+      event.preventDefault();
+      copy(mail);
+    });
   }
   // mailgo tel
   else if (type === TEL_TYPE) {
@@ -590,7 +593,10 @@ export function mailgoRender(
 
     call.addEventListener("click", callDefault);
 
-    copyTel.addEventListener("click", () => copy(tel));
+    copyTel.addEventListener("click", (event) => {
+      event.preventDefault();
+      copy(tel);
+    });
   }
 
   // if config.dark is set to true then all the modals will be in dark mode
@@ -611,7 +617,9 @@ export function mailgoRender(
 }
 
 // actions
-const openGmail = (): void => {
+const openGmail = (event?: Event): void => {
+  event.preventDefault();
+
   // Gmail url
   let gmailUrl: string =
     "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
@@ -630,7 +638,9 @@ const openGmail = (): void => {
   hideMailgo();
 };
 
-const openOutlook = (): void => {
+const openOutlook = (event?: Event): void => {
+  event.preventDefault();
+
   // Outlook url
   let outlookUrl: string =
     "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
@@ -647,7 +657,9 @@ const openOutlook = (): void => {
   hideMailgo();
 };
 
-const openYahooMail = (): void => {
+const openYahooMail = (event?: Event): void => {
+  event.preventDefault();
+
   // Yahoo url
   let yahooUrl: string =
     "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail);
@@ -663,12 +675,17 @@ const openYahooMail = (): void => {
   hideMailgo();
 };
 
-const openDefault = (): void => {
+const openDefault = (event?: Event): void => {
+  event.preventDefault();
+
   mailToEncoded(encEmail);
+
   hideMailgo();
 };
 
-const openTelegram = (): void => {
+const openTelegram = (event?: Event): void => {
+  event.preventDefault();
+
   // Telegram url
   let tgUrl: string = "https://t.me/" + telegramUsername;
 
@@ -679,7 +696,9 @@ const openTelegram = (): void => {
   hideMailgo();
 };
 
-const openSkype = (): void => {
+const openSkype = (event?: Event): void => {
+  event.preventDefault();
+
   let skype: string = skypeUsername !== "" ? skypeUsername : tel;
 
   // Telegram url
@@ -692,7 +711,9 @@ const openSkype = (): void => {
   hideMailgo();
 };
 
-const openWhatsApp = (): void => {
+const openWhatsApp = (event?: Event): void => {
+  event.preventDefault();
+
   // WhatsApp url
   let waUrl: string = "https://wa.me/" + tel;
 
@@ -706,7 +727,9 @@ const openWhatsApp = (): void => {
   hideMailgo();
 };
 
-const callDefault = () => {
+const callDefault = (event?: Event) => {
+  event.preventDefault();
+
   let callUrl: string = TEL + tel;
   window.open(callUrl);
   hideMailgo();
