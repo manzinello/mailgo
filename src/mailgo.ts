@@ -101,10 +101,13 @@ const mailgoInit = (): void => {
     // keep the lang from html
     let htmlLang: string = document.documentElement.lang;
 
-    // if there are translations...
-    if (i18n.languages.indexOf(htmlLang) !== -1) {
-      lang = document.documentElement.lang;
-    }
+    // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
+    let langIndex = i18n.languages.findIndex((language) =>
+      htmlLang.startsWith(language)
+    );
+
+    // if there is the language set it
+    if (langIndex !== -1) lang = i18n.languages[langIndex];
   }
 
   // strings
