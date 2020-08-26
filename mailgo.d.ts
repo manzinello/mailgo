@@ -34,6 +34,7 @@ declare module "mailgo" {
   };
 
   export type MailgoTranslations = {
+    // language code follow ISO 639-1 Code
     [language: string]: MailgoTranslation;
   };
 
