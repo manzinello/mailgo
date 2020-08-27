@@ -35,6 +35,12 @@ const pHTMLTag: string = "p";
 // global mailgo config object
 let config: MailgoConfig;
 
+// default config attributes
+let validateEmailConfig: boolean = true;
+let validateTelConfig: boolean = true;
+let showFooterConfig: boolean = true;
+let loadCSSConfig: boolean = true;
+
 // default language
 let lang: string = DEFAULT_LANG;
 
@@ -284,10 +290,11 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyMail);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (
-      typeof config?.showFooter === "undefined" ||
-      config?.showFooter !== false
-    ) {
+    if (typeof config?.showFooter === "undefined") {
+      showFooterConfig = config.showFooter;
+    }
+
+    if (showFooterConfig) {
       modalContent.appendChild(byElement());
     }
 
@@ -491,10 +498,12 @@ export function mailgoRender(
       bodyMail = mailgoElement.getAttribute("data-body");
     }
 
-    if (
-      typeof config?.validateEmail === "undefined" ||
-      config?.validateEmail === true
-    ) {
+    // if is setted in config use it
+    if (typeof config?.validateEmail !== "undefined") {
+      validateEmailConfig = config.validateEmail;
+    }
+
+    if (validateEmailConfig) {
       // validate the email address
       if (!validateEmails(mail.split(","))) return;
 
@@ -563,8 +572,15 @@ export function mailgoRender(
       msg = mailgoElement.getAttribute("data-msg");
     }
 
+    // if is setted in config use it
+    if (typeof config?.validateTel !== "undefined") {
+      validateTelConfig = config.validateTel;
+    }
+
     // validate the phone number
-    if (!validateTel(tel)) return;
+    if (validateTelConfig) {
+      if (!validateTel(tel)) return;
+    }
 
     // Telegram username
     if (mailgoElement.hasAttribute("data-telegram")) {
