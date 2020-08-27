@@ -1122,8 +1122,16 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
 
   // if the window is defined...
   if (window && typeof window !== "undefined") {
-    // add the style for mailgo
-    mailgoStyle();
+    // if is setted in config use it
+    if (typeof config?.loadCSS !== "undefined") {
+      loadCSSConfig = config.loadCSS;
+    }
+
+    // if load css enabled load it!
+    if (loadCSSConfig) {
+      // add the style for mailgo
+      mailgoStyle();
+    }
 
     // if is set an initEvent add the listener
     if (config?.initEvent) {
