@@ -12,6 +12,7 @@ declare module "mailgo" {
     validateEmail?: boolean;
     validateTel?: boolean;
     showFooter?: boolean;
+    noCSS?: boolean;
   };
 
   export type MailgoTranslation = {
