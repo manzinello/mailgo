@@ -1139,16 +1139,12 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
         // listener options specified
         document.addEventListener(
           config.initEvent,
-          () => {
-            mailgoInit();
-          },
+          mailgoInit,
           config.listenerOptions
         );
       } else {
         // no listener options
-        document.addEventListener(config.initEvent, () => {
-          mailgoInit();
-        });
+        document.addEventListener(config.initEvent, mailgoInit);
       }
     } else {
       mailgoInit();
