@@ -11,7 +11,8 @@
     "sv",
     "no",
     "dk",
-    "is"
+    "is",
+    "zh-TW"
   ],
   "translations": {
     "en": {
@@ -140,6 +141,24 @@
       "_default": " sjálfgefið",
       "_as_default": " sem sjálfgefið",
       "copy": "afrita"
+    },
+    "zh-TW": {
+      "open_in_": "開啟 ",
+      "cc_": "副本 ",
+      "bcc_": "密件副本 ",
+      "subject_": "主旨 ",
+      "body_": "內文 ",
+      "gmail": "Gmail",
+      "outlook": "Outlook",
+      "yahoo": "Yahoo Mail",
+      "telegram": "Telegram",
+      "whatsapp": "WhatsApp",
+      "skype": "Skype",
+      "call": "通話",
+      "open": "開啟",
+      "_default": " 預設",
+      "_as_default": " 預設",
+      "copy": "複製"
     }
   }
 }
