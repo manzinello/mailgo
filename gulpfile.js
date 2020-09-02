@@ -6,6 +6,8 @@ const cleanCSS = require("gulp-clean-css");
 const autoprefixer = require("autoprefixer");
 const postcss = require("gulp-postcss");
 
+const prettier = require("gulp-prettier");
+
 const rename = require("gulp-rename");
 
 sass.compiler = require("node-sass");
@@ -15,6 +17,7 @@ function css() {
     .src("./src/**/*.scss")
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(postcss([autoprefixer()]))
+    .pipe(prettier({ singleQuote: true }))
     .pipe(gulp.dest("./dist"));
 }
 
