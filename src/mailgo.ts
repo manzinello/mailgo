@@ -8,11 +8,17 @@ import {
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
-// mailgo scss
-const mailgoCSS: string = require("./mailgo.scss").toString();
-
 // default lang
 const DEFAULT_LANG: string = "en";
+
+// translations
+let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
+
+const defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+let strings: MailgoTranslation;
+
+// mailgo scss
+const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // links
 const MAILTO: string = "mailto:";
@@ -92,34 +98,6 @@ let gmail: HTMLLinkElement,
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (): void => {
-  // translations
-  let {
-    translations,
-  }: { translations: MailgoTranslations } = i18n as MailgoI18n;
-
-  // if a default language is defined use it
-  if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-    lang = config.lang;
-  }
-
-  // if is defined <html lang=""> use it!
-  if (!config?.forceLang) {
-    // keep the lang from html
-    let htmlLang: string = document.documentElement.lang;
-
-    // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
-    let langIndex = i18n.languages.findIndex((language) =>
-      htmlLang.startsWith(language)
-    );
-
-    // if there is the language set it
-    if (langIndex !== -1) lang = i18n.languages[langIndex];
-  }
-
-  // strings
-  let defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
-  let strings: MailgoTranslation = translations[lang];
-
   // mailgo, if mailgo not already exists
   let mailgoExists = !!document.getElementById("mailgo");
 
@@ -1126,6 +1104,28 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
     if (typeof config?.loadCSS !== "undefined") {
       loadCSSConfig = config.loadCSS;
     }
+
+    // if a default language is defined use it
+    if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+      lang = config.lang;
+    }
+
+    // if is defined <html lang=""> use it!
+    if (!config?.forceLang) {
+      // keep the lang from html
+      let htmlLang: string = document.documentElement.lang;
+
+      // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
+      let langIndex = i18n.languages.findIndex((language) =>
+        htmlLang.startsWith(language)
+      );
+
+      // if there is the language set it
+      if (langIndex !== -1) lang = i18n.languages[langIndex];
+    }
+
+    // strings
+    strings = translations[lang];
 
     // if load css enabled load it!
     if (loadCSSConfig) {
