@@ -737,9 +737,9 @@ const copy = (content: string): void => {
   let activeCopy: HTMLElement;
   // the correct copyButton (mail or tel)
   mailgoIsShowing(MAIL_TYPE) ? (activeCopy = copyMail) : (activeCopy = copyTel);
-  activeCopy.textContent = "copied";
+  activeCopy.textContent = strings.copied;
   setTimeout(() => {
-    activeCopy.textContent = "copy";
+    activeCopy.textContent = strings.copy;
     // hide after the timeout
     hideMailgo();
   }, 999);

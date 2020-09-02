@@ -31,7 +31,8 @@
       "open": "open",
       "_default": " default",
       "_as_default": " as default",
-      "copy": "copy"
+      "copy": "copy",
+      "copied": "copied"
     },
     "it": {
       "open_in_": "apri con ",
@@ -42,7 +43,8 @@
       "open": "apri",
       "_default": " ",
       "_as_default": " ",
-      "copy": "copia"
+      "copy": "copia",
+      "copied": "copiato"
     },
     "es": {
       "open_in_": "abrir con ",

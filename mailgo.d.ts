@@ -32,6 +32,7 @@ declare module "mailgo" {
     _default?: string;
     _as_default?: string;
     copy?: string;
+    copied?: string;
   };
 
   export type MailgoTranslations = {
