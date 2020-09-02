@@ -14,7 +14,10 @@ const DEFAULT_LANG: string = "en";
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
+// default strings
 const defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+
+// translation strings
 let strings: MailgoTranslation;
 
 // mailgo scss
@@ -737,9 +740,9 @@ const copy = (content: string): void => {
   let activeCopy: HTMLElement;
   // the correct copyButton (mail or tel)
   mailgoIsShowing(MAIL_TYPE) ? (activeCopy = copyMail) : (activeCopy = copyTel);
-  activeCopy.textContent = strings.copied;
+  activeCopy.textContent = strings.copied || defaultStrings.copied;
   setTimeout(() => {
-    activeCopy.textContent = strings.copy;
+    activeCopy.textContent = strings.copy || defaultStrings.copy;
     // hide after the timeout
     hideMailgo();
   }, 999);
