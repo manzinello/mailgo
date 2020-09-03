@@ -53,7 +53,7 @@
     "gulp-rename": "^2.0.0",
     "gulp-sass": "^4.1.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^10.0.1",
+    "sass-loader": "^10.0.2",
     "style-loader": "^1.2.1",
     "to-string-loader": "^1.1.6",
     "ts-loader": "^8.0.3",
