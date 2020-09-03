@@ -1,5 +1,19 @@
 {
-  "languages": ["en", "it", "es", "de", "fr", "pt", "nl", "ru"],
+  "languages": [
+    "en",
+    "it",
+    "es",
+    "de",
+    "fr",
+    "pt",
+    "nl",
+    "ru",
+    "sv",
+    "no",
+    "dk",
+    "is",
+    "zh"
+  ],
   "translations": {
     "en": {
       "open_in_": "open in ",
@@ -9,6 +23,7 @@
       "body_": "body ",
       "gmail": "Gmail",
       "outlook": "Outlook",
+      "yahoo": "Yahoo Mail",
       "telegram": "Telegram",
       "whatsapp": "WhatsApp",
       "skype": "Skype",
@@ -16,7 +31,8 @@
       "open": "open",
       "_default": " default",
       "_as_default": " as default",
-      "copy": "copy"
+      "copy": "copy",
+      "copied": "copied"
     },
     "it": {
       "open_in_": "apri con ",
@@ -27,7 +43,8 @@
       "open": "apri",
       "_default": " ",
       "_as_default": " ",
-      "copy": "copia"
+      "copy": "copia",
+      "copied": "copiato"
     },
     "es": {
       "open_in_": "abrir con ",
@@ -90,6 +107,54 @@
       "_default": " по умолчанию",
       "_as_default": " по умолчанию",
       "copy": "скопировать"
+    },
+    "sv": {
+      "open_in_": "öppna i ",
+      "subject_": "ämne ",
+      "body_": "meddelandetext ",
+      "call": "ring",
+      "open": "öppna",
+      "_default": " förval",
+      "_as_default": " som förval",
+      "copy": "kopiera"
+    },
+    "no": {
+      "open_in_": "åpne i ",
+      "subject_": "emne ",
+      "call": "ringe",
+      "open": "åpne",
+      "_as_default": " som standard",
+      "copy": "kopiere"
+    },
+    "dk": {
+      "open_in_": "åpne i ",
+      "subject_": "emne ",
+      "call": "ringe op",
+      "open": "åben",
+      "_as_default": " som standard",
+      "copy": "kopi"
+    },
+    "is": {
+      "open_in_": "opið inn ",
+      "subject_": "viðfangsefni ",
+      "body_": "líkami ",
+      "call": "hringja",
+      "open": "opið",
+      "_default": " sjálfgefið",
+      "_as_default": " sem sjálfgefið",
+      "copy": "afrita"
+    },
+    "zh": {
+      "open_in_": "開啟 ",
+      "cc_": "副本 ",
+      "bcc_": "密件副本 ",
+      "subject_": "主旨 ",
+      "body_": "內文 ",
+      "call": "通話",
+      "open": "開啟",
+      "_default": " 預設",
+      "_as_default": " 預設",
+      "copy": "複製"
     }
   }
 }

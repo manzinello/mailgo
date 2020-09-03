@@ -1,9 +1,10 @@
 {
   "name": "mailgo",
-  "version": "0.9.14",
+  "version": "0.9.15",
   "description": "a new concept of mailto and tel links",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "build-css": "gulp"
   },
   "repository": {
     "type": "git",
@@ -21,7 +22,8 @@
     "outlook",
     "telegram",
     "whatsapp",
-    "skype"
+    "skype",
+    "yahoo"
   ],
   "author": {
     "name": "Matteo Manzinello",
@@ -34,21 +36,28 @@
   },
   "homepage": "https://mailgo.dev",
   "devDependencies": {
-    "@babel/cli": "^7.10.5",
-    "@babel/core": "^7.11.0",
-    "@babel/parser": "^7.11.0",
-    "@babel/preset-env": "^7.11.0",
+    "@babel/cli": "^7.11.5",
+    "@babel/core": "^7.11.5",
+    "@babel/parser": "^7.11.5",
+    "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
-    "@babel/types": "^7.11.0",
-    "@types/node": "^14.0.27",
+    "@babel/types": "^7.11.5",
+    "@types/node": "^14.6.3",
+    "autoprefixer": "^9.8.6",
     "babel-loader": "^8.1.0",
-    "css-loader": "^4.1.1",
+    "css-loader": "^4.2.2",
+    "gulp": "^4.0.2",
+    "gulp-clean-css": "^4.3.0",
+    "gulp-postcss": "^8.0.0",
+    "gulp-prettier": "^3.0.0",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^4.1.0",
     "node-sass": "^4.14.1",
-    "sass-loader": "^9.0.2",
+    "sass-loader": "^10.0.1",
     "style-loader": "^1.2.1",
     "to-string-loader": "^1.1.6",
-    "ts-loader": "^8.0.1",
-    "typescript": "^3.9.7",
+    "ts-loader": "^8.0.3",
+    "typescript": "^4.0.2",
     "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12"
   },

@@ -8,16 +8,26 @@ import {
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
-// mailgo scss
-const mailgoCSS: string = require("./mailgo.scss").toString();
-
 // default lang
 const DEFAULT_LANG: string = "en";
+
+// translations
+let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
+
+// default strings
+const defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+
+// translation strings
+let strings: MailgoTranslation;
+
+// mailgo scss
+const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // links
 const MAILTO: string = "mailto:";
 const TEL: string = "tel:";
 const CALLTO: string = "callto:";
+const SMS: string = "sms:";
 
 // deep linking
 const outlookDeepLink: string = "ms-outlook://";
@@ -26,9 +36,6 @@ const outlookDeepLink: string = "ms-outlook://";
 const MAIL_TYPE: string = "mail";
 const TEL_TYPE: string = "tel";
 
-// default href for links
-const DEFAULT_BTN_HREF: string = "javascript:void(0);";
-
 // useful html tags
 const spanHTMLTag: string = "span";
 const aHTMLTag: string = "a";
@@ -36,6 +43,12 @@ const pHTMLTag: string = "p";
 
 // global mailgo config object
 let config: MailgoConfig;
+
+// default config attributes
+let validateEmailConfig: boolean = true;
+let validateTelConfig: boolean = true;
+let showFooterConfig: boolean = true;
+let loadCSSConfig: boolean = true;
 
 // default language
 let lang: string = DEFAULT_LANG;
@@ -74,6 +87,7 @@ let title: HTMLElement,
 // mailgo buttons (actions)
 let gmail: HTMLLinkElement,
   outlook: HTMLLinkElement,
+  yahoo: HTMLLinkElement,
   open: HTMLLinkElement,
   telegram: HTMLLinkElement,
   wa: HTMLLinkElement,
@@ -87,31 +101,6 @@ let gmail: HTMLLinkElement,
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (): void => {
-  // translations
-  let {
-    translations,
-  }: { translations: MailgoTranslations } = i18n as MailgoI18n;
-
-  // if a default language is defined use it
-  if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-    lang = config.lang;
-  }
-
-  // if is defined <html lang=""> use it!
-  if (!config?.forceLang) {
-    // keep the lang from html
-    let htmlLang: string = document.documentElement.lang;
-
-    // if there are translations...
-    if (i18n.languages.indexOf(htmlLang) !== -1) {
-      lang = document.documentElement.lang;
-    }
-  }
-
-  // strings
-  let defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
-  let strings: MailgoTranslation = translations[lang];
-
   // mailgo, if mailgo not already exists
   let mailgoExists = !!document.getElementById("mailgo");
 
@@ -204,7 +193,7 @@ const mailgoInit = (): void => {
     // Gmail
     gmail = createElement(aHTMLTag) as HTMLLinkElement;
     gmail.id = "m-gmail";
-    gmail.href = DEFAULT_BTN_HREF;
+    gmail.href = "#mailgo-gmail";
     gmail.classList.add("m-open");
     gmail.classList.add("m-gmail");
     gmail.appendChild(
@@ -222,7 +211,7 @@ const mailgoInit = (): void => {
     // Outlook
     outlook = createElement(aHTMLTag) as HTMLLinkElement;
     outlook.id = "m-outlook";
-    outlook.href = DEFAULT_BTN_HREF;
+    outlook.href = "#mailgo-outlook";
     outlook.classList.add("m-open");
     outlook.classList.add("m-outlook");
     outlook.appendChild(
@@ -237,10 +226,28 @@ const mailgoInit = (): void => {
 
     modalContent.appendChild(outlook);
 
+    // Outlook
+    yahoo = createElement(aHTMLTag) as HTMLLinkElement;
+    yahoo.id = "m-outlook";
+    yahoo.href = "#mailgo-yahoo";
+    yahoo.classList.add("m-open");
+    yahoo.classList.add("m-yahoo");
+    yahoo.appendChild(
+      createTextNode(strings.open_in_ || defaultStrings.open_in_)
+    );
+    let yahooSpan: HTMLElement = createElement(spanHTMLTag);
+    yahooSpan.className = "w-500";
+    yahooSpan.appendChild(
+      createTextNode(strings.yahoo || defaultStrings.yahoo)
+    );
+    yahoo.appendChild(yahooSpan);
+
+    modalContent.appendChild(yahoo);
+
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
     open.id = "m-open";
-    open.href = DEFAULT_BTN_HREF;
+    open.href = "#mailgo-open";
     open.classList.add("m-open");
     open.classList.add("m-default");
     let openSpan: HTMLElement = createElement(spanHTMLTag);
@@ -256,7 +263,7 @@ const mailgoInit = (): void => {
     // copy
     copyMail = createElement(aHTMLTag) as HTMLLinkElement;
     copyMail.id = "m-copy";
-    copyMail.href = DEFAULT_BTN_HREF;
+    copyMail.href = "#mailgo-copy";
     copyMail.classList.add("m-copy");
     copyMail.classList.add("w-500");
     copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
@@ -264,10 +271,11 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyMail);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (
-      typeof config?.showFooter === "undefined" ||
-      config?.showFooter !== false
-    ) {
+    if (typeof config?.showFooter === "undefined") {
+      showFooterConfig = config.showFooter;
+    }
+
+    if (showFooterConfig) {
       modalContent.appendChild(byElement());
     }
 
@@ -317,7 +325,7 @@ const mailgoInit = (): void => {
     // Telegram
     telegram = createElement(aHTMLTag) as HTMLLinkElement;
     telegram.id = "m-tg";
-    telegram.href = DEFAULT_BTN_HREF;
+    telegram.href = "#mailgo-telegram";
     telegram.classList.add("m-open");
     telegram.classList.add("m-tg");
 
@@ -339,7 +347,7 @@ const mailgoInit = (): void => {
     // WhatsApp
     wa = createElement(aHTMLTag) as HTMLLinkElement;
     wa.id = "m-wa";
-    wa.href = DEFAULT_BTN_HREF;
+    wa.href = "#mailgo-whatsapp";
     wa.classList.add("m-open");
     wa.classList.add("m-wa");
     wa.appendChild(createTextNode(strings.open_in_ || defaultStrings.open_in_));
@@ -355,7 +363,7 @@ const mailgoInit = (): void => {
     // Skype
     skype = createElement(aHTMLTag) as HTMLLinkElement;
     skype.id = "m-skype";
-    skype.href = DEFAULT_BTN_HREF;
+    skype.href = "#mailgo-skype";
     skype.classList.add("m-open");
     skype.classList.add("m-skype");
     skype.appendChild(
@@ -373,7 +381,7 @@ const mailgoInit = (): void => {
     // call default
     call = createElement(aHTMLTag) as HTMLLinkElement;
     call.id = "m-call";
-    call.href = DEFAULT_BTN_HREF;
+    call.href = "#mailgo-open";
     call.classList.add("m-open");
     call.classList.add("m-default");
     let callSpan: HTMLElement = createElement(spanHTMLTag);
@@ -389,7 +397,7 @@ const mailgoInit = (): void => {
     // copy
     copyTel = createElement(aHTMLTag) as HTMLLinkElement;
     copyTel.id = "m-tel-copy";
-    copyTel.href = DEFAULT_BTN_HREF;
+    copyTel.href = "#mailgo-copy";
     copyTel.classList.add("m-copy");
     copyTel.classList.add("w-500");
     copyTel.appendChild(createTextNode(strings.copy || defaultStrings.copy));
@@ -471,10 +479,12 @@ export function mailgoRender(
       bodyMail = mailgoElement.getAttribute("data-body");
     }
 
-    if (
-      typeof config?.validateEmail === "undefined" ||
-      config?.validateEmail === true
-    ) {
+    // if is setted in config use it
+    if (typeof config?.validateEmail !== "undefined") {
+      validateEmailConfig = config.validateEmail;
+    }
+
+    if (validateEmailConfig) {
       // validate the email address
       if (!validateEmails(mail.split(","))) return;
 
@@ -512,10 +522,15 @@ export function mailgoRender(
 
     outlook.addEventListener("click", openOutlook);
 
+    yahoo.addEventListener("click", openYahooMail);
+
     encEmail = encodeEmail(mail);
     open.addEventListener("click", openDefault);
 
-    copyMail.addEventListener("click", () => copy(mail));
+    copyMail.addEventListener("click", (event) => {
+      event.preventDefault();
+      copy(mail);
+    });
   }
   // mailgo tel
   else if (type === TEL_TYPE) {
@@ -538,8 +553,15 @@ export function mailgoRender(
       msg = mailgoElement.getAttribute("data-msg");
     }
 
+    // if is setted in config use it
+    if (typeof config?.validateTel !== "undefined") {
+      validateTelConfig = config.validateTel;
+    }
+
     // validate the phone number
-    if (!validateTel(tel)) return;
+    if (validateTelConfig) {
+      if (!validateTel(tel)) return;
+    }
 
     // Telegram username
     if (mailgoElement.hasAttribute("data-telegram")) {
@@ -571,7 +593,10 @@ export function mailgoRender(
 
     call.addEventListener("click", callDefault);
 
-    copyTel.addEventListener("click", () => copy(tel));
+    copyTel.addEventListener("click", (event) => {
+      event.preventDefault();
+      copy(tel);
+    });
   }
 
   // if config.dark is set to true then all the modals will be in dark mode
@@ -592,7 +617,9 @@ export function mailgoRender(
 }
 
 // actions
-const openGmail = (): void => {
+const openGmail = (event?: Event): void => {
+  event.preventDefault();
+
   // Gmail url
   let gmailUrl: string =
     "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
@@ -611,7 +638,9 @@ const openGmail = (): void => {
   hideMailgo();
 };
 
-const openOutlook = (): void => {
+const openOutlook = (event?: Event): void => {
+  event.preventDefault();
+
   // Outlook url
   let outlookUrl: string =
     "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
@@ -628,12 +657,35 @@ const openOutlook = (): void => {
   hideMailgo();
 };
 
-const openDefault = (): void => {
-  mailToEncoded(encEmail);
+const openYahooMail = (event?: Event): void => {
+  event.preventDefault();
+
+  // Yahoo url
+  let yahooUrl: string =
+    "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail);
+
+  // the details if provided
+  if (subject) yahooUrl = yahooUrl.concat("&subject=" + subject);
+  if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+
+  // open the link
+  window.open(yahooUrl, "_blank");
+
+  // hide the modal
   hideMailgo();
 };
 
-const openTelegram = (): void => {
+const openDefault = (event?: Event): void => {
+  event.preventDefault();
+
+  mailToEncoded(encEmail);
+
+  hideMailgo();
+};
+
+const openTelegram = (event?: Event): void => {
+  event.preventDefault();
+
   // Telegram url
   let tgUrl: string = "https://t.me/" + telegramUsername;
 
@@ -644,7 +696,9 @@ const openTelegram = (): void => {
   hideMailgo();
 };
 
-const openSkype = (): void => {
+const openSkype = (event?: Event): void => {
+  event.preventDefault();
+
   let skype: string = skypeUsername !== "" ? skypeUsername : tel;
 
   // Telegram url
@@ -657,7 +711,9 @@ const openSkype = (): void => {
   hideMailgo();
 };
 
-const openWhatsApp = (): void => {
+const openWhatsApp = (event?: Event): void => {
+  event.preventDefault();
+
   // WhatsApp url
   let waUrl: string = "https://wa.me/" + tel;
 
@@ -671,8 +727,10 @@ const openWhatsApp = (): void => {
   hideMailgo();
 };
 
-const callDefault = () => {
-  let callUrl: string = "tel:" + tel;
+const callDefault = (event?: Event) => {
+  event.preventDefault();
+
+  let callUrl: string = TEL + tel;
   window.open(callUrl);
   hideMailgo();
 };
@@ -682,9 +740,9 @@ const copy = (content: string): void => {
   let activeCopy: HTMLElement;
   // the correct copyButton (mail or tel)
   mailgoIsShowing(MAIL_TYPE) ? (activeCopy = copyMail) : (activeCopy = copyTel);
-  activeCopy.textContent = "copied";
+  activeCopy.textContent = strings.copied || defaultStrings.copied;
   setTimeout(() => {
-    activeCopy.textContent = "copy";
+    activeCopy.textContent = strings.copy || defaultStrings.copy;
     // hide after the timeout
     hideMailgo();
   }, 999);
@@ -1045,8 +1103,38 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
 
   // if the window is defined...
   if (window && typeof window !== "undefined") {
-    // add the style for mailgo
-    mailgoStyle();
+    // if is setted in config use it
+    if (typeof config?.loadCSS !== "undefined") {
+      loadCSSConfig = config.loadCSS;
+    }
+
+    // if a default language is defined use it
+    if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+      lang = config.lang;
+    }
+
+    // if is defined <html lang=""> use it!
+    if (!config?.forceLang) {
+      // keep the lang from html
+      let htmlLang: string = document.documentElement.lang;
+
+      // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
+      let langIndex = i18n.languages.findIndex((language) =>
+        htmlLang.startsWith(language)
+      );
+
+      // if there is the language set it
+      if (langIndex !== -1) lang = i18n.languages[langIndex];
+    }
+
+    // strings
+    strings = translations[lang];
+
+    // if load css enabled load it!
+    if (loadCSSConfig) {
+      // add the style for mailgo
+      mailgoStyle();
+    }
 
     // if is set an initEvent add the listener
     if (config?.initEvent) {
@@ -1054,16 +1142,12 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
         // listener options specified
         document.addEventListener(
           config.initEvent,
-          () => {
-            mailgoInit();
-          },
+          mailgoInit,
           config.listenerOptions
         );
       } else {
         // no listener options
-        document.addEventListener(config.initEvent, () => {
-          mailgoInit();
-        });
+        document.addEventListener(config.initEvent, mailgoInit);
       }
     } else {
       mailgoInit();

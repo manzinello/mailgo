@@ -12,6 +12,7 @@ declare module "mailgo" {
     validateEmail?: boolean;
     validateTel?: boolean;
     showFooter?: boolean;
+    loadCSS?: boolean;
   };
 
   export type MailgoTranslation = {
@@ -22,6 +23,7 @@ declare module "mailgo" {
     body_?: string;
     gmail?: string;
     outlook?: string;
+    yahoo?: string;
     telegram?: string;
     whatsapp?: string;
     skype?: string;
@@ -30,9 +32,11 @@ declare module "mailgo" {
     _default?: string;
     _as_default?: string;
     copy?: string;
+    copied?: string;
   };
 
   export type MailgoTranslations = {
+    // language code follow ISO 639-1 Code
     [language: string]: MailgoTranslation;
   };
 
