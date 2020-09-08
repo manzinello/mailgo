@@ -16,13 +16,17 @@ declare module "mailgo" {
     actions?: MailgoActions;
   };
 
+  export enum MailgoAction {
+    "gmail",
+    "outlook",
+    "yahoo",
+    "telegram",
+    "whatsapp",
+    "skype",
+  }
+
   export type MailgoActions = {
-    gmail?: boolean;
-    outlook?: boolean;
-    yahoo?: boolean;
-    telegram?: boolean;
-    whatsapp?: boolean;
-    skype?: boolean;
+    [action in MailgoAction]: boolean;
   };
 
   export type MailgoTranslation = {

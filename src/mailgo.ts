@@ -3,6 +3,7 @@ import {
   MailgoTranslations,
   MailgoTranslation,
   MailgoI18n,
+  MailgoAction,
 } from "mailgo";
 
 // i18n for mailgo
@@ -1094,6 +1095,18 @@ const copyToClipboard = (str: string): boolean => {
     return true;
   }
   return false;
+};
+
+// function to check an action is enabled or not
+const mailgoActionEnabled = (action: MailgoAction) => {
+  // by default all the actions are enabled
+  if (!config) return true;
+  if (config && !config?.actions) return true;
+
+  if (config && config.actions && config?.actions[action] === false)
+    return false;
+
+  return true;
 };
 
 const mailgoStyle = (): void => {
