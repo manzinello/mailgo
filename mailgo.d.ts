@@ -15,6 +15,15 @@ declare module "mailgo" {
     loadCSS?: boolean;
   };
 
+  export type MailgoActions = {
+    gmail?: boolean;
+    outlook?: boolean;
+    yahoo?: boolean;
+    telegram?: boolean;
+    whatsapp?: boolean;
+    skype?: boolean;
+  };
+
   export type MailgoTranslation = {
     open_in_?: string;
     cc_?: string;
