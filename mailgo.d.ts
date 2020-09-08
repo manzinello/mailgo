@@ -22,9 +22,11 @@ declare module "mailgo" {
     | "yahoo"
     | "telegram"
     | "whatsapp"
-    | "skype";
+    | "skype"
+    | "copy"
+    | "default";
 
-  export type MailgoActions = {
+  type MailgoActions = {
     [action in MailgoAction]: boolean;
   };
 
