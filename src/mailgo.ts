@@ -686,14 +686,17 @@ const openDefault = (event?: Event): void => {
 const openTelegram = (event?: Event): void => {
   event.preventDefault();
 
-  // Telegram url
-  let tgUrl: string = "https://t.me/" + telegramUsername;
+  // check if telegramUsername exists
+  if (telegramUsername) {
+    // Telegram url
+    let tgUrl: string = "https://t.me/" + telegramUsername;
 
-  // open the url
-  window.open(tgUrl, "_blank");
+    // open the url
+    window.open(tgUrl, "_blank");
 
-  // hide the modal
-  hideMailgo();
+    // hide the modal
+    hideMailgo();
+  }
 };
 
 const openSkype = (event?: Event): void => {
