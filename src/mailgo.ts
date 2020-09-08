@@ -207,7 +207,7 @@ const mailgoInit = (): void => {
     );
     gmail.appendChild(gmailSpan);
 
-    modalContent.appendChild(gmail);
+    if (mailgoActionEnabled("gmail")) modalContent.appendChild(gmail);
 
     // Outlook
     outlook = createElement(aHTMLTag) as HTMLLinkElement;
@@ -225,7 +225,7 @@ const mailgoInit = (): void => {
     );
     outlook.appendChild(outlookSpan);
 
-    modalContent.appendChild(outlook);
+    if (mailgoActionEnabled("outlook")) modalContent.appendChild(outlook);
 
     // Outlook
     yahoo = createElement(aHTMLTag) as HTMLLinkElement;
@@ -243,7 +243,7 @@ const mailgoInit = (): void => {
     );
     yahoo.appendChild(yahooSpan);
 
-    modalContent.appendChild(yahoo);
+    if (mailgoActionEnabled("yahoo")) modalContent.appendChild(yahoo);
 
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
@@ -343,7 +343,7 @@ const mailgoInit = (): void => {
     );
     telegram.appendChild(telegramSpan);
 
-    modalContent.appendChild(telegram);
+    if (mailgoActionEnabled("telegram")) modalContent.appendChild(telegram);
 
     // WhatsApp
     wa = createElement(aHTMLTag) as HTMLLinkElement;
@@ -359,7 +359,7 @@ const mailgoInit = (): void => {
     );
     wa.appendChild(waSpan);
 
-    modalContent.appendChild(wa);
+    if (mailgoActionEnabled("whatsapp")) modalContent.appendChild(wa);
 
     // Skype
     skype = createElement(aHTMLTag) as HTMLLinkElement;
@@ -377,7 +377,7 @@ const mailgoInit = (): void => {
     );
     skype.appendChild(skypeSpan);
 
-    modalContent.appendChild(skype);
+    if (mailgoActionEnabled("skype")) modalContent.appendChild(skype);
 
     // call default
     call = createElement(aHTMLTag) as HTMLLinkElement;
@@ -1098,7 +1098,7 @@ const copyToClipboard = (str: string): boolean => {
 };
 
 // function to check an action is enabled or not
-const mailgoActionEnabled = (action: MailgoAction) => {
+const mailgoActionEnabled = (action: MailgoAction): boolean => {
   // by default all the actions are enabled
   if (!config) return true;
   if (config && !config?.actions) return true;
