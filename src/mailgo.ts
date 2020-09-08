@@ -869,6 +869,10 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
         // o -> open Outlook
         openOutlook();
         break;
+      case 89:
+        // y -> open Yahoo Mail
+        openYahooMail();
+        break;
       case 32:
       case 13:
         // spacebar or enter -> open default
@@ -894,6 +898,10 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
       case 87:
         // w -> open WhatsApp
         openWhatsApp();
+        break;
+      case 83:
+        // s -> open Skype
+        openSkype();
         break;
       case 32:
       case 13:
