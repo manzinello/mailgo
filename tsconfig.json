@@ -11,13 +11,5 @@
     "resolveJsonModule": true,
     "declaration": true
   },
-  "include": [
-    "mailgo.d.ts",
-    "src",
-    "webpack/mailgo.lib.ts",
-    "webpack/mailgo.dist.ts",
-    "webpack/mailgo.dist.dark.ts",
-    "webpack/mailgo.firefox.ts",
-    "webpack/mailgo.chrome.ts"
-  ]
+  "include": ["mailgo.d.ts", "src", "webpack"]
 }
