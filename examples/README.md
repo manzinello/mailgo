@@ -10,6 +10,10 @@ Simple examples of mailgo (language=en)
 
 Simple examples of mailgo in different languages
 
+## `index.[language not in ISO].html`
+
+Example to test mailgo in different languages with language in `<html>` equal to `fr` or `fr-FR`
+
 ## `index.dark.html`
 
 Simple example of mailgo to test dark mode
