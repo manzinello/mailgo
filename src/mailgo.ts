@@ -272,7 +272,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyMail);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (typeof config?.showFooter === "undefined") {
+    if (typeof config?.showFooter !== "undefined") {
       showFooterConfig = config.showFooter;
     }
 
@@ -406,10 +406,11 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyTel);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (
-      typeof config?.showFooter === "undefined" ||
-      config?.showFooter !== false
-    ) {
+    if (typeof config?.showFooter !== "undefined") {
+      showFooterConfig = config.showFooter;
+    }
+
+    if (showFooterConfig) {
       modalContent.appendChild(byElement());
     }
 
