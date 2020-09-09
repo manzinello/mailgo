@@ -65,7 +65,8 @@
       "open": "Öffnen",
       "_default": " mit Standard",
       "_as_default": " mit Standard",
-      "copy": "kopieren"
+      "copy": "kopieren",
+      "copied": "kopiert"
     },
     "pt": {
       "open_in_": "abrir com ",
