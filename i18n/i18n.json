@@ -155,7 +155,8 @@
       "open": "開啟",
       "_default": " 預設",
       "_as_default": " 預設",
-      "copy": "複製"
+      "copy": "複製",
+      "copied": "已複製"
     }
   }
 }
