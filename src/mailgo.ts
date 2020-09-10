@@ -1185,9 +1185,6 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
     }
   } catch (error) {
     console.log(error);
-    console.log(
-      "mailgo is not started... Something went wrong, is this IE? https://mailgo.dev"
-    );
   }
 }
 
