@@ -1121,9 +1121,39 @@ const mailgoStyle = (): void => {
   document.head.appendChild(mailgoCSSElement);
 };
 
+const mailgoPolyfill = (): void => {
+  if (!Array.prototype.find) {
+    Object.defineProperty(Array.prototype, "find", {
+      value: function (predicate: any) {
+        "use strict";
+        if (this == null) {
+          throw new TypeError(
+            "Array.prototype.find called on null or undefined"
+          );
+        }
+        if (typeof predicate !== "function") {
+          throw new TypeError("predicate must be a function");
+        }
+        var list = Object(this);
+        var length = list.length >>> 0;
+        var thisArg = arguments[1];
+
+        for (var i = 0; i !== length; i++) {
+          if (predicate.call(thisArg, this[i], i, list)) {
+            return this[i];
+          }
+        }
+        return undefined;
+      },
+    });
+  }
+};
+
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
   try {
+    mailgoPolyfill();
+
     // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
     config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
@@ -1145,12 +1175,12 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
         let htmlLang: string = document.documentElement.lang;
 
         // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
-        let langIndex = i18n.languages.findIndex((language) =>
+        let langFound = i18n.languages.find((language) =>
           htmlLang.startsWith(language)
         );
 
         // if there is the language set it
-        if (langIndex !== -1) lang = i18n.languages[langIndex];
+        if (langFound) lang = langFound;
       }
 
       // strings
