@@ -1123,60 +1123,66 @@ const mailgoStyle = (): void => {
 
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
-  // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
-  config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
+  try {
+    // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
+    config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
-  // if the window is defined...
-  if (window && typeof window !== "undefined") {
-    // if is setted in config use it
-    if (typeof config?.loadCSS !== "undefined") {
-      loadCSSConfig = config.loadCSS;
-    }
-
-    // if a default language is defined use it
-    if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-      lang = config.lang;
-    }
-
-    // if is defined <html lang=""> use it!
-    if (!config?.forceLang) {
-      // keep the lang from html
-      let htmlLang: string = document.documentElement.lang;
-
-      // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
-      let langIndex = i18n.languages.findIndex((language) =>
-        htmlLang.startsWith(language)
-      );
-
-      // if there is the language set it
-      if (langIndex !== -1) lang = i18n.languages[langIndex];
-    }
-
-    // strings
-    strings = translations[lang];
-
-    // if load css enabled load it!
-    if (loadCSSConfig) {
-      // add the style for mailgo
-      mailgoStyle();
-    }
-
-    // if is set an initEvent add the listener
-    if (config?.initEvent) {
-      if (config?.listenerOptions) {
-        // listener options specified
-        document.addEventListener(
-          config.initEvent,
-          mailgoInit,
-          config.listenerOptions
-        );
-      } else {
-        // no listener options
-        document.addEventListener(config.initEvent, mailgoInit);
+    // if the window is defined...
+    if (window && typeof window !== "undefined") {
+      // if is setted in config use it
+      if (typeof config?.loadCSS !== "undefined") {
+        loadCSSConfig = config.loadCSS;
       }
-    } else {
-      mailgoInit();
+
+      // if a default language is defined use it
+      if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+        lang = config.lang;
+      }
+
+      // if is defined <html lang=""> use it!
+      if (!config?.forceLang) {
+        // keep the lang from html
+        let htmlLang: string = document.documentElement.lang;
+
+        // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
+        let langIndex = i18n.languages.findIndex((language) =>
+          htmlLang.startsWith(language)
+        );
+
+        // if there is the language set it
+        if (langIndex !== -1) lang = i18n.languages[langIndex];
+      }
+
+      // strings
+      strings = translations[lang];
+
+      // if load css enabled load it!
+      if (loadCSSConfig) {
+        // add the style for mailgo
+        mailgoStyle();
+      }
+
+      // if is set an initEvent add the listener
+      if (config?.initEvent) {
+        if (config?.listenerOptions) {
+          // listener options specified
+          document.addEventListener(
+            config.initEvent,
+            mailgoInit,
+            config.listenerOptions
+          );
+        } else {
+          // no listener options
+          document.addEventListener(config.initEvent, mailgoInit);
+        }
+      } else {
+        mailgoInit();
+      }
     }
+  } catch {
+    console.log(
+      "mailgo is not started... Something went wrong, is this IE? https://mailgo.dev"
+    );
   }
 }
 
