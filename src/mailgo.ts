@@ -446,14 +446,19 @@ export function mailgoRender(
         mailgoElement.href.split("?")[0].split(MAILTO)[1].trim()
       );
 
-      url = new URL(mailgoElement.href);
-      let urlParams: URLSearchParams = url.searchParams;
+      try {
+        url = new URL(mailgoElement.href);
 
-      // optional parameters for the email
-      cc = urlParams.get("cc");
-      bcc = urlParams.get("bcc");
-      subject = urlParams.get("subject");
-      bodyMail = urlParams.get("body");
+        let urlParams: URLSearchParams = url.searchParams;
+
+        // optional parameters for the email
+        cc = urlParams.get("cc");
+        bcc = urlParams.get("bcc");
+        subject = urlParams.get("subject");
+        bodyMail = urlParams.get("body");
+      } catch (error) {
+        // console.log(error);
+      }
     } else {
       // if the element href="#mailgo" or class="mailgo"
       // mail = data-address + @ + data-domain
@@ -462,7 +467,11 @@ export function mailgoRender(
         "@" +
         mailgoElement.getAttribute("data-domain");
 
-      url = new URL(MAILTO + encodeURIComponent(mail));
+      try {
+        url = new URL(MAILTO + encodeURIComponent(mail));
+      } catch (error) {
+        // console.log(error);
+      }
 
       // cc = data-cc-address + @ + data-cc-domain
       cc =
@@ -1126,6 +1135,7 @@ const mailgoStyle = (): void => {
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
   try {
+    // polyfill
     mailgoPolyfill();
 
     // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
@@ -1184,7 +1194,7 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
       }
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
 
