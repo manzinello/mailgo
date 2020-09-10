@@ -813,7 +813,7 @@ export function isMailgo(
  */
 export function mailgoCheckRender(event: Event): boolean {
   // check if the id=mailgo exists in the body
-  if (!document.contains(modalMailto) || !document.contains(modalTel))
+  if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
     return false;
 
   // if a mailgo is already showing do nothing
@@ -1122,6 +1122,7 @@ const mailgoStyle = (): void => {
 };
 
 const mailgoPolyfill = (): void => {
+  // Polyfill of find from MDN
   if (!Array.prototype.find) {
     Object.defineProperty(Array.prototype, "find", {
       value: function (predicate: any) {
@@ -1144,6 +1145,16 @@ const mailgoPolyfill = (): void => {
           }
         }
         return undefined;
+      },
+    });
+  }
+
+  // Polyfill of startsWith from MDN
+  if (!String.prototype.startsWith) {
+    Object.defineProperty(String.prototype, "startsWith", {
+      value: function (search: any, rawPos: any) {
+        var pos = rawPos > 0 ? rawPos | 0 : 0;
+        return this.substring(pos, pos + search.length) === search;
       },
     });
   }
@@ -1209,7 +1220,8 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
         mailgoInit();
       }
     }
-  } catch {
+  } catch (error) {
+    console.log(error);
     console.log(
       "mailgo is not started... Something went wrong, is this IE? https://mailgo.dev"
     );
