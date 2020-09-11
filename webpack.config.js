@@ -121,25 +121,6 @@ module.exports = [
   },
   {
     mode: "production",
-    target: "web",
-    devtool: "source-map",
-    entry: "./mailgo.dist.polyfilled.ts",
-    context: path.join(__dirname, "webpack"),
-    module: {
-      rules: mailgoRules,
-    },
-    resolve: {
-      extensions: [".ts", ".js"],
-    },
-    output: {
-      filename: "mailgo.polyfilled.min.js",
-      library: "mailgo",
-      libraryTarget: "window",
-      path: path.resolve(__dirname, "dist"),
-    },
-  },
-  {
-    mode: "production",
     target: "node",
     devtool: "source-map",
     entry: "./mailgo.lib.ts",

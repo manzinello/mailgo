@@ -6,6 +6,9 @@ import {
   MailgoAction,
 } from "mailgo";
 
+// polyfill
+const { mailgoPolyfill } = require("./polyfill");
+
 // constants
 const {
   MAILTO,
@@ -1092,6 +1095,9 @@ const mailgoStyle = (): void => {
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
   try {
+    // polyfill mailgo
+    mailgoPolyfill();
+
     // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
     config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
