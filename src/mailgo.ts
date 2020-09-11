@@ -28,17 +28,20 @@ const { validateEmails, validateTel, copyToClipboard } = require("./utils");
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
+// mailgo scss
+const mailgoCSS: string = require("./mailgo.scss").toString();
+
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
+
+// default language
+let lang: string = defaultLang;
 
 // default strings
 const defaultStrings: MailgoTranslation = translations[defaultLang];
 
 // translation strings
 let strings: MailgoTranslation;
-
-// mailgo scss
-const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // global mailgo config object
 let config: MailgoConfig;
@@ -48,9 +51,6 @@ let validateEmailConfig: boolean = true;
 let validateTelConfig: boolean = true;
 let showFooterConfig: boolean = true;
 let loadCSSConfig: boolean = true;
-
-// default language
-let lang: string = defaultLang;
 
 // modals global object
 let modalMailto: HTMLElement, modalTel: HTMLElement;
