@@ -12,6 +12,10 @@ Transform all your `mailto` and `tel` link in a beautiful modal with more possib
 
 <https://wordpress.org/plugins/mailgo/>
 
+### Drupal™
+
+<https://www.drupal.org/project/mailgo/>
+
 ### Magento 2
 
 <https://marketplace.magento.com/manzinello-mailgo.html>
