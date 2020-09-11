@@ -6,43 +6,36 @@ import {
   MailgoAction,
 } from "mailgo";
 
+// constants
+const {
+  MAILTO,
+  TEL,
+  CALLTO,
+  SMS,
+  MAIL_TYPE,
+  TEL_TYPE,
+  spanHTMLTag,
+  aHTMLTag,
+  pHTMLTag,
+  defaultLang,
+} = require("./constants");
+
 // const { mailgoPolyfill } = require("./polyfill");
 
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
-// default lang
-const DEFAULT_LANG: string = "en";
-
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
 // default strings
-const defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+const defaultStrings: MailgoTranslation = translations[defaultLang];
 
 // translation strings
 let strings: MailgoTranslation;
 
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
-
-// links
-const MAILTO: string = "mailto:";
-const TEL: string = "tel:";
-const CALLTO: string = "callto:";
-const SMS: string = "sms:";
-
-// deep linking
-const outlookDeepLink: string = "ms-outlook://";
-
-// mailgo types
-const MAIL_TYPE: string = "mail";
-const TEL_TYPE: string = "tel";
-
-// useful html tags
-const spanHTMLTag: string = "span";
-const aHTMLTag: string = "a";
-const pHTMLTag: string = "p";
 
 // global mailgo config object
 let config: MailgoConfig;
@@ -54,7 +47,7 @@ let showFooterConfig: boolean = true;
 let loadCSSConfig: boolean = true;
 
 // default language
-let lang: string = DEFAULT_LANG;
+let lang: string = defaultLang;
 
 // modals global object
 let modalMailto: HTMLElement, modalTel: HTMLElement;
