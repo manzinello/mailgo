@@ -117,7 +117,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(212, 70, 56, 0.08);
+          background-color: rgba($gmail-color, 0.08);
           color: $gmail-color;
         }
       }
@@ -127,7 +127,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(0, 114, 198, 0.08);
+          background-color: rgba($outlook-color, 0.08);
           color: $outlook-color;
         }
       }
@@ -137,7 +137,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(74, 0, 160, 0.08);
+          background-color: rgba($yahoo-color, 0.08);
           color: $yahoo-color;
         }
       }
@@ -147,7 +147,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(0, 136, 204, 0.08);
+          background-color: rgba($telegram-color, 0.08);
           color: $telegram-color;
         }
       }
@@ -157,7 +157,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(0, 191, 165, 0.08);
+          background-color: rgba($wa-color, 0.08);
           color: $wa-color;
         }
       }
@@ -167,7 +167,7 @@ $default-border-radius: 20px;
         &:hover,
         &:focus,
         &:active {
-          background-color: rgba(0, 175, 240, 0.08);
+          background-color: rgba($skype-color, 0.08);
           color: $skype-color;
         }
       }
@@ -232,7 +232,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(212, 70, 56, 0.08);
+            background-color: rgba($gmail-dark-color, 0.08);
             color: $gmail-dark-color;
           }
         }
@@ -243,7 +243,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(0, 114, 198, 0.08);
+            background-color: rgba($outlook-dark-color, 0.08);
             color: $outlook-dark-color;
           }
         }
@@ -254,7 +254,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(146, 102, 198, 0.08);
+            background-color: rgba($yahoo-dark-color, 0.08);
             color: $yahoo-dark-color;
           }
         }
@@ -265,7 +265,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(0, 136, 204, 0.08);
+            background-color: rgba($telegram-dark-color, 0.08);
             color: $telegram-dark-color;
           }
         }
@@ -276,7 +276,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(0, 191, 165, 0.08);
+            background-color: rgba($wa-dark-color, 0.08);
             color: $wa-dark-color;
           }
         }
@@ -287,7 +287,7 @@ $default-border-radius: 20px;
           &:hover,
           &:focus,
           &:active {
-            background-color: rgba(0, 175, 240, 0.08);
+            background-color: rgba($skype-dark-color, 0.08);
             color: $skype-dark-color;
           }
         }

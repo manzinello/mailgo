@@ -87,7 +87,7 @@
 .m-modal .m-modal-content a.m-gmail:hover,
 .m-modal .m-modal-content a.m-gmail:focus,
 .m-modal .m-modal-content a.m-gmail:active {
-  background-color: rgba(212, 70, 56, 0.08);
+  background-color: rgba(192, 55, 42, 0.08);
   color: #c0372a;
 }
 .m-modal .m-modal-content a.m-outlook {
@@ -96,7 +96,7 @@
 .m-modal .m-modal-content a.m-outlook:hover,
 .m-modal .m-modal-content a.m-outlook:focus,
 .m-modal .m-modal-content a.m-outlook:active {
-  background-color: rgba(0, 114, 198, 0.08);
+  background-color: rgba(9, 103, 170, 0.08);
   color: #0967aa;
 }
 .m-modal .m-modal-content a.m-yahoo {
@@ -114,7 +114,7 @@
 .m-modal .m-modal-content a.m-tg:hover,
 .m-modal .m-modal-content a.m-tg:focus,
 .m-modal .m-modal-content a.m-tg:active {
-  background-color: rgba(0, 136, 204, 0.08);
+  background-color: rgba(8, 109, 160, 0.08);
   color: #086da0;
 }
 .m-modal .m-modal-content a.m-wa {
@@ -123,7 +123,7 @@
 .m-modal .m-modal-content a.m-wa:hover,
 .m-modal .m-modal-content a.m-wa:focus,
 .m-modal .m-modal-content a.m-wa:active {
-  background-color: rgba(0, 191, 165, 0.08);
+  background-color: rgba(6, 116, 102, 0.08);
   color: #067466;
 }
 .m-modal .m-modal-content a.m-skype {
@@ -132,7 +132,7 @@
 .m-modal .m-modal-content a.m-skype:hover,
 .m-modal .m-modal-content a.m-skype:focus,
 .m-modal .m-modal-content a.m-skype:active {
-  background-color: rgba(0, 175, 240, 0.08);
+  background-color: rgba(7, 109, 146, 0.08);
   color: #076d92;
 }
 .m-modal .m-modal-content a.m-copy {
@@ -186,7 +186,7 @@
 .m-modal.m-dark .m-modal-content a.m-gmail:hover,
 .m-modal.m-dark .m-modal-content a.m-gmail:focus,
 .m-modal.m-dark .m-modal-content a.m-gmail:active {
-  background-color: rgba(212, 70, 56, 0.08);
+  background-color: rgba(224, 125, 115, 0.08);
   color: #e07d73;
 }
 .m-modal.m-dark .m-modal-content a.m-outlook {
@@ -195,7 +195,7 @@
 .m-modal.m-dark .m-modal-content a.m-outlook:hover,
 .m-modal.m-dark .m-modal-content a.m-outlook:focus,
 .m-modal.m-dark .m-modal-content a.m-outlook:active {
-  background-color: rgba(0, 114, 198, 0.08);
+  background-color: rgba(76, 156, 215, 0.08);
   color: #4c9cd7;
 }
 .m-modal.m-dark .m-modal-content a.m-yahoo {
@@ -204,7 +204,7 @@
 .m-modal.m-dark .m-modal-content a.m-yahoo:hover,
 .m-modal.m-dark .m-modal-content a.m-yahoo:focus,
 .m-modal.m-dark .m-modal-content a.m-yahoo:active {
-  background-color: rgba(146, 102, 198, 0.08);
+  background-color: rgba(160, 121, 205, 0.08);
   color: #a079cd;
 }
 .m-modal.m-dark .m-modal-content a.m-tg {
@@ -213,7 +213,7 @@
 .m-modal.m-dark .m-modal-content a.m-tg:hover,
 .m-modal.m-dark .m-modal-content a.m-tg:focus,
 .m-modal.m-dark .m-modal-content a.m-tg:active {
-  background-color: rgba(0, 136, 204, 0.08);
+  background-color: rgba(76, 171, 219, 0.08);
   color: #4cabdb;
 }
 .m-modal.m-dark .m-modal-content a.m-wa {
@@ -222,7 +222,7 @@
 .m-modal.m-dark .m-modal-content a.m-wa:hover,
 .m-modal.m-dark .m-modal-content a.m-wa:focus,
 .m-modal.m-dark .m-modal-content a.m-wa:active {
-  background-color: rgba(0, 191, 165, 0.08);
+  background-color: rgba(76, 210, 192, 0.08);
   color: #4cd2c0;
 }
 .m-modal.m-dark .m-modal-content a.m-skype {
@@ -231,7 +231,7 @@
 .m-modal.m-dark .m-modal-content a.m-skype:hover,
 .m-modal.m-dark .m-modal-content a.m-skype:focus,
 .m-modal.m-dark .m-modal-content a.m-skype:active {
-  background-color: rgba(0, 175, 240, 0.08);
+  background-color: rgba(76, 199, 244, 0.08);
   color: #4cc7f4;
 }
 .m-modal.m-dark .m-modal-content a.m-by:hover,
