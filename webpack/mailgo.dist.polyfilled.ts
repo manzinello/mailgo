@@ -1,4 +1,4 @@
-// webpack > dist/mailgo.polyfilled.min.js
+// webpack > dist/mailgo.dist.polyfilled.min.js
 
 import { mailgoPolyfill } from "../src/polyfill";
 import mailgo from "../src/mailgo";
