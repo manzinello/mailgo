@@ -22,8 +22,6 @@ const {
 // utils
 const { validateEmails, validateTel, copyToClipboard } = require("./utils");
 
-// const { mailgoPolyfill } = require("./polyfill");
-
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
@@ -1094,9 +1092,6 @@ const mailgoStyle = (): void => {
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
   try {
-    // polyfill
-    // mailgoPolyfill();
-
     // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
     config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
