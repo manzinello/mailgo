@@ -132,7 +132,7 @@ module.exports = [
       extensions: [".ts", ".js"],
     },
     output: {
-      filename: "mailgo.dist.polyfilled.min.js",
+      filename: "mailgo.polyfilled.min.js",
       library: "mailgo",
       libraryTarget: "window",
       path: path.resolve(__dirname, "dist"),
