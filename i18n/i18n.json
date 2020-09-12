@@ -77,7 +77,8 @@
       "open": "abrir",
       "_default": " padrão",
       "_as_default": " por padrão",
-      "copy": "copiar"
+      "copy": "copiar",
+      "copied": "copiado"
     },
     "fr": {
       "open_in_": "Ouvrir dans ",
