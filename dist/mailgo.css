@@ -199,13 +199,13 @@
   color: #4c9cd7;
 }
 .m-modal.m-dark .m-modal-content a.m-yahoo {
-  color: #a079cd;
+  color: #ac88d3;
 }
 .m-modal.m-dark .m-modal-content a.m-yahoo:hover,
 .m-modal.m-dark .m-modal-content a.m-yahoo:focus,
 .m-modal.m-dark .m-modal-content a.m-yahoo:active {
-  background-color: rgba(160, 121, 205, 0.08);
-  color: #a079cd;
+  background-color: rgba(172, 136, 211, 0.08);
+  color: #ac88d3;
 }
 .m-modal.m-dark .m-modal-content a.m-tg {
   color: #4cabdb;
