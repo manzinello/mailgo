@@ -15,6 +15,7 @@ babel.config.js
 
 webpack
 examples
+test
 
 extensions
 mailgo.firefox.min.js
