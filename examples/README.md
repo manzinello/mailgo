@@ -1,4 +1,4 @@
-# 💌 Mailgo examples
+# 💌 Mailgo examples
 
 Mailgo example to test functionalities, design...
 
@@ -29,6 +29,10 @@ Simple example of mailgo with `loadCSS=false` (and no style)
 ## `index.cssloadedseparately.html`
 
 Simple example of mailgo with `loadCSS=false` and CSS loaded separately
+
+## `index.neumorphism.html`
+
+Simple example of mailgo with a test of neumorphism (CSS loaded separately)
 
 ## Examples with webpack and other
 
