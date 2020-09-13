@@ -13,6 +13,21 @@ declare module "mailgo" {
     validateTel?: boolean;
     showFooter?: boolean;
     loadCSS?: boolean;
+    actions?: MailgoActions;
+  };
+
+  export type MailgoAction =
+    | "gmail"
+    | "outlook"
+    | "yahoo"
+    | "telegram"
+    | "whatsapp"
+    | "skype"
+    | "copy"
+    | "default";
+
+  type MailgoActions = {
+    [action in MailgoAction]: boolean;
   };
 
   export type MailgoTranslation = {

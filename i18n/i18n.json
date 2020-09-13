@@ -65,7 +65,8 @@
       "open": "Öffnen",
       "_default": " mit Standard",
       "_as_default": " mit Standard",
-      "copy": "kopieren"
+      "copy": "kopieren",
+      "copied": "kopiert"
     },
     "pt": {
       "open_in_": "abrir com ",
@@ -76,7 +77,8 @@
       "open": "abrir",
       "_default": " padrão",
       "_as_default": " por padrão",
-      "copy": "copiar"
+      "copy": "copiar",
+      "copied": "copiado"
     },
     "fr": {
       "open_in_": "Ouvrir dans ",
@@ -116,7 +118,8 @@
       "open": "öppna",
       "_default": " förval",
       "_as_default": " som förval",
-      "copy": "kopiera"
+      "copy": "kopiera",
+      "copied": "kopierad"
     },
     "no": {
       "open_in_": "åpne i ",
@@ -124,7 +127,8 @@
       "call": "ringe",
       "open": "åpne",
       "_as_default": " som standard",
-      "copy": "kopiere"
+      "copy": "kopiere",
+      "copied": "kopiert"
     },
     "dk": {
       "open_in_": "åpne i ",
@@ -132,7 +136,8 @@
       "call": "ringe op",
       "open": "åben",
       "_as_default": " som standard",
-      "copy": "kopi"
+      "copy": "kopi",
+      "copied": "kopieret"
     },
     "is": {
       "open_in_": "opið inn ",
@@ -142,7 +147,8 @@
       "open": "opið",
       "_default": " sjálfgefið",
       "_as_default": " sem sjálfgefið",
-      "copy": "afrita"
+      "copy": "afrita",
+      "copied": "afritað"
     },
     "zh": {
       "open_in_": "開啟 ",
@@ -154,7 +160,8 @@
       "open": "開啟",
       "_default": " 預設",
       "_as_default": " 預設",
-      "copy": "複製"
+      "copy": "複製",
+      "copied": "已複製"
     }
   }
 }

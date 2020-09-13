@@ -1,14 +1,5 @@
-(function webpackUniversalModuleDefinition(root, factory) {
-	if(typeof exports === 'object' && typeof module === 'object')
-		module.exports = factory();
-	else if(typeof define === 'function' && define.amd)
-		define([], factory);
-	else if(typeof exports === 'object')
-		exports["mailgo"] = factory();
-	else
-		root["mailgo"] = factory();
-})(typeof self !== 'undefined' ? self : this, function() {
-return /******/ (function(modules) { // webpackBootstrap
+window["mailgo"] =
+/******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
 /******/
@@ -1340,15 +1331,19 @@ function mailgo(mailgoConfig) {
 }
 
 /* harmony default export */ var src_mailgo = (mailgo);
-// CONCATENATED MODULE: ./mailgo.lib.ts
-// webpack > lib/mailgo.js
+// CONCATENATED MODULE: ./mailgo.dist.ts
+// webpack > dist/mailgo.min.js
 
 
 
-/* harmony default export */ var mailgo_lib = __webpack_exports__["default"] = (src_mailgo);
+// call init mailgo attached to the event DOMContentLoaded
+const mailgoConfig = {
+  initEvent: "DOMContentLoaded",
+};
+
+src_mailgo(mailgoConfig);
 
 
 /***/ })
-/******/ ])["default"];
-});
+/******/ ]);
 //# sourceMappingURL=mailgo.js.map

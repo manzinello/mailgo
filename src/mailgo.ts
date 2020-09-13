@@ -3,43 +3,45 @@ import {
   MailgoTranslations,
   MailgoTranslation,
   MailgoI18n,
+  MailgoAction,
 } from "mailgo";
+
+// polyfill
+const { mailgoPolyfill } = require("./polyfill");
+
+// constants
+const {
+  MAILTO,
+  TEL,
+  CALLTO,
+  MAIL_TYPE,
+  TEL_TYPE,
+  spanHTMLTag,
+  aHTMLTag,
+  pHTMLTag,
+  defaultLang,
+} = require("./constants");
+
+// utils
+const { validateEmails, validateTel, copyToClipboard } = require("./utils");
 
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
 
-// default lang
-const DEFAULT_LANG: string = "en";
+// mailgo scss
+const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
+// default language
+let lang: string = defaultLang;
+
 // default strings
-const defaultStrings: MailgoTranslation = translations[DEFAULT_LANG];
+const defaultStrings: MailgoTranslation = translations[defaultLang];
 
 // translation strings
 let strings: MailgoTranslation;
-
-// mailgo scss
-const mailgoCSS: string = require("./mailgo.scss").toString();
-
-// links
-const MAILTO: string = "mailto:";
-const TEL: string = "tel:";
-const CALLTO: string = "callto:";
-const SMS: string = "sms:";
-
-// deep linking
-const outlookDeepLink: string = "ms-outlook://";
-
-// mailgo types
-const MAIL_TYPE: string = "mail";
-const TEL_TYPE: string = "tel";
-
-// useful html tags
-const spanHTMLTag: string = "span";
-const aHTMLTag: string = "a";
-const pHTMLTag: string = "p";
 
 // global mailgo config object
 let config: MailgoConfig;
@@ -49,9 +51,6 @@ let validateEmailConfig: boolean = true;
 let validateTelConfig: boolean = true;
 let showFooterConfig: boolean = true;
 let loadCSSConfig: boolean = true;
-
-// default language
-let lang: string = DEFAULT_LANG;
 
 // modals global object
 let modalMailto: HTMLElement, modalTel: HTMLElement;
@@ -206,7 +205,7 @@ const mailgoInit = (): void => {
     );
     gmail.appendChild(gmailSpan);
 
-    modalContent.appendChild(gmail);
+    if (mailgoActionEnabled("gmail")) modalContent.appendChild(gmail);
 
     // Outlook
     outlook = createElement(aHTMLTag) as HTMLLinkElement;
@@ -224,7 +223,7 @@ const mailgoInit = (): void => {
     );
     outlook.appendChild(outlookSpan);
 
-    modalContent.appendChild(outlook);
+    if (mailgoActionEnabled("outlook")) modalContent.appendChild(outlook);
 
     // Outlook
     yahoo = createElement(aHTMLTag) as HTMLLinkElement;
@@ -242,7 +241,7 @@ const mailgoInit = (): void => {
     );
     yahoo.appendChild(yahooSpan);
 
-    modalContent.appendChild(yahoo);
+    if (mailgoActionEnabled("yahoo")) modalContent.appendChild(yahoo);
 
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
@@ -271,7 +270,7 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyMail);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (typeof config?.showFooter === "undefined") {
+    if (typeof config?.showFooter !== "undefined") {
       showFooterConfig = config.showFooter;
     }
 
@@ -342,7 +341,7 @@ const mailgoInit = (): void => {
     );
     telegram.appendChild(telegramSpan);
 
-    modalContent.appendChild(telegram);
+    if (mailgoActionEnabled("telegram")) modalContent.appendChild(telegram);
 
     // WhatsApp
     wa = createElement(aHTMLTag) as HTMLLinkElement;
@@ -358,7 +357,7 @@ const mailgoInit = (): void => {
     );
     wa.appendChild(waSpan);
 
-    modalContent.appendChild(wa);
+    if (mailgoActionEnabled("whatsapp")) modalContent.appendChild(wa);
 
     // Skype
     skype = createElement(aHTMLTag) as HTMLLinkElement;
@@ -376,7 +375,7 @@ const mailgoInit = (): void => {
     );
     skype.appendChild(skypeSpan);
 
-    modalContent.appendChild(skype);
+    if (mailgoActionEnabled("skype")) modalContent.appendChild(skype);
 
     // call default
     call = createElement(aHTMLTag) as HTMLLinkElement;
@@ -405,10 +404,11 @@ const mailgoInit = (): void => {
     modalContent.appendChild(copyTel);
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
-    if (
-      typeof config?.showFooter === "undefined" ||
-      config?.showFooter !== false
-    ) {
+    if (typeof config?.showFooter !== "undefined") {
+      showFooterConfig = config.showFooter;
+    }
+
+    if (showFooterConfig) {
       modalContent.appendChild(byElement());
     }
 
@@ -442,14 +442,19 @@ export function mailgoRender(
         mailgoElement.href.split("?")[0].split(MAILTO)[1].trim()
       );
 
-      url = new URL(mailgoElement.href);
-      let urlParams: URLSearchParams = url.searchParams;
+      try {
+        url = new URL(mailgoElement.href);
 
-      // optional parameters for the email
-      cc = urlParams.get("cc");
-      bcc = urlParams.get("bcc");
-      subject = urlParams.get("subject");
-      bodyMail = urlParams.get("body");
+        let urlParams: URLSearchParams = url.searchParams;
+
+        // optional parameters for the email
+        cc = urlParams.get("cc");
+        bcc = urlParams.get("bcc");
+        subject = urlParams.get("subject");
+        bodyMail = urlParams.get("body");
+      } catch (error) {
+        // console.log(error);
+      }
     } else {
       // if the element href="#mailgo" or class="mailgo"
       // mail = data-address + @ + data-domain
@@ -458,7 +463,11 @@ export function mailgoRender(
         "@" +
         mailgoElement.getAttribute("data-domain");
 
-      url = new URL(MAILTO + encodeURIComponent(mail));
+      try {
+        url = new URL(MAILTO + encodeURIComponent(mail));
+      } catch (error) {
+        // console.log(error);
+      }
 
       // cc = data-cc-address + @ + data-cc-domain
       cc =
@@ -686,14 +695,17 @@ const openDefault = (event?: Event): void => {
 const openTelegram = (event?: Event): void => {
   event.preventDefault();
 
-  // Telegram url
-  let tgUrl: string = "https://t.me/" + telegramUsername;
+  // check if telegramUsername exists
+  if (telegramUsername) {
+    // Telegram url
+    let tgUrl: string = "https://t.me/" + telegramUsername;
 
-  // open the url
-  window.open(tgUrl, "_blank");
+    // open the url
+    window.open(tgUrl, "_blank");
 
-  // hide the modal
-  hideMailgo();
+    // hide the modal
+    hideMailgo();
+  }
 };
 
 const openSkype = (event?: Event): void => {
@@ -808,7 +820,7 @@ export function isMailgo(
  */
 export function mailgoCheckRender(event: Event): boolean {
   // check if the id=mailgo exists in the body
-  if (!document.contains(modalMailto) || !document.contains(modalTel))
+  if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
     return false;
 
   // if a mailgo is already showing do nothing
@@ -869,6 +881,10 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
         // o -> open Outlook
         openOutlook();
         break;
+      case 89:
+        // y -> open Yahoo Mail
+        openYahooMail();
+        break;
       case 32:
       case 13:
         // spacebar or enter -> open default
@@ -894,6 +910,10 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
       case 87:
         // w -> open WhatsApp
         openWhatsApp();
+        break;
+      case 83:
+        // s -> open Skype
+        openSkype();
         break;
       case 32:
       case 13:
@@ -1049,40 +1069,16 @@ const composedPath = (
   }
 };
 
-// validate a single email with regex
-const validateEmail = (email: string): boolean =>
-  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(
-    email
-  );
+// function to check an action is enabled or not
+const mailgoActionEnabled = (action: MailgoAction): boolean => {
+  // by default all the actions are enabled
+  if (!config) return true;
+  if (config && !config?.actions) return true;
 
-// validate an array of emails
-const validateEmails = (arr: string[]): boolean => arr.every(validateEmail);
+  if (config && config.actions && config?.actions[action] === false)
+    return false;
 
-// validate a single tel with regex
-const validateTel = (tel: string): boolean =>
-  /^[+]{0,1}[\s0-9]{0,}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(tel);
-
-// copy of a string
-const copyToClipboard = (str: string): boolean => {
-  let el: HTMLInputElement = createElement("textarea") as HTMLInputElement;
-  el.value = str;
-  el.setAttribute("readonly", "");
-  el.style.position = "absolute";
-  el.style.left = "-9999px";
-  document.body.appendChild(el);
-  let selected: Range | boolean =
-    document.getSelection().rangeCount > 0
-      ? document.getSelection().getRangeAt(0)
-      : false;
-  el.select();
-  document.execCommand("copy");
-  document.body.removeChild(el);
-  if (selected) {
-    document.getSelection().removeAllRanges();
-    document.getSelection().addRange(selected);
-    return true;
-  }
-  return false;
+  return true;
 };
 
 const mailgoStyle = (): void => {
@@ -1098,60 +1094,67 @@ const mailgoStyle = (): void => {
 
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): void {
-  // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
-  config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
+  try {
+    // polyfill mailgo
+    mailgoPolyfill();
 
-  // if the window is defined...
-  if (window && typeof window !== "undefined") {
-    // if is setted in config use it
-    if (typeof config?.loadCSS !== "undefined") {
-      loadCSSConfig = config.loadCSS;
-    }
+    // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
+    config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
-    // if a default language is defined use it
-    if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-      lang = config.lang;
-    }
-
-    // if is defined <html lang=""> use it!
-    if (!config?.forceLang) {
-      // keep the lang from html
-      let htmlLang: string = document.documentElement.lang;
-
-      // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
-      let langIndex = i18n.languages.findIndex((language) =>
-        htmlLang.startsWith(language)
-      );
-
-      // if there is the language set it
-      if (langIndex !== -1) lang = i18n.languages[langIndex];
-    }
-
-    // strings
-    strings = translations[lang];
-
-    // if load css enabled load it!
-    if (loadCSSConfig) {
-      // add the style for mailgo
-      mailgoStyle();
-    }
-
-    // if is set an initEvent add the listener
-    if (config?.initEvent) {
-      if (config?.listenerOptions) {
-        // listener options specified
-        document.addEventListener(
-          config.initEvent,
-          mailgoInit,
-          config.listenerOptions
-        );
-      } else {
-        // no listener options
-        document.addEventListener(config.initEvent, mailgoInit);
+    // if the window is defined...
+    if (window && typeof window !== "undefined") {
+      // if is setted in config use it
+      if (typeof config?.loadCSS !== "undefined") {
+        loadCSSConfig = config.loadCSS;
       }
-    } else {
-      mailgoInit();
+
+      // if a default language is defined use it
+      if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+        lang = config.lang;
+      }
+
+      // if is defined <html lang=""> use it!
+      if (!config?.forceLang) {
+        // keep the lang from html
+        let htmlLang: string = document.documentElement.lang;
+
+        // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
+        let langFound = i18n.languages.find((language) =>
+          htmlLang.startsWith(language)
+        );
+
+        // if there is the language set it
+        if (langFound) lang = langFound;
+      }
+
+      // strings
+      strings = translations[lang];
+
+      // if load css enabled load it!
+      if (loadCSSConfig) {
+        // add the style for mailgo
+        mailgoStyle();
+      }
+
+      // if is set an initEvent add the listener
+      if (config?.initEvent) {
+        if (config?.listenerOptions) {
+          // listener options specified
+          document.addEventListener(
+            config.initEvent,
+            mailgoInit,
+            config.listenerOptions
+          );
+        } else {
+          // no listener options
+          document.addEventListener(config.initEvent, mailgoInit);
+        }
+      } else {
+        mailgoInit();
+      }
     }
+  } catch (error) {
+    // console.log(error);
   }
 }
 

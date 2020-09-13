@@ -14,7 +14,7 @@ Transform all your `mailto` and `tel` link in a beautiful modal with more possib
 
 ### Magento 2
 
-<https://github.com/manzinello/magento2-mailgo>
+<https://marketplace.magento.com/manzinello-mailgo.html>
 
 ### Gatsby
 
