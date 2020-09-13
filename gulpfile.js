@@ -14,7 +14,7 @@ sass.compiler = require("node-sass");
 
 function css() {
   return gulp
-    .src("./src/mailgo.scss")
+    .src("./src/**/*.scss")
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(prettier({ singleQuote: true }))
@@ -23,7 +23,7 @@ function css() {
 
 function cssMin() {
   return gulp
-    .src("./src/mailgo.scss")
+    .src("./src/**/*.scss")
     .pipe(sass.sync().on("error", sass.logError))
     .pipe(postcss([autoprefixer()]))
     .pipe(cleanCSS({ compatibility: "ie8" }))

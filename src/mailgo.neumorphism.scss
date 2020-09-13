@@ -1,3 +1,10 @@
 @import "mailgo.scss";
 
-// TODO
+.m-modal-content {
+  box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
+    -30px -30px 60px rgba(32, 35, 42, 0.5);
+  a {
+    box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
+      -30px -30px 60px rgba(32, 35, 42, 0.5);
+  }
+}
