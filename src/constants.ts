@@ -18,3 +18,7 @@ export const pHTMLTag: string = "p";
 
 // default lang
 export const defaultLang: string = "en";
+
+// events tag
+export const mailgoReadyTag: string = "mailgo-ready";
+export const mailgoRenderTag: string = "mailgo-render";

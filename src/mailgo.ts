@@ -20,6 +20,8 @@ const {
   aHTMLTag,
   pHTMLTag,
   defaultLang,
+  mailgoReadyTag,
+  mailgoRenderTag,
 } = require("./constants");
 
 // utils
@@ -30,6 +32,10 @@ const i18n: MailgoI18n = require("../i18n/i18n.json");
 
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
+
+// events
+let mailgoReadyEvent: Event;
+let mailgoRenderEvent: Event;
 
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
