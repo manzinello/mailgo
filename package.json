@@ -3,8 +3,9 @@
   "version": "0.9.18",
   "description": "a new concept of mailto and tel links",
   "scripts": {
-    "build": "webpack",
-    "build-css": "gulp"
+    "build-js": "webpack",
+    "build-css": "gulp",
+    "build": "webpack && gulp"
   },
   "repository": {
     "type": "git",
