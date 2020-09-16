@@ -2,7 +2,8 @@
 
 ## a new concept of `mailto` and `tel` links <https://mailgo.dev>
 
-Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities! Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype for phone numbers.
+Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities!
+Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype for phone numbers.
 
 ![mailgo screencast](https://github.com/manzinello/mailgo/raw/master/assets/video/mailgo.gif)
 
