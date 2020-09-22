@@ -91,6 +91,45 @@ window["mailgo"] =
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAILTO", function() { return MAILTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEL", function() { return TEL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALLTO", function() { return CALLTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SMS", function() { return SMS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "outlookDeepLink", function() { return outlookDeepLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAIL_TYPE", function() { return MAIL_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEL_TYPE", function() { return TEL_TYPE; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spanHTMLTag", function() { return spanHTMLTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aHTMLTag", function() { return aHTMLTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pHTMLTag", function() { return pHTMLTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultLang", function() { return defaultLang; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoReadyTag", function() { return mailgoReadyTag; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoRenderTag", function() { return mailgoRenderTag; });
+// links
+var MAILTO = "mailto:";
+var TEL = "tel:";
+var CALLTO = "callto:";
+var SMS = "sms:"; // deep linking
+
+var outlookDeepLink = "ms-outlook://"; // mailgo types
+
+var MAIL_TYPE = "mail";
+var TEL_TYPE = "tel"; // useful html tags
+
+var spanHTMLTag = "span";
+var aHTMLTag = "a";
+var pHTMLTag = "p"; // default lang
+
+var defaultLang = "en"; // events tag
+
+var mailgoReadyTag = "mailgo-ready";
+var mailgoRenderTag = "mailgo-render";
+
+/***/ }),
+/* 1 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoPolyfill", function() { return mailgoPolyfill; });
 var mailgoPolyfill = function mailgoPolyfill() {
   // Polyfill of find from MDN
@@ -132,45 +171,6 @@ var mailgoPolyfill = function mailgoPolyfill() {
     });
   }
 };
-
-/***/ }),
-/* 1 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAILTO", function() { return MAILTO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEL", function() { return TEL; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALLTO", function() { return CALLTO; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SMS", function() { return SMS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "outlookDeepLink", function() { return outlookDeepLink; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAIL_TYPE", function() { return MAIL_TYPE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEL_TYPE", function() { return TEL_TYPE; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "spanHTMLTag", function() { return spanHTMLTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "aHTMLTag", function() { return aHTMLTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "pHTMLTag", function() { return pHTMLTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "defaultLang", function() { return defaultLang; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoReadyTag", function() { return mailgoReadyTag; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoRenderTag", function() { return mailgoRenderTag; });
-// links
-var MAILTO = "mailto:";
-var TEL = "tel:";
-var CALLTO = "callto:";
-var SMS = "sms:"; // deep linking
-
-var outlookDeepLink = "ms-outlook://"; // mailgo types
-
-var MAIL_TYPE = "mail";
-var TEL_TYPE = "tel"; // useful html tags
-
-var spanHTMLTag = "span";
-var aHTMLTag = "a";
-var pHTMLTag = "p"; // default lang
-
-var defaultLang = "en"; // events tag
-
-var mailgoReadyTag = "mailgo-ready";
-var mailgoRenderTag = "mailgo-render";
 
 /***/ }),
 /* 2 */
@@ -357,6 +357,9 @@ function toComment(sourceMap) {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
+// EXTERNAL MODULE: ../src/constants.ts
+var constants = __webpack_require__(0);
+
 // CONCATENATED MODULE: ../src/mailgo.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -364,12 +367,13 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-// polyfill
-var _require = __webpack_require__(0),
+ // polyfill
+
+var _require = __webpack_require__(1),
     mailgoPolyfill = _require.mailgoPolyfill; // constants
 
 
-var _require2 = __webpack_require__(1),
+var _require2 = __webpack_require__(0),
     MAILTO = _require2.MAILTO,
     TEL = _require2.TEL,
     CALLTO = _require2.CALLTO,
@@ -794,6 +798,8 @@ function mailgoRender() {
         tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(TEL)[1].trim());
       } else if (mailgoElement.href && mailgoElement.href.toLowerCase().startsWith(CALLTO)) {
         tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(CALLTO)[1].trim());
+      } else if (mailgoElement.href && mailgoElement.href.toLowerCase().startsWith(constants["SMS"])) {
+        tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(constants["SMS"])[1].trim());
       } else if (mailgoElement.hasAttribute("data-tel")) {
         tel = mailgoElement.getAttribute("data-tel");
         msg = mailgoElement.getAttribute("data-msg");
@@ -975,8 +981,8 @@ function isMailgo(element) {
 
 
   if (type === TEL_TYPE) {
-    return (// first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
-      href && (href.toLowerCase().startsWith(TEL) || href.toLowerCase().startsWith(CALLTO)) && !element.classList.contains("no-mailgo") || element.hasAttribute("data-tel") && // second case: the href=#mailgo
+    return (// first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
+      href && (href.toLowerCase().startsWith(TEL) || href.toLowerCase().startsWith(CALLTO) || href.toLowerCase().startsWith(constants["SMS"])) && !element.classList.contains("no-mailgo") || element.hasAttribute("data-tel") && // second case: the href=#mailgo
       href && element.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
       element.classList && element.classList.contains("mailgo")
     );
@@ -998,6 +1004,10 @@ function isMailgo(element) {
  * or
  * document.querySelectorAll(
  *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * or
+ * document.querySelectorAll(
+ *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
 
