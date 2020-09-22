@@ -5,6 +5,7 @@ import {
   MailgoI18n,
   MailgoAction,
 } from "mailgo";
+import { SMS } from "./constants";
 
 // polyfill
 const { mailgoPolyfill } = require("./polyfill");
@@ -563,6 +564,13 @@ export function mailgoRender(
       tel = decodeURIComponent(
         mailgoElement.href.split("?")[0].split(CALLTO)[1].trim()
       );
+    } else if (
+      mailgoElement.href &&
+      mailgoElement.href.toLowerCase().startsWith(SMS)
+    ) {
+      tel = decodeURIComponent(
+        mailgoElement.href.split("?")[0].split(SMS)[1].trim()
+      );
     } else if (mailgoElement.hasAttribute("data-tel")) {
       tel = mailgoElement.getAttribute("data-tel");
       msg = mailgoElement.getAttribute("data-msg");
@@ -791,10 +799,11 @@ export function isMailgo(
   // mailgo type tel
   if (type === TEL_TYPE) {
     return (
-      // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
+      // first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
       (href &&
         (href.toLowerCase().startsWith(TEL) ||
-          href.toLowerCase().startsWith(CALLTO)) &&
+          href.toLowerCase().startsWith(CALLTO) ||
+          href.toLowerCase().startsWith(SMS)) &&
         !element.classList.contains("no-mailgo")) ||
       (element.hasAttribute("data-tel") &&
         // second case: the href=#mailgo
@@ -822,6 +831,10 @@ export function isMailgo(
  * or
  * document.querySelectorAll(
  *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * or
+ * document.querySelectorAll(
+ *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
 export function mailgoCheckRender(event: Event): boolean {
