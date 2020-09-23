@@ -55,7 +55,8 @@
       "open": "abrir",
       "_default": " predefinido",
       "_as_default": " por defecto",
-      "copy": "copiar"
+      "copy": "copiar",
+      "copied": "copiado"
     },
     "de": {
       "open_in_": "Öffnen in ",
