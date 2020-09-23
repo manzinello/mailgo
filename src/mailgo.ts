@@ -54,6 +54,9 @@ let strings: MailgoTranslation;
 let config: MailgoConfig;
 
 // default config attributes
+let mailtoEnabled: boolean = true;
+let telEnabled: boolean = true;
+let smsEnabled: boolean = true;
 let validateEmailConfig: boolean = true;
 let validateTelConfig: boolean = true;
 let showFooterConfig: boolean = true;
@@ -515,7 +518,7 @@ export function mailgoRender(
       bodyMail = mailgoElement.getAttribute("data-body");
     }
 
-    // if is setted in config use it
+    // if is in config use it
     if (typeof config?.validateEmail !== "undefined") {
       validateEmailConfig = config.validateEmail;
     }
@@ -606,7 +609,7 @@ export function mailgoRender(
       msg = mailgoElement.getAttribute("data-msg");
     }
 
-    // if is setted in config use it
+    // if is in config use it
     if (typeof config?.validateTel !== "undefined") {
       validateTelConfig = config.validateTel;
     }
@@ -1156,9 +1159,24 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
 
     // if the window is defined...
     if (window && typeof window !== "undefined") {
-      // if is setted in config use it
+      // if is set in config use it (load the mailgo CSS)
       if (typeof config?.loadCSS !== "undefined") {
         loadCSSConfig = config.loadCSS;
+      }
+
+      // if is set in config use it (enable mailto)
+      if (typeof config?.mailto !== "undefined") {
+        mailtoEnabled = config.mailto;
+      }
+
+      // if is set in config use it (enable tel)
+      if (typeof config?.tel !== "undefined") {
+        telEnabled = config.tel;
+      }
+
+      // if is set in config use it (enable sms)
+      if (typeof config?.sms !== "undefined") {
+        smsEnabled = config.sms;
       }
 
       // if a default language is defined use it

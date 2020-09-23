@@ -4,9 +4,9 @@
 
 declare module "mailgo" {
   export type MailgoConfig = {
-    mailto: boolean;
-    tel: boolean;
-    sms: boolean;
+    mailto?: boolean;
+    tel?: boolean;
+    sms?: boolean;
     initEvent?: string;
     listenerOptions?: ListenerOptions | boolean;
     dark?: boolean;
