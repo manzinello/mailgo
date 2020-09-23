@@ -410,6 +410,9 @@ var strings; // global mailgo config object
 
 var config; // default config attributes
 
+var mailtoEnabled = true;
+var telEnabled = true;
+var smsEnabled = true;
 var validateEmailConfig = true;
 var validateTelConfig = true;
 var showFooterConfig = true;
@@ -772,7 +775,7 @@ function mailgoRender() {
       subject = mailgoElement.getAttribute("data-subject"); // body = data-body
 
       bodyMail = mailgoElement.getAttribute("data-body");
-    } // if is setted in config use it
+    } // if is in config use it
 
 
     if (typeof ((_config5 = config) === null || _config5 === void 0 ? void 0 : _config5.validateEmail) !== "undefined") {
@@ -825,7 +828,7 @@ function mailgoRender() {
       } else if (mailgoElement.hasAttribute("data-tel")) {
         tel = mailgoElement.getAttribute("data-tel");
         msg = mailgoElement.getAttribute("data-msg");
-      } // if is setted in config use it
+      } // if is in config use it
 
 
       if (typeof ((_config6 = config) === null || _config6 === void 0 ? void 0 : _config6.validateTel) !== "undefined") {
@@ -1044,9 +1047,9 @@ function mailgoCheckRender(event) {
 
   if (path) {
     path.forEach(function (element) {
-      if (element instanceof HTMLDocument || element instanceof Window) return false; // go in the event.path to find if the user has clicked on a mailgo element
+      if (element instanceof HTMLDocument || element instanceof Window) return false; // go in the event.path to find if the user has clicked on a mailgo element (if mailto/tel enabled)
 
-      if (isMailgo(element, MAIL_TYPE)) {
+      if (mailtoEnabled && isMailgo(element, MAIL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault(); // render mailgo
 
@@ -1054,7 +1057,7 @@ function mailgoCheckRender(event) {
         return true;
       }
 
-      if (isMailgo(element, TEL_TYPE)) {
+      if (telEnabled && isMailgo(element, TEL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault(); // render mailgo
 
@@ -1322,20 +1325,35 @@ function mailgo(mailgoConfig) {
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
     if (window && typeof window !== "undefined") {
-      var _config10, _config11, _config12, _config13;
+      var _config10, _config11, _config12, _config13, _config14, _config15, _config16;
 
-      // if is setted in config use it
+      // if is set in config use it (load the mailgo CSS)
       if (typeof ((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.loadCSS) !== "undefined") {
         loadCSSConfig = config.loadCSS;
+      } // if is set in config use it (enable mailto)
+
+
+      if (typeof ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.mailto) !== "undefined") {
+        mailtoEnabled = config.mailto;
+      } // if is set in config use it (enable tel)
+
+
+      if (typeof ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.tel) !== "undefined") {
+        telEnabled = config.tel;
+      } // if is set in config use it (enable sms)
+
+
+      if (typeof ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.sms) !== "undefined") {
+        smsEnabled = config.sms;
       } // if a default language is defined use it
 
 
-      if (((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.lang) && i18n.languages.indexOf(config.lang) !== -1) {
+      if (((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.lang) && i18n.languages.indexOf(config.lang) !== -1) {
         lang = config.lang;
       } // if is defined <html lang=""> use it!
 
 
-      if (!((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.forceLang)) {
+      if (!((_config15 = config) === null || _config15 === void 0 ? void 0 : _config15.forceLang)) {
         // keep the lang from html
         var htmlLang = document.documentElement.lang; // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
 
@@ -1355,10 +1373,10 @@ function mailgo(mailgoConfig) {
       } // if is set an initEvent add the listener
 
 
-      if ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.initEvent) {
-        var _config14;
+      if ((_config16 = config) === null || _config16 === void 0 ? void 0 : _config16.initEvent) {
+        var _config17;
 
-        if ((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.listenerOptions) {
+        if ((_config17 = config) === null || _config17 === void 0 ? void 0 : _config17.listenerOptions) {
           // listener options specified
           document.addEventListener(config.initEvent, mailgoInit, config.listenerOptions);
         } else {

@@ -892,8 +892,8 @@ export function mailgoCheckRender(event: Event): boolean {
       if (element instanceof HTMLDocument || element instanceof Window)
         return false;
 
-      // go in the event.path to find if the user has clicked on a mailgo element
-      if (isMailgo(element, MAIL_TYPE)) {
+      // go in the event.path to find if the user has clicked on a mailgo element (if mailto/tel enabled)
+      if (mailtoEnabled && isMailgo(element, MAIL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault();
 
@@ -902,7 +902,7 @@ export function mailgoCheckRender(event: Event): boolean {
 
         return true;
       }
-      if (isMailgo(element, TEL_TYPE)) {
+      if (telEnabled && isMailgo(element, TEL_TYPE)) {
         // stop the normal execution of the element click
         event.preventDefault();
 
