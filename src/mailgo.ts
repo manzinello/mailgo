@@ -5,7 +5,6 @@ import {
   MailgoI18n,
   MailgoAction,
 } from "mailgo";
-import { SMS } from "./constants";
 
 // polyfill
 const { mailgoPolyfill } = require("./polyfill");
@@ -15,6 +14,7 @@ const {
   MAILTO,
   TEL,
   CALLTO,
+  SMS,
   MAIL_TYPE,
   TEL_TYPE,
   spanHTMLTag,
@@ -84,10 +84,12 @@ let title: HTMLElement,
   detailBcc: HTMLElement,
   detailSubject: HTMLElement,
   detailBody: HTMLElement,
+  detailMsg: HTMLElement,
   ccValue: HTMLElement,
   bccValue: HTMLElement,
   subjectValue: HTMLElement,
   bodyValue: HTMLElement,
+  msgValue: HTMLElement,
   activatedLink: HTMLElement;
 
 // mailgo buttons (actions)
@@ -327,6 +329,24 @@ const mailgoInit = (): void => {
     titleTel.id = "m-tel-title";
     titleTel.className = "m-title";
     modalContent.appendChild(titleTel);
+
+    // details
+    let detailsTel: HTMLElement = createElement();
+    detailsTel.id = "m-tel-details";
+    detailsTel.className = "m-details";
+
+    detailMsg = createElement(pHTMLTag);
+    detailMsg.id = "m-msg";
+    let msgSpan: HTMLElement = createElement(spanHTMLTag);
+    msgSpan.className = "w-500";
+    msgSpan.appendChild(createTextNode(strings.body_ || defaultStrings.body_));
+    msgValue = createElement(spanHTMLTag);
+    msgValue.id = "m-msg-value";
+    detailMsg.appendChild(msgSpan);
+    detailMsg.appendChild(msgValue);
+    detailsTel.appendChild(detailMsg);
+
+    modalContent.appendChild(detailsTel);
 
     // Telegram
     telegram = createElement(aHTMLTag) as HTMLLinkElement;
@@ -571,6 +591,16 @@ export function mailgoRender(
       tel = decodeURIComponent(
         mailgoElement.href.split("?")[0].split(SMS)[1].trim()
       );
+
+      try {
+        url = new URL(mailgoElement.href);
+        let urlParams: URLSearchParams = url.searchParams;
+
+        // optional parameters for the phone number
+        msg = urlParams.get("body");
+      } catch (error) {
+        // console.log(error);
+      }
     } else if (mailgoElement.hasAttribute("data-tel")) {
       tel = mailgoElement.getAttribute("data-tel");
       msg = mailgoElement.getAttribute("data-msg");
@@ -600,6 +630,10 @@ export function mailgoRender(
 
     // the title of the modal (tel)
     titleTel.innerHTML = tel;
+
+    msg
+      ? ((detailMsg.style.display = "block"), (msgValue.textContent = msg))
+      : (detailMsg.style.display = "none");
 
     // add the actions to buttons
     wa.addEventListener("click", openWhatsApp);
