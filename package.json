@@ -62,6 +62,9 @@
     "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12"
   },
+  "peerDependencies": {
+    "postcss": "^8.0.9"
+  },
   "dependencies": {},
   "funding": {
     "type": "opencollective",
