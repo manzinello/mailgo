@@ -182,6 +182,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateEmails", function() { return validateEmails; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "validateTel", function() { return validateTel; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "copyToClipboard", function() { return copyToClipboard; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "setFocusLoop", function() { return setFocusLoop; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveLastLink", function() { return leaveLastLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "leaveFirstLink", function() { return leaveFirstLink; });
 // validate a single email with regex
 var validateEmail = function validateEmail(email) {
   return /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/.test(email);
@@ -214,6 +217,26 @@ var copyToClipboard = function copyToClipboard(str) {
   }
 
   return false;
+}; // set focus loop within modal
+
+var setFocusLoop = function setFocusLoop(ref) {
+  var modal = ref;
+  modal.querySelector(".m-modal-content a:last-of-type").addEventListener("keydown", leaveLastLink);
+  modal.querySelector(".m-modal-content a:first-of-type").addEventListener("keydown", leaveFirstLink);
+};
+var leaveLastLink = function leaveLastLink(e) {
+  // going back to the first link to force looping
+  if (e.code === "Tab" && e.shiftKey === false) {
+    e.preventDefault();
+    e.target.closest("div").querySelector("a:first-of-type").focus();
+  }
+};
+var leaveFirstLink = function leaveFirstLink(e) {
+  // going back to the first link to force looping
+  if (e.code === "Tab" && e.shiftKey === true) {
+    e.preventDefault();
+    e.target.closest("div").querySelector("a:last-of-type").focus();
+  }
 };
 
 /***/ }),
@@ -387,7 +410,8 @@ var _require2 = __webpack_require__(1),
 var _require3 = __webpack_require__(2),
     validateEmails = _require3.validateEmails,
     validateTel = _require3.validateTel,
-    copyToClipboard = _require3.copyToClipboard; // i18n for mailgo
+    copyToClipboard = _require3.copyToClipboard,
+    setFocusLoop = _require3.setFocusLoop; // i18n for mailgo
 
 
 var i18n = __webpack_require__(3); // mailgo scss
@@ -1239,29 +1263,6 @@ var setModalDisplay = function setModalDisplay() {
 
     modal.setAttribute("tabindex", "-1");
     activatedLink.focus();
-  }
-}; // set focus loop within modal
-
-
-var setFocusLoop = function setFocusLoop(ref) {
-  var modal = ref;
-  modal.querySelector(".m-modal-content a:last-of-type").addEventListener("keydown", leaveLastLink);
-  modal.querySelector(".m-modal-content a:first-of-type").addEventListener("keydown", leaveFirstLink);
-};
-
-var leaveLastLink = function leaveLastLink(e) {
-  // going back to the first link to force looping
-  if (e.code === "Tab" && e.shiftKey === false) {
-    e.preventDefault();
-    e.target.closest("div").querySelector("a:first-of-type").focus();
-  }
-};
-
-var leaveFirstLink = function leaveFirstLink(e) {
-  // going back to the first link to force looping
-  if (e.code === "Tab" && e.shiftKey === true) {
-    e.preventDefault();
-    e.target.closest("div").querySelector("a:last-of-type").focus();
   }
 }; // enable dark mode
 
