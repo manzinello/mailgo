@@ -479,7 +479,9 @@ var mailgoInit = function mailgoInit() {
     modalMailto.classList.add("m-modal");
     modalMailto.setAttribute("role", "dialog");
     modalMailto.setAttribute("tabindex", "-1");
-    modalMailto.setAttribute("aria-labelledby", "m-title"); // if dark is in config
+    modalMailto.setAttribute("aria-labelledby", "m-title"); // set the mailgo language
+
+    mailgoSetLanguage(); // if dark is in config
 
     if ((_config = config) === null || _config === void 0 ? void 0 : _config.dark) {
       enableDarkMode(MAIL_TYPE);
@@ -1304,6 +1306,35 @@ var mailgoActionEnabled = function mailgoActionEnabled(action) {
   if (config && !((_config8 = config) === null || _config8 === void 0 ? void 0 : _config8.actions)) return true;
   if (config && config.actions && ((_config9 = config) === null || _config9 === void 0 ? void 0 : _config9.actions[action]) === false) return false;
   return true;
+}; // manage the language of mailgo
+
+
+var mailgoSetLanguage = function mailgoSetLanguage() {
+  var _config10;
+
+  var languageType = "default lang"; // if a language is defined in configuration use it
+
+  if (((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.lang) && i18n.languages.indexOf(config.lang) !== -1) {
+    lang = config.lang;
+    languageType = "config lang";
+  } else {
+    // else if is defined <html lang=""> use it!
+    // keep the lang from html
+    var htmlLang = document.documentElement.lang; // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
+
+    var langFound = i18n.languages.find(function (language) {
+      return htmlLang.startsWith(language);
+    }); // if there is a valid language set it
+
+    if (langFound) {
+      lang = langFound;
+      languageType = "html lang";
+    }
+  } // strings
+
+
+  strings = translations[lang];
+  return languageType;
 };
 
 var mailgoStyle = function mailgoStyle() {
@@ -1326,49 +1357,28 @@ function mailgo(mailgoConfig) {
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
     if (window && typeof window !== "undefined") {
-      var _config10, _config11, _config12, _config13, _config15;
+      var _config11, _config12, _config13, _config14, _config15;
 
       // if is set in config use it (load the mailgo CSS)
-      if (typeof ((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.loadCSS) !== "undefined") {
+      if (typeof ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.loadCSS) !== "undefined") {
         loadCSSConfig = config.loadCSS;
       } // if is set in config use it (enable mailto)
 
 
-      if (typeof ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.mailto) !== "undefined") {
+      if (typeof ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.mailto) !== "undefined") {
         mailtoEnabled = config.mailto;
       } // if is set in config use it (enable tel)
 
 
-      if (typeof ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.tel) !== "undefined") {
+      if (typeof ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.tel) !== "undefined") {
         telEnabled = config.tel;
       } // if is set in config use it (enable sms)
 
 
-      if (typeof ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.sms) !== "undefined") {
+      if (typeof ((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.sms) !== "undefined") {
         smsEnabled = config.sms;
-      } // manage the language of mailgo
+      } // if load css enabled load it!
 
-
-      {
-        var _config14;
-
-        // if a language is defined in configuration use it
-        if (((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.lang) && i18n.languages.indexOf(config.lang) !== -1) {
-          lang = config.lang;
-        } else {
-          // else if is defined <html lang=""> use it!
-          // keep the lang from html
-          var htmlLang = document.documentElement.lang; // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-
-          var langFound = i18n.languages.find(function (language) {
-            return htmlLang.startsWith(language);
-          }); // if there is a valid language set it
-
-          if (langFound) lang = langFound;
-        }
-      } // strings
-
-      strings = translations[lang]; // if load css enabled load it!
 
       if (loadCSSConfig) {
         // add the style for mailgo

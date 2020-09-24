@@ -130,6 +130,9 @@ const mailgoInit = (): void => {
     modalMailto.setAttribute("tabindex", "-1");
     modalMailto.setAttribute("aria-labelledby", "m-title");
 
+    // set the mailgo language
+    mailgoSetLanguage();
+
     // if dark is in config
     if (config?.dark) {
       enableDarkMode(MAIL_TYPE);
@@ -1110,6 +1113,37 @@ const mailgoActionEnabled = (action: MailgoAction): boolean => {
   return true;
 };
 
+// manage the language of mailgo
+const mailgoSetLanguage = (): string => {
+  let languageType = "default lang";
+
+  // if a language is defined in configuration use it
+  if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+    lang = config.lang;
+    languageType = "config lang";
+  } else {
+    // else if is defined <html lang=""> use it!
+    // keep the lang from html
+    let htmlLang: string = document.documentElement.lang;
+
+    // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
+    let langFound = i18n.languages.find((language) =>
+      htmlLang.startsWith(language)
+    );
+
+    // if there is a valid language set it
+    if (langFound) {
+      lang = langFound;
+      languageType = "html lang";
+    }
+  }
+
+  // strings
+  strings = translations[lang];
+
+  return languageType;
+};
+
 const mailgoStyle = (): void => {
   // mailgo style
   let mailgoCSSElement: HTMLStyleElement = createElement(
@@ -1151,29 +1185,6 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
       if (typeof config?.sms !== "undefined") {
         smsEnabled = config.sms;
       }
-
-      // manage the language of mailgo
-      {
-        // if a language is defined in configuration use it
-        if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-          lang = config.lang;
-        } else {
-          // else if is defined <html lang=""> use it!
-          // keep the lang from html
-          let htmlLang: string = document.documentElement.lang;
-
-          // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-          let langFound = i18n.languages.find((language) =>
-            htmlLang.startsWith(language)
-          );
-
-          // if there is a valid language set it
-          if (langFound) lang = langFound;
-        }
-      }
-
-      // strings
-      strings = translations[lang];
 
       // if load css enabled load it!
       if (loadCSSConfig) {
