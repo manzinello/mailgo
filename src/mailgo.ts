@@ -26,7 +26,12 @@ const {
 } = require("./constants");
 
 // utils
-const { validateEmails, validateTel, copyToClipboard } = require("./utils");
+const {
+  validateEmails,
+  validateTel,
+  copyToClipboard,
+  setFocusLoop,
+} = require("./utils");
 
 // i18n for mailgo
 const i18n: MailgoI18n = require("../i18n/i18n.json");
@@ -1063,38 +1068,6 @@ const setModalDisplay = (ref: string = MAIL_TYPE, value: string): void => {
     // focus back the activated link for getting back to the context.
     modal.setAttribute("tabindex", "-1");
     activatedLink.focus();
-  }
-};
-
-// set focus loop within modal
-const setFocusLoop = (ref: HTMLElement): void => {
-  let modal = ref;
-  modal
-    .querySelector(".m-modal-content a:last-of-type")
-    .addEventListener("keydown", leaveLastLink);
-  modal
-    .querySelector(".m-modal-content a:first-of-type")
-    .addEventListener("keydown", leaveFirstLink);
-};
-
-const leaveLastLink = (e: KeyboardEvent): void => {
-  // going back to the first link to force looping
-  if (e.code === "Tab" && e.shiftKey === false) {
-    e.preventDefault();
-
-    ((e.target as HTMLElement)
-      .closest("div")
-      .querySelector("a:first-of-type") as HTMLElement).focus();
-  }
-};
-
-const leaveFirstLink = (e: KeyboardEvent): void => {
-  // going back to the first link to force looping
-  if (e.code === "Tab" && e.shiftKey === true) {
-    e.preventDefault();
-    ((e.target as HTMLElement)
-      .closest("div")
-      .querySelector("a:last-of-type") as HTMLElement).focus();
   }
 };
 

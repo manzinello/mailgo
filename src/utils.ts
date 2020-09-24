@@ -36,3 +36,35 @@ export const copyToClipboard = (str: string): boolean => {
   }
   return false;
 };
+
+// set focus loop within modal
+export const setFocusLoop = (ref: HTMLElement): void => {
+  let modal = ref;
+  modal
+    .querySelector(".m-modal-content a:last-of-type")
+    .addEventListener("keydown", leaveLastLink);
+  modal
+    .querySelector(".m-modal-content a:first-of-type")
+    .addEventListener("keydown", leaveFirstLink);
+};
+
+export const leaveLastLink = (e: KeyboardEvent): void => {
+  // going back to the first link to force looping
+  if (e.code === "Tab" && e.shiftKey === false) {
+    e.preventDefault();
+
+    ((e.target as HTMLElement)
+      .closest("div")
+      .querySelector("a:first-of-type") as HTMLElement).focus();
+  }
+};
+
+export const leaveFirstLink = (e: KeyboardEvent): void => {
+  // going back to the first link to force looping
+  if (e.code === "Tab" && e.shiftKey === true) {
+    e.preventDefault();
+    ((e.target as HTMLElement)
+      .closest("div")
+      .querySelector("a:last-of-type") as HTMLElement).focus();
+  }
+};
