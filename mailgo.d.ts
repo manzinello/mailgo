@@ -11,7 +11,6 @@ declare module "mailgo" {
     listenerOptions?: ListenerOptions | boolean;
     dark?: boolean;
     lang?: string;
-    forceLang?: boolean;
     validateEmail?: boolean;
     validateTel?: boolean;
     showFooter?: boolean;

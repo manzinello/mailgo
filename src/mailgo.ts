@@ -1179,23 +1179,24 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
         smsEnabled = config.sms;
       }
 
-      // if a default language is defined use it
-      if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
-        lang = config.lang;
-      }
+      // manage the language of mailgo
+      {
+        // if a language is defined in configuration use it
+        if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+          lang = config.lang;
+        } else {
+          // else if is defined <html lang=""> use it!
+          // keep the lang from html
+          let htmlLang: string = document.documentElement.lang;
 
-      // if is defined <html lang=""> use it!
-      if (!config?.forceLang) {
-        // keep the lang from html
-        let htmlLang: string = document.documentElement.lang;
+          // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
+          let langFound = i18n.languages.find((language) =>
+            htmlLang.startsWith(language)
+          );
 
-        // find the correct language using the lang attribute, not just a == because there a are cases like fr-FR or fr_FR in html lang attribute
-        let langFound = i18n.languages.find((language) =>
-          htmlLang.startsWith(language)
-        );
-
-        // if there is the language set it
-        if (langFound) lang = langFound;
+          // if there is a valid language set it
+          if (langFound) lang = langFound;
+        }
       }
 
       // strings
