@@ -675,6 +675,9 @@ function mailgoPreRender(
  * function to render a mailgo directly from a URL
  */
 function mailgoDirectRender(directUrl: string): boolean {
+  // start mailgo
+  mailgo();
+
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
     mailgoRender(MAIL_TYPE);

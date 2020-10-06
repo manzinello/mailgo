@@ -938,6 +938,9 @@ function mailgoPreRender() {
 
 
 function mailgoDirectRender(directUrl) {
+  // start mailgo
+  mailgo();
+
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
     mailgoRender(MAIL_TYPE);
