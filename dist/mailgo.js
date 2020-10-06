@@ -573,7 +573,7 @@ var mailgoInit = function mailgoInit() {
     if (mailgoActionEnabled("outlook")) modalContent.appendChild(outlook); // Outlook
 
     yahoo = createElement(aHTMLTag);
-    yahoo.id = "m-outlook";
+    yahoo.id = "m-yahoo";
     yahoo.href = "#mailgo-yahoo";
     yahoo.classList.add("m-open");
     yahoo.classList.add("m-yahoo");
