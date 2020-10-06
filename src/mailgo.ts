@@ -667,6 +667,27 @@ export function mailgoPreRender(
 }
 
 /**
+ * mailgoDirectRender
+ * function to render a mailgo directly from a URL
+ */
+export function mailgoDirectRender(directUrl: string): boolean {
+  if (validateUrl(directUrl, MAILTO)) {
+    url = new URL(directUrl);
+    mailgoRender(MAIL_TYPE);
+    return true;
+  } else if (
+    validateUrl(directUrl, TEL) ||
+    validateUrl(directUrl, CALLTO) ||
+    validateUrl(directUrl, SMS)
+  ) {
+    url = new URL(directUrl);
+    mailgoRender(TEL_TYPE);
+    return true;
+  }
+  return false;
+}
+
+/**
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
