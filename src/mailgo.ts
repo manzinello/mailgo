@@ -462,20 +462,80 @@ const mailgoInit = (): void => {
 };
 
 /**
- * mailgoRender
- * function to render a mailgo (mail or tel)
+ * mailgoCheckRender
+ * function to check if an element is mailgo-enabled or not referencing to
+ * mail:
+ * document.querySelectorAll(
+ *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * tel:
+ * document.querySelectorAll(
+ *   'a[href^="tel:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * or
+ * document.querySelectorAll(
+ *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
+ * or
+ * document.querySelectorAll(
+ *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
+ * );
  */
-export function mailgoRender(
+export function mailgoCheckRender(event: Event): boolean {
+  // check if the id=mailgo exists in the body
+  if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
+    return false;
+
+  // if a mailgo is already showing do nothing
+  if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return false;
+
+  // the path of the event
+  let path =
+    (event.composedPath && event.composedPath()) ||
+    composedPath(event.target as HTMLElement);
+
+  if (path) {
+    path.forEach((element: HTMLElement) => {
+      if (element instanceof HTMLDocument || element instanceof Window)
+        return false;
+
+      // go in the event.path to find if the user has clicked on a mailgo element (if mailto/tel enabled)
+      if (mailtoEnabled && isMailgo(element, MAIL_TYPE)) {
+        // stop the normal execution of the element click
+        event.preventDefault();
+
+        // render mailgo
+        mailgoPreRender(MAIL_TYPE, element as HTMLLinkElement);
+
+        return true;
+      }
+      if (telEnabled && isMailgo(element, TEL_TYPE)) {
+        // stop the normal execution of the element click
+        event.preventDefault();
+
+        // render mailgo
+        mailgoPreRender(TEL_TYPE, element as HTMLLinkElement);
+
+        return true;
+      }
+    });
+  }
+
+  return false;
+}
+
+/**
+ * mailgoPreRender
+ * function to pre-render a mailgo, it helps populating elements needed by modal
+ */
+export function mailgoPreRender(
   type: string = MAIL_TYPE,
   mailgoElement: HTMLLinkElement
 ): void {
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
-    if (
-      mailgoElement.href &&
-      mailgoElement.href.toLowerCase().startsWith(MAILTO)
-    ) {
+    if (mailgoElement.href && validateUrl(mailgoElement.href, MAILTO)) {
       mail = decodeURIComponent(
         mailgoElement.href.split("?")[0].split(MAILTO)[1].trim()
       );
@@ -539,7 +599,83 @@ export function mailgoRender(
       if (cc && !validateEmails(cc.split(","))) cc = "";
       if (bcc && !validateEmails(bcc.split(","))) bcc = "";
     }
+  }
+  // mailgo tel
+  else if (type === TEL_TYPE) {
+    if (mailgoElement.href && validateUrl(mailgoElement.href, TEL)) {
+      tel = decodeURIComponent(
+        mailgoElement.href.split("?")[0].split(TEL)[1].trim()
+      );
+    } else if (mailgoElement.href && validateUrl(mailgoElement.href, CALLTO)) {
+      tel = decodeURIComponent(
+        mailgoElement.href.split("?")[0].split(CALLTO)[1].trim()
+      );
+    } else if (mailgoElement.href && validateUrl(mailgoElement.href, SMS)) {
+      tel = decodeURIComponent(
+        mailgoElement.href.split("?")[0].split(SMS)[1].trim()
+      );
 
+      try {
+        url = new URL(mailgoElement.href);
+        let urlParams: URLSearchParams = url.searchParams;
+
+        // optional parameters for the phone number
+        msg = urlParams.get("body");
+      } catch (error) {
+        // console.log(error);
+      }
+    } else if (mailgoElement.hasAttribute("data-tel")) {
+      tel = mailgoElement.getAttribute("data-tel");
+      msg = mailgoElement.getAttribute("data-msg");
+    }
+
+    // if is in config use it
+    if (typeof config?.validateTel !== "undefined") {
+      validateTelConfig = config.validateTel;
+    }
+
+    // validate the phone number
+    if (validateTelConfig) {
+      if (!validateTel(tel)) return;
+    }
+
+    // Telegram username
+    if (mailgoElement.hasAttribute("data-telegram")) {
+      telegramUsername = mailgoElement.getAttribute("data-telegram");
+    } else {
+      telegramUsername = null;
+    }
+
+    // Telegram username
+    if (mailgoElement.hasAttribute("data-skype")) {
+      skypeUsername = mailgoElement.getAttribute("data-skype");
+    }
+  }
+
+  // if config.dark is set to true then all the modals will be in dark mode
+  if (!config?.dark) {
+    // if the element contains dark as class enable dark mode
+    if (mailgoElement.classList.contains("dark")) {
+      enableDarkMode(type);
+    } else {
+      disableDarkMode(type);
+    }
+  }
+
+  // render mailgo
+  mailgoRender(type);
+}
+
+/**
+ * mailgoRender
+ * function to render a mailgo (mail or tel)
+ */
+export function mailgoRender(type: string = MAIL_TYPE, directUrl?: URL): void {
+  // if url is passed as a parameter use it
+  url = directUrl || url;
+
+  // mailgo mail
+  if (type === MAIL_TYPE) {
     // the title of the modal (email address)
     title.innerHTML = mail.split(",").join("<br/>");
 
@@ -581,64 +717,6 @@ export function mailgoRender(
   }
   // mailgo tel
   else if (type === TEL_TYPE) {
-    if (
-      mailgoElement.href &&
-      mailgoElement.href.toLowerCase().startsWith(TEL)
-    ) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(TEL)[1].trim()
-      );
-    } else if (
-      mailgoElement.href &&
-      mailgoElement.href.toLowerCase().startsWith(CALLTO)
-    ) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(CALLTO)[1].trim()
-      );
-    } else if (
-      mailgoElement.href &&
-      mailgoElement.href.toLowerCase().startsWith(SMS)
-    ) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(SMS)[1].trim()
-      );
-
-      try {
-        url = new URL(mailgoElement.href);
-        let urlParams: URLSearchParams = url.searchParams;
-
-        // optional parameters for the phone number
-        msg = urlParams.get("body");
-      } catch (error) {
-        // console.log(error);
-      }
-    } else if (mailgoElement.hasAttribute("data-tel")) {
-      tel = mailgoElement.getAttribute("data-tel");
-      msg = mailgoElement.getAttribute("data-msg");
-    }
-
-    // if is in config use it
-    if (typeof config?.validateTel !== "undefined") {
-      validateTelConfig = config.validateTel;
-    }
-
-    // validate the phone number
-    if (validateTelConfig) {
-      if (!validateTel(tel)) return;
-    }
-
-    // Telegram username
-    if (mailgoElement.hasAttribute("data-telegram")) {
-      telegramUsername = mailgoElement.getAttribute("data-telegram");
-    } else {
-      telegramUsername = null;
-    }
-
-    // Telegram username
-    if (mailgoElement.hasAttribute("data-skype")) {
-      skypeUsername = mailgoElement.getAttribute("data-skype");
-    }
-
     // the title of the modal (tel)
     titleTel.innerHTML = tel;
 
@@ -665,16 +743,6 @@ export function mailgoRender(
       event.preventDefault();
       copy(tel);
     });
-  }
-
-  // if config.dark is set to true then all the modals will be in dark mode
-  if (!config?.dark) {
-    // if the element contains dark as class enable dark mode
-    if (mailgoElement.classList.contains("dark")) {
-      enableDarkMode(type);
-    } else {
-      disableDarkMode(type);
-    }
   }
 
   // show the mailgo
@@ -819,6 +887,25 @@ const copy = (content: string): void => {
   }, 999);
 };
 
+// function to find if a link is a mailto, tel, callto or sms
+// TODO possibility to make it better with regex
+const validateUrl = (url: string, type: string = MAILTO) => {
+  switch (type) {
+    case MAILTO:
+      // validate mailto
+      return url.toLowerCase().startsWith(MAILTO);
+    case TEL:
+      // validate tel
+      return url.toLowerCase().startsWith(TEL);
+    case CALLTO:
+      // validate callto
+      return url.toLowerCase().startsWith(CALLTO);
+    case SMS:
+      // validate sms
+      return url.toLowerCase().startsWith(SMS);
+  }
+};
+
 // function that returns if an element is a mailgo
 export function isMailgo(
   element: HTMLElement,
@@ -831,7 +918,7 @@ export function isMailgo(
     return (
       // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
       (href &&
-        href.toLowerCase().startsWith(MAILTO) &&
+        validateUrl(href, MAILTO) &&
         !element.classList.contains("no-mailgo")) ||
       (element.hasAttribute("data-address") &&
         // second case: the href=#mailgo
@@ -846,9 +933,9 @@ export function isMailgo(
     return (
       // first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
       (href &&
-        (href.toLowerCase().startsWith(TEL) ||
-          href.toLowerCase().startsWith(CALLTO) ||
-          href.toLowerCase().startsWith(SMS)) &&
+        (validateUrl(href, TEL) ||
+          validateUrl(href, CALLTO) ||
+          validateUrl(href, SMS)) &&
         !element.classList.contains("no-mailgo")) ||
       (element.hasAttribute("data-tel") &&
         // second case: the href=#mailgo
@@ -857,69 +944,6 @@ export function isMailgo(
       // third case: the classList contains mailgo
       (element.classList && element.classList.contains("mailgo"))
     );
-  }
-
-  return false;
-}
-
-/**
- * mailgoCheckRender
- * function to check if an element is mailgo-enabled or not referencing to
- * mail:
- * document.querySelectorAll(
- *   'a[href^="mailto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * );
- * tel:
- * document.querySelectorAll(
- *   'a[href^="tel:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * );
- * or
- * document.querySelectorAll(
- *   'a[href^="callto:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * );
- * or
- * document.querySelectorAll(
- *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
- * );
- */
-export function mailgoCheckRender(event: Event): boolean {
-  // check if the id=mailgo exists in the body
-  if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
-    return false;
-
-  // if a mailgo is already showing do nothing
-  if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return false;
-
-  // the path of the event
-  let path =
-    (event.composedPath && event.composedPath()) ||
-    composedPath(event.target as HTMLElement);
-
-  if (path) {
-    path.forEach((element: HTMLElement) => {
-      if (element instanceof HTMLDocument || element instanceof Window)
-        return false;
-
-      // go in the event.path to find if the user has clicked on a mailgo element (if mailto/tel enabled)
-      if (mailtoEnabled && isMailgo(element, MAIL_TYPE)) {
-        // stop the normal execution of the element click
-        event.preventDefault();
-
-        // render mailgo
-        mailgoRender(MAIL_TYPE, element as HTMLLinkElement);
-
-        return true;
-      }
-      if (telEnabled && isMailgo(element, TEL_TYPE)) {
-        // stop the normal execution of the element click
-        event.preventDefault();
-
-        // render mailgo
-        mailgoRender(TEL_TYPE, element as HTMLLinkElement);
-
-        return true;
-      }
-    });
   }
 
   return false;
