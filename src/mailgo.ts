@@ -112,6 +112,10 @@ let gmail: HTMLLinkElement,
   copyMail: HTMLLinkElement,
   copyTel: HTMLLinkElement;
 
+// current mailgo type
+// TODO work on this
+let currentType: string;
+
 /**
  * mailgoInit
  * the function that creates the mailgo elements in DOM
