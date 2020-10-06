@@ -459,7 +459,10 @@ var tel = "",
 
 var title, titleTel, detailCc, detailBcc, detailSubject, detailBody, detailMsg, ccValue, bccValue, subjectValue, bodyValue, msgValue, activatedLink; // mailgo buttons (actions)
 
-var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, copyTel;
+var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, copyTel; // current mailgo type
+// TODO work on this
+
+var currentType;
 /**
  * mailgoInit
  * the function that creates the mailgo elements in DOM
@@ -926,6 +929,24 @@ function mailgoPreRender() {
 
 
   mailgoRender(type);
+}
+/**
+ * mailgoDirectRender
+ * function to render a mailgo directly from a URL
+ */
+
+function mailgoDirectRender(directUrl) {
+  if (validateUrl(directUrl, MAILTO)) {
+    url = new URL(directUrl);
+    mailgoRender(MAIL_TYPE);
+    return true;
+  } else if (validateUrl(directUrl, TEL) || validateUrl(directUrl, CALLTO) || validateUrl(directUrl, SMS)) {
+    url = new URL(directUrl);
+    mailgoRender(TEL_TYPE);
+    return true;
+  }
+
+  return false;
 }
 /**
  * mailgoRender
