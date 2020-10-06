@@ -815,6 +815,7 @@ function mailgoCheckRender(event) {
  * function to pre-render a mailgo, it helps populating elements needed by modal
  */
 
+
 function mailgoPreRender() {
   var _config7;
 
@@ -935,6 +936,7 @@ function mailgoPreRender() {
  * function to render a mailgo directly from a URL
  */
 
+
 function mailgoDirectRender(directUrl) {
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
@@ -952,6 +954,7 @@ function mailgoDirectRender(directUrl) {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
+
 
 function mailgoRender() {
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MAIL_TYPE;
@@ -1005,6 +1008,7 @@ function mailgoRender() {
 
   document.addEventListener("keydown", mailgoKeydown);
 } // actions
+
 
 var openGmail = function openGmail(event) {
   event.preventDefault(); // Gmail url
@@ -1161,6 +1165,7 @@ function isMailgo(element) {
  * mailgoKeydown
  * function to manage the keydown event when the modal is showing
  */
+
 
 var mailgoKeydown = function mailgoKeydown(keyboardEvent) {
   // if mailgo is showing
@@ -1465,6 +1470,7 @@ function mailgo(mailgoConfig) {
   } catch (error) {// console.log(error);
   }
 }
+
 
 /* harmony default export */ var src_mailgo = (mailgo);
 // CONCATENATED MODULE: ./mailgo.dist.ts

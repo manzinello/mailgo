@@ -160,7 +160,6 @@ module.exports = [
       filename: "lib/mailgo.js",
       library: "mailgo",
       libraryTarget: "umd",
-      libraryExport: "default",
       globalObject: "typeof self !== 'undefined' ? self : this",
       path: path.resolve(__dirname),
     },

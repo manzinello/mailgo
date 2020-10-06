@@ -485,7 +485,7 @@ const mailgoInit = (): void => {
  *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
-export function mailgoCheckRender(event: Event): boolean {
+function mailgoCheckRender(event: Event): boolean {
   // check if the id=mailgo exists in the body
   if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
     return false;
@@ -532,7 +532,7 @@ export function mailgoCheckRender(event: Event): boolean {
  * mailgoPreRender
  * function to pre-render a mailgo, it helps populating elements needed by modal
  */
-export function mailgoPreRender(
+function mailgoPreRender(
   type: string = MAIL_TYPE,
   mailgoElement: HTMLLinkElement
 ): void {
@@ -674,7 +674,7 @@ export function mailgoPreRender(
  * mailgoDirectRender
  * function to render a mailgo directly from a URL
  */
-export function mailgoDirectRender(directUrl: string): boolean {
+function mailgoDirectRender(directUrl: string): boolean {
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
     mailgoRender(MAIL_TYPE);
@@ -695,7 +695,7 @@ export function mailgoDirectRender(directUrl: string): boolean {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-export function mailgoRender(type: string = MAIL_TYPE, directUrl?: URL): void {
+function mailgoRender(type: string = MAIL_TYPE, directUrl?: URL): void {
   // if url is passed as a parameter use it
   url = directUrl || url;
 
@@ -932,10 +932,7 @@ const validateUrl = (url: string, type: string = MAILTO) => {
 };
 
 // function that returns if an element is a mailgo
-export function isMailgo(
-  element: HTMLElement,
-  type: string = MAIL_TYPE
-): boolean {
+function isMailgo(element: HTMLElement, type: string = MAIL_TYPE): boolean {
   let href: string = (element as HTMLLinkElement).href;
 
   // mailgo type mail
@@ -1262,5 +1259,13 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
     // console.log(error);
   }
 }
+
+export {
+  mailgoCheckRender,
+  mailgoPreRender,
+  mailgoDirectRender,
+  mailgoRender,
+  isMailgo,
+};
 
 export default mailgo;
