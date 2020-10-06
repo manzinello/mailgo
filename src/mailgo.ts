@@ -247,7 +247,7 @@ const mailgoInit = (): void => {
 
     // Outlook
     yahoo = createElement(aHTMLTag) as HTMLLinkElement;
-    yahoo.id = "m-outlook";
+    yahoo.id = "m-yahoo";
     yahoo.href = "#mailgo-yahoo";
     yahoo.classList.add("m-open");
     yahoo.classList.add("m-yahoo");
