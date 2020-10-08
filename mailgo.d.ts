@@ -18,6 +18,8 @@ declare module "mailgo" {
     actions?: MailgoActions;
   };
 
+  export type MailgoModalType = "mailgo" | "mailgo-tel";
+
   export type MailgoAction =
     | "gmail"
     | "outlook"
@@ -69,18 +71,20 @@ declare module "mailgo" {
     passive?: boolean;
   };
 
-  export function isMailgo(element: HTMLElement, type?: string): boolean;
+  export function getMailgoTypeByElement(
+    element: HTMLElement
+  ): MailgoModalType | null;
 
   export function mailgoCheckRender(event: Event): boolean;
 
   export function mailgoPreRender(
     type: string,
-    mailgoElement: HTMLLinkElement
-  ): void;
+    mailgoElementOrUrl: HTMLLinkElement | string
+  ): boolean;
 
   export function mailgoDirectRender(directUrl: string): boolean;
 
-  export function mailgoRender(type: string, directUrl: URL): void;
+  export function mailgoRender(type: string): boolean;
 
-  export default function mailgo(mailgoConfig?: MailgoConfig): void;
+  export default function mailgo(mailgoConfig?: MailgoConfig): boolean;
 }

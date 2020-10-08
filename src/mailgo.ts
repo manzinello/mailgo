@@ -4,6 +4,7 @@ import {
   MailgoTranslation,
   MailgoI18n,
   MailgoAction,
+  MailgoModalType,
 } from "mailgo";
 
 // polyfill
@@ -15,14 +16,13 @@ const {
   TEL,
   CALLTO,
   SMS,
-  MAIL_TYPE,
-  TEL_TYPE,
+  MAILGO_MAIL,
+  MAILGO_TEL,
+  NO_MAILGO,
   spanHTMLTag,
   aHTMLTag,
   pHTMLTag,
   defaultLang,
-  mailgoReadyTag,
-  mailgoRenderTag,
 } = require("./constants");
 
 // utils
@@ -38,10 +38,6 @@ const i18n: MailgoI18n = require("../i18n/i18n.json");
 
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
-
-// events
-let mailgoReadyEvent: Event;
-let mailgoRenderEvent: Event;
 
 // translations
 let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
@@ -112,23 +108,19 @@ let gmail: HTMLLinkElement,
   copyMail: HTMLLinkElement,
   copyTel: HTMLLinkElement;
 
-// current mailgo type
-// TODO work on this
-let currentType: string;
-
 /**
  * mailgoInit
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (): void => {
   // mailgo, if mailgo not already exists
-  let mailgoExists = !!document.getElementById("mailgo");
+  let mailgoExists = !!document.getElementById(MAILGO_MAIL);
 
   if (!mailgoExists) {
     // modal
     modalMailto = createElement() as HTMLElement;
     modalMailto.style.display = "none";
-    modalMailto.id = "mailgo";
+    modalMailto.id = MAILGO_MAIL;
     modalMailto.classList.add("m-modal");
     modalMailto.setAttribute("role", "dialog");
     modalMailto.setAttribute("tabindex", "-1");
@@ -139,9 +131,9 @@ const mailgoInit = (): void => {
 
     // if dark is in config
     if (config?.dark) {
-      enableDarkMode(MAIL_TYPE);
+      enableDarkMode(MAILGO_MAIL);
     } else {
-      disableDarkMode(MAIL_TYPE);
+      disableDarkMode(MAILGO_MAIL);
     }
 
     // background
@@ -310,13 +302,13 @@ const mailgoInit = (): void => {
   }
 
   // mailgo tel, if mailgo-tel not already exists
-  let mailgoTelExists = !!document.getElementById("mailgo-tel");
+  let mailgoTelExists = !!document.getElementById(MAILGO_TEL);
 
   if (!mailgoTelExists) {
     // modal
     modalTel = createElement() as HTMLElement;
     modalTel.style.display = "none";
-    modalTel.id = "mailgo-tel";
+    modalTel.id = MAILGO_TEL;
     modalTel.classList.add("m-modal");
     modalTel.setAttribute("role", "dialog");
     modalTel.setAttribute("tabindex", "-1");
@@ -324,9 +316,9 @@ const mailgoInit = (): void => {
 
     // if dark is in config
     if (config?.dark) {
-      enableDarkMode(TEL_TYPE);
+      enableDarkMode(MAILGO_TEL);
     } else {
-      disableDarkMode(TEL_TYPE);
+      disableDarkMode(MAILGO_TEL);
     }
 
     // background
@@ -487,11 +479,17 @@ const mailgoInit = (): void => {
  */
 function mailgoCheckRender(event: Event): boolean {
   // check if the mailgo HTML exists in the body
-  if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
+  if (
+    !document.body.contains(modalMailto) ||
+    !document.body.contains(modalTel)
+  ) {
     return false;
+  }
 
   // if a mailgo is already showing do nothing
-  if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return false;
+  if (mailgoIsShowing(MAILGO_MAIL) || mailgoIsShowing(MAILGO_TEL)) {
+    return false;
+  }
 
   // the path of the event
   let path =
@@ -500,25 +498,27 @@ function mailgoCheckRender(event: Event): boolean {
 
   if (path) {
     path.forEach((element: HTMLElement) => {
-      if (element instanceof HTMLDocument || element instanceof Window)
+      if (element instanceof HTMLDocument || element instanceof Window) {
         return false;
+      }
 
       // go in the event.path to find if the user has clicked on a mailgo element (if mailto/tel enabled)
-      if (mailtoEnabled && isMailgo(element, MAIL_TYPE)) {
+      if (mailtoEnabled && getMailgoTypeByElement(element) === MAILGO_MAIL) {
         // stop the normal execution of the element click
         event.preventDefault();
 
         // render mailgo
-        mailgoPreRender(MAIL_TYPE, element as HTMLLinkElement);
+        mailgoPreRender(MAILGO_MAIL, element as HTMLLinkElement);
 
         return true;
       }
-      if (telEnabled && isMailgo(element, TEL_TYPE)) {
+
+      if (telEnabled && getMailgoTypeByElement(element) == MAILGO_TEL) {
         // stop the normal execution of the element click
         event.preventDefault();
 
         // render mailgo
-        mailgoPreRender(TEL_TYPE, element as HTMLLinkElement);
+        mailgoPreRender(MAILGO_TEL, element as HTMLLinkElement);
 
         return true;
       }
@@ -533,7 +533,7 @@ function mailgoCheckRender(event: Event): boolean {
  * function to pre-render a mailgo, it helps populating elements needed by modal
  */
 function mailgoPreRender(
-  type: string = MAIL_TYPE,
+  type: string = MAILGO_MAIL,
   mailgoElementOrUrl: HTMLLinkElement | string
 ): boolean {
   let href: string;
@@ -552,7 +552,7 @@ function mailgoPreRender(
   if (!href) return false;
 
   // mailgo mail
-  if (type === MAIL_TYPE) {
+  if (type === MAILGO_MAIL) {
     // if the element href=^"mailto:"
     if (validateUrl(href, MAILTO)) {
       mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
@@ -618,7 +618,7 @@ function mailgoPreRender(
     }
   }
   // mailgo tel
-  else if (type === TEL_TYPE) {
+  else if (type === MAILGO_TEL) {
     if (validateUrl(href, TEL)) {
       tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
     } else if (validateUrl(href, CALLTO)) {
@@ -689,7 +689,7 @@ function mailgoDirectRender(directUrl: string): boolean {
 
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
-    mailgoPreRender(MAIL_TYPE, directUrl);
+    mailgoPreRender(MAILGO_MAIL, directUrl);
     return true;
   } else if (
     validateUrl(directUrl, TEL) ||
@@ -697,7 +697,7 @@ function mailgoDirectRender(directUrl: string): boolean {
     validateUrl(directUrl, SMS)
   ) {
     url = new URL(directUrl);
-    mailgoPreRender(TEL_TYPE, directUrl);
+    mailgoPreRender(MAILGO_TEL, directUrl);
     return true;
   }
   return false;
@@ -707,9 +707,9 @@ function mailgoDirectRender(directUrl: string): boolean {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-function mailgoRender(type: string = MAIL_TYPE): void {
+function mailgoRender(type: string = MAILGO_MAIL): boolean {
   // mailgo mail
-  if (type === MAIL_TYPE) {
+  if (type === MAILGO_MAIL) {
     // the title of the modal (email address)
     title.innerHTML = mail.split(",").join("<br/>");
 
@@ -750,7 +750,7 @@ function mailgoRender(type: string = MAIL_TYPE): void {
     });
   }
   // mailgo tel
-  else if (type === TEL_TYPE) {
+  else if (type === MAILGO_TEL) {
     // the title of the modal (tel)
     titleTel.innerHTML = tel;
 
@@ -784,6 +784,8 @@ function mailgoRender(type: string = MAIL_TYPE): void {
 
   // add listener keyDown
   document.addEventListener("keydown", mailgoKeydown);
+
+  return true;
 }
 
 // actions
@@ -912,7 +914,9 @@ const copy = (content: string): void => {
   copyToClipboard(content);
   let activeCopy: HTMLElement;
   // the correct copyButton (mail or tel)
-  mailgoIsShowing(MAIL_TYPE) ? (activeCopy = copyMail) : (activeCopy = copyTel);
+  mailgoIsShowing(MAILGO_MAIL)
+    ? (activeCopy = copyMail)
+    : (activeCopy = copyTel);
   activeCopy.textContent = strings.copied || defaultStrings.copied;
   setTimeout(() => {
     activeCopy.textContent = strings.copy || defaultStrings.copy;
@@ -941,117 +945,117 @@ const validateUrl = (url: string, type: string = MAILTO) => {
 };
 
 // function that returns if an element is a mailgo
-function isMailgo(element: HTMLElement, type: string = MAIL_TYPE): boolean {
+function getMailgoTypeByElement(element: HTMLElement): MailgoModalType | null {
   let href: string = (element as HTMLLinkElement).href;
 
   // mailgo type mail
-  if (type === MAIL_TYPE) {
-    return (
-      // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-      (href &&
-        validateUrl(href, MAILTO) &&
-        !element.classList.contains("no-mailgo")) ||
-      (element.hasAttribute("data-address") &&
-        // second case: the href=#mailgo
-        ((href && element.getAttribute("href").toLowerCase() === "#mailgo") ||
-          // third case: the classList contains mailgo
-          (element.classList && element.classList.contains("mailgo"))))
-    );
+  if (
+    // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+    (href &&
+      validateUrl(href, MAILTO) &&
+      !element.classList.contains(NO_MAILGO)) ||
+    (element.hasAttribute("data-address") &&
+      // second case: the href=#mailgo
+      ((href && element.getAttribute("href").toLowerCase() === "#mailgo") ||
+        // third case: the classList contains mailgo
+        (element.classList && element.classList.contains("mailgo"))))
+  ) {
+    return MAILGO_MAIL;
   }
 
   // mailgo type tel
-  if (type === TEL_TYPE) {
-    return (
-      // first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
-      (href &&
-        (validateUrl(href, TEL) ||
-          validateUrl(href, CALLTO) ||
-          validateUrl(href, SMS)) &&
-        !element.classList.contains("no-mailgo")) ||
-      (element.hasAttribute("data-tel") &&
-        // second case: the href=#mailgo
-        href &&
-        element.getAttribute("href").toLowerCase() === "#mailgo") ||
-      // third case: the classList contains mailgo
-      (element.classList && element.classList.contains("mailgo"))
-    );
+  if (
+    // first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
+    (href &&
+      (validateUrl(href, TEL) ||
+        validateUrl(href, CALLTO) ||
+        validateUrl(href, SMS)) &&
+      !element.classList.contains(NO_MAILGO)) ||
+    (element.hasAttribute("data-tel") &&
+      // second case: the href=#mailgo
+      href &&
+      element.getAttribute("href").toLowerCase() === "#mailgo") ||
+    // third case: the classList contains mailgo
+    (element.classList && element.classList.contains("mailgo"))
+  ) {
+    return MAILGO_TEL;
   }
 
-  return false;
+  return null;
 }
 
 /**
  * mailgoKeydown
- * function to manage the keydown event when the modal is showing
+ * function to manage the keydown event when the modal is showing, return a boolean that represents if a useful key has been pressed
  */
-const mailgoKeydown = (keyboardEvent: KeyboardEvent): void => {
+const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
   // if mailgo is showing
-  if (mailgoIsShowing(MAIL_TYPE)) {
+  if (mailgoIsShowing(MAILGO_MAIL)) {
     switch (keyboardEvent.keyCode) {
       case 27:
         // Escape
         hideMailgo();
-        break;
+        return true;
       case 71:
         // g -> open GMail
         openGmail();
-        break;
+        return true;
       case 79:
         // o -> open Outlook
         openOutlook();
-        break;
+        return true;
       case 89:
         // y -> open Yahoo Mail
         openYahooMail();
-        break;
+        return true;
       case 32:
       case 13:
         // spacebar or enter -> open default
         openDefault();
-        break;
+        return true;
       case 67:
         // c -> copy
         copy(mail);
-        break;
+        return true;
       default:
-        return;
+        return false;
     }
-  } else if (mailgoIsShowing(TEL_TYPE)) {
+  } else if (mailgoIsShowing(MAILGO_TEL)) {
     switch (keyboardEvent.keyCode) {
       case 27:
         // Escape
         hideMailgo();
-        break;
+        return true;
       case 84:
         // t -> open Telegram
         openTelegram();
-        break;
+        return true;
       case 87:
         // w -> open WhatsApp
         openWhatsApp();
-        break;
+        return true;
       case 83:
         // s -> open Skype
         openSkype();
-        break;
+        return true;
       case 32:
       case 13:
         // spacebar or enter -> call default
         callDefault();
-        break;
+        return true;
       case 67:
         // c -> copy
         copy(tel);
-        break;
+        return true;
       default:
-        return;
+        return false;
     }
   }
-  return;
+  return false;
 };
 
 // show the modal
-const showMailgo = (type = MAIL_TYPE): void => {
+const showMailgo = (type = MAILGO_MAIL): void => {
   // show the correct modal
   setModalDisplay(type, "flex");
 };
@@ -1059,15 +1063,15 @@ const showMailgo = (type = MAIL_TYPE): void => {
 // hide the modal
 const hideMailgo = (): void => {
   // hide all the modals
-  setModalDisplay(MAIL_TYPE, "none");
-  setModalDisplay(TEL_TYPE, "none");
+  setModalDisplay(MAILGO_MAIL, "none");
+  setModalDisplay(MAILGO_TEL, "none");
 
   // remove listener keyDown
   document.removeEventListener("keydown", mailgoKeydown);
 };
 
 // is the mailgo modal hidden?
-const mailgoIsShowing = (type = MAIL_TYPE): boolean => {
+const mailgoIsShowing = (type = MAILGO_MAIL): boolean => {
   return getModalDisplay(type) === "flex";
 };
 
@@ -1099,15 +1103,15 @@ const mailToEncoded = (encoded: string): string =>
 const encodeEmail = (email: string): string => btoa(email);
 
 // get the correct HTMLElement from a type
-const getModalHTMLElement = (type: string = MAIL_TYPE) =>
-  type === TEL_TYPE ? modalTel : modalMailto;
+const getModalHTMLElement = (type: string = MAILGO_MAIL) =>
+  type === MAILGO_TEL ? modalTel : modalMailto;
 
 // get display value
-const getModalDisplay = (ref: string = MAIL_TYPE): string =>
+const getModalDisplay = (ref: string = MAILGO_MAIL): string =>
   getModalHTMLElement(ref).style.display;
 
 // set display value
-const setModalDisplay = (ref: string = MAIL_TYPE, value: string): void => {
+const setModalDisplay = (ref: string = MAILGO_MAIL, value: string): void => {
   let modal = getModalHTMLElement(ref);
   modal.style.display = value;
 
@@ -1130,11 +1134,11 @@ const setModalDisplay = (ref: string = MAIL_TYPE, value: string): void => {
 };
 
 // enable dark mode
-const enableDarkMode = (type: string = MAIL_TYPE) =>
+const enableDarkMode = (type: string = MAILGO_MAIL) =>
   getModalHTMLElement(type).classList.add("m-dark");
 
 // disable dark mode
-const disableDarkMode = (type: string = MAIL_TYPE) =>
+const disableDarkMode = (type: string = MAILGO_MAIL) =>
   getModalHTMLElement(type).classList.remove("m-dark");
 
 // custom composedPath if path or event.composedPath() are not defined
@@ -1211,7 +1215,7 @@ const mailgoStyle = (): void => {
 };
 
 // mailgo
-function mailgo(mailgoConfig?: MailgoConfig): void {
+function mailgo(mailgoConfig?: MailgoConfig): boolean {
   try {
     // polyfill mailgo
     mailgoPolyfill();
@@ -1263,18 +1267,23 @@ function mailgo(mailgoConfig?: MailgoConfig): void {
       } else {
         mailgoInit();
       }
+
+      return true;
     }
   } catch (error) {
     // console.log(error);
+    return false;
   }
+
+  return false;
 }
 
 export {
+  getMailgoTypeByElement,
   mailgoCheckRender,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
-  isMailgo,
 };
 
 export default mailgo;
