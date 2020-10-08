@@ -535,23 +535,26 @@ function mailgoCheckRender(event: Event): boolean {
 function mailgoPreRender(
   type: string = MAIL_TYPE,
   mailgoElementOrUrl: HTMLLinkElement | string
-): void {
-  let href: string = null;
+): boolean {
+  let href: string;
   let mailgoElement: HTMLLinkElement;
 
   if (typeof mailgoElementOrUrl == "string") {
     // if the parameter is a string it is the url
-    href = mailgoElementOrUrl;
+    href = mailgoElementOrUrl as string;
   } else {
     // if the paramenter is an HTMLLinkElement get the href attribute and the element
-    href = mailgoElementOrUrl.href;
-    mailgoElement = mailgoElementOrUrl;
+    href = mailgoElementOrUrl.href as string;
+    mailgoElement = mailgoElementOrUrl as HTMLLinkElement;
   }
+
+  // if href is undefined or null return false
+  if (!href) return false;
 
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
-    if (href && validateUrl(href, MAILTO)) {
+    if (validateUrl(href, MAILTO)) {
       mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
 
       try {
@@ -616,21 +619,15 @@ function mailgoPreRender(
   }
   // mailgo tel
   else if (type === TEL_TYPE) {
-    if (mailgoElement.href && validateUrl(mailgoElement.href, TEL)) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(TEL)[1].trim()
-      );
-    } else if (mailgoElement.href && validateUrl(mailgoElement.href, CALLTO)) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(CALLTO)[1].trim()
-      );
-    } else if (mailgoElement.href && validateUrl(mailgoElement.href, SMS)) {
-      tel = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(SMS)[1].trim()
-      );
+    if (validateUrl(href, TEL)) {
+      tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
+    } else if (validateUrl(href, CALLTO)) {
+      tel = decodeURIComponent(href.split("?")[0].split(CALLTO)[1].trim());
+    } else if (validateUrl(href, SMS)) {
+      tel = decodeURIComponent(href.split("?")[0].split(SMS)[1].trim());
 
       try {
-        url = new URL(mailgoElement.href);
+        url = new URL(href);
         let urlParams: URLSearchParams = url.searchParams;
 
         // optional parameters for the phone number
@@ -678,6 +675,8 @@ function mailgoPreRender(
 
   // render mailgo
   mailgoRender(type);
+
+  return true;
 }
 
 /**
