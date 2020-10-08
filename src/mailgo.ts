@@ -653,14 +653,14 @@ function mailgoPreRender(
     }
 
     // Telegram username
-    if (mailgoElement.hasAttribute("data-telegram")) {
+    if (mailgoElement && mailgoElement.hasAttribute("data-telegram")) {
       telegramUsername = mailgoElement.getAttribute("data-telegram");
     } else {
       telegramUsername = null;
     }
 
     // Telegram username
-    if (mailgoElement.hasAttribute("data-skype")) {
+    if (mailgoElement && mailgoElement.hasAttribute("data-skype")) {
       skypeUsername = mailgoElement.getAttribute("data-skype");
     }
   }
