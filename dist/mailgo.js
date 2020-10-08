@@ -779,7 +779,7 @@ var mailgoInit = function mailgoInit() {
 
 
 function mailgoCheckRender(event) {
-  // check if the id=mailgo exists in the body
+  // check if the mailgo HTML exists in the body
   if (!document.body.contains(modalMailto) || !document.body.contains(modalTel)) return false; // if a mailgo is already showing do nothing
 
   if (mailgoIsShowing(MAIL_TYPE) || mailgoIsShowing(TEL_TYPE)) return false; // the path of the event
@@ -820,18 +820,31 @@ function mailgoPreRender() {
   var _config7;
 
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MAIL_TYPE;
-  var mailgoElement = arguments.length > 1 ? arguments[1] : undefined;
+  var mailgoElementOrUrl = arguments.length > 1 ? arguments[1] : undefined;
+  var href;
+  var mailgoElement;
 
-  // mailgo mail
+  if (typeof mailgoElementOrUrl == "string") {
+    // if the parameter is a string it is the url
+    href = mailgoElementOrUrl;
+  } else {
+    // if the paramenter is an HTMLLinkElement get the href attribute and the element
+    href = mailgoElementOrUrl.href;
+    mailgoElement = mailgoElementOrUrl;
+  } // if href is undefined or null return false
+
+
+  if (!href) return false; // mailgo mail
+
   if (type === MAIL_TYPE) {
     var _config5;
 
     // if the element href=^"mailto:"
-    if (mailgoElement.href && validateUrl(mailgoElement.href, MAILTO)) {
-      mail = decodeURIComponent(mailgoElement.href.split("?")[0].split(MAILTO)[1].trim());
+    if (validateUrl(href, MAILTO)) {
+      mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
 
       try {
-        url = new URL(mailgoElement.href);
+        url = new URL(href);
         var urlParams = url.searchParams; // optional parameters for the email
 
         cc = urlParams.get("cc");
@@ -876,15 +889,15 @@ function mailgoPreRender() {
   else if (type === TEL_TYPE) {
       var _config6;
 
-      if (mailgoElement.href && validateUrl(mailgoElement.href, TEL)) {
-        tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(TEL)[1].trim());
-      } else if (mailgoElement.href && validateUrl(mailgoElement.href, CALLTO)) {
-        tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(CALLTO)[1].trim());
-      } else if (mailgoElement.href && validateUrl(mailgoElement.href, SMS)) {
-        tel = decodeURIComponent(mailgoElement.href.split("?")[0].split(SMS)[1].trim());
+      if (validateUrl(href, TEL)) {
+        tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
+      } else if (validateUrl(href, CALLTO)) {
+        tel = decodeURIComponent(href.split("?")[0].split(CALLTO)[1].trim());
+      } else if (validateUrl(href, SMS)) {
+        tel = decodeURIComponent(href.split("?")[0].split(SMS)[1].trim());
 
         try {
-          url = new URL(mailgoElement.href);
+          url = new URL(href);
           var _urlParams = url.searchParams; // optional parameters for the phone number
 
           msg = _urlParams.get("body");
@@ -930,6 +943,7 @@ function mailgoPreRender() {
 
 
   mailgoRender(type);
+  return true;
 }
 /**
  * mailgoDirectRender
