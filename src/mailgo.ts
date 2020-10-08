@@ -707,10 +707,7 @@ function mailgoDirectRender(directUrl: string): boolean {
  * mailgoRender
  * function to render a mailgo (mail or tel)
  */
-function mailgoRender(type: string = MAIL_TYPE, directUrl?: URL): void {
-  // if url is passed as a parameter use it
-  url = directUrl || url;
-
+function mailgoRender(type: string = MAIL_TYPE): void {
   // mailgo mail
   if (type === MAIL_TYPE) {
     // the title of the modal (email address)
