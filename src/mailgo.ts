@@ -486,7 +486,7 @@ const mailgoInit = (): void => {
  * );
  */
 function mailgoCheckRender(event: Event): boolean {
-  // check if the id=mailgo exists in the body
+  // check if the mailgo HTML exists in the body
   if (!document.body.contains(modalMailto) || !document.body.contains(modalTel))
     return false;
 
