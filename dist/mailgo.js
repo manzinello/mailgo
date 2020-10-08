@@ -140,6 +140,7 @@ var mailgoPolyfill = function mailgoPolyfill() {
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAILTO", function() { return MAILTO; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "MAILGO", function() { return MAILGO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "TEL", function() { return TEL; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CALLTO", function() { return CALLTO; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SMS", function() { return SMS; });
@@ -155,6 +156,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "mailgoRenderTag", function() { return mailgoRenderTag; });
 // links
 var MAILTO = "mailto:";
+var MAILGO = "mailgo:";
 var TEL = "tel:";
 var CALLTO = "callto:";
 var SMS = "sms:"; // deep linking
@@ -397,6 +399,7 @@ var _require = __webpack_require__(0),
 
 var _require2 = __webpack_require__(1),
     MAILTO = _require2.MAILTO,
+    MAILGO = _require2.MAILGO,
     TEL = _require2.TEL,
     CALLTO = _require2.CALLTO,
     SMS = _require2.SMS,
@@ -835,9 +838,13 @@ function mailgoPreRender() {
   if (type === MAILGO_MAIL) {
     var _config5;
 
-    // if the element href=^"mailto:"
-    if (validateUrl(href, MAILTO)) {
-      mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
+    // if the element href=^"mailto:" or href=^"mailgo:"
+    if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
+      if (validateUrl(href, MAILTO)) {
+        mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
+      } else if (validateUrl(href, MAILGO)) {
+        mail = decodeURIComponent(href.split("?")[0].split(MAILGO)[1].trim());
+      }
 
       try {
         url = new URL(href);
@@ -951,7 +958,7 @@ function mailgoDirectRender(directUrl) {
   // start mailgo
   mailgo();
 
-  if (validateUrl(directUrl, MAILTO)) {
+  if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
     url = new URL(directUrl);
     mailgoPreRender(MAILGO_MAIL, directUrl);
     return true;
@@ -1135,6 +1142,10 @@ var validateUrl = function validateUrl(url) {
       // validate mailto
       return url.toLowerCase().startsWith(MAILTO);
 
+    case MAILGO:
+      // validate mailgo
+      return url.toLowerCase().startsWith(MAILGO);
+
     case TEL:
       // validate tel
       return url.toLowerCase().startsWith(TEL);
@@ -1153,8 +1164,8 @@ var validateUrl = function validateUrl(url) {
 function getMailgoTypeByElement(element) {
   var href = element.href; // mailgo type mail
 
-  if ( // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
-  href && validateUrl(href, MAILTO) && !element.classList.contains(NO_MAILGO) || element.hasAttribute("data-address") && ( // second case: the href=#mailgo
+  if ( // first case: it is an <a> element with "mailto:..." or "mailgo:..." in href and no no-mailgo in classList
+  href && (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) && !element.classList.contains(NO_MAILGO) || element.hasAttribute("data-address") && ( // second case: the href=#mailgo
   href && element.getAttribute("href").toLowerCase() === "#mailgo" || // third case: the classList contains mailgo
   element.classList && element.classList.contains("mailgo"))) {
     return MAILGO_MAIL;
