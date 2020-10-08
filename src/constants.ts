@@ -1,5 +1,6 @@
 // links
 export const MAILTO: string = "mailto:";
+export const MAILGO: string = "mailgo:";
 export const TEL: string = "tel:";
 export const CALLTO: string = "callto:";
 export const SMS: string = "sms:";
