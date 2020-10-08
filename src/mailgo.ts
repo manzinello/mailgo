@@ -13,6 +13,7 @@ const { mailgoPolyfill } = require("./polyfill");
 // constants
 const {
   MAILTO,
+  MAILGO,
   TEL,
   CALLTO,
   SMS,
@@ -550,9 +551,13 @@ function mailgoPreRender(
 
   // mailgo mail
   if (type === MAILGO_MAIL) {
-    // if the element href=^"mailto:"
-    if (validateUrl(href, MAILTO)) {
-      mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
+    // if the element href=^"mailto:" or href=^"mailgo:"
+    if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
+      if (validateUrl(href, MAILTO)) {
+        mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
+      } else if (validateUrl(href, MAILGO)) {
+        mail = decodeURIComponent(href.split("?")[0].split(MAILGO)[1].trim());
+      }
 
       try {
         url = new URL(href);
@@ -684,7 +689,7 @@ function mailgoDirectRender(directUrl: string): boolean {
   // start mailgo
   mailgo();
 
-  if (validateUrl(directUrl, MAILTO)) {
+  if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
     url = new URL(directUrl);
     mailgoPreRender(MAILGO_MAIL, directUrl);
     return true;
@@ -929,6 +934,9 @@ const validateUrl = (url: string, type: string = MAILTO) => {
     case MAILTO:
       // validate mailto
       return url.toLowerCase().startsWith(MAILTO);
+    case MAILGO:
+      // validate mailgo
+      return url.toLowerCase().startsWith(MAILGO);
     case TEL:
       // validate tel
       return url.toLowerCase().startsWith(TEL);
@@ -947,9 +955,9 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoModalType | null {
 
   // mailgo type mail
   if (
-    // first case: it is an <a> element with "mailto:..." in href and no no-mailgo in classList
+    // first case: it is an <a> element with "mailto:..." or "mailgo:..." in href and no no-mailgo in classList
     (href &&
-      validateUrl(href, MAILTO) &&
+      (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) &&
       !element.classList.contains(NO_MAILGO)) ||
     (element.hasAttribute("data-address") &&
       // second case: the href=#mailgo
