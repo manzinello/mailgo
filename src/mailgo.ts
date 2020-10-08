@@ -664,7 +664,7 @@ function mailgoPreRender(
   }
 
   // if config.dark is set to true then all the modals will be in dark mode
-  if (!config?.dark) {
+  if (mailgoElement && !config?.dark) {
     // if the element contains dark as class enable dark mode
     if (mailgoElement.classList.contains("dark")) {
       enableDarkMode(type);
@@ -689,7 +689,7 @@ function mailgoDirectRender(directUrl: string): boolean {
 
   if (validateUrl(directUrl, MAILTO)) {
     url = new URL(directUrl);
-    mailgoRender(MAIL_TYPE);
+    mailgoPreRender(MAIL_TYPE, directUrl);
     return true;
   } else if (
     validateUrl(directUrl, TEL) ||
@@ -697,7 +697,7 @@ function mailgoDirectRender(directUrl: string): boolean {
     validateUrl(directUrl, SMS)
   ) {
     url = new URL(directUrl);
-    mailgoRender(TEL_TYPE);
+    mailgoPreRender(TEL_TYPE, directUrl);
     return true;
   }
   return false;
