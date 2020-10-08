@@ -443,18 +443,9 @@ var loadCSSConfig = true; // modals global object
 
 var modalMailto, modalTel; // mailgo variables
 
-var url,
-    mail = "",
-    encEmail = "",
-    cc = "",
-    bcc = "",
-    subject = "",
-    bodyMail = ""; // mailgo tel variables
+var url, mail, encEmail, cc, bcc, subject, bodyMail; // mailgo tel variables
 
-var tel = "",
-    msg = "",
-    telegramUsername = "",
-    skypeUsername = ""; // the DOM elements
+var tel, msg, telegramUsername, skypeUsername; // the DOM elements
 
 var title, titleTel, detailCc, detailBcc, detailSubject, detailBody, detailMsg, ccValue, bccValue, subjectValue, bodyValue, msgValue, activatedLink; // mailgo buttons (actions)
 
@@ -1093,7 +1084,7 @@ var openTelegram = function openTelegram(event) {
 
 var openSkype = function openSkype(event) {
   event.preventDefault();
-  var skype = skypeUsername !== "" ? skypeUsername : tel; // Telegram url
+  var skype = skypeUsername || tel; // Telegram url
 
   var skypeUrl = "skype:" + skype; // open the url
 

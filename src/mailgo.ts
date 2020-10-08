@@ -68,18 +68,15 @@ let modalMailto: HTMLElement, modalTel: HTMLElement;
 
 // mailgo variables
 let url: URL,
-  mail: string = "",
-  encEmail: string = "",
-  cc: string = "",
-  bcc: string = "",
-  subject: string = "",
-  bodyMail: string = "";
+  mail: string,
+  encEmail: string,
+  cc: string,
+  bcc: string,
+  subject: string,
+  bodyMail: string;
 
 // mailgo tel variables
-let tel: string = "",
-  msg: string = "",
-  telegramUsername: string = "",
-  skypeUsername: string = "";
+let tel: string, msg: string, telegramUsername: string, skypeUsername: string;
 
 // the DOM elements
 let title: HTMLElement,
@@ -874,7 +871,7 @@ const openTelegram = (event?: Event): void => {
 const openSkype = (event?: Event): void => {
   event.preventDefault();
 
-  let skype: string = skypeUsername !== "" ? skypeUsername : tel;
+  let skype: string = skypeUsername || tel;
 
   // Telegram url
   let skypeUrl: string = "skype:" + skype;
