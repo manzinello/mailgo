@@ -534,18 +534,28 @@ function mailgoCheckRender(event: Event): boolean {
  */
 function mailgoPreRender(
   type: string = MAIL_TYPE,
-  mailgoElement: HTMLLinkElement
+  mailgoElementOrUrl: HTMLLinkElement | string
 ): void {
+  let href: string = null;
+  let mailgoElement: HTMLLinkElement;
+
+  if (typeof mailgoElementOrUrl == "string") {
+    // if the parameter is a string it is the url
+    href = mailgoElementOrUrl;
+  } else {
+    // if the paramenter is an HTMLLinkElement get the href attribute and the element
+    href = mailgoElementOrUrl.href;
+    mailgoElement = mailgoElementOrUrl;
+  }
+
   // mailgo mail
   if (type === MAIL_TYPE) {
     // if the element href=^"mailto:"
-    if (mailgoElement.href && validateUrl(mailgoElement.href, MAILTO)) {
-      mail = decodeURIComponent(
-        mailgoElement.href.split("?")[0].split(MAILTO)[1].trim()
-      );
+    if (href && validateUrl(href, MAILTO)) {
+      mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
 
       try {
-        url = new URL(mailgoElement.href);
+        url = new URL(href);
 
         let urlParams: URLSearchParams = url.searchParams;
 
