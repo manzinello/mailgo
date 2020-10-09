@@ -563,7 +563,11 @@ var mailgoInit = function mailgoInit() {
     outlookSpan.className = "w-500";
     outlookSpan.appendChild(createTextNode(strings.outlook || defaultStrings.outlook));
     outlook.appendChild(outlookSpan);
-    if (mailgoActionEnabled("outlook")) modalContent.appendChild(outlook); // Outlook
+
+    if (mailgoActionEnabled("outlook")) {
+      modalContent.appendChild(outlook);
+    } // Outlook
+
 
     yahoo = createElement(aHTMLTag);
     yahoo.id = "m-yahoo";
@@ -575,7 +579,11 @@ var mailgoInit = function mailgoInit() {
     yahooSpan.className = "w-500";
     yahooSpan.appendChild(createTextNode(strings.yahoo || defaultStrings.yahoo));
     yahoo.appendChild(yahooSpan);
-    if (mailgoActionEnabled("yahoo")) modalContent.appendChild(yahoo); // open default
+
+    if (mailgoActionEnabled("yahoo")) {
+      modalContent.appendChild(yahoo);
+    } // open default
+
 
     mailgo_open = createElement(aHTMLTag);
     mailgo_open.id = "m-open";
@@ -679,7 +687,11 @@ var mailgoInit = function mailgoInit() {
     telegramSpan.className = "w-500";
     telegramSpan.appendChild(createTextNode(strings.telegram || defaultStrings.telegram));
     telegram.appendChild(telegramSpan);
-    if (mailgoActionEnabled("telegram")) _modalContent.appendChild(telegram); // WhatsApp
+
+    if (mailgoActionEnabled("telegram")) {
+      _modalContent.appendChild(telegram);
+    } // WhatsApp
+
 
     wa = createElement(aHTMLTag);
     wa.id = "m-wa";
@@ -691,7 +703,11 @@ var mailgoInit = function mailgoInit() {
     waSpan.className = "w-500";
     waSpan.appendChild(createTextNode(strings.whatsapp || defaultStrings.whatsapp));
     wa.appendChild(waSpan);
-    if (mailgoActionEnabled("whatsapp")) _modalContent.appendChild(wa); // Skype
+
+    if (mailgoActionEnabled("whatsapp")) {
+      _modalContent.appendChild(wa);
+    } // Skype
+
 
     skype = createElement(aHTMLTag);
     skype.id = "m-skype";
@@ -703,7 +719,11 @@ var mailgoInit = function mailgoInit() {
     skypeSpan.className = "w-500";
     skypeSpan.appendChild(createTextNode(strings.skype || defaultStrings.skype));
     skype.appendChild(skypeSpan);
-    if (mailgoActionEnabled("skype")) _modalContent.appendChild(skype); // call default
+
+    if (mailgoActionEnabled("skype")) {
+      _modalContent.appendChild(skype);
+    } // call default
+
 
     call = createElement(aHTMLTag);
     call.id = "m-call";
@@ -833,7 +853,10 @@ function mailgoPreRender() {
   } // if href is undefined or null return false
 
 
-  if (!href) return false; // mailgo mail
+  if (!href) {
+    return false;
+  } // mailgo mail
+
 
   if (type === MAILGO_MAIL) {
     var _config5;
@@ -883,7 +906,10 @@ function mailgoPreRender() {
 
     if (validateEmailConfig) {
       // validate the email address
-      if (!validateEmails(mail.split(","))) return; // if cc, bcc are not valid cc, bcc = ""
+      if (!validateEmails(mail.split(","))) {
+        return false;
+      } // if cc, bcc are not valid cc, bcc = ""
+
 
       if (cc && !validateEmails(cc.split(","))) cc = "";
       if (bcc && !validateEmails(bcc.split(","))) bcc = "";
@@ -1036,10 +1062,22 @@ var openGmail = function openGmail(event) {
 
   var gmailUrl = "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" + encodeURIComponent(mail); // the details if provided
 
-  if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
-  if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
-  if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
-  if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail); // open the link
+  if (cc) {
+    gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
+  }
+
+  if (bcc) {
+    gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
+  }
+
+  if (subject) {
+    gmailUrl = gmailUrl.concat("&subject=" + subject);
+  }
+
+  if (bodyMail) {
+    gmailUrl = gmailUrl.concat("&body=" + bodyMail);
+  } // open the link
+
 
   window.open(gmailUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1051,8 +1089,14 @@ var openOutlook = function openOutlook(event) {
 
   var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail); // the details if provided
 
-  if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
-  if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail); // open the link
+  if (subject) {
+    outlookUrl = outlookUrl.concat("&subject=" + subject);
+  }
+
+  if (bodyMail) {
+    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+  } // open the link
+
 
   window.open(outlookUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1064,8 +1108,14 @@ var openYahooMail = function openYahooMail(event) {
 
   var yahooUrl = "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail); // the details if provided
 
-  if (subject) yahooUrl = yahooUrl.concat("&subject=" + subject);
-  if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail); // open the link
+  if (subject) {
+    yahooUrl = yahooUrl.concat("&subject=" + subject);
+  }
+
+  if (bodyMail) {
+    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+  } // open the link
+
 
   window.open(yahooUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1107,7 +1157,10 @@ var openWhatsApp = function openWhatsApp(event) {
 
   var waUrl = "https://wa.me/" + tel; // the details if provided
 
-  if (msg) waUrl + "?text=" + msg; // open the url
+  if (msg) {
+    waUrl + "?text=" + msg;
+  } // open the url
+
 
   window.open(waUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1125,7 +1178,12 @@ var copy = function copy(content) {
   copyToClipboard(content);
   var activeCopy; // the correct copyButton (mail or tel)
 
-  mailgoIsShowing(MAILGO_MAIL) ? activeCopy = copyMail : activeCopy = copyTel;
+  if (mailgoIsShowing(MAILGO_MAIL)) {
+    activeCopy = copyMail;
+  } else {
+    activeCopy = copyTel;
+  }
+
   activeCopy.textContent = strings.copied || defaultStrings.copied;
   setTimeout(function () {
     activeCopy.textContent = strings.copy || defaultStrings.copy; // hide after the timeout
@@ -1391,9 +1449,18 @@ var mailgoActionEnabled = function mailgoActionEnabled(action) {
   var _config8, _config9;
 
   // by default all the actions are enabled
-  if (!config) return true;
-  if (config && !((_config8 = config) === null || _config8 === void 0 ? void 0 : _config8.actions)) return true;
-  if (config && config.actions && ((_config9 = config) === null || _config9 === void 0 ? void 0 : _config9.actions[action]) === false) return false;
+  if (!config) {
+    return true;
+  }
+
+  if (config && !((_config8 = config) === null || _config8 === void 0 ? void 0 : _config8.actions)) {
+    return true;
+  }
+
+  if (config && config.actions && ((_config9 = config) === null || _config9 === void 0 ? void 0 : _config9.actions[action]) === false) {
+    return false;
+  }
+
   return true;
 }; // manage the language of mailgo
 
