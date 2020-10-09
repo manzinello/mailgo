@@ -808,7 +808,7 @@ const openGmail = (event?: Event): void => {
   if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
 
   // open the link
-  window.open(gmailUrl, "_blank");
+  window.open(gmailUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -827,7 +827,7 @@ const openOutlook = (event?: Event): void => {
   if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
 
   // open the link
-  window.open(outlookUrl, "_blank");
+  window.open(outlookUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -845,7 +845,7 @@ const openYahooMail = (event?: Event): void => {
   if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail);
 
   // open the link
-  window.open(yahooUrl, "_blank");
+  window.open(yahooUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -868,7 +868,7 @@ const openTelegram = (event?: Event): void => {
     let tgUrl: string = "https://t.me/" + telegramUsername;
 
     // open the url
-    window.open(tgUrl, "_blank");
+    window.open(tgUrl, "_blank", "noopener, noreferrer");
 
     // hide the modal
     hideMailgo();
@@ -884,7 +884,7 @@ const openSkype = (event?: Event): void => {
   let skypeUrl: string = "skype:" + skype;
 
   // open the url
-  window.open(skypeUrl, "_blank");
+  window.open(skypeUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -900,7 +900,7 @@ const openWhatsApp = (event?: Event): void => {
   if (msg) waUrl + "?text=" + msg;
 
   // open the url
-  window.open(waUrl, "_blank");
+  window.open(waUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();

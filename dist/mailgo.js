@@ -1041,7 +1041,7 @@ var openGmail = function openGmail(event) {
   if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
   if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail); // open the link
 
-  window.open(gmailUrl, "_blank"); // hide the modal
+  window.open(gmailUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1054,7 +1054,7 @@ var openOutlook = function openOutlook(event) {
   if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
   if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail); // open the link
 
-  window.open(outlookUrl, "_blank"); // hide the modal
+  window.open(outlookUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1067,7 +1067,7 @@ var openYahooMail = function openYahooMail(event) {
   if (subject) yahooUrl = yahooUrl.concat("&subject=" + subject);
   if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail); // open the link
 
-  window.open(yahooUrl, "_blank"); // hide the modal
+  window.open(yahooUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1085,7 +1085,7 @@ var openTelegram = function openTelegram(event) {
     // Telegram url
     var tgUrl = "https://t.me/" + telegramUsername; // open the url
 
-    window.open(tgUrl, "_blank"); // hide the modal
+    window.open(tgUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
     hideMailgo();
   }
@@ -1097,7 +1097,7 @@ var openSkype = function openSkype(event) {
 
   var skypeUrl = "skype:" + skype; // open the url
 
-  window.open(skypeUrl, "_blank"); // hide the modal
+  window.open(skypeUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1109,7 +1109,7 @@ var openWhatsApp = function openWhatsApp(event) {
 
   if (msg) waUrl + "?text=" + msg; // open the url
 
-  window.open(waUrl, "_blank"); // hide the modal
+  window.open(waUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
