@@ -43,7 +43,7 @@
     "@babel/preset-env": "^7.11.5",
     "@babel/preset-typescript": "^7.10.4",
     "@babel/types": "^7.11.5",
-    "@types/node": "^14.11.6",
+    "@types/node": "^14.11.8",
     "autoprefixer": "^10.0.1",
     "babel-loader": "^8.1.0",
     "css-loader": "^4.3.0",
