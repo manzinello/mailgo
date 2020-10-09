@@ -1012,10 +1012,34 @@ function mailgoRender() {
     // the title of the modal (email address)
     title.innerHTML = mail.split(",").join("<br/>"); // add the details if provided
 
-    cc ? (detailCc.style.display = "block", ccValue.innerHTML = cc.split(",").join("<br/>")) : detailCc.style.display = "none";
-    bcc ? (detailBcc.style.display = "block", bccValue.innerHTML = bcc.split(",").join("<br/>")) : detailBcc.style.display = "none";
-    subject ? (detailSubject.style.display = "block", subjectValue.textContent = subject) : detailSubject.style.display = "none";
-    bodyMail ? (detailBody.style.display = "block", bodyValue.textContent = bodyMail) : detailBody.style.display = "none"; // add the actions
+    if (cc) {
+      detailCc.style.display = "block";
+      ccValue.innerHTML = cc.split(",").join("<br/>");
+    } else {
+      detailCc.style.display = "none";
+    }
+
+    if (bcc) {
+      detailBcc.style.display = "block";
+      bccValue.innerHTML = bcc.split(",").join("<br/>");
+    } else {
+      detailBcc.style.display = "none";
+    }
+
+    if (subject) {
+      detailSubject.style.display = "block";
+      subjectValue.textContent = subject;
+    } else {
+      detailSubject.style.display = "none";
+    }
+
+    if (bodyMail) {
+      detailBody.style.display = "block";
+      bodyValue.textContent = bodyMail;
+    } else {
+      detailBody.style.display = "none";
+    } // add the actions
+
 
     gmail.addEventListener("click", openGmail);
     outlook.addEventListener("click", openOutlook);
@@ -1030,7 +1054,14 @@ function mailgoRender() {
   else if (type === MAILGO_TEL) {
       // the title of the modal (tel)
       titleTel.innerHTML = tel;
-      msg ? (detailMsg.style.display = "block", msgValue.textContent = msg) : detailMsg.style.display = "none"; // add the actions to buttons
+
+      if (msg) {
+        detailMsg.style.display = "block";
+        msgValue.textContent = msg;
+      } else {
+        detailMsg.style.display = "none";
+      } // add the actions to buttons
+
 
       wa.addEventListener("click", openWhatsApp); // telegram must be shown only if data-telegram is provided
 
@@ -1383,7 +1414,12 @@ var encodeEmail = function encodeEmail(email) {
 
 var getModalHTMLElement = function getModalHTMLElement() {
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MAILGO_MAIL;
-  return type === MAILGO_TEL ? modalTel : modalMailto;
+
+  if (type === MAILGO_TEL) {
+    return modalTel;
+  } else {
+    return modalMailto;
+  }
 }; // get display value
 
 
