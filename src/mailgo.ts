@@ -732,25 +732,33 @@ function mailgoRender(type: string = MAILGO_MAIL): boolean {
     title.innerHTML = mail.split(",").join("<br/>");
 
     // add the details if provided
-    cc
-      ? ((detailCc.style.display = "block"),
-        (ccValue.innerHTML = cc.split(",").join("<br/>")))
-      : (detailCc.style.display = "none");
+    if (cc) {
+      detailCc.style.display = "block";
+      ccValue.innerHTML = cc.split(",").join("<br/>");
+    } else {
+      detailCc.style.display = "none";
+    }
 
-    bcc
-      ? ((detailBcc.style.display = "block"),
-        (bccValue.innerHTML = bcc.split(",").join("<br/>")))
-      : (detailBcc.style.display = "none");
+    if (bcc) {
+      detailBcc.style.display = "block";
+      bccValue.innerHTML = bcc.split(",").join("<br/>");
+    } else {
+      detailBcc.style.display = "none";
+    }
 
-    subject
-      ? ((detailSubject.style.display = "block"),
-        (subjectValue.textContent = subject))
-      : (detailSubject.style.display = "none");
+    if (subject) {
+      detailSubject.style.display = "block";
+      subjectValue.textContent = subject;
+    } else {
+      detailSubject.style.display = "none";
+    }
 
-    bodyMail
-      ? ((detailBody.style.display = "block"),
-        (bodyValue.textContent = bodyMail))
-      : (detailBody.style.display = "none");
+    if (bodyMail) {
+      detailBody.style.display = "block";
+      bodyValue.textContent = bodyMail;
+    } else {
+      detailBody.style.display = "none";
+    }
 
     // add the actions
     gmail.addEventListener("click", openGmail);
@@ -772,9 +780,12 @@ function mailgoRender(type: string = MAILGO_MAIL): boolean {
     // the title of the modal (tel)
     titleTel.innerHTML = tel;
 
-    msg
-      ? ((detailMsg.style.display = "block"), (msgValue.textContent = msg))
-      : (detailMsg.style.display = "none");
+    if (msg) {
+      detailMsg.style.display = "block";
+      msgValue.textContent = msg;
+    } else {
+      detailMsg.style.display = "none";
+    }
 
     // add the actions to buttons
     wa.addEventListener("click", openWhatsApp);
@@ -1144,8 +1155,13 @@ const mailToEncoded = (encoded: string): string =>
 const encodeEmail = (email: string): string => btoa(email);
 
 // get the correct HTMLElement from a type
-const getModalHTMLElement = (type: string = MAILGO_MAIL) =>
-  type === MAILGO_TEL ? modalTel : modalMailto;
+const getModalHTMLElement = (type: string = MAILGO_MAIL) => {
+  if (type === MAILGO_TEL) {
+    return modalTel;
+  } else {
+    return modalMailto;
+  }
+};
 
 // get display value
 const getModalDisplay = (ref: string = MAILGO_MAIL): string =>
