@@ -975,24 +975,23 @@ const copy = (content: string): void => {
 };
 
 // function to find if a link is a mailto, tel, callto or sms
-// TODO possibility to make it better with regex
 const validateUrl = (url: string, type: string = MAILTO) => {
   switch (type) {
     case MAILTO:
       // validate mailto
-      return url.toLowerCase().startsWith(MAILTO);
+      return url.match(new RegExp(MAILTO, "gi"));
     case MAILGO:
       // validate mailgo
-      return url.toLowerCase().startsWith(MAILGO);
+      return url.match(new RegExp(MAILGO, "gi"));
     case TEL:
       // validate tel
-      return url.toLowerCase().startsWith(TEL);
+      return url.match(new RegExp(TEL, "gi"));
     case CALLTO:
       // validate callto
-      return url.toLowerCase().startsWith(CALLTO);
+      return url.match(new RegExp(CALLTO, "gi"));
     case SMS:
       // validate sms
-      return url.toLowerCase().startsWith(SMS);
+      return url.match(new RegExp(SMS, "gi"));
   }
 };
 
@@ -1249,7 +1248,7 @@ const mailgoSetLanguage = (): string => {
 
     // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
     let langFound = i18n.languages.find((language) =>
-      htmlLang.startsWith(language)
+      htmlLang.match(new RegExp(language, "gi"))
     );
 
     // if there is a valid language set it
