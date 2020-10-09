@@ -662,6 +662,8 @@ function mailgoPreRender(
     // Telegram username
     if (mailgoElement && mailgoElement.hasAttribute("data-skype")) {
       skypeUsername = mailgoElement.getAttribute("data-skype");
+    } else {
+      skypeUsername = null;
     }
   }
 
