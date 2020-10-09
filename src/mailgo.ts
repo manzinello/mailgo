@@ -237,7 +237,9 @@ const mailgoInit = (): void => {
     );
     outlook.appendChild(outlookSpan);
 
-    if (mailgoActionEnabled("outlook")) modalContent.appendChild(outlook);
+    if (mailgoActionEnabled("outlook")) {
+      modalContent.appendChild(outlook);
+    }
 
     // Outlook
     yahoo = createElement(aHTMLTag) as HTMLLinkElement;
@@ -255,7 +257,9 @@ const mailgoInit = (): void => {
     );
     yahoo.appendChild(yahooSpan);
 
-    if (mailgoActionEnabled("yahoo")) modalContent.appendChild(yahoo);
+    if (mailgoActionEnabled("yahoo")) {
+      modalContent.appendChild(yahoo);
+    }
 
     // open default
     open = createElement(aHTMLTag) as HTMLLinkElement;
@@ -373,7 +377,9 @@ const mailgoInit = (): void => {
     );
     telegram.appendChild(telegramSpan);
 
-    if (mailgoActionEnabled("telegram")) modalContent.appendChild(telegram);
+    if (mailgoActionEnabled("telegram")) {
+      modalContent.appendChild(telegram);
+    }
 
     // WhatsApp
     wa = createElement(aHTMLTag) as HTMLLinkElement;
@@ -389,7 +395,9 @@ const mailgoInit = (): void => {
     );
     wa.appendChild(waSpan);
 
-    if (mailgoActionEnabled("whatsapp")) modalContent.appendChild(wa);
+    if (mailgoActionEnabled("whatsapp")) {
+      modalContent.appendChild(wa);
+    }
 
     // Skype
     skype = createElement(aHTMLTag) as HTMLLinkElement;
@@ -407,7 +415,9 @@ const mailgoInit = (): void => {
     );
     skype.appendChild(skypeSpan);
 
-    if (mailgoActionEnabled("skype")) modalContent.appendChild(skype);
+    if (mailgoActionEnabled("skype")) {
+      modalContent.appendChild(skype);
+    }
 
     // call default
     call = createElement(aHTMLTag) as HTMLLinkElement;
@@ -547,7 +557,9 @@ function mailgoPreRender(
   }
 
   // if href is undefined or null return false
-  if (!href) return false;
+  if (!href) {
+    return false;
+  }
 
   // mailgo mail
   if (type === MAILGO_MAIL) {
@@ -612,7 +624,9 @@ function mailgoPreRender(
 
     if (validateEmailConfig) {
       // validate the email address
-      if (!validateEmails(mail.split(","))) return;
+      if (!validateEmails(mail.split(","))) {
+        return false;
+      }
 
       // if cc, bcc are not valid cc, bcc = ""
       if (cc && !validateEmails(cc.split(","))) cc = "";
@@ -802,10 +816,18 @@ const openGmail = (event?: Event): void => {
     encodeURIComponent(mail);
 
   // the details if provided
-  if (cc) gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
-  if (bcc) gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
-  if (subject) gmailUrl = gmailUrl.concat("&subject=" + subject);
-  if (bodyMail) gmailUrl = gmailUrl.concat("&body=" + bodyMail);
+  if (cc) {
+    gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
+  }
+  if (bcc) {
+    gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
+  }
+  if (subject) {
+    gmailUrl = gmailUrl.concat("&subject=" + subject);
+  }
+  if (bodyMail) {
+    gmailUrl = gmailUrl.concat("&body=" + bodyMail);
+  }
 
   // open the link
   window.open(gmailUrl, "_blank", "noopener, noreferrer");
@@ -823,8 +845,12 @@ const openOutlook = (event?: Event): void => {
     encodeURIComponent(mail);
 
   // the details if provided
-  if (subject) outlookUrl = outlookUrl.concat("&subject=" + subject);
-  if (bodyMail) outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+  if (subject) {
+    outlookUrl = outlookUrl.concat("&subject=" + subject);
+  }
+  if (bodyMail) {
+    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+  }
 
   // open the link
   window.open(outlookUrl, "_blank", "noopener, noreferrer");
@@ -841,8 +867,12 @@ const openYahooMail = (event?: Event): void => {
     "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail);
 
   // the details if provided
-  if (subject) yahooUrl = yahooUrl.concat("&subject=" + subject);
-  if (bodyMail) yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+  if (subject) {
+    yahooUrl = yahooUrl.concat("&subject=" + subject);
+  }
+  if (bodyMail) {
+    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+  }
 
   // open the link
   window.open(yahooUrl, "_blank", "noopener, noreferrer");
@@ -897,7 +927,9 @@ const openWhatsApp = (event?: Event): void => {
   let waUrl: string = "https://wa.me/" + tel;
 
   // the details if provided
-  if (msg) waUrl + "?text=" + msg;
+  if (msg) {
+    waUrl + "?text=" + msg;
+  }
 
   // open the url
   window.open(waUrl, "_blank", "noopener, noreferrer");
@@ -918,9 +950,11 @@ const copy = (content: string): void => {
   copyToClipboard(content);
   let activeCopy: HTMLElement;
   // the correct copyButton (mail or tel)
-  mailgoIsShowing(MAILGO_MAIL)
-    ? (activeCopy = copyMail)
-    : (activeCopy = copyTel);
+  if (mailgoIsShowing(MAILGO_MAIL)) {
+    activeCopy = copyMail;
+  } else {
+    activeCopy = copyTel;
+  }
   activeCopy.textContent = strings.copied || defaultStrings.copied;
   setTimeout(() => {
     activeCopy.textContent = strings.copy || defaultStrings.copy;
@@ -1170,11 +1204,16 @@ const composedPath = (
 // function to check an action is enabled or not
 const mailgoActionEnabled = (action: MailgoAction): boolean => {
   // by default all the actions are enabled
-  if (!config) return true;
-  if (config && !config?.actions) return true;
+  if (!config) {
+    return true;
+  }
+  if (config && !config?.actions) {
+    return true;
+  }
 
-  if (config && config.actions && config?.actions[action] === false)
+  if (config && config.actions && config?.actions[action] === false) {
     return false;
+  }
 
   return true;
 };
