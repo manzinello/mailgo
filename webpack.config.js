@@ -1,10 +1,11 @@
 const path = require("path");
+const babelconfig = require("./babel.config");
 
 const mailgoRules = [
   {
     test: /\.tsx?$/,
     include: path.resolve(__dirname, "./src/"),
-    use: ["babel-loader"],
+    use: [{ loader: "babel-loader", options: babelconfig }],
     exclude: /node_modules/,
   },
   {
@@ -23,6 +24,16 @@ const mailgoRules = [
   },
 ];
 
+const mailgoOutputEnvironment = {
+  arrowFunction: false,
+  bigIntLiteral: false,
+  const: false,
+  destructuring: false,
+  dynamicImport: false,
+  forOf: false,
+  module: false,
+};
+
 module.exports = [
   {
     mode: "production",
@@ -40,6 +51,7 @@ module.exports = [
       filename: "mailgo.min.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "dist"),
     },
   },
@@ -62,6 +74,7 @@ module.exports = [
       filename: "mailgo.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "dist"),
     },
   },
@@ -81,6 +94,7 @@ module.exports = [
       filename: "mailgo.firefox.min.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "extensions"),
     },
   },
@@ -100,6 +114,7 @@ module.exports = [
       filename: "mailgo.chrome.min.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "extensions"),
     },
   },
@@ -119,6 +134,7 @@ module.exports = [
       filename: "mailgo.dark.min.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "dist"),
     },
   },
@@ -138,6 +154,7 @@ module.exports = [
       filename: "mailgo.nocss.min.js",
       library: "mailgo",
       libraryTarget: "window",
+      environment: mailgoOutputEnvironment,
       path: path.resolve(__dirname, "dist"),
     },
   },
@@ -160,6 +177,7 @@ module.exports = [
       filename: "lib/mailgo.js",
       library: "mailgo",
       libraryTarget: "umd",
+      environment: mailgoOutputEnvironment,
       globalObject: "typeof self !== 'undefined' ? self : this",
       path: path.resolve(__dirname),
     },
