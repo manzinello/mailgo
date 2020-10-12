@@ -57,47 +57,6 @@ var mailgoRenderTag = "mailgo-render";
 
 /***/ }),
 
-/***/ 352:
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "mailgoPolyfill": function() { return /* binding */ mailgoPolyfill; }
-/* harmony export */ });
-var mailgoPolyfill = function mailgoPolyfill() {
-  // Polyfill of find from MDN
-  if (!Array.prototype.find) {
-    Object.defineProperty(Array.prototype, "find", {
-      value: function value(predicate) {
-        "use strict";
-
-        if (this == null) {
-          throw new TypeError("Array.prototype.find called on null or undefined");
-        }
-
-        if (typeof predicate !== "function") {
-          throw new TypeError("predicate must be a function");
-        }
-
-        var list = Object(this);
-        var length = list.length >>> 0;
-        var thisArg = arguments[1];
-
-        for (var i = 0; i !== length; i++) {
-          if (predicate.call(thisArg, this[i], i, list)) {
-            return this[i];
-          }
-        }
-
-        return undefined;
-      }
-    });
-  }
-};
-
-/***/ }),
-
 /***/ 12:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
@@ -313,30 +272,28 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 // polyfill
-var _require = __webpack_require__(352),
-    mailgoPolyfill = _require.mailgoPolyfill; // constants
+// const { mailgoPolyfill } = require("./polyfill");
+// constants
+var _require = __webpack_require__(249),
+    MAILTO = _require.MAILTO,
+    MAILGO = _require.MAILGO,
+    TEL = _require.TEL,
+    CALLTO = _require.CALLTO,
+    SMS = _require.SMS,
+    MAILGO_MAIL = _require.MAILGO_MAIL,
+    MAILGO_TEL = _require.MAILGO_TEL,
+    NO_MAILGO = _require.NO_MAILGO,
+    spanHTMLTag = _require.spanHTMLTag,
+    aHTMLTag = _require.aHTMLTag,
+    pHTMLTag = _require.pHTMLTag,
+    defaultLang = _require.defaultLang; // utils
 
 
-var _require2 = __webpack_require__(249),
-    MAILTO = _require2.MAILTO,
-    MAILGO = _require2.MAILGO,
-    TEL = _require2.TEL,
-    CALLTO = _require2.CALLTO,
-    SMS = _require2.SMS,
-    MAILGO_MAIL = _require2.MAILGO_MAIL,
-    MAILGO_TEL = _require2.MAILGO_TEL,
-    NO_MAILGO = _require2.NO_MAILGO,
-    spanHTMLTag = _require2.spanHTMLTag,
-    aHTMLTag = _require2.aHTMLTag,
-    pHTMLTag = _require2.pHTMLTag,
-    defaultLang = _require2.defaultLang; // utils
-
-
-var _require3 = __webpack_require__(12),
-    validateEmails = _require3.validateEmails,
-    validateTel = _require3.validateTel,
-    copyToClipboard = _require3.copyToClipboard,
-    setFocusLoop = _require3.setFocusLoop; // i18n for mailgo
+var _require2 = __webpack_require__(12),
+    validateEmails = _require2.validateEmails,
+    validateTel = _require2.validateTel,
+    copyToClipboard = _require2.copyToClipboard,
+    setFocusLoop = _require2.setFocusLoop; // i18n for mailgo
 
 
 var i18n = __webpack_require__(581); // mailgo scss
@@ -1447,8 +1404,8 @@ function mailgo(mailgoConfig) {
     var _window;
 
     // polyfill mailgo
-    mailgoPolyfill(); // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
-
+    // mailgoPolyfill();
+    // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
     if (window && typeof window !== "undefined") {
