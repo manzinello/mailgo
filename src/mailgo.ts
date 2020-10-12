@@ -1235,15 +1235,12 @@ const mailgoSetLanguage = (): string => {
     let htmlLang: string = document.documentElement.lang;
 
     // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-    let langFound = i18n.languages.find((language) =>
-      new RegExp("^" + language, "gi").test(htmlLang)
-    );
-
-    // if there is a valid language set it
-    if (langFound) {
-      lang = langFound;
-      languageType = "html lang";
-    }
+    i18n.languages.forEach((language) => {
+      if (new RegExp("^" + language, "gi").test(htmlLang)) {
+        lang = htmlLang;
+        languageType = "html lang";
+      }
+    });
   }
 
   // strings
