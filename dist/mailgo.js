@@ -798,7 +798,8 @@ function mailgoPreRender() {
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        return false;
       }
     } else {
       // if the element href="#mailgo" or class="mailgo"
@@ -808,7 +809,8 @@ function mailgoPreRender() {
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        console.log(error);
+        // console.log(error);
+        return false;
       } // cc = data-cc-address + @ + data-cc-domain
 
 
@@ -853,7 +855,8 @@ function mailgoPreRender() {
 
           msg = _urlParams.get("body");
         } catch (error) {
-          console.log(error);
+          // console.log(error);
+          return false;
         }
       } else if (mailgoElement.hasAttribute("data-tel")) {
         tel = mailgoElement.getAttribute("data-tel");
@@ -1149,28 +1152,8 @@ var copy = function copy(content) {
 
 var validateUrl = function validateUrl(url) {
   var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : MAILTO;
-
-  switch (type) {
-    case MAILTO:
-      // validate mailto
-      return url.match(new RegExp(MAILTO, "gi"));
-
-    case MAILGO:
-      // validate mailgo
-      return url.match(new RegExp(MAILGO, "gi"));
-
-    case TEL:
-      // validate tel
-      return url.match(new RegExp(TEL, "gi"));
-
-    case CALLTO:
-      // validate callto
-      return url.match(new RegExp(CALLTO, "gi"));
-
-    case SMS:
-      // validate sms
-      return url.match(new RegExp(SMS, "gi"));
-  }
+  var regexValidate = new RegExp("^" + type, "gi");
+  return regexValidate.test(url);
 }; // function that returns if an element is a mailgo
 
 
@@ -1437,7 +1420,7 @@ var mailgoSetLanguage = function mailgoSetLanguage() {
     var htmlLang = document.documentElement.lang; // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
 
     var langFound = i18n.languages.find(function (language) {
-      return htmlLang.match(new RegExp(language, "gi"));
+      return new RegExp("^" + language, "gi").test(htmlLang);
     }); // if there is a valid language set it
 
     if (langFound) {
@@ -1517,7 +1500,7 @@ function mailgo(mailgoConfig) {
       return true;
     }
   } catch (error) {
-    console.log(error);
+    // console.log(error);
     return false;
   }
 
