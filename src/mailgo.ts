@@ -1326,6 +1326,13 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
   return false;
 }
 
+// define the methods also for window element
+(window as any).getMailgoTypeByElement = getMailgoTypeByElement;
+(window as any).mailgoCheckRender = mailgoCheckRender;
+(window as any).mailgoPreRender = mailgoPreRender;
+(window as any).mailgoDirectRender = mailgoDirectRender;
+(window as any).mailgoRender = mailgoRender;
+
 export {
   getMailgoTypeByElement,
   mailgoCheckRender,
