@@ -1,11 +1,11 @@
 const path = require("path");
-const babelconfig = require("./babel.config");
+// const babelconfig = require("./babel.config");
 
 const mailgoRules = [
   {
     test: /\.tsx?$/,
     include: path.resolve(__dirname, "./src/"),
-    use: [{ loader: "babel-loader", options: babelconfig }],
+    use: [{ loader: "babel-loader" }],
     exclude: /node_modules/,
   },
   {

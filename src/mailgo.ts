@@ -462,7 +462,7 @@ const mailgoInit = (): void => {
   }
 
   // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-  document.body.addEventListener("click", mailgoCheckRender);
+  document.addEventListener("click", mailgoCheckRender);
 };
 
 /**
