@@ -1332,6 +1332,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
 (window as any).mailgoPreRender = mailgoPreRender;
 (window as any).mailgoDirectRender = mailgoDirectRender;
 (window as any).mailgoRender = mailgoRender;
+(window as any).mailgo = mailgo;
 
 export {
   getMailgoTypeByElement,
