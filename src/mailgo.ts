@@ -582,7 +582,7 @@ function mailgoPreRender(
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        console.log(error);
+        console.error(error);
         return false;
       }
     } else {
@@ -596,7 +596,7 @@ function mailgoPreRender(
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        console.log(error);
+        console.error(error);
         return false;
       }
 
@@ -651,7 +651,7 @@ function mailgoPreRender(
         // optional parameters for the phone number
         msg = urlParams.get("body");
       } catch (error) {
-        console.log(error);
+        console.error(error);
         return false;
       }
     } else if (mailgoElement.hasAttribute("data-tel")) {
@@ -1319,7 +1319,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
       return true;
     }
   } catch (error) {
-    console.log(error);
+    console.error(error);
     return false;
   }
 
