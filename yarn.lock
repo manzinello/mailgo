@@ -2,7 +2,7 @@
 # yarn lockfile v1
 
 
-"@babel/cli@^7.11.6":
+"@babel/cli@^7.12.0":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/cli/-/cli-7.12.0.tgz#5de7ac9e8916a48725712c9ff1b26e8463c0d7a7"
   integrity sha512-0EO6EN6brF4g0HaR6qQr2USkCvFjKNgBdmaYNW5NzB1IeHhqQkGhErX3/hvWA7+g/onS41IM/wm+yD+hcSwgVQ==
@@ -31,7 +31,7 @@
   resolved "https://registry.yarnpkg.com/@babel/compat-data/-/compat-data-7.12.0.tgz#443aea07a5aeba7942cb067de6b8272f2ab36b9e"
   integrity sha512-jAbCtMANC9ptXxbSVXIqV/3H0bkh7iyyv6JS5lu10av45bcc2QmDNJXkASZCFwbBt75Q0AEq/BB+bNa3x1QgYQ==
 
-"@babel/core@^7.1.6", "@babel/core@^7.11.6":
+"@babel/core@^7.1.6", "@babel/core@^7.12.0":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/core/-/core-7.12.0.tgz#e42e07a086e978cdd4c61f4078d8230fb817cc86"
   integrity sha512-iV7Gwg0DePKvdDZZWRTkj4MW+6/AbVWd4ZCg+zk8H1RVt5xBpUZS6vLQWwb3pyLg4BFTaGiQCPoJ4Ibmbne4fA==
@@ -275,7 +275,7 @@
     chalk "^2.0.0"
     js-tokens "^4.0.0"
 
-"@babel/parser@^7.1.6", "@babel/parser@^7.10.4", "@babel/parser@^7.11.5", "@babel/parser@^7.12.0":
+"@babel/parser@^7.1.6", "@babel/parser@^7.10.4", "@babel/parser@^7.12.0":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/parser/-/parser-7.12.0.tgz#2ad388f3960045b22f9b7d4bf85e80b15a1c9e3a"
   integrity sha512-dYmySMYnlus2jwl7JnnajAj11obRStZoW9cG04wh4ZuhozDn11tDUrhHcUZ9iuNHqALAhh60XqNaYXpvuuE/Gg==
@@ -754,7 +754,7 @@
     "@babel/helper-create-regexp-features-plugin" "^7.10.4"
     "@babel/helper-plugin-utils" "^7.10.4"
 
-"@babel/preset-env@^7.1.6", "@babel/preset-env@^7.11.5":
+"@babel/preset-env@^7.1.6", "@babel/preset-env@^7.12.0":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-env/-/preset-env-7.12.0.tgz#7d2d0c4f4a14ca0fd7d905a741070ab4745177b7"
   integrity sha512-jSIHvHSuF+hBUIrvA2/61yIzhH+ceLOXGLTH1nwPvQlso/lNxXsoE/nvrCzY5M77KRzhKegB1CvdhWPZmYDZ5A==
@@ -846,7 +846,7 @@
     "@babel/types" "^7.4.4"
     esutils "^2.0.2"
 
-"@babel/preset-typescript@^7.1.0", "@babel/preset-typescript@^7.10.4":
+"@babel/preset-typescript@^7.1.0", "@babel/preset-typescript@^7.12.0":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/preset-typescript/-/preset-typescript-7.12.0.tgz#3fe6b4958ca6fb0e086dc5574a27d0ced99185e8"
   integrity sha512-2XVy4sy/zkP4gqmXW0TzSh/QwOniN2Cy3srhsD0TRBlMTOmjaYnWCWA6aWopwpcwfYkEKD6jKLLjYMq15zDNWg==
@@ -896,7 +896,7 @@
     globals "^11.1.0"
     lodash "^4.17.19"
 
-"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.11.0", "@babel/types@^7.11.5", "@babel/types@^7.12.0", "@babel/types@^7.4.4":
+"@babel/types@^7.10.4", "@babel/types@^7.10.5", "@babel/types@^7.11.0", "@babel/types@^7.12.0", "@babel/types@^7.4.4":
   version "7.12.0"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.12.0.tgz#b6b49f425ee59043fbc89c61b11a13d5eae7b5c6"
   integrity sha512-ggIyFmT2zMaYRheOfPDQ4gz7QqV3B+t2rjqjbttDJxMcb7/LukvWCmlIl1sWcOxrvwpTDd+z0OytzqsbGeb3/g==
