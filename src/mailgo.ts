@@ -55,6 +55,9 @@ let strings: MailgoTranslation;
 // global mailgo config object
 let config: MailgoConfig;
 
+// global config value
+let mailgoEnabled: boolean = false;
+
 // default config attributes
 let mailtoEnabled: boolean = true;
 let telEnabled: boolean = true;
@@ -1265,6 +1268,11 @@ const mailgoStyle = (): void => {
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): boolean {
   try {
+    if (mailgoEnabled) {
+      // mailgo is already enabled here
+      return true;
+    }
+
     // polyfill mailgo
     // mailgoPolyfill();
 
@@ -1316,14 +1324,14 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
         mailgoInit();
       }
 
-      return true;
+      mailgoEnabled = true;
     }
   } catch (error) {
     console.error(error);
-    return false;
+    mailgoEnabled = false;
   }
 
-  return false;
+  return mailgoEnabled;
 }
 
 // define the methods also for window element
