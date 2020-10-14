@@ -1437,11 +1437,15 @@ function mailgo(mailgoConfig) {
 } // define the methods also for window element
 
 
-window.getMailgoTypeByElement = getMailgoTypeByElement;
-window.mailgoCheckRender = mailgoCheckRender;
-window.mailgoPreRender = mailgoPreRender;
-window.mailgoDirectRender = mailgoDirectRender;
-window.mailgoRender = mailgoRender;
+if (window && typeof window !== "undefined") {
+  window.getMailgoTypeByElement = getMailgoTypeByElement;
+  window.mailgoCheckRender = mailgoCheckRender;
+  window.mailgoPreRender = mailgoPreRender;
+  window.mailgoDirectRender = mailgoDirectRender;
+  window.mailgoRender = mailgoRender;
+  window.mailgo = mailgo;
+}
+
 
 /* harmony default export */ var src_mailgo = (mailgo);
 // CONCATENATED MODULE: ./mailgo.dist.ts
