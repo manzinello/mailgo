@@ -615,7 +615,7 @@ var mailgoInit = function mailgoInit() {
   } // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
 
-  document.addEventListener("click", mailgoCheckRender);
+  document.body.addEventListener("click", mailgoCheckRender);
 };
 /**
  * mailgoCheckRender
@@ -729,7 +729,7 @@ function mailgoPreRender() {
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
       }
     } else {
@@ -740,7 +740,7 @@ function mailgoPreRender() {
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
       } // cc = data-cc-address + @ + data-cc-domain
 
@@ -786,7 +786,7 @@ function mailgoPreRender() {
 
           msg = _urlParams.get("body");
         } catch (error) {
-          console.error(error);
+          // console.error(error);
           return false;
         }
       } else if (mailgoElement.hasAttribute("data-tel")) {
@@ -1436,7 +1436,7 @@ function mailgo(mailgoConfig) {
       mailgoEnabled = true;
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     mailgoEnabled = false;
   }
 
