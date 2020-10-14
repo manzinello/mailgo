@@ -465,7 +465,7 @@ const mailgoInit = (): void => {
   }
 
   // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-  document.addEventListener("click", mailgoCheckRender);
+  document.body.addEventListener("click", mailgoCheckRender);
 };
 
 /**
@@ -585,7 +585,7 @@ function mailgoPreRender(
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
       }
     } else {
@@ -599,7 +599,7 @@ function mailgoPreRender(
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
       }
 
@@ -654,7 +654,7 @@ function mailgoPreRender(
         // optional parameters for the phone number
         msg = urlParams.get("body");
       } catch (error) {
-        console.error(error);
+        // console.error(error);
         return false;
       }
     } else if (mailgoElement.hasAttribute("data-tel")) {
@@ -1327,7 +1327,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
       mailgoEnabled = true;
     }
   } catch (error) {
-    console.error(error);
+    // console.error(error);
     mailgoEnabled = false;
   }
 
