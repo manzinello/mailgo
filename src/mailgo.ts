@@ -583,7 +583,6 @@ function mailgoPreRender(
         bodyMail = urlParams.get("body");
       } catch (error) {
         console.error(error);
-        return false;
       }
     } else {
       // if the element href="#mailgo" or class="mailgo"
@@ -597,7 +596,6 @@ function mailgoPreRender(
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
         console.error(error);
-        return false;
       }
 
       // cc = data-cc-address + @ + data-cc-domain
@@ -652,7 +650,6 @@ function mailgoPreRender(
         msg = urlParams.get("body");
       } catch (error) {
         console.error(error);
-        return false;
       }
     } else if (mailgoElement.hasAttribute("data-tel")) {
       tel = mailgoElement.getAttribute("data-tel");
@@ -1320,7 +1317,6 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
     }
   } catch (error) {
     console.error(error);
-    return false;
   }
   return false;
 }
