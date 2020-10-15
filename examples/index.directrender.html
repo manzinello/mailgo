@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>mailgo examples</title>
+  </head>
+  <body>
+    <h1>mailto:</h1>
+
+    <button id="direct-render">Open a mailgo directly (mail)</button>
+    <script>
+      window.mailgoConfig = {
+        dark: true,
+      };
+    </script>
+    <script src="../dist/mailgo.min.js"></script>
+    <script>
+      document
+        .getElementById("direct-render")
+        .addEventListener("click", function () {
+          mailgoDirectRender("mailto:matteo@manzinello.dev");
+        });
+    </script>
+  </body>
+</html>

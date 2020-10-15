@@ -22,6 +22,10 @@ Simple example of mailgo to test dark mode
 
 Simple example of mailgo with `window.mailgoConfig`
 
+## `index.directrender.html`
+
+Simple example of mailgo direct render (available from mailgo `0.10.0`)
+
 ## `index.windowfunctions.html`
 
 Simple example of mailgo with functions called directly on window method, in particular the method `mailgoDirectRender`, not recommended for blocking script in `head`
