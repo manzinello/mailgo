@@ -24,7 +24,7 @@ Simple example of mailgo with `window.mailgoConfig`
 
 ## `index.windowfunctions.html`
 
-Simple example of mailgo with functions called directly on window method, in particular the method `mailgoDirectRender`
+Simple example of mailgo with functions called directly on window method, in particular the method `mailgoDirectRender`, not recommended for blocking script in `head`
 
 ## `index.nocss.html`
 

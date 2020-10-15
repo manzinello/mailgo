@@ -3,6 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <title>mailgo examples</title>
+    <script>
+      window.mailgoConfig = {
+        dark: true,
+      };
+    </script>
+    <script src="../dist/mailgo.min.js"></script>
   </head>
   <body>
     <h1>mailto:</h1>
@@ -16,13 +22,5 @@
     <button onclick="mailgoDirectRender('tel:1234568790')">
       Open a mailgo directly (tel)
     </button>
-
-    <script>
-      window.mailgoConfig = {
-        dark: true,
-      };
-    </script>
-
-    <script src="../dist/mailgo.min.js"></script>
   </body>
 </html>
