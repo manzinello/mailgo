@@ -706,7 +706,6 @@ function mailgoDirectRender(directUrl: string): boolean {
   mailgo();
 
   if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
-    url = new URL(directUrl);
     mailgoPreRender(MAILGO_MAIL, directUrl);
     return true;
   } else if (
@@ -714,7 +713,6 @@ function mailgoDirectRender(directUrl: string): boolean {
     validateUrl(directUrl, CALLTO) ||
     validateUrl(directUrl, SMS)
   ) {
-    url = new URL(directUrl);
     mailgoPreRender(MAILGO_TEL, directUrl);
     return true;
   }
