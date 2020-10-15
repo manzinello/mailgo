@@ -1292,7 +1292,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
     config = { ...mailgoConfig, ...((window as any)?.mailgoConfig || null) };
 
     // if the window is defined...
-    if (window && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       // if is set in config use it (load the mailgo CSS)
       if (typeof config?.loadCSS !== "undefined") {
         loadCSSConfig = config.loadCSS;
@@ -1345,7 +1345,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
 }
 
 // define the methods also for window element
-if (window && typeof window !== "undefined") {
+if (typeof window !== "undefined") {
   (window as any).getMailgoTypeByElement = getMailgoTypeByElement;
   (window as any).mailgoCheckRender = mailgoCheckRender;
   (window as any).mailgoPreRender = mailgoPreRender;

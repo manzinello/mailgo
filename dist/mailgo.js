@@ -1393,7 +1393,7 @@ function mailgo(mailgoConfig) {
     // set the global config merging window mailgConfig and mailgoConfig passed as a parameter
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
-    if (window && typeof window !== "undefined") {
+    if (typeof window !== "undefined") {
       var _config11, _config12, _config13, _config14, _config15;
 
       // if is set in config use it (load the mailgo CSS)
@@ -1446,7 +1446,7 @@ function mailgo(mailgoConfig) {
 } // define the methods also for window element
 
 
-if (window && typeof window !== "undefined") {
+if (typeof window !== "undefined") {
   window.getMailgoTypeByElement = getMailgoTypeByElement;
   window.mailgoCheckRender = mailgoCheckRender;
   window.mailgoPreRender = mailgoPreRender;
