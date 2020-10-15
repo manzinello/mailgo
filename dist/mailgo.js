@@ -727,8 +727,7 @@ function mailgoPreRender() {
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        console.error("step2" + error);
-        return false;
+        console.error(error);
       }
     } else {
       // if the element href="#mailgo" or class="mailgo"
@@ -738,8 +737,7 @@ function mailgoPreRender() {
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        console.error("step3" + error);
-        return false;
+        console.error(error);
       } // cc = data-cc-address + @ + data-cc-domain
 
 
@@ -784,8 +782,7 @@ function mailgoPreRender() {
 
           msg = _urlParams.get("body");
         } catch (error) {
-          console.error("step4" + error);
-          return false;
+          console.error(error);
         }
       } else if (mailgoElement.hasAttribute("data-tel")) {
         tel = mailgoElement.getAttribute("data-tel");
@@ -1429,8 +1426,7 @@ function mailgo(mailgoConfig) {
       return true;
     }
   } catch (error) {
-    console.error("step1" + error);
-    return false;
+    console.error(error);
   }
 
   return false;
