@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>mailgo examples</title>
+  </head>
+  <body>
+    <h1>sms:</h1>
+
+    <a class="dark" href="sms:+39 123-456-78?body=testo">SMS</a>
+
+    <script>
+      window.mailgoConfig = {
+        sms: true,
+        dark: true,
+      };
+    </script>
+
+    <script src="../dist/mailgo.min.js"></script>
+  </body>
+</html>

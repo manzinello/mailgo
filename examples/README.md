@@ -38,6 +38,10 @@ Simple example of mailgo with `loadCSS=false` (and no style)
 
 Simple example of mailgo with `loadCSS=false` and CSS loaded separately
 
+## `index.smsenabled.html`
+
+Simple example of mailgo with `sms:` enabled
+
 ## `index.neumorphism.html`
 
 Simple example of mailgo with a test of neumorphism (CSS loaded separately)

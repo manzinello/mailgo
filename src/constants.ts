@@ -14,6 +14,7 @@ export const NO_MAILGO: string = "no-mailgo";
 // mailgo types
 export const MAILGO_MAIL: string = "mailgo";
 export const MAILGO_TEL: string = "mailgo-tel";
+export const MAILGO_SMS: string = "mailgo-sms";
 
 // useful html tags
 export const spanHTMLTag: string = "span";

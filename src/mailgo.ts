@@ -19,6 +19,7 @@ const {
   SMS,
   MAILGO_MAIL,
   MAILGO_TEL,
+  MAILGO_SMS,
   NO_MAILGO,
   spanHTMLTag,
   aHTMLTag,
@@ -58,7 +59,7 @@ let config: MailgoConfig;
 // default config attributes
 let mailtoEnabled: boolean = true;
 let telEnabled: boolean = true;
-let smsEnabled: boolean = true;
+let smsEnabled: boolean = false;
 let validateEmailConfig: boolean = true;
 let validateTelConfig: boolean = true;
 let showFooterConfig: boolean = true;
@@ -522,6 +523,16 @@ function mailgoCheckRender(event: Event): boolean {
       }
 
       if (telEnabled && getMailgoTypeByElement(element) == MAILGO_TEL) {
+        // stop the normal execution of the element click
+        event.preventDefault();
+
+        // render mailgo
+        mailgoPreRender(MAILGO_TEL, element as HTMLLinkElement);
+
+        return true;
+      }
+
+      if (smsEnabled && getMailgoTypeByElement(element) == MAILGO_SMS) {
         // stop the normal execution of the element click
         event.preventDefault();
 
@@ -999,11 +1010,9 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoModalType | null {
 
   // mailgo type tel
   if (
-    // first case: it is an <a> element with "tel:...", "callto:..." or "sms:..." in href and no no-mailgo in classList
+    // first case: it is an <a> element with "tel:..." or "callto:..." in href and no no-mailgo in classList
     (href &&
-      (validateUrl(href, TEL) ||
-        validateUrl(href, CALLTO) ||
-        validateUrl(href, SMS)) &&
+      (validateUrl(href, TEL) || validateUrl(href, CALLTO)) &&
       !element.classList.contains(NO_MAILGO)) ||
     (element.hasAttribute("data-tel") &&
       // second case: the href=#mailgo
@@ -1013,6 +1022,22 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoModalType | null {
     (element.classList && element.classList.contains("mailgo"))
   ) {
     return MAILGO_TEL;
+  }
+
+  // mailgo type tel
+  if (
+    // first case: it is an <a> element with "sms:..." in href and no no-mailgo in classList
+    (href &&
+      validateUrl(href, SMS) &&
+      !element.classList.contains(NO_MAILGO)) ||
+    (element.hasAttribute("data-sms") &&
+      // second case: the href=#mailgo
+      href &&
+      element.getAttribute("href").toLowerCase() === "#mailgo") ||
+    // third case: the classList contains mailgo
+    (element.classList && element.classList.contains("mailgo"))
+  ) {
+    return MAILGO_SMS;
   }
 
   return null;
