@@ -13,7 +13,7 @@
   },
   "main": "./lib/mailgo.js",
   "module": "./lib/mailgo.js",
-  "types": "./mailgo.d.ts",
+  "types": "./mailgo-types.d.ts",
   "keywords": [
     "mailto",
     "mail",

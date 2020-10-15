@@ -11,5 +11,5 @@
     "resolveJsonModule": true,
     "declaration": true
   },
-  "include": ["mailgo.d.ts", "src", "webpack"]
+  "include": ["mailgo-types.d.ts", "src", "webpack"]
 }

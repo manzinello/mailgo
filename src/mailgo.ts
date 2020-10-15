@@ -5,7 +5,7 @@ import {
   MailgoI18n,
   MailgoAction,
   MailgoModalType,
-} from "mailgo";
+} from "mailgo-types";
 
 // polyfill
 // const { mailgoPolyfill } = require("./polyfill");

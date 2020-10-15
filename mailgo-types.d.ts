@@ -2,7 +2,7 @@
 // Project: mailgo
 // Definitions by: Matteo Manzinello <https://matteomanzinello.com>
 
-declare module "mailgo" {
+declare module "mailgo-types" {
   export type MailgoConfig = {
     mailto?: boolean;
     tel?: boolean;
