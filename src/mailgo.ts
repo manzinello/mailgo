@@ -536,7 +536,7 @@ function mailgoCheckRender(event: Event): boolean {
         // stop the normal execution of the element click
         event.preventDefault();
 
-        // render mailgo
+        // render mailgo, at the moment as tel
         mailgoPreRender(MAILGO_TEL, element as HTMLLinkElement);
 
         return true;
