@@ -5,7 +5,7 @@ import {
   MailgoI18n,
   MailgoAction,
   MailgoModalType,
-} from "mailgo-types";
+} from "mailgo";
 
 // polyfill
 // const { mailgoPolyfill } = require("./polyfill");
@@ -1255,7 +1255,7 @@ const mailgoSetLanguage = (): string => {
     let htmlLang: string = document.documentElement.lang;
 
     // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-    i18n.languages.forEach((language) => {
+    i18n.languages.forEach((language: any) => {
       if (new RegExp("^" + language, "gi").test(htmlLang)) {
         lang = htmlLang;
         languageType = "html lang";
