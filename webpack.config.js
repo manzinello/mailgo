@@ -160,7 +160,7 @@ module.exports = [
   },
   {
     mode: "production",
-    target: "node",
+    target: "web",
     devtool: "source-map",
     entry: "./mailgo.lib.ts",
     context: path.join(__dirname, "webpack"),
@@ -174,12 +174,12 @@ module.exports = [
       extensions: [".ts", ".js"],
     },
     output: {
-      filename: "lib/mailgo.js",
+      filename: "mailgo.js",
       library: "mailgo",
       libraryTarget: "umd",
       environment: mailgoOutputEnvironment,
       globalObject: "typeof self !== 'undefined' ? self : this",
-      path: path.resolve(__dirname),
+      path: path.resolve(__dirname, "lib"),
     },
   },
 ];

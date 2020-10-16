@@ -1047,7 +1047,7 @@ var openWhatsApp = function openWhatsApp(event) {
   var waUrl = "https://wa.me/" + tel; // the details if provided
 
   if (msg) {
-    waUrl + "?text=" + msg;
+    waUrl = waUrl + "?text=" + msg;
   } // open the url
 
 

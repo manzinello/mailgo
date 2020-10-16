@@ -8,12 +8,17 @@ import mailgo, {
   mailgoRender,
 } from "../src/mailgo";
 
+// start function
+const start = mailgo;
+
 export {
   getMailgoTypeByElement,
   mailgoCheckRender,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
+  mailgo,
+  start,
 };
 
 export default mailgo;

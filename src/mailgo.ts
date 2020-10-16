@@ -948,7 +948,7 @@ const openWhatsApp = (event?: Event): void => {
 
   // the details if provided
   if (msg) {
-    waUrl + "?text=" + msg;
+    waUrl = waUrl + "?text=" + msg;
   }
 
   // open the url
