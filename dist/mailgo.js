@@ -1361,7 +1361,7 @@ var mailgoSetLanguage = function mailgoSetLanguage() {
 
     i18n.languages.forEach(function (language) {
       if (new RegExp("^" + language, "gi").test(htmlLang)) {
-        lang = htmlLang;
+        lang = language;
         languageType = "html lang";
       }
     });
