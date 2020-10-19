@@ -2,7 +2,9 @@
 
 ## Examples with webpack and other
 
-<https://mailgo-examples.vercel.app>
+<https://github.com/manzinello/mailgo-examples>
+
+<https://examples.mailgo.dev>
 
 ## Examples with `dist`
 
