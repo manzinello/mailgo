@@ -2,11 +2,19 @@ window.mailgo =
 /******/ (function() { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
-/***/ 581:
+/***/ 168:
 /***/ (function(module) {
 
 "use strict";
-module.exports = JSON.parse("{\"languages\":[\"en\",\"it\",\"es\",\"de\",\"fr\",\"pt\",\"nl\",\"ru\",\"sv\",\"no\",\"dk\",\"is\",\"zh\"],\"translations\":{\"en\":{\"open_in_\":\"open in \",\"cc_\":\"cc \",\"bcc_\":\"bcc \",\"subject_\":\"subject \",\"body_\":\"body \",\"gmail\":\"Gmail\",\"outlook\":\"Outlook\",\"yahoo\":\"Yahoo Mail\",\"telegram\":\"Telegram\",\"whatsapp\":\"WhatsApp\",\"skype\":\"Skype\",\"call\":\"call\",\"open\":\"open\",\"_default\":\" default\",\"_as_default\":\" as default\",\"copy\":\"copy\",\"copied\":\"copied\"},\"it\":{\"open_in_\":\"apri con \",\"bcc_\":\"ccn \",\"subject_\":\"oggetto \",\"body_\":\"testo \",\"call\":\"chiama\",\"open\":\"apri\",\"_default\":\" \",\"_as_default\":\" \",\"copy\":\"copia\",\"copied\":\"copiato\"},\"es\":{\"open_in_\":\"abrir con \",\"bcc_\":\"cco \",\"subject_\":\"asunto \",\"body_\":\"cuerpo \",\"call\":\"llamar\",\"open\":\"abrir\",\"_default\":\" predefinido\",\"_as_default\":\" por defecto\",\"copy\":\"copiar\",\"copied\":\"copiado\"},\"de\":{\"open_in_\":\"Öffnen in \",\"subject_\":\"Betreff \",\"body_\":\"Nachricht \",\"call\":\"Anrufen\",\"open\":\"Öffnen\",\"_default\":\" mit Standard\",\"_as_default\":\" mit Standard\",\"copy\":\"kopieren\",\"copied\":\"kopiert\"},\"pt\":{\"open_in_\":\"abrir com \",\"bcc_\":\"cco \",\"subject_\":\"assunto \",\"body_\":\"corpo \",\"call\":\"ligar\",\"open\":\"abrir\",\"_default\":\" padrão\",\"_as_default\":\" por padrão\",\"copy\":\"copiar\",\"copied\":\"copiado\"},\"fr\":{\"open_in_\":\"Ouvrir dans \",\"bcc_\":\"cci \",\"subject_\":\"sujet \",\"body_\":\"contenu \",\"call\":\"Appeler\",\"open\":\"Ouvrir\",\"_default\":\" par défaut\",\"_as_default\":\" par défaut\",\"copy\":\"Copier\",\"copied\":\"copié\"},\"nl\":{\"subject_\":\"onderwerp \",\"body_\":\"bericht \",\"call\":\"bellen\",\"open\":\"openen\",\"_default\":\" standaard\",\"_as_default\":\" als standaard\",\"copy\":\"kopiëren\"},\"ru\":{\"open_in_\":\"открыть в \",\"subject_\":\"тема \",\"body_\":\"тело \",\"call\":\"позвонить\",\"open\":\"открыть\",\"_default\":\" по умолчанию\",\"_as_default\":\" по умолчанию\",\"copy\":\"скопировать\"},\"sv\":{\"open_in_\":\"öppna i \",\"subject_\":\"ämne \",\"body_\":\"meddelandetext \",\"call\":\"ring\",\"open\":\"öppna\",\"_default\":\" förval\",\"_as_default\":\" som förval\",\"copy\":\"kopiera\",\"copied\":\"kopierad\"},\"no\":{\"open_in_\":\"åpne i \",\"subject_\":\"emne \",\"call\":\"ringe\",\"open\":\"åpne\",\"_as_default\":\" som standard\",\"copy\":\"kopiere\",\"copied\":\"kopiert\"},\"dk\":{\"open_in_\":\"åpne i \",\"subject_\":\"emne \",\"call\":\"ringe op\",\"open\":\"åben\",\"_as_default\":\" som standard\",\"copy\":\"kopi\",\"copied\":\"kopieret\"},\"is\":{\"open_in_\":\"opið inn \",\"subject_\":\"viðfangsefni \",\"body_\":\"líkami \",\"call\":\"hringja\",\"open\":\"opið\",\"_default\":\" sjálfgefið\",\"_as_default\":\" sem sjálfgefið\",\"copy\":\"afrita\",\"copied\":\"afritað\"},\"zh\":{\"open_in_\":\"開啟 \",\"cc_\":\"副本 \",\"bcc_\":\"密件副本 \",\"subject_\":\"主旨 \",\"body_\":\"內文 \",\"call\":\"通話\",\"open\":\"開啟\",\"_default\":\" 預設\",\"_as_default\":\" 預設\",\"copy\":\"複製\",\"copied\":\"已複製\"}}}");
+module.exports = JSON.parse("[\"en\",\"it\",\"es\",\"de\",\"fr\",\"pt\",\"nl\",\"ru\",\"sv\",\"no\",\"dk\",\"is\",\"zh\"]");
+
+/***/ }),
+
+/***/ 340:
+/***/ (function(module) {
+
+"use strict";
+module.exports = JSON.parse("{\"en\":{\"open_in_\":\"open in \",\"cc_\":\"cc \",\"bcc_\":\"bcc \",\"subject_\":\"subject \",\"body_\":\"body \",\"gmail\":\"Gmail\",\"outlook\":\"Outlook\",\"yahoo\":\"Yahoo Mail\",\"telegram\":\"Telegram\",\"whatsapp\":\"WhatsApp\",\"skype\":\"Skype\",\"call\":\"call\",\"open\":\"open\",\"_default\":\" default\",\"_as_default\":\" as default\",\"copy\":\"copy\",\"copied\":\"copied\"},\"it\":{\"open_in_\":\"apri con \",\"bcc_\":\"ccn \",\"subject_\":\"oggetto \",\"body_\":\"testo \",\"call\":\"chiama\",\"open\":\"apri\",\"_default\":\" \",\"_as_default\":\" \",\"copy\":\"copia\",\"copied\":\"copiato\"},\"es\":{\"open_in_\":\"abrir con \",\"bcc_\":\"cco \",\"subject_\":\"asunto \",\"body_\":\"cuerpo \",\"call\":\"llamar\",\"open\":\"abrir\",\"_default\":\" predefinido\",\"_as_default\":\" por defecto\",\"copy\":\"copiar\",\"copied\":\"copiado\"},\"de\":{\"open_in_\":\"Öffnen in \",\"subject_\":\"Betreff \",\"body_\":\"Nachricht \",\"call\":\"Anrufen\",\"open\":\"Öffnen\",\"_default\":\" mit Standard\",\"_as_default\":\" mit Standard\",\"copy\":\"kopieren\",\"copied\":\"kopiert\"},\"pt\":{\"open_in_\":\"abrir com \",\"bcc_\":\"cco \",\"subject_\":\"assunto \",\"body_\":\"corpo \",\"call\":\"ligar\",\"open\":\"abrir\",\"_default\":\" padrão\",\"_as_default\":\" por padrão\",\"copy\":\"copiar\",\"copied\":\"copiado\"},\"fr\":{\"open_in_\":\"Ouvrir dans \",\"bcc_\":\"cci \",\"subject_\":\"sujet \",\"body_\":\"contenu \",\"call\":\"Appeler\",\"open\":\"Ouvrir\",\"_default\":\" par défaut\",\"_as_default\":\" par défaut\",\"copy\":\"Copier\",\"copied\":\"copié\"},\"nl\":{\"subject_\":\"onderwerp \",\"body_\":\"bericht \",\"call\":\"bellen\",\"open\":\"openen\",\"_default\":\" standaard\",\"_as_default\":\" als standaard\",\"copy\":\"kopiëren\"},\"ru\":{\"open_in_\":\"открыть в \",\"subject_\":\"тема \",\"body_\":\"тело \",\"call\":\"позвонить\",\"open\":\"открыть\",\"_default\":\" по умолчанию\",\"_as_default\":\" по умолчанию\",\"copy\":\"скопировать\"},\"sv\":{\"open_in_\":\"öppna i \",\"subject_\":\"ämne \",\"body_\":\"meddelandetext \",\"call\":\"ring\",\"open\":\"öppna\",\"_default\":\" förval\",\"_as_default\":\" som förval\",\"copy\":\"kopiera\",\"copied\":\"kopierad\"},\"no\":{\"open_in_\":\"åpne i \",\"subject_\":\"emne \",\"call\":\"ringe\",\"open\":\"åpne\",\"_as_default\":\" som standard\",\"copy\":\"kopiere\",\"copied\":\"kopiert\"},\"dk\":{\"open_in_\":\"åpne i \",\"subject_\":\"emne \",\"call\":\"ringe op\",\"open\":\"åben\",\"_as_default\":\" som standard\",\"copy\":\"kopi\",\"copied\":\"kopieret\"},\"is\":{\"open_in_\":\"opið inn \",\"subject_\":\"viðfangsefni \",\"body_\":\"líkami \",\"call\":\"hringja\",\"open\":\"opið\",\"_default\":\" sjálfgefið\",\"_as_default\":\" sem sjálfgefið\",\"copy\":\"afrita\",\"copied\":\"afritað\"},\"zh\":{\"open_in_\":\"開啟 \",\"cc_\":\"副本 \",\"bcc_\":\"密件副本 \",\"subject_\":\"主旨 \",\"body_\":\"內文 \",\"call\":\"通話\",\"open\":\"開啟\",\"_default\":\" 預設\",\"_as_default\":\" 預設\",\"copy\":\"複製\",\"copied\":\"已複製\"}}");
 
 /***/ }),
 
@@ -271,14 +279,13 @@ var _require2 = __webpack_require__(12),
     setFocusLoop = _require2.setFocusLoop; // i18n for mailgo
 
 
-var i18n = __webpack_require__(581); // mailgo scss
+var languages = __webpack_require__(168);
+
+var translations = __webpack_require__(340); // mailgo scss
 
 
-var mailgoCSS = __webpack_require__(801).toString(); // translations
+var mailgoCSS = __webpack_require__(801).toString(); // default language
 
-
-var _ref = i18n,
-    translations = _ref.translations; // default language
 
 var lang = defaultLang; // default strings
 
@@ -1351,7 +1358,7 @@ var mailgoSetLanguage = function mailgoSetLanguage() {
 
   var languageType = "default lang"; // if a language is defined in configuration use it
 
-  if (((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.lang) && i18n.languages.indexOf(config.lang) !== -1) {
+  if (((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.lang) && languages.indexOf(config.lang) !== -1) {
     lang = config.lang;
     languageType = "config lang";
   } else {
@@ -1359,7 +1366,7 @@ var mailgoSetLanguage = function mailgoSetLanguage() {
     // keep the lang from html
     var htmlLang = document.documentElement.lang; // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
 
-    i18n.languages.forEach(function (language) {
+    languages.forEach(function (language) {
       if (new RegExp("^" + language, "gi").test(htmlLang)) {
         lang = language;
         languageType = "html lang";
