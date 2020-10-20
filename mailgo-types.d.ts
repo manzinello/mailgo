@@ -55,8 +55,11 @@ declare module "mailgo" {
     open_in_template?: string;
   };
 
+  // language codes array that follow ISO 639-1 Code
+  export type MailgoLanguages = string[];
+
   export type MailgoTranslations = {
-    // language code follow ISO 639-1 Code
+    // language codes array that follow ISO 639-1 Code
     [language: string]: MailgoTranslation;
   };
 

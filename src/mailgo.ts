@@ -2,9 +2,9 @@ import {
   MailgoConfig,
   MailgoTranslations,
   MailgoTranslation,
-  MailgoI18n,
   MailgoAction,
   MailgoModalType,
+  MailgoLanguages,
 } from "mailgo";
 
 // polyfill
@@ -36,13 +36,11 @@ const {
 } = require("./utils");
 
 // i18n for mailgo
-const i18n: MailgoI18n = require("../i18n/i18n.json");
+const languages: MailgoLanguages = require("../i18n/languages.json");
+const translations: MailgoTranslations = require("../i18n/translations.json");
 
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
-
-// translations
-let { translations }: { translations: MailgoTranslations } = i18n as MailgoI18n;
 
 // default language
 let lang: string = defaultLang;
@@ -1246,7 +1244,7 @@ const mailgoSetLanguage = (): string => {
   let languageType = "default lang";
 
   // if a language is defined in configuration use it
-  if (config?.lang && i18n.languages.indexOf(config.lang) !== -1) {
+  if (config?.lang && languages.indexOf(config.lang) !== -1) {
     lang = config.lang;
     languageType = "config lang";
   } else {
@@ -1255,7 +1253,7 @@ const mailgoSetLanguage = (): string => {
     let htmlLang: string = document.documentElement.lang;
 
     // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-    i18n.languages.forEach((language: any) => {
+    languages.forEach((language: any) => {
       if (new RegExp("^" + language, "gi").test(htmlLang)) {
         lang = language;
         languageType = "html lang";
