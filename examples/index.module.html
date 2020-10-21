@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>mailgo examples</title>
+  </head>
+  <body>
+    <h1>mailto:</h1>
+
+    <a href="mailto:matteo@manzinello.dev">matteo@manzinello.dev</a>
+    <br />
+    <a href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com"
+      ><p>matteo@manzinello.dev</p></a
+    >
+    <br />
+    <a href="mailto:matteo@manzinello.dev,matteomanzinello@gmail.com?cc=ciao"
+      >matteo@manzinello.dev</a
+    >
+    <br />
+    <a href="mailto:matteo@manzinello.dev?subject=ciao">ciao</a>
+    <br />
+    <a href="" class="mailgo" data-address="matteo" data-domain="manzinello.dev"
+      >scrivimi!</a
+    >
+    <br />
+    <a href="#mailgo" data-address="matteo" data-domain="manzinello.dev"
+      >scrivimi!</a
+    >
+
+    <a
+      href="#mailgo"
+      data-address="matteo"
+      data-domain="manzinello.dev"
+      data-cc="matteomanzinello@gmail.com,m@m.it"
+      >more cc</a
+    >
+    <br />
+    <a
+      href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=test"
+      >matteo@manzinello.dev</a
+    >
+    <a
+      href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&body=test"
+      >example with body matteo@manzinello.dev</a
+    >
+    <br />
+    <br />
+    <h3>Dark mode</h3>
+    <a class="dark" href="mailto:matteo@manzinello.dev"
+      >matteo@manzinello.dev dark mode</a
+    >
+    <br />
+    <a
+      class="dark"
+      href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=test"
+      >matteo@manzinello.dev dark mode</a
+    >
+    <br />
+    <a
+      class="dark"
+      href="mailgo:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=test"
+      >a mailgo link</a
+    >
+
+    <h1>tel:</h1>
+    <a href="#mailgo" data-tel="123456568" data-telegram="telegram">chiamami</a>
+    <br />
+    <a href="tel:+39 123-456-78" data-skype="skype">skype</a>
+    <br />
+    <a href="callto:+39 123-456-78">callto</a>
+
+    <br />
+    <br />
+    <h3>Dark mode</h3>
+
+    <a class="dark" href="callto:+39 123-456-78">callto dark mode</a>
+
+    <br />
+    <a class="dark" href="#mailgo" data-tel="123456568" data-telegram="telegram"
+      >chiamami dark mode</a
+    >
+
+    <a class="dark" href="sms:+39 123-456-78?body=testo">SMS</a>
+
+    <script
+      crossorigin="anonymous"
+      type="module"
+      src="../lib/mailgo.mjs"
+    ></script>
+  </body>
+</html>
