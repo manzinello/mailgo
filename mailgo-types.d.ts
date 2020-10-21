@@ -4,18 +4,18 @@
 
 declare module "mailgo" {
   export type MailgoConfig = {
-    mailto?: boolean;
-    tel?: boolean;
-    sms?: boolean;
-    initEvent?: string;
-    listenerOptions?: ListenerOptions | boolean;
-    dark?: boolean;
-    lang?: string;
-    validateEmail?: boolean;
-    validateTel?: boolean;
-    showFooter?: boolean;
-    loadCSS?: boolean;
-    actions?: MailgoActions;
+    mailto?: boolean; // enable mailgo for mailto, default is obviously true
+    tel?: boolean; // enable mailgo for tel, default is true
+    sms?: boolean; // enable mailgo for sms, at the moment default is false
+    initEvent?: string; // the event which is attached the mailgo init, default DOMContentLoaded
+    listenerOptions?: ListenerOptions | boolean; // the options of the listener if initEvent is specified
+    dark?: boolean; // dark mode for mailgo, default false
+    lang?: string; // the (forced) lang, default is english
+    validateEmail?: boolean; // validate an email, default is true
+    validateTel?: boolean; // validate a phone number, default is true
+    showFooter?: boolean; // show the footer with link to mailgo.dev, default true, please!
+    loadCSS?: boolean; // loadCSS for mailgo, default true
+    actions?: MailgoActions; // enable/disable actions, default all trues
   };
 
   export type MailgoModalType = "mailgo" | "mailgo-tel";
