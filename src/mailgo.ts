@@ -68,6 +68,7 @@ let modalMailto: HTMLElement, modalTel: HTMLElement;
 
 // mailgo variables
 let url: URL,
+  href: string,
   mail: string,
   encEmail: string,
   cc: string,
@@ -553,7 +554,6 @@ function mailgoPreRender(
   type: string = MAILGO_MAIL,
   mailgoElementOrUrl: HTMLLinkElement | string
 ): boolean {
-  let href: string;
   let mailgoElement: HTMLLinkElement;
 
   if (typeof mailgoElementOrUrl == "string") {
@@ -902,7 +902,12 @@ const openYahooMail = (event?: Event): void => {
 const openDefault = (event?: Event): void => {
   event.preventDefault();
 
-  mailToEncoded(encEmail);
+  // if href exists go there
+  if (href) {
+    window.location.href = href;
+  } else {
+    mailToEncoded(encEmail);
+  }
 
   hideMailgo();
 };

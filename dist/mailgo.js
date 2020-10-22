@@ -305,7 +305,7 @@ var loadCSSConfig = true; // modals global object
 
 var modalMailto, modalTel; // mailgo variables
 
-var url, mail, encEmail, cc, bcc, subject, bodyMail; // mailgo tel variables
+var url, href, mail, encEmail, cc, bcc, subject, bodyMail; // mailgo tel variables
 
 var tel, msg, telegramUsername, skypeUsername; // the DOM elements
 
@@ -707,7 +707,6 @@ function mailgoPreRender() {
 
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MAILGO_MAIL;
   var mailgoElementOrUrl = arguments.length > 1 ? arguments[1] : undefined;
-  var href;
   var mailgoElement;
 
   if (typeof mailgoElementOrUrl == "string") {
@@ -1019,8 +1018,14 @@ var openYahooMail = function openYahooMail(event) {
 };
 
 var openDefault = function openDefault(event) {
-  event.preventDefault();
-  mailToEncoded(encEmail);
+  event.preventDefault(); // if href exists go there
+
+  if (href) {
+    window.location.href = href;
+  } else {
+    mailToEncoded(encEmail);
+  }
+
   hideMailgo();
 };
 
