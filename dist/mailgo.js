@@ -978,11 +978,11 @@ var openOutlook = function openOutlook(event) {
   var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail); // the details if provided
 
   if (subject) {
-    outlookUrl = outlookUrl.concat("&subject=" + subject);
+    outlookUrl = outlookUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    outlookUrl = outlookUrl.concat("&body=" + encodeURIComponent(bodyMail));
   } // open the link
 
 
@@ -997,11 +997,11 @@ var openYahooMail = function openYahooMail(event) {
   var yahooUrl = "https://compose.mail.yahoo.com/?to=" + encodeURIComponent(mail); // the details if provided
 
   if (subject) {
-    yahooUrl = yahooUrl.concat("&subject=" + subject);
+    yahooUrl = yahooUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+    yahooUrl = yahooUrl.concat("&body=" + encodeURIComponent(bodyMail));
   } // open the link
 
 
@@ -1027,7 +1027,7 @@ var openTelegram = function openTelegram(event) {
 
   if (telegramUsername) {
     // Telegram url
-    var tgUrl = "https://t.me/" + telegramUsername; // open the url
+    var tgUrl = "https://t.me/" + encodeURIComponent(telegramUsername); // open the url
 
     window.open(tgUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1039,7 +1039,7 @@ var openSkype = function openSkype(event) {
   event.preventDefault();
   var skype = skypeUsername || tel; // Telegram url
 
-  var skypeUrl = "skype:" + skype; // open the url
+  var skypeUrl = "skype:" + encodeURIComponent(skype); // open the url
 
   window.open(skypeUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
@@ -1049,7 +1049,7 @@ var openSkype = function openSkype(event) {
 var openWhatsApp = function openWhatsApp(event) {
   event.preventDefault(); // WhatsApp url
 
-  var waUrl = "https://wa.me/" + tel; // the details if provided
+  var waUrl = "https://wa.me/" + encodeURIComponent(tel); // the details if provided
 
   if (msg) {
     waUrl = waUrl + "?text=" + msg;
@@ -1063,7 +1063,7 @@ var openWhatsApp = function openWhatsApp(event) {
 
 var callDefault = function callDefault(event) {
   event.preventDefault();
-  var callUrl = TEL + tel;
+  var callUrl = TEL + encodeURIComponent(tel);
   window.open(callUrl);
   hideMailgo();
 };

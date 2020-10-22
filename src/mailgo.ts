@@ -861,11 +861,11 @@ const openOutlook = (event?: Event): void => {
 
   // the details if provided
   if (subject) {
-    outlookUrl = outlookUrl.concat("&subject=" + subject);
+    outlookUrl = outlookUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    outlookUrl = outlookUrl.concat("&body=" + encodeURIComponent(bodyMail));
   }
 
   // open the link
@@ -884,10 +884,10 @@ const openYahooMail = (event?: Event): void => {
 
   // the details if provided
   if (subject) {
-    yahooUrl = yahooUrl.concat("&subject=" + subject);
+    yahooUrl = yahooUrl.concat("&subject=" + encodeURIComponent(subject));
   }
   if (bodyMail) {
-    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+    yahooUrl = yahooUrl.concat("&body=" + encodeURIComponent(bodyMail));
   }
 
   // open the link
@@ -916,7 +916,7 @@ const openTelegram = (event?: Event): void => {
   // check if telegramUsername exists
   if (telegramUsername) {
     // Telegram url
-    let tgUrl: string = "https://t.me/" + telegramUsername;
+    let tgUrl: string = "https://t.me/" + encodeURIComponent(telegramUsername);
 
     // open the url
     window.open(tgUrl, "_blank", "noopener, noreferrer");
@@ -932,7 +932,7 @@ const openSkype = (event?: Event): void => {
   let skype: string = skypeUsername || tel;
 
   // Telegram url
-  let skypeUrl: string = "skype:" + skype;
+  let skypeUrl: string = "skype:" + encodeURIComponent(skype);
 
   // open the url
   window.open(skypeUrl, "_blank", "noopener, noreferrer");
@@ -945,7 +945,7 @@ const openWhatsApp = (event?: Event): void => {
   event.preventDefault();
 
   // WhatsApp url
-  let waUrl: string = "https://wa.me/" + tel;
+  let waUrl: string = "https://wa.me/" + encodeURIComponent(tel);
 
   // the details if provided
   if (msg) {
@@ -962,8 +962,10 @@ const openWhatsApp = (event?: Event): void => {
 const callDefault = (event?: Event) => {
   event.preventDefault();
 
-  let callUrl: string = TEL + tel;
+  let callUrl: string = TEL + encodeURIComponent(tel);
+
   window.open(callUrl);
+
   hideMailgo();
 };
 
