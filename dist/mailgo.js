@@ -1012,15 +1012,13 @@ var openGmail = function openGmail(event) {
   var urlString;
 
   try {
-    console.log(url);
     urlString = url.toString();
   } catch (e) {
     urlString = href;
   } // Gmail url
 
 
-  var gmailUrl = "https://mail.google.com/mail/?extsrc=mailto&url=" + encodeURIComponent(urlString);
-  console.log(gmailUrl); // open the link
+  var gmailUrl = "https://mail.google.com/mail/?extsrc=mailto&url=" + encodeURIComponent(urlString); // open the link
 
   window.open(gmailUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
