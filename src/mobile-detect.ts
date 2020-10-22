@@ -1,10 +1,10 @@
-export const isMobile = () => {
+export const userAgent = () => {
   if (
     /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
       navigator.userAgent
     )
   ) {
-    return true;
+    return "mobile";
   }
-  return false;
+  return "desktop";
 };

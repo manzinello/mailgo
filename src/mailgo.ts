@@ -21,6 +21,8 @@ const {
   MAILGO_TEL,
   MAILGO_SMS,
   NO_MAILGO,
+  DESKTOP,
+  MOBILE,
   spanHTMLTag,
   aHTMLTag,
   pHTMLTag,
@@ -39,6 +41,9 @@ const {
 const languages: MailgoLanguages = require("../i18n/languages.json");
 const translations: MailgoTranslations = require("../i18n/translations.json");
 
+// mobile detect
+const { userAgent } = require("./mobile-detect");
+
 // mailgo scss
 const mailgoCSS: string = require("./mailgo.scss").toString();
 
@@ -54,10 +59,15 @@ let strings: MailgoTranslation;
 // global mailgo config object
 let config: MailgoConfig;
 
+// config to check if the client is mobile or desktop
+let isMobile: boolean = false;
+
 // default config attributes
 let mailtoEnabled: boolean = true;
 let telEnabled: boolean = true;
 let smsEnabled: boolean = false;
+let desktopEnabled: boolean = true;
+let mobileEnabled: boolean = true;
 let validateEmailConfig: boolean = true;
 let validateTelConfig: boolean = true;
 let showFooterConfig: boolean = true;
@@ -113,6 +123,27 @@ let gmail: HTMLLinkElement,
 const mailgoInit = (): void => {
   // mailgo, if mailgo not already exists
   let mailgoExists = !!document.getElementById(MAILGO_MAIL);
+
+  // set the boolean for mobile/desktop
+  isMobile = userAgent() === "mobile";
+
+  // responsive settings
+  {
+    if (typeof config?.desktop !== "undefined") {
+      desktopEnabled = config.desktop;
+      // if it is a desktop and desktop is not enabled no init mailgo
+      if (!isMobile && !desktopEnabled) {
+        return;
+      }
+    }
+    if (typeof config?.mobile !== "undefined") {
+      mobileEnabled = config.mobile;
+      // if it is a desktop and desktop is not enabled no init mailgo
+      if (isMobile && !mobileEnabled) {
+        return;
+      }
+    }
+  }
 
   if (!mailgoExists) {
     // modal

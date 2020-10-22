@@ -11,6 +11,10 @@ export const outlookDeepLink: string = "ms-outlook://";
 // no mailgo class
 export const NO_MAILGO: string = "no-mailgo";
 
+// responsive settings
+export const DESKTOP: string = "desktop";
+export const MOBILE: string = "mobile";
+
 // mailgo types
 export const MAILGO_MAIL: string = "mailgo";
 export const MAILGO_TEL: string = "mailgo-tel";
