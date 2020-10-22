@@ -31,6 +31,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "SMS": function() { return /* binding */ SMS; },
 /* harmony export */   "outlookDeepLink": function() { return /* binding */ outlookDeepLink; },
 /* harmony export */   "NO_MAILGO": function() { return /* binding */ NO_MAILGO; },
+/* harmony export */   "DESKTOP": function() { return /* binding */ DESKTOP; },
+/* harmony export */   "MOBILE": function() { return /* binding */ MOBILE; },
 /* harmony export */   "MAILGO_MAIL": function() { return /* binding */ MAILGO_MAIL; },
 /* harmony export */   "MAILGO_TEL": function() { return /* binding */ MAILGO_TEL; },
 /* harmony export */   "MAILGO_SMS": function() { return /* binding */ MAILGO_SMS; },
@@ -50,7 +52,10 @@ var SMS = "sms:"; // deep linking
 
 var outlookDeepLink = "ms-outlook://"; // no mailgo class
 
-var NO_MAILGO = "no-mailgo"; // mailgo types
+var NO_MAILGO = "no-mailgo"; // responsive settings
+
+var DESKTOP = "desktop";
+var MOBILE = "mobile"; // mailgo types
 
 var MAILGO_MAIL = "mailgo";
 var MAILGO_TEL = "mailgo-tel";
@@ -64,6 +69,24 @@ var defaultLang = "en"; // events tag
 
 var mailgoReadyTag = "mailgo-ready";
 var mailgoRenderTag = "mailgo-render";
+
+/***/ }),
+
+/***/ 43:
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "userAgent": function() { return /* binding */ userAgent; }
+/* harmony export */ });
+var userAgent = function userAgent() {
+  if (/Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent)) {
+    return "mobile";
+  }
+
+  return "desktop";
+};
 
 /***/ }),
 
@@ -266,6 +289,8 @@ var _require = __webpack_require__(249),
     MAILGO_TEL = _require.MAILGO_TEL,
     MAILGO_SMS = _require.MAILGO_SMS,
     NO_MAILGO = _require.NO_MAILGO,
+    DESKTOP = _require.DESKTOP,
+    MOBILE = _require.MOBILE,
     spanHTMLTag = _require.spanHTMLTag,
     aHTMLTag = _require.aHTMLTag,
     pHTMLTag = _require.pHTMLTag,
@@ -281,7 +306,11 @@ var _require2 = __webpack_require__(12),
 
 var languages = __webpack_require__(168);
 
-var translations = __webpack_require__(340); // mailgo scss
+var translations = __webpack_require__(340); // mobile detect
+
+
+var _require3 = __webpack_require__(43),
+    userAgent = _require3.userAgent; // mailgo scss
 
 
 var mailgoCSS = __webpack_require__(801).toString(); // default language
@@ -293,11 +322,15 @@ var defaultStrings = translations[defaultLang]; // translation strings
 
 var strings; // global mailgo config object
 
-var config; // default config attributes
+var config; // config to check if the client is mobile or desktop
+
+var isMobile = false; // default config attributes
 
 var mailtoEnabled = true;
 var telEnabled = true;
 var smsEnabled = false;
+var desktopEnabled = true;
+var mobileEnabled = true;
 var validateEmailConfig = true;
 var validateTelConfig = true;
 var showFooterConfig = true;
@@ -319,10 +352,32 @@ var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, cop
 
 var mailgoInit = function mailgoInit() {
   // mailgo, if mailgo not already exists
-  var mailgoExists = !!document.getElementById(MAILGO_MAIL);
+  var mailgoExists = !!document.getElementById(MAILGO_MAIL); // set the boolean for mobile/desktop
+
+  isMobile = userAgent() === "mobile"; // responsive settings
+
+  {
+    var _config, _config2;
+
+    if (typeof ((_config = config) === null || _config === void 0 ? void 0 : _config.desktop) !== "undefined") {
+      desktopEnabled = config.desktop; // if it is a desktop and desktop is not enabled no init mailgo
+
+      if (!isMobile && !desktopEnabled) {
+        return;
+      }
+    }
+
+    if (typeof ((_config2 = config) === null || _config2 === void 0 ? void 0 : _config2.mobile) !== "undefined") {
+      mobileEnabled = config.mobile; // if it is a desktop and desktop is not enabled no init mailgo
+
+      if (isMobile && !mobileEnabled) {
+        return;
+      }
+    }
+  }
 
   if (!mailgoExists) {
-    var _config, _config2;
+    var _config3, _config4;
 
     // modal
     modalMailto = createElement();
@@ -335,7 +390,7 @@ var mailgoInit = function mailgoInit() {
 
     mailgoSetLanguage(); // if dark is in config
 
-    if ((_config = config) === null || _config === void 0 ? void 0 : _config.dark) {
+    if ((_config3 = config) === null || _config3 === void 0 ? void 0 : _config3.dark) {
       enableDarkMode(MAILGO_MAIL);
     } else {
       disableDarkMode(MAILGO_MAIL);
@@ -464,7 +519,7 @@ var mailgoInit = function mailgoInit() {
     copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
     modalContent.appendChild(copyMail); // hide mailgo.dev in footer only if showFooter is defined and equal to false
 
-    if (typeof ((_config2 = config) === null || _config2 === void 0 ? void 0 : _config2.showFooter) !== "undefined") {
+    if (typeof ((_config4 = config) === null || _config4 === void 0 ? void 0 : _config4.showFooter) !== "undefined") {
       showFooterConfig = config.showFooter;
     }
 
@@ -482,7 +537,7 @@ var mailgoInit = function mailgoInit() {
   var mailgoTelExists = !!document.getElementById(MAILGO_TEL);
 
   if (!mailgoTelExists) {
-    var _config3, _config4;
+    var _config5, _config6;
 
     // modal
     modalTel = createElement();
@@ -493,7 +548,7 @@ var mailgoInit = function mailgoInit() {
     modalTel.setAttribute("tabindex", "-1");
     modalTel.setAttribute("aria-labelledby", "m-tel-title"); // if dark is in config
 
-    if ((_config3 = config) === null || _config3 === void 0 ? void 0 : _config3.dark) {
+    if ((_config5 = config) === null || _config5 === void 0 ? void 0 : _config5.dark) {
       enableDarkMode(MAILGO_TEL);
     } else {
       disableDarkMode(MAILGO_TEL);
@@ -608,7 +663,7 @@ var mailgoInit = function mailgoInit() {
     _modalContent.appendChild(copyTel); // hide mailgo.dev in footer only if showFooter is defined and equal to false
 
 
-    if (typeof ((_config4 = config) === null || _config4 === void 0 ? void 0 : _config4.showFooter) !== "undefined") {
+    if (typeof ((_config6 = config) === null || _config6 === void 0 ? void 0 : _config6.showFooter) !== "undefined") {
       showFooterConfig = config.showFooter;
     }
 
@@ -703,7 +758,7 @@ function mailgoCheckRender(event) {
 
 
 function mailgoPreRender() {
-  var _config7;
+  var _config9;
 
   var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : MAILGO_MAIL;
   var mailgoElementOrUrl = arguments.length > 1 ? arguments[1] : undefined;
@@ -725,7 +780,7 @@ function mailgoPreRender() {
 
 
   if (type === MAILGO_MAIL) {
-    var _config5;
+    var _config7;
 
     // if the element href=^"mailto:" or href=^"mailgo:"
     if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
@@ -766,7 +821,7 @@ function mailgoPreRender() {
     } // if is in config use it
 
 
-    if (typeof ((_config5 = config) === null || _config5 === void 0 ? void 0 : _config5.validateEmail) !== "undefined") {
+    if (typeof ((_config7 = config) === null || _config7 === void 0 ? void 0 : _config7.validateEmail) !== "undefined") {
       validateEmailConfig = config.validateEmail;
     }
 
@@ -782,7 +837,7 @@ function mailgoPreRender() {
     }
   } // mailgo tel
   else if (type === MAILGO_TEL) {
-      var _config6;
+      var _config8;
 
       if (validateUrl(href, TEL)) {
         tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
@@ -804,7 +859,7 @@ function mailgoPreRender() {
       } // if is in config use it
 
 
-      if (typeof ((_config6 = config) === null || _config6 === void 0 ? void 0 : _config6.validateTel) !== "undefined") {
+      if (typeof ((_config8 = config) === null || _config8 === void 0 ? void 0 : _config8.validateTel) !== "undefined") {
         validateTelConfig = config.validateTel;
       } // validate the phone number
 
@@ -829,7 +884,7 @@ function mailgoPreRender() {
     } // if config.dark is set to true then all the modals will be in dark mode
 
 
-  if (mailgoElement && !((_config7 = config) === null || _config7 === void 0 ? void 0 : _config7.dark)) {
+  if (mailgoElement && !((_config9 = config) === null || _config9 === void 0 ? void 0 : _config9.dark)) {
     // if the element contains dark as class enable dark mode
     if (mailgoElement.classList.contains("dark")) {
       enableDarkMode(type);
@@ -1332,18 +1387,18 @@ var composedPath = function composedPath(el) {
 
 
 var mailgoActionEnabled = function mailgoActionEnabled(action) {
-  var _config8, _config9;
+  var _config10, _config11;
 
   // by default all the actions are enabled
   if (!config) {
     return true;
   }
 
-  if (config && !((_config8 = config) === null || _config8 === void 0 ? void 0 : _config8.actions)) {
+  if (config && !((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.actions)) {
     return true;
   }
 
-  if (config && config.actions && ((_config9 = config) === null || _config9 === void 0 ? void 0 : _config9.actions[action]) === false) {
+  if (config && config.actions && ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.actions[action]) === false) {
     return false;
   }
 
@@ -1352,11 +1407,11 @@ var mailgoActionEnabled = function mailgoActionEnabled(action) {
 
 
 var mailgoSetLanguage = function mailgoSetLanguage() {
-  var _config10;
+  var _config12;
 
   var languageType = "default lang"; // if a language is defined in configuration use it
 
-  if (((_config10 = config) === null || _config10 === void 0 ? void 0 : _config10.lang) && languages.indexOf(config.lang) !== -1) {
+  if (((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.lang) && languages.indexOf(config.lang) !== -1) {
     lang = config.lang;
     languageType = "config lang";
   } else {
@@ -1399,25 +1454,25 @@ function mailgo(mailgoConfig) {
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
     if (typeof window !== "undefined") {
-      var _config11, _config12, _config13, _config14, _config15;
+      var _config13, _config14, _config15, _config16, _config17;
 
       // if is set in config use it (load the mailgo CSS)
-      if (typeof ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.loadCSS) !== "undefined") {
+      if (typeof ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.loadCSS) !== "undefined") {
         loadCSSConfig = config.loadCSS;
       } // if is set in config use it (enable mailto)
 
 
-      if (typeof ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.mailto) !== "undefined") {
+      if (typeof ((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.mailto) !== "undefined") {
         mailtoEnabled = config.mailto;
       } // if is set in config use it (enable tel)
 
 
-      if (typeof ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.tel) !== "undefined") {
+      if (typeof ((_config15 = config) === null || _config15 === void 0 ? void 0 : _config15.tel) !== "undefined") {
         telEnabled = config.tel;
       } // if is set in config use it (enable sms)
 
 
-      if (typeof ((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.sms) !== "undefined") {
+      if (typeof ((_config16 = config) === null || _config16 === void 0 ? void 0 : _config16.sms) !== "undefined") {
         smsEnabled = config.sms;
       } // if load css enabled load it!
 
@@ -1428,10 +1483,10 @@ function mailgo(mailgoConfig) {
       } // if is set an initEvent add the listener
 
 
-      if ((_config15 = config) === null || _config15 === void 0 ? void 0 : _config15.initEvent) {
-        var _config16;
+      if ((_config17 = config) === null || _config17 === void 0 ? void 0 : _config17.initEvent) {
+        var _config18;
 
-        if ((_config16 = config) === null || _config16 === void 0 ? void 0 : _config16.listenerOptions) {
+        if ((_config18 = config) === null || _config18 === void 0 ? void 0 : _config18.listenerOptions) {
           // listener options specified
           document.addEventListener(config.initEvent, mailgoInit, config.listenerOptions);
         } else {
