@@ -200,7 +200,8 @@ module.exports = [
     output: {
       filename: "mailgo.mjs",
       library: "mailgo",
-      libraryTarget: "commonjs2",
+      libraryTarget: "umd",
+      umdNamedDefine: true,
       environment: mailgoOutputEnvironment,
       globalObject: "typeof self !== 'undefined' ? self : this",
       path: path.resolve(__dirname, "lib"),

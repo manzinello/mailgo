@@ -20,3 +20,5 @@ export {
   mailgo,
   start,
 };
+
+export default mailgo;

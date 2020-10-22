@@ -83,7 +83,8 @@
     <a class="dark" href="sms:+39 123-456-78?body=testo">SMS</a>
 
     <script type="module">
-      import { mailgo } from "../lib/mailgo.mjs";
+      import * as Mailgo from "../lib/mailgo.mjs";
+      console.log(Mailgo);
     </script>
   </body>
 </html>
