@@ -82,10 +82,8 @@
 
     <a class="dark" href="sms:+39 123-456-78?body=testo">SMS</a>
 
-    <script
-      crossorigin="anonymous"
-      type="module"
-      src="../lib/mailgo.mjs"
-    ></script>
+    <script type="module">
+      import { mailgo } from "../lib/mailgo.mjs";
+    </script>
   </body>
 </html>

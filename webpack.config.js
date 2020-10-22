@@ -186,7 +186,7 @@ module.exports = [
     mode: "production",
     target: "web",
     devtool: "source-map",
-    entry: "./mailgo.lib.ts",
+    entry: "./mailgo.es.ts",
     context: path.join(__dirname, "webpack"),
     module: {
       rules: mailgoRules,
@@ -200,7 +200,7 @@ module.exports = [
     output: {
       filename: "mailgo.mjs",
       library: "mailgo",
-      libraryTarget: "umd",
+      libraryTarget: "commonjs2",
       environment: mailgoOutputEnvironment,
       globalObject: "typeof self !== 'undefined' ? self : this",
       path: path.resolve(__dirname, "lib"),
