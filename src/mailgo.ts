@@ -828,24 +828,17 @@ function mailgoRender(type: string = MAILGO_MAIL): boolean {
 const openGmail = (event?: Event): void => {
   event.preventDefault();
 
+  let urlString: string;
+
+  try {
+    urlString = url.toString();
+  } catch (e) {
+    urlString = href;
+  }
+
   // Gmail url
   let gmailUrl: string =
-    "https://mail.google.com/mail/u/0/?view=cm&source=mailto&to=" +
-    encodeURIComponent(mail);
-
-  // the details if provided
-  if (cc) {
-    gmailUrl = gmailUrl.concat("&cc=" + encodeURIComponent(cc));
-  }
-  if (bcc) {
-    gmailUrl = gmailUrl.concat("&bcc=" + encodeURIComponent(bcc));
-  }
-  if (subject) {
-    gmailUrl = gmailUrl.concat("&subject=" + subject);
-  }
-  if (bodyMail) {
-    gmailUrl = gmailUrl.concat("&body=" + bodyMail);
-  }
+    "https://mail.google.com/mail/?extsrc=mailto&url=" + urlString;
 
   // open the link
   window.open(gmailUrl, "_blank", "noopener, noreferrer");
@@ -866,6 +859,7 @@ const openOutlook = (event?: Event): void => {
   if (subject) {
     outlookUrl = outlookUrl.concat("&subject=" + subject);
   }
+
   if (bodyMail) {
     outlookUrl = outlookUrl.concat("&body=" + bodyMail);
   }
