@@ -862,7 +862,6 @@ const openGmail = (event?: Event): void => {
   let urlString: string;
 
   try {
-    console.log(url);
     urlString = url.toString();
   } catch (e) {
     urlString = href;
@@ -872,8 +871,6 @@ const openGmail = (event?: Event): void => {
   let gmailUrl: string =
     "https://mail.google.com/mail/?extsrc=mailto&url=" +
     encodeURIComponent(urlString);
-
-  console.log(gmailUrl);
 
   // open the link
   window.open(gmailUrl, "_blank", "noopener, noreferrer");
