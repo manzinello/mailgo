@@ -1018,9 +1018,9 @@ var openGmail = function openGmail(event) {
   } // Gmail url
 
 
-  var gmailUrl = "https://mail.google.com/mail/?extsrc=mailto&url=" + urlString; // open the link
+  var gmailUrl = "https://mail.google.com/mail/?extsrc=mailto&url=" + encodeURIComponent(urlString); // open the link
 
-  window.open(encodeURIComponent(gmailUrl), "_blank", "noopener, noreferrer"); // hide the modal
+  window.open(gmailUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1028,18 +1028,18 @@ var openGmail = function openGmail(event) {
 var openOutlook = function openOutlook(event) {
   event.preventDefault(); // Outlook url
 
-  var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + mail; // the details if provided
+  var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail); // the details if provided
 
   if (subject) {
-    outlookUrl = outlookUrl.concat("&subject=" + subject);
+    outlookUrl = outlookUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    outlookUrl = outlookUrl.concat("&body=" + encodeURIComponent(bodyMail));
   } // open the link
 
 
-  window.open(encodeURIComponent(outlookUrl), "_blank", "noopener, noreferrer"); // hide the modal
+  window.open(outlookUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1050,15 +1050,15 @@ var openYahooMail = function openYahooMail(event) {
   var yahooUrl = "https://compose.mail.yahoo.com/?to=" + mail; // the details if provided
 
   if (subject) {
-    yahooUrl = yahooUrl.concat("&subject=" + subject);
+    yahooUrl = yahooUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+    yahooUrl = yahooUrl.concat("&body=" + encodeURIComponent(bodyMail));
   } // open the link
 
 
-  window.open(encodeURIComponent(yahooUrl), "_blank", "noopener, noreferrer"); // hide the modal
+  window.open(yahooUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1080,9 +1080,9 @@ var openTelegram = function openTelegram(event) {
 
   if (telegramUsername) {
     // Telegram url
-    var tgUrl = "https://t.me/" + telegramUsername; // open the url
+    var tgUrl = "https://t.me/" + encodeURIComponent(telegramUsername); // open the url
 
-    window.open(encodeURIComponent(tgUrl), "_blank", "noopener, noreferrer"); // hide the modal
+    window.open(tgUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
     hideMailgo();
   }
@@ -1092,9 +1092,9 @@ var openSkype = function openSkype(event) {
   event.preventDefault();
   var skype = skypeUsername || tel; // Telegram url
 
-  var skypeUrl = "skype:" + skype; // open the url
+  var skypeUrl = "skype:" + encodeURIComponent(skype); // open the url
 
-  window.open(encodeURIComponent(skypeUrl), "_blank", "noopener, noreferrer"); // hide the modal
+  window.open(skypeUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1102,14 +1102,14 @@ var openSkype = function openSkype(event) {
 var openWhatsApp = function openWhatsApp(event) {
   event.preventDefault(); // WhatsApp url
 
-  var waUrl = "https://wa.me/" + tel; // the details if provided
+  var waUrl = "https://wa.me/" + encodeURIComponent(tel); // the details if provided
 
   if (msg) {
-    waUrl = waUrl + "?text=" + msg;
+    waUrl = waUrl.concat("?text=" + msg);
   } // open the url
 
 
-  window.open(encodeURIComponent(waUrl), "_blank", "noopener, noreferrer"); // hide the modal
+  window.open(waUrl, "_blank", "noopener, noreferrer"); // hide the modal
 
   hideMailgo();
 };
@@ -1117,7 +1117,7 @@ var openWhatsApp = function openWhatsApp(event) {
 var callDefault = function callDefault(event) {
   event.preventDefault();
   var callUrl = TEL + tel;
-  window.open(encodeURIComponent(callUrl));
+  window.open(callUrl);
   hideMailgo();
 };
 

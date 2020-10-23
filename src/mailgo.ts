@@ -869,10 +869,11 @@ const openGmail = (event?: Event): void => {
 
   // Gmail url
   let gmailUrl: string =
-    "https://mail.google.com/mail/?extsrc=mailto&url=" + urlString;
+    "https://mail.google.com/mail/?extsrc=mailto&url=" +
+    encodeURIComponent(urlString);
 
   // open the link
-  window.open(encodeURIComponent(gmailUrl), "_blank", "noopener, noreferrer");
+  window.open(gmailUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -883,19 +884,20 @@ const openOutlook = (event?: Event): void => {
 
   // Outlook url
   let outlookUrl: string =
-    "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + mail;
+    "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
+    encodeURIComponent(mail);
 
   // the details if provided
   if (subject) {
-    outlookUrl = outlookUrl.concat("&subject=" + subject);
+    outlookUrl = outlookUrl.concat("&subject=" + encodeURIComponent(subject));
   }
 
   if (bodyMail) {
-    outlookUrl = outlookUrl.concat("&body=" + bodyMail);
+    outlookUrl = outlookUrl.concat("&body=" + encodeURIComponent(bodyMail));
   }
 
   // open the link
-  window.open(encodeURIComponent(outlookUrl), "_blank", "noopener, noreferrer");
+  window.open(outlookUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -909,14 +911,14 @@ const openYahooMail = (event?: Event): void => {
 
   // the details if provided
   if (subject) {
-    yahooUrl = yahooUrl.concat("&subject=" + subject);
+    yahooUrl = yahooUrl.concat("&subject=" + encodeURIComponent(subject));
   }
   if (bodyMail) {
-    yahooUrl = yahooUrl.concat("&body=" + bodyMail);
+    yahooUrl = yahooUrl.concat("&body=" + encodeURIComponent(bodyMail));
   }
 
   // open the link
-  window.open(encodeURIComponent(yahooUrl), "_blank", "noopener, noreferrer");
+  window.open(yahooUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -941,10 +943,10 @@ const openTelegram = (event?: Event): void => {
   // check if telegramUsername exists
   if (telegramUsername) {
     // Telegram url
-    let tgUrl: string = "https://t.me/" + telegramUsername;
+    let tgUrl: string = "https://t.me/" + encodeURIComponent(telegramUsername);
 
     // open the url
-    window.open(encodeURIComponent(tgUrl), "_blank", "noopener, noreferrer");
+    window.open(tgUrl, "_blank", "noopener, noreferrer");
 
     // hide the modal
     hideMailgo();
@@ -957,10 +959,10 @@ const openSkype = (event?: Event): void => {
   let skype: string = skypeUsername || tel;
 
   // Telegram url
-  let skypeUrl: string = "skype:" + skype;
+  let skypeUrl: string = "skype:" + encodeURIComponent(skype);
 
   // open the url
-  window.open(encodeURIComponent(skypeUrl), "_blank", "noopener, noreferrer");
+  window.open(skypeUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -970,15 +972,15 @@ const openWhatsApp = (event?: Event): void => {
   event.preventDefault();
 
   // WhatsApp url
-  let waUrl: string = "https://wa.me/" + tel;
+  let waUrl: string = "https://wa.me/" + encodeURIComponent(tel);
 
   // the details if provided
   if (msg) {
-    waUrl = waUrl + "?text=" + msg;
+    waUrl = waUrl.concat("?text=" + msg);
   }
 
   // open the url
-  window.open(encodeURIComponent(waUrl), "_blank", "noopener, noreferrer");
+  window.open(waUrl, "_blank", "noopener, noreferrer");
 
   // hide the modal
   hideMailgo();
@@ -989,7 +991,7 @@ const callDefault = (event?: Event) => {
 
   let callUrl: string = TEL + tel;
 
-  window.open(encodeURIComponent(callUrl));
+  window.open(callUrl);
 
   hideMailgo();
 };
@@ -1183,8 +1185,9 @@ const createTextNode = (element: string): Text =>
   document.createTextNode(element);
 
 // decrypt email
-const mailToEncoded = (encoded: string): string =>
-  (window.location.href = MAILTO + atob(encoded));
+const mailToEncoded = (encoded: string): string => {
+  return (window.location.href = MAILTO + atob(encoded));
+};
 
 // encode email
 const encodeEmail = (email: string): string => btoa(email);
