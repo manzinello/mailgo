@@ -55,3 +55,7 @@ Simple example of mailgo with `sms:` enabled
 ### `index.neumorphism.html`
 
 Simple example of mailgo with a test of neumorphism (CSS loaded separately)
+
+### `index.responsive.html`
+
+Simple example of mailgo with a test of desktop/mobile settings
