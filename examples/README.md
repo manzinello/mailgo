@@ -59,3 +59,7 @@ Simple example of mailgo with a test of neumorphism (CSS loaded separately)
 ### `index.responsive.html`
 
 Simple example of mailgo with a test of desktop/mobile settings
+
+### `index.skypack.html`
+
+Simple example of mailgo using <https://www.skypack.dev/view/mailgo>
