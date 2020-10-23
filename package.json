@@ -70,5 +70,10 @@
     "type": "opencollective",
     "url": "https://opencollective.com/mailgo"
   },
-  "sideEffects": false
+  "sideEffects": false,
+  "exports": {
+    ".": {
+      "import": "./lib/mailgo.js"
+    }
+  }
 }
