@@ -182,29 +182,4 @@ module.exports = [
       path: path.resolve(__dirname, "lib"),
     },
   },
-  {
-    mode: "production",
-    target: "web",
-    devtool: "source-map",
-    entry: "./mailgo.es.ts",
-    context: path.join(__dirname, "webpack"),
-    module: {
-      rules: mailgoRules,
-    },
-    optimization: {
-      minimize: false,
-    },
-    resolve: {
-      extensions: [".ts", ".js"],
-    },
-    output: {
-      filename: "mailgo.mjs",
-      library: "mailgo",
-      libraryTarget: "umd",
-      umdNamedDefine: true,
-      environment: mailgoOutputEnvironment,
-      globalObject: "typeof self !== 'undefined' ? self : this",
-      path: path.resolve(__dirname, "lib"),
-    },
-  },
 ];
