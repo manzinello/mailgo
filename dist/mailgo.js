@@ -1064,8 +1064,7 @@ var openYahooMail = function openYahooMail(event) {
 };
 
 var openDefault = function openDefault(event) {
-  event.preventDefault();
-  console.log(href); // if href exists and not ends with #mailgo go there
+  event.preventDefault(); // if href exists and not ends with #mailgo go there
 
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
@@ -1116,14 +1115,12 @@ var openWhatsApp = function openWhatsApp(event) {
 };
 
 var callDefault = function callDefault(event) {
-  event.preventDefault();
-  console.log(href); // if href exists and not ends with #mailgo go there
+  event.preventDefault(); // if href exists and not ends with #mailgo go there
 
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
   } else {
     var callUrl = TEL + tel;
-    console.log(callUrl);
     window.open(callUrl);
   }
 

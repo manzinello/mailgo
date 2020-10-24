@@ -927,8 +927,6 @@ const openYahooMail = (event?: Event): void => {
 const openDefault = (event?: Event): void => {
   event.preventDefault();
 
-  console.log(href);
-
   // if href exists and not ends with #mailgo go there
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
@@ -991,14 +989,11 @@ const openWhatsApp = (event?: Event): void => {
 const callDefault = (event?: Event) => {
   event.preventDefault();
 
-  console.log(href);
-
   // if href exists and not ends with #mailgo go there
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
   } else {
     let callUrl: string = TEL + tel;
-    console.log(callUrl);
     window.open(callUrl);
   }
 
