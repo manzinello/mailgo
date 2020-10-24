@@ -80,15 +80,11 @@ let activeMailgoType: MailgoType;
 // modals global object
 let modalMailto: HTMLElement, modalTel: HTMLElement;
 
-// mailgo variables
-let url: URL,
-  href: string,
-  mail: string,
-  encEmail: string,
-  cc: string,
-  bcc: string,
-  subject: string,
-  bodyMail: string;
+// mailgo general variables
+let url: URL, href: string, lessSpamHref: string;
+
+// mailgo mail variables
+let mail: string, cc: string, bcc: string, subject: string, bodyMail: string;
 
 // mailgo tel variables
 let tel: string, msg: string, telegramUsername: string, skypeUsername: string;
@@ -665,8 +661,6 @@ function mailgoPreRender(
       bodyMail = mailgoElement.getAttribute("data-body");
     }
 
-    encEmail = encode(mail);
-
     // if is in config use it
     if (typeof config?.validateEmail !== "undefined") {
       validateEmailConfig = config.validateEmail;
@@ -1001,13 +995,15 @@ const openDefault = (event?: Event): void => {
   // if the installation is classic the browser can follow the default behaviour
   if (installation === CLASSIC) {
     window.location.href = href;
-  } else {
+  } else if (installation === LESS_SPAM) {
     // the case of less-spam installation, href is not present or not useful
     let url;
 
     if (type === MAILGO_MAIL) {
+      // main url
       url = MAILTO + decode(mail);
     } else if (type === MAILGO_TEL) {
+      // main url
       url = TEL + tel;
     }
 
@@ -1054,26 +1050,29 @@ const validateUrl = (url: string, type: string = MAILTO) => {
 
 // function that returns if an element is a mailgo
 function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
-  let href: string = (element as HTMLLinkElement).getAttribute("href");
+  let elementHref: string = (element as HTMLLinkElement).getAttribute("href");
 
   // return null if there is no-mailgo in class
   if (element.classList?.contains(NO_MAILGO)) {
     return null;
   }
 
-  if (href || element.classList?.contains("mailgo")) {
+  if (elementHref || element.classList?.contains("mailgo")) {
     //
-    if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
+    if (validateUrl(elementHref, MAILTO) || validateUrl(elementHref, MAILGO)) {
       return {
         type: MAILGO_MAIL,
         installation: CLASSIC,
       };
-    } else if (validateUrl(href, TEL) || validateUrl(href, CALLTO)) {
+    } else if (
+      validateUrl(elementHref, TEL) ||
+      validateUrl(elementHref, CALLTO)
+    ) {
       return {
         type: MAILGO_TEL,
         installation: CLASSIC,
       };
-    } else if (validateUrl(href, SMS)) {
+    } else if (validateUrl(elementHref, SMS)) {
       return {
         type: MAILGO_SMS,
         installation: CLASSIC,
@@ -1081,7 +1080,7 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
     }
   }
 
-  if (href === "#mailgo" || element.classList?.contains("mailgo")) {
+  if (elementHref === "#mailgo" || element.classList?.contains("mailgo")) {
     // GO ON
     if (element.hasAttribute("data-address")) {
       return {
@@ -1303,6 +1302,14 @@ const composedPath = (
 
     el = el.parentElement;
   }
+};
+
+// function to recreate a mailto: or tel: href from less-spam
+const buildLessSpamHref = (type: string, parameters: string[]): string => {
+  lessSpamHref = type;
+  let joinedParams = parameters.join("&");
+  lessSpamHref = lessSpamHref.concat(encodeURIComponent("?" + joinedParams));
+  return lessSpamHref;
 };
 
 // function to check an action is enabled or not
