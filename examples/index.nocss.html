@@ -2,73 +2,146 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>mailgo examples</title>
+    <title>mailgo examples with no CSS</title>
   </head>
   <body>
-    <h1>mailto:</h1>
+    <h1>mailto</h1>
+    <p><a href="mailto:matteo@manzinello.dev">matteo@manzinello.dev</a></p>
+    <p>
+      <a href="mailto:matteo@manzinello.dev"
+        ><span>matteo@manzinello.dev (with subelement of a tag)</span></a
+      >
+    </p>
+    <p>
+      <a href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com"
+        >mailto with more "to" and a "cc" not valid</a
+      >
+    </p>
+    <p>
+      <a href="mailto:matteo@manzinello.dev,matteomanzinello@gmail.com?cc=test"
+        >mailto with more "to" and a "cc" not valid</a
+      >
+    </p>
+    <p>
+      <a href="mailto:matteo@manzinello.dev?subject=ciao"
+        >example with a subject</a
+      >
+    </p>
+    <p>
+      <a href="mailto:matteo@manzinello.dev?subject=ciao&body=ciaociao"
+        >example with a subject and a body</a
+      >
+    </p>
+    <p>
+      <a
+        href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&subject=ciao&body=ciaociao"
+        >example with a cc, a subject and a body</a
+      >
+    </p>
+    <p>
+      <a
+        href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=info@mailgo.dev&subject=ciao&body=ciaociao"
+        >example with a cc, a bcc, a subject and a body</a
+      >
+    </p>
+    <p>
+      <a
+        href=""
+        class="mailgo"
+        data-address="matteo"
+        data-domain="manzinello.dev"
+        >less-spam example (with class=mailgo)</a
+      >
+    </p>
+    <p>
+      <a href="#mailgo" data-address="matteo" data-domain="manzinello.dev"
+        >less-spam example (with href=#mailgo)</a
+      >
+    </p>
+    <h2>Dark mode</h2>
+    <p>
+      <a class="dark" href="mailto:matteo@manzinello.dev"
+        >matteo@manzinello.dev (single dark mode, class=dark)</a
+      >
+    </p>
+    <p>
+      <a
+        class="dark"
+        href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com"
+        >mailto with a cc and single dark mode
+      </a>
+    </p>
+    <p>
+      <a
+        class="dark"
+        href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=info@mailgo.dev&subject=ciao&body=ciaociao"
+        >example with a cc, a bcc, a subject and a body and single dark mode</a
+      >
+    </p>
+    <p>
+      <a
+        href=""
+        class="mailgo dark"
+        data-address="matteo"
+        data-domain="manzinello.dev"
+        >less-spam dark mode example (with class=mailgo)</a
+      >
+    </p>
 
-    <a href="mailto:matteo@manzinello.dev">matteo@manzinello.dev</a>
-    <br />
-    <a href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com"
-      ><p>matteo@manzinello.dev</p></a
-    >
-    <br />
-    <a href="mailto:matteo@manzinello.dev,matteomanzinello@gmail.com?cc=ciao"
-      >matteo@manzinello.dev</a
-    >
-    <br />
-    <a href="mailto:matteo@manzinello.dev?subject=ciao">ciao</a>
-    <br />
-    <a href="" class="mailgo" data-address="matteo" data-domain="manzinello.dev"
-      >scrivimi!</a
-    >
-    <br />
-    <a href="#mailgo" data-address="matteo" data-domain="manzinello.dev"
-      >scrivimi!</a
-    >
+    <h1>tel</h1>
+    <p><a href="tel:+39 123-456-78">+39 123-456-78</a></p>
+    <p>
+      <a href="tel:+39 123-456-78" data-telegram="skype"
+        >tel +39 123-456-78 with telegram</a
+      >
+    </p>
+    <p>
+      <a href="tel:+39 123-456-78" data-skype="skype"
+        >tel +39 123-456-78 with skype username specified</a
+      >
+    </p>
+    <p>
+      <a href="" class="mailgo" data-tel="123456568" data-telegram="telegram"
+        >less-spam tel example (with class=mailgo)</a
+      >
+    </p>
+    <p>
+      <a href="#mailgo" data-tel="123456568" data-telegram="telegram"
+        >less-spam tel example (with href=mailgo)</a
+      >
+    </p>
+    <p><a href="callto:+39 123-456-78">a simple callto</a></p>
+    <h2>Dark mode</h2>
 
-    <a
-      href="#mailgo"
-      data-address="matteo"
-      data-domain="manzinello.dev"
-      data-cc="matteomanzinello@gmail.com,m@m.it"
-      >more cc</a
-    >
-    <br />
-    <a
-      href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=test"
-      >matteo@manzinello.dev</a
-    >
-    <br />
-    <br />
-    <h3>Dark mode</h3>
-    <a class="dark" href="mailto:matteo@manzinello.dev"
-      >matteo@manzinello.dev dark mode</a
-    >
-    <br />
-    <a
-      class="dark"
-      href="mailto:matteo@manzinello.dev?cc=matteomanzinello@gmail.com&bcc=test"
-      >matteo@manzinello.dev dark mode</a
-    >
+    <p>
+      <a class="dark" href="tel:+39 123-456-78"
+        >+39 123-456-78 with dark mode</a
+      >
+    </p>
 
-    <h1>tel:</h1>
-    <a href="#mailgo" data-tel="123456568" data-telegram="telegram">chiamami</a>
-    <br />
-    <a href="tel:+39 123-456-78">skype</a>
-    <br />
-    <a href="callto:+39 123-456-78">callto</a>
+    <p>
+      <a
+        class="dark"
+        href="#mailgo"
+        data-tel="123456568"
+        data-telegram="telegram"
+        >less-spam with telegram and dark mode</a
+      >
+    </p>
 
+    <h1>sms</h1>
+    <p>
+      <a class="dark" href="sms:+39 123-456-78?body=text">SMS with a text</a>
+    </p>
+    <h2>Dark mode</h2>
+    <p>
+      <a class="dark" href="sms:+39 123-456-78?body=text"
+        >SMS with a text and single dark mode</a
+      >
+    </p>
     <br />
     <br />
-    <h3>Dark mode</h3>
-
-    <a class="dark" href="callto:+39 123-456-78">callto dark mode</a>
-
-    <br />
-    <a class="dark" href="#mailgo" data-tel="123456568" data-telegram="telegram"
-      >chiamami dark mode</a
-    >
+    <p><a href="https://mailgo.dev">mailgo.dev</a></p>
 
     <script src="../dist/mailgo.nocss.min.js"></script>
   </body>

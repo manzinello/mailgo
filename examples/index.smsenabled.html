@@ -2,12 +2,22 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <title>mailgo examples</title>
+    <title>mailgo examples with SMS enabled</title>
   </head>
   <body>
-    <h1>sms:</h1>
-
-    <a class="dark" href="sms:+39 123-456-78?body=testo">SMS</a>
+    <h1>sms</h1>
+    <p>
+      <a class="dark" href="sms:+39 123-456-78?body=text">SMS with a text</a>
+    </p>
+    <h2>Dark mode</h2>
+    <p>
+      <a class="dark" href="sms:+39 123-456-78?body=text"
+        >SMS with a text and single dark mode</a
+      >
+    </p>
+    <br />
+    <br />
+    <p><a href="https://mailgo.dev">mailgo.dev</a></p>
 
     <script>
       window.mailgoConfig = {
