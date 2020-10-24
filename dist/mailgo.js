@@ -1063,18 +1063,6 @@ var openYahooMail = function openYahooMail(event) {
   hideMailgo();
 };
 
-var openDefault = function openDefault(event) {
-  event.preventDefault(); // if href exists and not ends with #mailgo go there
-
-  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
-    window.location.href = href;
-  } else {
-    mailToEncoded(encEmail);
-  }
-
-  hideMailgo();
-};
-
 var openTelegram = function openTelegram(event) {
   event.preventDefault(); // check if telegramUsername exists
 
@@ -1114,12 +1102,26 @@ var openWhatsApp = function openWhatsApp(event) {
   hideMailgo();
 };
 
+var openDefault = function openDefault(event) {
+  event.preventDefault(); // if href exists and not ends with #mailgo go there
+
+  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
+    window.location.href = href;
+  } else {
+    // it is the less-spam installation
+    mailToEncoded(encEmail);
+  }
+
+  hideMailgo();
+};
+
 var callDefault = function callDefault(event) {
   event.preventDefault(); // if href exists and not ends with #mailgo go there
 
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
   } else {
+    // it is the less-spam installation
     var callUrl = TEL + tel;
     window.open(callUrl);
   }
@@ -1308,7 +1310,7 @@ var createElement = function createElement() {
 
 var createTextNode = function createTextNode(element) {
   return document.createTextNode(element);
-}; // decrypt email
+}; // mailto encoded email
 
 
 var mailToEncoded = function mailToEncoded(encoded) {
