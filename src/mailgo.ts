@@ -21,7 +21,6 @@ const {
   MAILGO_TEL,
   MAILGO_SMS,
   NO_MAILGO,
-  DESKTOP,
   MOBILE,
   spanHTMLTag,
   aHTMLTag,
@@ -125,7 +124,7 @@ const mailgoInit = (): void => {
   let mailgoExists = !!document.getElementById(MAILGO_MAIL);
 
   // set the boolean for mobile/desktop
-  isMobile = userAgent() === "mobile";
+  isMobile = userAgent() === MOBILE;
 
   // responsive settings
   {
