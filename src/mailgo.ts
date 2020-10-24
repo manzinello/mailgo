@@ -924,19 +924,6 @@ const openYahooMail = (event?: Event): void => {
   hideMailgo();
 };
 
-const openDefault = (event?: Event): void => {
-  event.preventDefault();
-
-  // if href exists and not ends with #mailgo go there
-  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
-    window.location.href = href;
-  } else {
-    mailToEncoded(encEmail);
-  }
-
-  hideMailgo();
-};
-
 const openTelegram = (event?: Event): void => {
   event.preventDefault();
 
@@ -986,6 +973,20 @@ const openWhatsApp = (event?: Event): void => {
   hideMailgo();
 };
 
+const openDefault = (event?: Event): void => {
+  event.preventDefault();
+
+  // if href exists and not ends with #mailgo go there
+  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
+    window.location.href = href;
+  } else {
+    // it is the less-spam installation
+    mailToEncoded(encEmail);
+  }
+
+  hideMailgo();
+};
+
 const callDefault = (event?: Event) => {
   event.preventDefault();
 
@@ -993,6 +994,7 @@ const callDefault = (event?: Event) => {
   if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
   } else {
+    // it is the less-spam installation
     let callUrl: string = TEL + tel;
     window.open(callUrl);
   }
@@ -1188,7 +1190,7 @@ const createElement = (element: string = "div"): HTMLElement =>
 const createTextNode = (element: string): Text =>
   document.createTextNode(element);
 
-// decrypt email
+// mailto encoded email
 const mailToEncoded = (encoded: string): string => {
   return (window.location.href = MAILTO + atob(encoded));
 };
