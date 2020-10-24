@@ -20,7 +20,13 @@ declare module "mailgo" {
     actions?: MailgoActions; // enable/disable actions, default all trues
   };
 
-  export type MailgoModalType = "mailgo" | "mailgo-tel";
+  export type MailgoModalType = "mailgo" | "mailgo-tel" | "mailgo-sms"; // type of mailgo modal
+  export type MailgoInstallationType = "classic" | "less-spam"; // type of mailgo, in classic the link is all in href attribute (like a classic mailto:)
+
+  export type MailgoType = {
+    type?: MailgoModalType;
+    installation?: MailgoInstallationType;
+  };
 
   export type MailgoAction =
     | "gmail"

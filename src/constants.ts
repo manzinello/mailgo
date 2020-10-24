@@ -1,3 +1,5 @@
+import { MailgoModalType, MailgoInstallationType } from "mailgo";
+
 // links
 export const MAILTO: string = "mailto:";
 export const MAILGO: string = "mailgo:";
@@ -15,10 +17,14 @@ export const NO_MAILGO: string = "no-mailgo";
 export const DESKTOP: string = "desktop";
 export const MOBILE: string = "mobile";
 
-// mailgo types
-export const MAILGO_MAIL: string = "mailgo";
-export const MAILGO_TEL: string = "mailgo-tel";
-export const MAILGO_SMS: string = "mailgo-sms";
+// mailgo modal types
+export const MAILGO_MAIL: MailgoModalType = "mailgo";
+export const MAILGO_TEL: MailgoModalType = "mailgo-tel";
+export const MAILGO_SMS: MailgoModalType = "mailgo-sms";
+
+// mailgo installation types
+export const CLASSIC: MailgoInstallationType = "classic";
+export const LESS_SPAM: MailgoInstallationType = "less-spam";
 
 // useful html tags
 export const spanHTMLTag: string = "span";
