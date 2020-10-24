@@ -530,7 +530,7 @@ function mailgoCheckRender(event: Event): boolean {
   }
 
   // if a mailgo is already showing do nothing
-  if (mailgoIsShowing(MAILGO_MAIL) || mailgoIsShowing(MAILGO_TEL)) {
+  if (mailgoIsShowing()) {
     return false;
   }
 
@@ -831,10 +831,7 @@ function mailgoRender(): boolean {
 
     open.addEventListener("click", openDefault);
 
-    copyMail.addEventListener("click", (event) => {
-      event.preventDefault();
-      copy(mail);
-    });
+    copyMail.addEventListener("click", copy);
   }
   // mailgo tel
   else if (type === MAILGO_TEL) {
@@ -863,10 +860,7 @@ function mailgoRender(): boolean {
 
     call.addEventListener("click", openDefault);
 
-    copyTel.addEventListener("click", (event) => {
-      event.preventDefault();
-      copy(tel);
-    });
+    copyTel.addEventListener("click", copy);
   }
 
   // show the mailgo
@@ -1025,21 +1019,31 @@ const openDefault = (event?: Event): void => {
   hideMailgo();
 };
 
-const copy = (content: string): void => {
-  copyToClipboard(content);
-  let activeCopy: HTMLElement;
+const copy = (event?: Event): void => {
+  event.preventDefault();
+
   // the correct copyButton (mail or tel)
-  if (mailgoIsShowing(MAILGO_MAIL)) {
-    activeCopy = copyMail;
-  } else {
-    activeCopy = copyTel;
+  if (mailgoIsShowing()) {
+    let activeCopy: HTMLElement;
+
+    let type = activeMailgoType?.type;
+    if (type === MAILGO_MAIL) {
+      // in case it is showing mail modal copy email address
+      copyToClipboard(mail);
+      activeCopy = copyMail;
+    } else {
+      // in case it is showing tel modal copy phone number
+      copyToClipboard(tel);
+      activeCopy = copyTel;
+    }
+
+    activeCopy.textContent = strings.copied || defaultStrings.copied;
+    setTimeout(() => {
+      activeCopy.textContent = strings.copy || defaultStrings.copy;
+      // hide after the timeout
+      hideMailgo();
+    }, 999);
   }
-  activeCopy.textContent = strings.copied || defaultStrings.copied;
-  setTimeout(() => {
-    activeCopy.textContent = strings.copy || defaultStrings.copy;
-    // hide after the timeout
-    hideMailgo();
-  }, 999);
 };
 
 // function to find if a link is a mailto, tel, callto or sms
@@ -1106,65 +1110,69 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
  */
 const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
   // if mailgo is showing
-  if (mailgoIsShowing(MAILGO_MAIL)) {
-    switch (keyboardEvent.keyCode) {
-      case 27:
-        // Escape
-        hideMailgo();
-        return true;
-      case 71:
-        // g -> open GMail
-        openGmail();
-        return true;
-      case 79:
-        // o -> open Outlook
-        openOutlook();
-        return true;
-      case 89:
-        // y -> open Yahoo Mail
-        openYahooMail();
-        return true;
-      case 32:
-      case 13:
-        // spacebar or enter -> open default
-        openDefault();
-        return true;
-      case 67:
-        // c -> copy
-        copy(mail);
-        return true;
-      default:
-        return false;
-    }
-  } else if (mailgoIsShowing(MAILGO_TEL)) {
-    switch (keyboardEvent.keyCode) {
-      case 27:
-        // Escape
-        hideMailgo();
-        return true;
-      case 84:
-        // t -> open Telegram
-        openTelegram();
-        return true;
-      case 87:
-        // w -> open WhatsApp
-        openWhatsApp();
-        return true;
-      case 83:
-        // s -> open Skype
-        openSkype();
-        return true;
-      case 32:
-      case 13:
-        // spacebar or enter -> open default
-        openDefault();
-        return true;
-      case 67:
-        // c -> copy
-        copy(tel);
-        return true;
-      default:
-        return false;
+  if (mailgoIsShowing()) {
+    let type = activeMailgoType?.type;
+
+    if (type === MAILGO_MAIL) {
+      switch (keyboardEvent.keyCode) {
+        case 27:
+          // Escape
+          hideMailgo();
+          return true;
+        case 71:
+          // g -> open GMail
+          openGmail();
+          return true;
+        case 79:
+          // o -> open Outlook
+          openOutlook();
+          return true;
+        case 89:
+          // y -> open Yahoo Mail
+          openYahooMail();
+          return true;
+        case 32:
+        case 13:
+          // spacebar or enter -> open default
+          openDefault();
+          return true;
+        case 67:
+          // c -> copy
+          copy();
+          return true;
+        default:
+          return false;
+      }
+    } else if (type === MAILGO_TEL) {
+      switch (keyboardEvent.keyCode) {
+        case 27:
+          // Escape
+          hideMailgo();
+          return true;
+        case 84:
+          // t -> open Telegram
+          openTelegram();
+          return true;
+        case 87:
+          // w -> open WhatsApp
+          openWhatsApp();
+          return true;
+        case 83:
+          // s -> open Skype
+          openSkype();
+          return true;
+        case 32:
+        case 13:
+          // spacebar or enter -> open default
+          openDefault();
+          return true;
+        case 67:
+          // c -> copy
+          copy();
+          return true;
+        default:
+          return false;
+      }
     }
   }
   return false;
@@ -1190,8 +1198,12 @@ const hideMailgo = (): void => {
 };
 
 // is the mailgo modal hidden?
-const mailgoIsShowing = (type = MAILGO_MAIL): boolean => {
-  return getModalDisplay(type) === "flex";
+const mailgoIsShowing = (): boolean => {
+  let type = activeMailgoType?.type;
+  if (type) {
+    return getModalDisplay(type) === "flex";
+  }
+  return false;
 };
 
 const byElement = (): HTMLLinkElement => {
