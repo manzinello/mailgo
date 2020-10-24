@@ -336,9 +336,9 @@ var mobileEnabled = true;
 var validateEmailConfig = true;
 var validateTelConfig = true;
 var showFooterConfig = true;
-var loadCSSConfig = true; // currentMailgoType
+var loadCSSConfig = true; // activeMailgoType
 
-var currentMailgoType; // modals global object
+var activeMailgoType; // modals global object
 
 var modalMailto, modalTel; // mailgo variables
 
@@ -728,32 +728,24 @@ function mailgoCheckRender(event) {
 
 
       if (mailtoEnabled || telEnabled || smsEnabled) {
-        // get the current mailgo type
-        currentMailgoType = getMailgoTypeByElement(element); // go on if the currentMailgoType is not null
+        var localMailgoType = getMailgoTypeByElement(element); // go on if the localMailgoType is not null
 
-        if (currentMailgoType) {
-          if (mailtoEnabled && currentMailgoType.type === MAILGO_MAIL) {
-            // stop the normal execution of the element click
-            event.preventDefault(); // render mailgo
+        if (localMailgoType) {
+          var _activeMailgoType;
 
-            mailgoPreRender(element);
-            return true;
-          }
+          // set the active mailgo type
+          activeMailgoType = localMailgoType;
+          var activeMailgoModalType = (_activeMailgoType = activeMailgoType) === null || _activeMailgoType === void 0 ? void 0 : _activeMailgoType.type;
 
-          if (telEnabled && currentMailgoType.type == MAILGO_TEL) {
-            // stop the normal execution of the element click
-            event.preventDefault(); // render mailgo
+          if (activeMailgoModalType) {
+            // check if the setting is enabled and if so go with pre-render
+            if (mailtoEnabled && activeMailgoModalType === MAILGO_MAIL || telEnabled && activeMailgoModalType === MAILGO_TEL || smsEnabled && activeMailgoModalType === MAILGO_SMS) {
+              // stop the normal execution of the element click
+              event.preventDefault(); // render mailgo
 
-            mailgoPreRender(element);
-            return true;
-          }
-
-          if (smsEnabled && currentMailgoType.type == MAILGO_SMS) {
-            // stop the normal execution of the element click
-            event.preventDefault(); // render mailgo, at the moment as tel
-
-            mailgoPreRender(element);
-            return true;
+              mailgoPreRender(element);
+              return true;
+            }
           }
         }
       }
@@ -769,11 +761,11 @@ function mailgoCheckRender(event) {
 
 
 function mailgoPreRender(mailgoElementOrUrl) {
-  var _currentMailgoType, _config9;
+  var _activeMailgoType2, _config9;
 
   var mailgoElement; // get the type from current mailgo type
 
-  var type = (_currentMailgoType = currentMailgoType) === null || _currentMailgoType === void 0 ? void 0 : _currentMailgoType.type; // if type is not defined return
+  var type = (_activeMailgoType2 = activeMailgoType) === null || _activeMailgoType2 === void 0 ? void 0 : _activeMailgoType2.type; // if type is not defined return
 
   if (!type) return false;
 
@@ -831,8 +823,9 @@ function mailgoPreRender(mailgoElementOrUrl) {
       subject = mailgoElement.getAttribute("data-subject"); // body = data-body
 
       bodyMail = mailgoElement.getAttribute("data-body");
-    } // if is in config use it
+    }
 
+    encEmail = encode(mail); // if is in config use it
 
     if (typeof ((_config7 = config) === null || _config7 === void 0 ? void 0 : _config7.validateEmail) !== "undefined") {
       validateEmailConfig = config.validateEmail;
@@ -921,14 +914,14 @@ function mailgoDirectRender(directUrl) {
   mailgo();
 
   if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
-    currentMailgoType = {
+    activeMailgoType = {
       type: MAILGO_MAIL,
       installation: constants.CLASSIC
     };
     mailgoPreRender(directUrl);
     return true;
   } else if (validateUrl(directUrl, TEL) || validateUrl(directUrl, CALLTO) || validateUrl(directUrl, SMS)) {
-    currentMailgoType = {
+    activeMailgoType = {
       type: MAILGO_TEL,
       installation: constants.CLASSIC
     };
@@ -945,10 +938,10 @@ function mailgoDirectRender(directUrl) {
 
 
 function mailgoRender() {
-  var _currentMailgoType2;
+  var _activeMailgoType3;
 
   // get the type from current mailgo type
-  var type = (_currentMailgoType2 = currentMailgoType) === null || _currentMailgoType2 === void 0 ? void 0 : _currentMailgoType2.type; // if type is not defined return
+  var type = (_activeMailgoType3 = activeMailgoType) === null || _activeMailgoType3 === void 0 ? void 0 : _activeMailgoType3.type; // if type is not defined return
 
   if (!type) return false; // mailgo mail
 
@@ -988,7 +981,6 @@ function mailgoRender() {
     gmail.addEventListener("click", openGmail);
     outlook.addEventListener("click", openOutlook);
     yahoo.addEventListener("click", openYahooMail);
-    encEmail = encodeEmail(mail);
     mailgo_open.addEventListener("click", openDefault);
     copyMail.addEventListener("click", function (event) {
       event.preventDefault();
@@ -1017,7 +1009,7 @@ function mailgoRender() {
       }
 
       skype.addEventListener("click", openSkype);
-      call.addEventListener("click", callDefault);
+      call.addEventListener("click", openDefault);
       copyTel.addEventListener("click", function (event) {
         event.preventDefault();
         copy(tel);
@@ -1128,27 +1120,28 @@ var openWhatsApp = function openWhatsApp(event) {
 };
 
 var openDefault = function openDefault(event) {
-  event.preventDefault(); // if href exists and not ends with #mailgo go there
+  var _activeMailgoType4, _activeMailgoType5;
 
-  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
+  event.preventDefault();
+  console.log(activeMailgoType);
+  var type = (_activeMailgoType4 = activeMailgoType) === null || _activeMailgoType4 === void 0 ? void 0 : _activeMailgoType4.type;
+  var installation = (_activeMailgoType5 = activeMailgoType) === null || _activeMailgoType5 === void 0 ? void 0 : _activeMailgoType5.installation; // if the installation is classic the browser can follow the default behaviour
+
+  if (installation === constants.CLASSIC) {
     window.location.href = href;
   } else {
-    // it is the less-spam installation
-    mailToEncoded(encEmail);
-  }
+    // the case of less-spam installation, href is not present or not useful
+    var _url;
 
-  hideMailgo();
-};
+    if (type === MAILGO_MAIL) {
+      _url = MAILTO + decode(mail);
+    } else if (type === MAILGO_TEL) {
+      _url = TEL + tel;
+    }
 
-var callDefault = function callDefault(event) {
-  event.preventDefault(); // if href exists and not ends with #mailgo go there
-
-  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
-    window.location.href = href;
-  } else {
-    // it is the less-spam installation
-    var callUrl = TEL + tel;
-    window.open(callUrl);
+    if (_url) {
+      window.location.href = _url;
+    }
   }
 
   hideMailgo();
@@ -1181,53 +1174,52 @@ var validateUrl = function validateUrl(url) {
 
 
 function getMailgoTypeByElement(element) {
-  var href = element.getAttribute("href"); // first case of mailto: it is an <a> element with "mailto:..." or "mailgo:..." in href and no no-mailgo in classList
+  var _element$classList, _element$classList2, _element$classList3;
 
-  if (href && (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) && !element.classList.contains(NO_MAILGO) || element.classList && element.classList.contains("mailgo")) {
-    return {
-      type: MAILGO_MAIL,
-      installation: constants.CLASSIC
-    };
-  } // second case of mailto: the href=#mailgo and less-spam installation
+  var href = element.getAttribute("href"); // return null if there is no-mailgo in class
 
+  if ((_element$classList = element.classList) === null || _element$classList === void 0 ? void 0 : _element$classList.contains(NO_MAILGO)) {
+    return null;
+  }
 
-  if (href && href.toLowerCase() === "#mailgo" && element.hasAttribute("data-address")) {
-    return {
-      type: MAILGO_MAIL,
-      installation: constants.LESS_SPAM
-    };
-  } // first case of tel:/callto: it is an <a> element with "tel:..." in href and no no-mailgo in classList
+  if (href || ((_element$classList2 = element.classList) === null || _element$classList2 === void 0 ? void 0 : _element$classList2.contains("mailgo"))) {
+    //
+    if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
+      return {
+        type: MAILGO_MAIL,
+        installation: constants.CLASSIC
+      };
+    } else if (validateUrl(href, TEL) || validateUrl(href, CALLTO)) {
+      return {
+        type: MAILGO_TEL,
+        installation: constants.CLASSIC
+      };
+    } else if (validateUrl(href, SMS)) {
+      return {
+        type: MAILGO_SMS,
+        installation: constants.CLASSIC
+      };
+    }
+  }
 
-
-  if (href && (validateUrl(href, TEL) || validateUrl(href, CALLTO)) && !element.classList.contains(NO_MAILGO) || element.classList && element.classList.contains("mailgo")) {
-    return {
-      type: MAILGO_TEL,
-      installation: constants.CLASSIC
-    };
-  } // second case of tel:/callto: the href=#mailgo and less-spam installation
-
-
-  if (href && href.toLowerCase() === "#mailgo" && element.hasAttribute("data-tel")) {
-    return {
-      type: MAILGO_TEL,
-      installation: constants.LESS_SPAM
-    };
-  } // first case of sms: it is an <a> element with "tel:..." in href and no no-mailgo in classList
-
-
-  if (href && validateUrl(href, SMS) && !element.classList.contains(NO_MAILGO) || element.classList && element.classList.contains("mailgo")) {
-    return {
-      type: MAILGO_SMS,
-      installation: constants.CLASSIC
-    };
-  } // second case of sms: the href=#mailgo and less-spam installation
-
-
-  if (href && href.toLowerCase() === "#mailgo" && element.hasAttribute("data-sms")) {
-    return {
-      type: MAILGO_SMS,
-      installation: constants.LESS_SPAM
-    };
+  if (href === "#mailgo" || ((_element$classList3 = element.classList) === null || _element$classList3 === void 0 ? void 0 : _element$classList3.contains("mailgo"))) {
+    // GO ON
+    if (element.hasAttribute("data-address")) {
+      return {
+        type: MAILGO_MAIL,
+        installation: constants.LESS_SPAM
+      };
+    } else if (element.hasAttribute("data-tel")) {
+      return {
+        type: MAILGO_TEL,
+        installation: constants.LESS_SPAM
+      };
+    } else if (element.hasAttribute("data-msg")) {
+      return {
+        type: MAILGO_SMS,
+        installation: constants.LESS_SPAM
+      };
+    }
   }
 
   return null;
@@ -1300,8 +1292,8 @@ var mailgoKeydown = function mailgoKeydown(keyboardEvent) {
 
       case 32:
       case 13:
-        // spacebar or enter -> call default
-        callDefault();
+        // spacebar or enter -> open default
+        openDefault();
         return true;
 
       case 67:
@@ -1319,9 +1311,9 @@ var mailgoKeydown = function mailgoKeydown(keyboardEvent) {
 
 
 var showMailgo = function showMailgo() {
-  var _currentMailgoType3;
+  var _activeMailgoType6;
 
-  var type = (_currentMailgoType3 = currentMailgoType) === null || _currentMailgoType3 === void 0 ? void 0 : _currentMailgoType3.type;
+  var type = (_activeMailgoType6 = activeMailgoType) === null || _activeMailgoType6 === void 0 ? void 0 : _activeMailgoType6.type;
 
   if (type) {
     // show the correct modal
@@ -1364,16 +1356,16 @@ var createElement = function createElement() {
 
 var createTextNode = function createTextNode(element) {
   return document.createTextNode(element);
-}; // mailto encoded email
+}; // decode a string
 
 
-var mailToEncoded = function mailToEncoded(encoded) {
-  return window.location.href = MAILTO + atob(encoded);
-}; // encode email
+var decode = function decode(s) {
+  return atob(s);
+}; // encode a string
 
 
-var encodeEmail = function encodeEmail(email) {
-  return btoa(email);
+var encode = function encode(s) {
+  return btoa(s);
 }; // get the correct HTMLElement from a type
 
 
@@ -1418,10 +1410,10 @@ var setModalDisplay = function setModalDisplay() {
 
 
 var enableDarkMode = function enableDarkMode() {
-  var _currentMailgoType4;
+  var _activeMailgoType7;
 
   // get the type from current mailgo type
-  var type = (_currentMailgoType4 = currentMailgoType) === null || _currentMailgoType4 === void 0 ? void 0 : _currentMailgoType4.type;
+  var type = (_activeMailgoType7 = activeMailgoType) === null || _activeMailgoType7 === void 0 ? void 0 : _activeMailgoType7.type;
 
   if (type) {
     getModalHTMLElement(type).classList.add("m-dark");
@@ -1430,10 +1422,10 @@ var enableDarkMode = function enableDarkMode() {
 
 
 var disableDarkMode = function disableDarkMode() {
-  var _currentMailgoType5;
+  var _activeMailgoType8;
 
   // get the type from current mailgo type
-  var type = (_currentMailgoType5 = currentMailgoType) === null || _currentMailgoType5 === void 0 ? void 0 : _currentMailgoType5.type;
+  var type = (_activeMailgoType8 = activeMailgoType) === null || _activeMailgoType8 === void 0 ? void 0 : _activeMailgoType8.type;
 
   if (type) {
     getModalHTMLElement(type).classList.remove("m-dark");
