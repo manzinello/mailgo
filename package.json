@@ -14,6 +14,16 @@
   "main": "./lib/mailgo.js",
   "module": "./lib/mailgo.js",
   "types": "./mailgo-types.d.ts",
+  "files": [
+    "dist",
+    "lib",
+    "i18n",
+    "mailgo-types.d.ts",
+    "package.json",
+    "README.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
   "keywords": [
     "mailto",
     "mail",
