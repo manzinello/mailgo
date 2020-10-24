@@ -587,7 +587,7 @@ function mailgoPreRender(
 ): boolean {
   let mailgoElement: HTMLLinkElement;
 
-  if (typeof mailgoElementOrUrl == "string") {
+  if (typeof mailgoElementOrUrl === "string") {
     // if the parameter is a string it is the url
     href = mailgoElementOrUrl as string;
   } else {
@@ -927,8 +927,10 @@ const openYahooMail = (event?: Event): void => {
 const openDefault = (event?: Event): void => {
   event.preventDefault();
 
-  // if href exists go there
-  if (href) {
+  console.log(href);
+
+  // if href exists and not ends with #mailgo go there
+  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
     window.location.href = href;
   } else {
     mailToEncoded(encEmail);
@@ -989,9 +991,16 @@ const openWhatsApp = (event?: Event): void => {
 const callDefault = (event?: Event) => {
   event.preventDefault();
 
-  let callUrl: string = TEL + tel;
+  console.log(href);
 
-  window.open(callUrl);
+  // if href exists and not ends with #mailgo go there
+  if (href && !new RegExp("#mailgo$", "gi").test(href)) {
+    window.location.href = href;
+  } else {
+    let callUrl: string = TEL + tel;
+    console.log(callUrl);
+    window.open(callUrl);
+  }
 
   hideMailgo();
 };
