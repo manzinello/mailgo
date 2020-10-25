@@ -145,7 +145,8 @@ const mailgoInit = (): void => {
     }
   }
 
-  if (!mailgoExists) {
+  // if mailgo is enabled for mailto and it not exists in DOM
+  if (mailtoEnabled && !mailgoExists) {
     // modal
     modalMailto = createElement() as HTMLElement;
     modalMailto.style.display = "none";
@@ -339,7 +340,8 @@ const mailgoInit = (): void => {
   // mailgo tel, if mailgo-tel not already exists
   let mailgoTelExists = !!document.getElementById(MAILGO_TEL);
 
-  if (!mailgoTelExists) {
+  // if mailgo is enabled for tel/callto and it not exists in DOM
+  if (telEnabled && !mailgoTelExists) {
     // modal
     modalTel = createElement() as HTMLElement;
     modalTel.style.display = "none";
