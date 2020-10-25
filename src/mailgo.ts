@@ -3,11 +3,9 @@ import {
   MailgoTranslations,
   MailgoTranslation,
   MailgoAction,
-  MailgoModalType,
   MailgoLanguages,
   MailgoType,
 } from "mailgo";
-import { CLASSIC, LESS_SPAM } from "./constants";
 
 // polyfill
 // const { mailgoPolyfill } = require("./polyfill");
@@ -22,6 +20,8 @@ const {
   MAILGO_MAIL,
   MAILGO_TEL,
   MAILGO_SMS,
+  CLASSIC,
+  LESS_SPAM,
   NO_MAILGO,
   MOBILE,
   spanHTMLTag,
@@ -586,8 +586,8 @@ function mailgoPreRender(
   let mailgoElement: HTMLLinkElement;
 
   // get the type and installation from current mailgo type
-  let type = activeMailgoType?.type;
-  let installation = activeMailgoType?.installation;
+  let type: string = activeMailgoType?.type;
+  let installation: string = activeMailgoType?.installation;
 
   // if type is not defined return
   if (!type) return false;
@@ -823,7 +823,7 @@ function mailgoDirectRender(directUrl: string): boolean {
  */
 function mailgoRender(): boolean {
   // get the type from current mailgo type
-  let type = activeMailgoType?.type;
+  let type: string = activeMailgoType?.type;
 
   // if type is not defined return
   if (!type) return false;
@@ -917,11 +917,16 @@ const openGmail = (event?: Event): void => {
   event.preventDefault();
 
   let urlString: string;
+  let installation: string = activeMailgoType?.installation;
 
-  try {
-    urlString = url.toString();
-  } catch (e) {
-    urlString = href;
+  if (installation === CLASSIC) {
+    try {
+      urlString = url.toString();
+    } catch (e) {
+      urlString = href;
+    }
+  } else if (installation === LESS_SPAM) {
+    urlString = lessSpamHref;
   }
 
   // Gmail url
@@ -1035,28 +1040,14 @@ const openDefault = (event?: Event): void => {
 
   console.log(activeMailgoType);
 
-  let type = activeMailgoType?.type;
-  let installation = activeMailgoType?.installation;
+  let installation: string = activeMailgoType?.installation;
 
   // if the installation is classic the browser can follow the default behaviour
   if (installation === CLASSIC) {
     window.location.href = href;
   } else if (installation === LESS_SPAM) {
-    // the case of less-spam installation, href is not present or not useful
-    let url: string;
-    let parameters: string[] = [];
-
-    if (type === MAILGO_MAIL) {
-      // main url
-      url = MAILTO + mail;
-    } else if (type === MAILGO_TEL) {
-      // main url
-      url = TEL + tel;
-    }
-
-    if (url) {
-      window.location.href = url;
-    }
+    // if the installation is less-spam use the built less-spam href
+    window.location.href = lessSpamHref;
   }
 
   hideMailgo();
@@ -1069,7 +1060,7 @@ const copy = (event?: Event): void => {
   if (mailgoIsShowing()) {
     let activeCopy: HTMLElement;
 
-    let type = activeMailgoType?.type;
+    let type: string = activeMailgoType?.type;
     if (type === MAILGO_MAIL) {
       // in case it is showing mail modal copy email address
       copyToClipboard(mail);
@@ -1157,7 +1148,7 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
 const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
   // if mailgo is showing
   if (mailgoIsShowing()) {
-    let type = activeMailgoType?.type;
+    let type: string = activeMailgoType?.type;
 
     if (type === MAILGO_MAIL) {
       switch (keyboardEvent.keyCode) {
@@ -1307,7 +1298,7 @@ const setModalDisplay = (ref: string = MAILGO_MAIL, value: string): void => {
 // enable dark mode
 const enableDarkMode = () => {
   // get the type from current mailgo type
-  let type = activeMailgoType?.type;
+  let type: string = activeMailgoType?.type;
   if (type) {
     getModalHTMLElement(type).classList.add("m-dark");
   }
@@ -1316,7 +1307,7 @@ const enableDarkMode = () => {
 // disable dark mode
 const disableDarkMode = () => {
   // get the type from current mailgo type
-  let type = activeMailgoType?.type;
+  let type: string = activeMailgoType?.type;
   if (type) {
     getModalHTMLElement(type).classList.remove("m-dark");
   }
