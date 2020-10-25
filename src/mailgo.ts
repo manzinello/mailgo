@@ -250,7 +250,9 @@ const mailgoInit = (): void => {
     );
     gmail.appendChild(gmailSpan);
 
-    if (mailgoActionEnabled("gmail")) modalContent.appendChild(gmail);
+    if (mailgoActionEnabled("gmail")) {
+      modalContent.appendChild(gmail);
+    }
 
     // Outlook
     outlook = createElement(aHTMLTag) as HTMLLinkElement;
@@ -597,13 +599,8 @@ function mailgoPreRender(
     href = mailgoElementOrUrl as string;
   } else {
     // if the paramenter is an HTMLLinkElement get the href attribute and the element
-    href = mailgoElementOrUrl.href as string;
+    href = mailgoElementOrUrl.getAttribute("href") as string;
     mailgoElement = mailgoElementOrUrl as HTMLLinkElement;
-  }
-
-  // if href is undefined or null return false
-  if (!href) {
-    return false;
   }
 
   // mailgo mail
@@ -1082,7 +1079,7 @@ const copy = (event?: Event): void => {
 
 // function to find if a link is a mailto, tel, callto or sms
 const validateUrl = (url: string, type: string = MAILTO) => {
-  let regexValidate = new RegExp("^" + type, "gi");
+  let regexValidate = new RegExp("^" + type + "((.)+)", "gi");
   return regexValidate.test(url);
 };
 
