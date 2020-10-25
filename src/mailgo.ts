@@ -630,11 +630,13 @@ function mailgoPreRender(
     } else if (installation === LESS_SPAM) {
       // if the installation is less-spam
       // mail = data-address + @ + data-domain
-      mail = mailgoElement.getAttribute("data-address")
-        ? mailgoElement.getAttribute("data-address") +
-          "@" +
-          mailgoElement.getAttribute("data-domain")
-        : null;
+      mail =
+        mailgoElement.getAttribute("data-address") &&
+        mailgoElement.getAttribute("data-domain")
+          ? mailgoElement.getAttribute("data-address") +
+            "@" +
+            mailgoElement.getAttribute("data-domain")
+          : null;
 
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
@@ -1116,7 +1118,10 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
 
   if (elementHref === "#mailgo" || element.classList?.contains("mailgo")) {
     // less-spam installation of mailgo, check to the attributes
-    if (element.hasAttribute("data-address")) {
+    if (
+      element.hasAttribute("data-address") &&
+      element.hasAttribute("data-domain")
+    ) {
       // less-spam mailto with data-address and data-domain
       return {
         type: MAILGO_MAIL,
