@@ -497,11 +497,11 @@ const mailgoInit = (): void => {
   }
 
   // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
-  document.addEventListener("click", mailgoCheckRender);
+  document.addEventListener("click", mailgoClickListener);
 };
 
 /**
- * mailgoCheckRender
+ * mailgoClickListener
  * function to check if an element is mailgo-enabled or not referencing to
  * mail:
  * document.querySelectorAll(
@@ -520,7 +520,7 @@ const mailgoInit = (): void => {
  *   'a[href^="sms:" i]:not(.no-mailgo), a[href="#mailgo"], a.mailgo'
  * );
  */
-function mailgoCheckRender(event: Event): boolean {
+function mailgoClickListener(event: Event): boolean {
   // check if the mailgo HTML exists in the body
   if (
     !document.body.contains(modalMailto) ||
@@ -1464,7 +1464,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
 // define the methods also for window element
 if (typeof window !== "undefined") {
   (window as any).getMailgoTypeByElement = getMailgoTypeByElement;
-  (window as any).mailgoCheckRender = mailgoCheckRender;
+  (window as any).mailgoClickListener = mailgoClickListener;
   (window as any).mailgoPreRender = mailgoPreRender;
   (window as any).mailgoDirectRender = mailgoDirectRender;
   (window as any).mailgoRender = mailgoRender;
@@ -1473,7 +1473,7 @@ if (typeof window !== "undefined") {
 
 export {
   getMailgoTypeByElement,
-  mailgoCheckRender,
+  mailgoClickListener,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,

@@ -2,7 +2,7 @@
 
 import mailgo, {
   getMailgoTypeByElement,
-  mailgoCheckRender,
+  mailgoClickListener,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
@@ -13,7 +13,7 @@ const start = mailgo;
 
 export {
   getMailgoTypeByElement,
-  mailgoCheckRender,
+  mailgoClickListener,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,

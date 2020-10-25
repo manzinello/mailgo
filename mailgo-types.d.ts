@@ -86,7 +86,7 @@ declare module "mailgo" {
     element: HTMLElement
   ): MailgoType | null;
 
-  export function mailgoCheckRender(event: Event): boolean;
+  export function mailgoClickListener(event: Event): boolean;
 
   export function mailgoPreRender(
     mailgoElementOrUrl: HTMLLinkElement | string

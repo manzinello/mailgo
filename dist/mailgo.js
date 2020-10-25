@@ -379,9 +379,9 @@ var mailgoInit = function mailgoInit() {
         return;
       }
     }
-  }
+  } // if mailgo is enabled for mailto and it not exists in DOM
 
-  if (!mailgoExists) {
+  if (mailtoEnabled && !mailgoExists) {
     var _config3, _config4;
 
     // modal
@@ -543,9 +543,9 @@ var mailgoInit = function mailgoInit() {
   } // mailgo tel, if mailgo-tel not already exists
 
 
-  var mailgoTelExists = !!document.getElementById(MAILGO_TEL);
+  var mailgoTelExists = !!document.getElementById(MAILGO_TEL); // if mailgo is enabled for tel/callto and it not exists in DOM
 
-  if (!mailgoTelExists) {
+  if (telEnabled && !mailgoTelExists) {
     var _config5, _config6;
 
     // modal
@@ -687,10 +687,10 @@ var mailgoInit = function mailgoInit() {
   } // event listener on body, if the element is mailgo-compatible the mailgo modal will be rendered
 
 
-  document.addEventListener("click", mailgoCheckRender);
+  document.addEventListener("click", mailgoClickListener);
 };
 /**
- * mailgoCheckRender
+ * mailgoClickListener
  * function to check if an element is mailgo-enabled or not referencing to
  * mail:
  * document.querySelectorAll(
@@ -711,7 +711,7 @@ var mailgoInit = function mailgoInit() {
  */
 
 
-function mailgoCheckRender(event) {
+function mailgoClickListener(event) {
   // check if the mailgo HTML exists in the body
   if (!document.body.contains(modalMailto) || !document.body.contains(modalTel)) {
     return false;
@@ -1599,7 +1599,7 @@ function mailgo(mailgoConfig) {
 
 if (typeof window !== "undefined") {
   window.getMailgoTypeByElement = getMailgoTypeByElement;
-  window.mailgoCheckRender = mailgoCheckRender;
+  window.mailgoClickListener = mailgoClickListener;
   window.mailgoPreRender = mailgoPreRender;
   window.mailgoDirectRender = mailgoDirectRender;
   window.mailgoRender = mailgoRender;
