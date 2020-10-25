@@ -1600,6 +1600,8 @@ function mailgo(mailgoConfig) {
 if (typeof window !== "undefined") {
   window.getMailgoTypeByElement = getMailgoTypeByElement;
   window.mailgoClickListener = mailgoClickListener;
+  window.mailgoCheckRender = mailgoClickListener; // for compatibility with old version of mailgo
+
   window.mailgoPreRender = mailgoPreRender;
   window.mailgoDirectRender = mailgoDirectRender;
   window.mailgoRender = mailgoRender;

@@ -1465,6 +1465,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
 if (typeof window !== "undefined") {
   (window as any).getMailgoTypeByElement = getMailgoTypeByElement;
   (window as any).mailgoClickListener = mailgoClickListener;
+  (window as any).mailgoCheckRender = mailgoClickListener; // for compatibility with old version of mailgo
   (window as any).mailgoPreRender = mailgoPreRender;
   (window as any).mailgoDirectRender = mailgoDirectRender;
   (window as any).mailgoRender = mailgoRender;

@@ -11,9 +11,13 @@ import mailgo, {
 // start function
 const start = mailgo;
 
+// compatibility with old version of mailgo
+const mailgoCheckRender = mailgoClickListener;
+
 export {
   getMailgoTypeByElement,
   mailgoClickListener,
+  mailgoCheckRender,
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
