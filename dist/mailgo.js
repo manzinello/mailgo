@@ -269,8 +269,6 @@ module.exports = function (cssWithMappingToString) {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// EXTERNAL MODULE: ../src/constants.ts
-var constants = __webpack_require__(249);
 // CONCATENATED MODULE: ../src/mailgo.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
 
@@ -278,10 +276,9 @@ function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { va
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
- // polyfill
+// polyfill
 // const { mailgoPolyfill } = require("./polyfill");
 // constants
-
 var _require = __webpack_require__(249),
     MAILTO = _require.MAILTO,
     MAILGO = _require.MAILGO,
@@ -291,6 +288,8 @@ var _require = __webpack_require__(249),
     MAILGO_MAIL = _require.MAILGO_MAIL,
     MAILGO_TEL = _require.MAILGO_TEL,
     MAILGO_SMS = _require.MAILGO_SMS,
+    CLASSIC = _require.CLASSIC,
+    LESS_SPAM = _require.LESS_SPAM,
     NO_MAILGO = _require.NO_MAILGO,
     MOBILE = _require.MOBILE,
     spanHTMLTag = _require.spanHTMLTag,
@@ -791,7 +790,7 @@ function mailgoPreRender(mailgoElementOrUrl) {
     var _config7;
 
     // if the installation is classic
-    if (installation === constants.CLASSIC) {
+    if (installation === CLASSIC) {
       if (validateUrl(href, MAILTO)) {
         mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
       } else if (validateUrl(href, MAILGO)) {
@@ -808,7 +807,7 @@ function mailgoPreRender(mailgoElementOrUrl) {
         bodyMail = urlParams.get("body");
       } catch (error) {// console.error(error);
       }
-    } else if (installation === constants.LESS_SPAM) {
+    } else if (installation === LESS_SPAM) {
       // if the installation is less-spam
       // mail = data-address + @ + data-domain
       mail = mailgoElement.getAttribute("data-address") ? mailgoElement.getAttribute("data-address") + "@" + mailgoElement.getAttribute("data-domain") : null;
@@ -859,7 +858,7 @@ function mailgoPreRender(mailgoElementOrUrl) {
   else if (type === MAILGO_TEL) {
       var _config8;
 
-      if (installation === constants.CLASSIC) {
+      if (installation === CLASSIC) {
         if (validateUrl(href, TEL)) {
           tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
         } else if (validateUrl(href, CALLTO)) {
@@ -875,7 +874,7 @@ function mailgoPreRender(mailgoElementOrUrl) {
           msg = _urlParams.get("body");
         } catch (error) {// console.error(error);
         }
-      } else if (installation == constants.LESS_SPAM) {
+      } else if (installation == LESS_SPAM) {
         tel = mailgoElement.getAttribute("data-tel");
         msg = mailgoElement.getAttribute("data-msg");
 
@@ -944,14 +943,14 @@ function mailgoDirectRender(directUrl) {
   if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
     activeMailgoType = {
       type: MAILGO_MAIL,
-      installation: constants.CLASSIC
+      installation: CLASSIC
     };
     mailgoPreRender(directUrl);
     return true;
   } else if (validateUrl(directUrl, TEL) || validateUrl(directUrl, CALLTO) || validateUrl(directUrl, SMS)) {
     activeMailgoType = {
       type: MAILGO_TEL,
-      installation: constants.CLASSIC
+      installation: CLASSIC
     };
     mailgoPreRender(directUrl);
     return true;
@@ -1053,13 +1052,13 @@ var openGmail = function openGmail(event) {
   var urlString;
   var installation = (_activeMailgoType5 = activeMailgoType) === null || _activeMailgoType5 === void 0 ? void 0 : _activeMailgoType5.installation;
 
-  if (installation === constants.CLASSIC) {
+  if (installation === CLASSIC) {
     try {
       urlString = url.toString();
     } catch (e) {
       urlString = href;
     }
-  } else if (installation === constants.LESS_SPAM) {
+  } else if (installation === LESS_SPAM) {
     urlString = lessSpamHref;
   } // Gmail url
 
@@ -1155,9 +1154,9 @@ var openDefault = function openDefault(event) {
   console.log(activeMailgoType);
   var installation = (_activeMailgoType6 = activeMailgoType) === null || _activeMailgoType6 === void 0 ? void 0 : _activeMailgoType6.installation; // if the installation is classic the browser can follow the default behaviour
 
-  if (installation === constants.CLASSIC) {
+  if (installation === CLASSIC) {
     window.location.href = href;
-  } else if (installation === constants.LESS_SPAM) {
+  } else if (installation === LESS_SPAM) {
     // if the installation is less-spam use the built less-spam href
     window.location.href = lessSpamHref;
   }
@@ -1215,17 +1214,17 @@ function getMailgoTypeByElement(element) {
     if (validateUrl(elementHref, MAILTO) || validateUrl(elementHref, MAILGO)) {
       return {
         type: MAILGO_MAIL,
-        installation: constants.CLASSIC
+        installation: CLASSIC
       };
     } else if (validateUrl(elementHref, TEL) || validateUrl(elementHref, CALLTO)) {
       return {
         type: MAILGO_TEL,
-        installation: constants.CLASSIC
+        installation: CLASSIC
       };
     } else if (validateUrl(elementHref, SMS)) {
       return {
         type: MAILGO_SMS,
-        installation: constants.CLASSIC
+        installation: CLASSIC
       };
     }
   }
@@ -1235,17 +1234,17 @@ function getMailgoTypeByElement(element) {
     if (element.hasAttribute("data-address")) {
       return {
         type: MAILGO_MAIL,
-        installation: constants.LESS_SPAM
+        installation: LESS_SPAM
       };
     } else if (element.hasAttribute("data-tel")) {
       return {
         type: MAILGO_TEL,
-        installation: constants.LESS_SPAM
+        installation: LESS_SPAM
       };
     } else if (element.hasAttribute("data-msg")) {
       return {
         type: MAILGO_SMS,
-        installation: constants.LESS_SPAM
+        installation: LESS_SPAM
       };
     }
   }
