@@ -84,18 +84,17 @@ declare module "mailgo" {
 
   export function getMailgoTypeByElement(
     element: HTMLElement
-  ): MailgoModalType | null;
+  ): MailgoType | null;
 
   export function mailgoCheckRender(event: Event): boolean;
 
   export function mailgoPreRender(
-    type: string,
     mailgoElementOrUrl: HTMLLinkElement | string
   ): boolean;
 
   export function mailgoDirectRender(directUrl: string): boolean;
 
-  export function mailgoRender(type: string): boolean;
+  export function mailgoRender(): boolean;
 
   export default function mailgo(mailgoConfig?: MailgoConfig): boolean;
 }
