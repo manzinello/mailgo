@@ -585,8 +585,9 @@ function mailgoPreRender(
 ): boolean {
   let mailgoElement: HTMLLinkElement;
 
-  // get the type from current mailgo type
+  // get the type and installation from current mailgo type
   let type = activeMailgoType?.type;
+  let installation = activeMailgoType?.installation;
 
   // if type is not defined return
   if (!type) return false;
@@ -607,8 +608,8 @@ function mailgoPreRender(
 
   // mailgo mail
   if (type === MAILGO_MAIL) {
-    // if the element href=^"mailto:" or href=^"mailgo:"
-    if (validateUrl(href, MAILTO) || validateUrl(href, MAILGO)) {
+    // if the installation is classic
+    if (installation === CLASSIC) {
       if (validateUrl(href, MAILTO)) {
         mail = decodeURIComponent(href.split("?")[0].split(MAILTO)[1].trim());
       } else if (validateUrl(href, MAILGO)) {
@@ -619,7 +620,6 @@ function mailgoPreRender(
         url = new URL(href);
 
         let urlParams: URLSearchParams = url.searchParams;
-
         // optional parameters for the email
         cc = urlParams.get("cc");
         bcc = urlParams.get("bcc");
@@ -628,13 +628,14 @@ function mailgoPreRender(
       } catch (error) {
         // console.error(error);
       }
-    } else {
-      // if the element href="#mailgo" or class="mailgo"
+    } else if (installation === LESS_SPAM) {
+      // if the installation is less-spam
       // mail = data-address + @ + data-domain
-      mail =
-        mailgoElement.getAttribute("data-address") +
-        "@" +
-        mailgoElement.getAttribute("data-domain");
+      mail = mailgoElement.getAttribute("data-address")
+        ? mailgoElement.getAttribute("data-address") +
+          "@" +
+          mailgoElement.getAttribute("data-domain")
+        : null;
 
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
@@ -642,23 +643,47 @@ function mailgoPreRender(
         // console.error(error);
       }
 
+      let parameters: string[] = [];
+
       // cc = data-cc-address + @ + data-cc-domain
-      cc =
-        mailgoElement.getAttribute("data-cc-address") +
-        "@" +
-        mailgoElement.getAttribute("data-cc-domain");
+      cc = mailgoElement.getAttribute("data-cc-address")
+        ? mailgoElement.getAttribute("data-cc-address") +
+          "@" +
+          mailgoElement.getAttribute("data-cc-domain")
+        : null;
+
+      // if cc is defined add it to parameters
+      if (cc) parameters.push("cc=" + cc);
 
       // bcc = data-bcc-address + @ + data-bcc-domain
-      bcc =
-        mailgoElement.getAttribute("data-bcc-address") +
-        "@" +
-        mailgoElement.getAttribute("data-bcc-domain");
+      bcc = mailgoElement.getAttribute("data-bcc-address")
+        ? mailgoElement.getAttribute("data-bcc-address") +
+          "@" +
+          mailgoElement.getAttribute("data-bcc-domain")
+        : null;
+
+      // if bcc is defined add it to parameters
+      if (bcc) parameters.push("bcc=" + bcc);
 
       // subject = data-subject
       subject = mailgoElement.getAttribute("data-subject");
 
+      // if subject is defined add it to parameters
+      if (subject) parameters.push("subject=" + subject);
+
       // body = data-body
       bodyMail = mailgoElement.getAttribute("data-body");
+
+      // if body is defined add it to parameters
+      if (bodyMail) parameters.push("body=" + bodyMail);
+
+      // set the lessSpamHref
+      lessSpamHref = buildLessSpamHref(
+        MAILTO + encodeURIComponent(mail),
+        parameters
+      );
+
+      console.log(lessSpamHref);
     }
 
     // if is in config use it
@@ -679,12 +704,14 @@ function mailgoPreRender(
   }
   // mailgo tel
   else if (type === MAILGO_TEL) {
-    if (validateUrl(href, TEL)) {
-      tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
-    } else if (validateUrl(href, CALLTO)) {
-      tel = decodeURIComponent(href.split("?")[0].split(CALLTO)[1].trim());
-    } else if (validateUrl(href, SMS)) {
-      tel = decodeURIComponent(href.split("?")[0].split(SMS)[1].trim());
+    if (installation === CLASSIC) {
+      if (validateUrl(href, TEL)) {
+        tel = decodeURIComponent(href.split("?")[0].split(TEL)[1].trim());
+      } else if (validateUrl(href, CALLTO)) {
+        tel = decodeURIComponent(href.split("?")[0].split(CALLTO)[1].trim());
+      } else if (validateUrl(href, SMS)) {
+        tel = decodeURIComponent(href.split("?")[0].split(SMS)[1].trim());
+      }
 
       try {
         url = new URL(href);
@@ -695,9 +722,28 @@ function mailgoPreRender(
       } catch (error) {
         // console.error(error);
       }
-    } else if (mailgoElement.hasAttribute("data-tel")) {
+    } else if (installation == LESS_SPAM) {
       tel = mailgoElement.getAttribute("data-tel");
       msg = mailgoElement.getAttribute("data-msg");
+
+      try {
+        url = new URL(TEL + encodeURIComponent(tel));
+      } catch (error) {
+        // console.error(error);
+      }
+
+      let parameters: string[] = [];
+
+      // if msg is defined add it to parameters
+      if (msg) parameters.push("body=" + msg);
+
+      // set the lessSpamHref
+      lessSpamHref = buildLessSpamHref(
+        TEL + encodeURIComponent(tel),
+        parameters
+      );
+
+      console.log(lessSpamHref);
     }
 
     // if is in config use it
@@ -858,7 +904,7 @@ function mailgoRender(): boolean {
   }
 
   // show the mailgo
-  showMailgo();
+  showMailgo(type);
 
   // add listener keyDown
   document.addEventListener("keydown", mailgoKeydown);
@@ -997,11 +1043,12 @@ const openDefault = (event?: Event): void => {
     window.location.href = href;
   } else if (installation === LESS_SPAM) {
     // the case of less-spam installation, href is not present or not useful
-    let url;
+    let url: string;
+    let parameters: string[] = [];
 
     if (type === MAILGO_MAIL) {
       // main url
-      url = MAILTO + decode(mail);
+      url = MAILTO + mail;
     } else if (type === MAILGO_TEL) {
       // main url
       url = TEL + tel;
@@ -1178,12 +1225,9 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
 };
 
 // show the modal
-const showMailgo = (): void => {
-  let type = activeMailgoType?.type;
-  if (type) {
-    // show the correct modal
-    setModalDisplay(type, "flex");
-  }
+const showMailgo = (type: string): void => {
+  // show the correct modal
+  setModalDisplay(type, "flex");
 };
 
 // hide the modal
@@ -1198,11 +1242,10 @@ const hideMailgo = (): void => {
 
 // is the mailgo modal hidden?
 const mailgoIsShowing = (): boolean => {
-  let type = activeMailgoType?.type;
-  if (type) {
-    return getModalDisplay(type) === "flex";
-  }
-  return false;
+  return (
+    getModalDisplay(MAILGO_MAIL) === "flex" ||
+    getModalDisplay(MAILGO_TEL) === "flex"
+  );
 };
 
 const byElement = (): HTMLLinkElement => {
@@ -1224,12 +1267,6 @@ const createElement = (element: string = "div"): HTMLElement =>
 // create text node
 const createTextNode = (element: string): Text =>
   document.createTextNode(element);
-
-// decode a string
-const decode = (s: string): string => atob(s);
-
-// encode a string
-const encode = (s: string): string => btoa(s);
 
 // get the correct HTMLElement from a type
 const getModalHTMLElement = (type: string = MAILGO_MAIL) => {
@@ -1307,8 +1344,10 @@ const composedPath = (
 // function to recreate a mailto: or tel: href from less-spam
 const buildLessSpamHref = (type: string, parameters: string[]): string => {
   lessSpamHref = type;
-  let joinedParams = parameters.join("&");
-  lessSpamHref = lessSpamHref.concat(encodeURIComponent("?" + joinedParams));
+  if (parameters && parameters.length > 0) {
+    let joinedParams = parameters.join("&");
+    lessSpamHref = lessSpamHref.concat("?" + joinedParams);
+  }
   return lessSpamHref;
 };
 
