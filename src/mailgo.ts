@@ -681,8 +681,6 @@ function mailgoPreRender(
         MAILTO + encodeURIComponent(mail),
         parameters
       );
-
-      console.log(lessSpamHref);
     }
 
     // if is in config use it
@@ -741,8 +739,6 @@ function mailgoPreRender(
         TEL + encodeURIComponent(tel),
         parameters
       );
-
-      console.log(lessSpamHref);
     }
 
     // if is in config use it
@@ -1037,8 +1033,6 @@ const openWhatsApp = (event?: Event): void => {
 const openDefault = (event?: Event): void => {
   event.preventDefault();
 
-  console.log(activeMailgoType);
-
   let installation: string = activeMailgoType?.installation;
 
   // if the installation is classic the browser can follow the default behaviour
@@ -1094,9 +1088,10 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
     return null;
   }
 
+  // the case of classic type of mailgo, like a href=mailto:... or a href=tel:... and the class=mailgo with a useful href
   if (elementHref || element.classList?.contains("mailgo")) {
-    //
     if (validateUrl(elementHref, MAILTO) || validateUrl(elementHref, MAILGO)) {
+      // a mailto: or mailgo:
       return {
         type: MAILGO_MAIL,
         installation: CLASSIC,
@@ -1105,11 +1100,13 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
       validateUrl(elementHref, TEL) ||
       validateUrl(elementHref, CALLTO)
     ) {
+      // a tel: or callto:
       return {
         type: MAILGO_TEL,
         installation: CLASSIC,
       };
     } else if (validateUrl(elementHref, SMS)) {
+      // a sms:
       return {
         type: MAILGO_SMS,
         installation: CLASSIC,
@@ -1118,18 +1115,21 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
   }
 
   if (elementHref === "#mailgo" || element.classList?.contains("mailgo")) {
-    // GO ON
+    // less-spam installation of mailgo, check to the attributes
     if (element.hasAttribute("data-address")) {
+      // less-spam mailto with data-address and data-domain
       return {
         type: MAILGO_MAIL,
         installation: LESS_SPAM,
       };
     } else if (element.hasAttribute("data-tel")) {
+      // less-spam tel with data-tel
       return {
         type: MAILGO_TEL,
         installation: LESS_SPAM,
       };
     } else if (element.hasAttribute("data-msg")) {
+      // less-spam sms with data-msd
       return {
         type: MAILGO_SMS,
         installation: LESS_SPAM,
