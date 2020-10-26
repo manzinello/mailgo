@@ -1018,10 +1018,11 @@ const openWhatsApp = (event?: Event): void => {
   event.preventDefault();
 
   // WhatsApp API doesn't work with non number digits: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/
-  let whatsappRegex = new RegExp("[^0-9/]", "gi");
+  let notNumber = new RegExp("[^0-9/]", "gi");
+  let leadingZeros = new RegExp("^0+", "gi");
 
   // replace them
-  let whatappTel = tel.replace(whatsappRegex, "");
+  let whatappTel = tel.replace(notNumber, "").replace(leadingZeros, "");
 
   // WhatsApp url
   let waUrl: string = "https://wa.me/" + encodeURIComponent(whatappTel);
