@@ -1017,12 +1017,18 @@ const openSkype = (event?: Event): void => {
 const openWhatsApp = (event?: Event): void => {
   event.preventDefault();
 
+  // WhatsApp API doesn't work with non number digits: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/
+  let whatsappRegex = new RegExp("[^0-9/]", "gi");
+
+  // replace them
+  let whatappTel = tel.replace(whatsappRegex, "");
+
   // WhatsApp url
-  let waUrl: string = "https://wa.me/" + encodeURIComponent(tel);
+  let waUrl: string = "https://wa.me/" + encodeURIComponent(whatappTel);
 
   // the details if provided
   if (msg) {
-    waUrl = waUrl.concat("?text=" + msg);
+    waUrl = waUrl.concat("?text=" + encodeURIComponent(msg));
   }
 
   // open the url
