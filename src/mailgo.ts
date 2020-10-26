@@ -54,6 +54,10 @@ let lang: string = defaultLang;
 // default strings
 const defaultStrings: MailgoTranslation = translations[defaultLang];
 
+// useful regexp
+const notNumber: RegExp = new RegExp("[^0-9/]", "gi");
+const leadingZeros: RegExp = new RegExp("^0+", "gi");
+
 // translation strings
 let strings: MailgoTranslation;
 
@@ -1017,11 +1021,7 @@ const openSkype = (event?: Event): void => {
 const openWhatsApp = (event?: Event): void => {
   event.preventDefault();
 
-  // WhatsApp API doesn't work with non number digits: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/
-  let notNumber = new RegExp("[^0-9/]", "gi");
-  let leadingZeros = new RegExp("^0+", "gi");
-
-  // replace them
+  // WhatsApp API doesn't work with non number digits and leading 0s: https://faq.whatsapp.com/general/chats/how-to-use-click-to-chat/
   let whatappTel = tel.replace(notNumber, "").replace(leadingZeros, "");
 
   // WhatsApp url
