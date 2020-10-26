@@ -1,3 +1,5 @@
+// gulp in mailgo is used to export in /dist/ also CSS (minified and not) from SCSS
+
 const gulp = require("gulp");
 const { series } = require("gulp");
 
