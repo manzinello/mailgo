@@ -13,11 +13,13 @@ wdio.conf.js
 .flowconfig
 babel.config.js
 
+# folders
 webpack
 examples
 test
-
 extensions
+
+# extensions files
 mailgo.firefox.min.js
 mailgo.firefox.min.js.map
 mailgo.chrome.min.js
