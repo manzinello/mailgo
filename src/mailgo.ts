@@ -125,9 +125,6 @@ let gmail: HTMLLinkElement,
  * the function that creates the mailgo elements in DOM
  */
 const mailgoInit = (): void => {
-  // mailgo, if mailgo not already exists
-  let mailgoExists = !!document.getElementById(MAILGO_MAIL);
-
   // set the boolean for mobile/desktop
   isMobile = userAgent() === MOBILE;
 
@@ -142,12 +139,15 @@ const mailgoInit = (): void => {
     }
     if (typeof config?.mobile !== "undefined") {
       mobileEnabled = config.mobile;
-      // if it is a desktop and desktop is not enabled no init mailgo
+      // if it is a mobile and mobile is not enabled no init mailgo
       if (isMobile && !mobileEnabled) {
         return;
       }
     }
   }
+
+  // mailgo, if mailgo not already exists
+  let mailgoExists = !!document.getElementById(MAILGO_MAIL);
 
   // if mailgo is enabled for mailto and it not exists in DOM
   if (mailtoEnabled && !mailgoExists) {
