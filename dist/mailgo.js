@@ -359,9 +359,7 @@ var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, cop
  */
 
 var mailgoInit = function mailgoInit() {
-  // mailgo, if mailgo not already exists
-  var mailgoExists = !!document.getElementById(MAILGO_MAIL); // set the boolean for mobile/desktop
-
+  // set the boolean for mobile/desktop
   isMobile = userAgent() === MOBILE; // responsive settings
 
   {
@@ -376,13 +374,15 @@ var mailgoInit = function mailgoInit() {
     }
 
     if (typeof ((_config2 = config) === null || _config2 === void 0 ? void 0 : _config2.mobile) !== "undefined") {
-      mobileEnabled = config.mobile; // if it is a desktop and desktop is not enabled no init mailgo
+      mobileEnabled = config.mobile; // if it is a mobile and mobile is not enabled no init mailgo
 
       if (isMobile && !mobileEnabled) {
         return;
       }
     }
-  } // if mailgo is enabled for mailto and it not exists in DOM
+  } // mailgo, if mailgo not already exists
+
+  var mailgoExists = !!document.getElementById(MAILGO_MAIL); // if mailgo is enabled for mailto and it not exists in DOM
 
   if (mailtoEnabled && !mailgoExists) {
     var _config3, _config4;
