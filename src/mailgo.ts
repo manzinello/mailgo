@@ -8,10 +8,10 @@ import {
 } from "mailgo";
 
 // polyfill
-// const { mailgoPolyfill } = require("./polyfill");
+// import { mailgoPolyfill } from "./polyfill";
 
 // constants
-const {
+import {
   MAILTO,
   MAILGO,
   TEL,
@@ -28,31 +28,33 @@ const {
   aHTMLTag,
   pHTMLTag,
   defaultLang,
-} = require("./constants");
+} from "./constants";
 
 // utils
-const {
+import {
   validateEmails,
   validateTel,
   copyToClipboard,
   setFocusLoop,
-} = require("./utils");
+} from "./utils";
 
 // i18n for mailgo
-const languages: MailgoLanguages = require("../i18n/languages.json");
-const translations: MailgoTranslations = require("../i18n/translations.json");
+import languages from "../i18n/languages.json";
+import translations from "../i18n/translations.json";
 
 // mobile detect
-const { userAgent } = require("./mobile-detect");
+import { userAgent } from "./mobile-detect";
 
-// mailgo scss
+// mailgo scss, with toString (https://github.com/webpack-contrib/css-loader#tostring)
 const mailgoCSS: string = require("./mailgo.scss").toString();
 
 // default language
 let lang: string = defaultLang;
 
 // default strings
-const defaultStrings: MailgoTranslation = translations[defaultLang];
+const defaultStrings: MailgoTranslation = (translations as MailgoTranslations)[
+  defaultLang
+];
 
 // useful regexp
 const notNumber: RegExp = new RegExp("[^0-9/]", "gi");
@@ -1375,7 +1377,10 @@ const mailgoSetLanguage = (): string => {
   let languageType = "default lang";
 
   // if a language is defined in configuration use it
-  if (config?.lang && languages.indexOf(config.lang) !== -1) {
+  if (
+    config?.lang &&
+    (languages as MailgoLanguages).indexOf(config.lang) !== -1
+  ) {
     lang = config.lang;
     languageType = "config lang";
   } else {
@@ -1384,7 +1389,7 @@ const mailgoSetLanguage = (): string => {
     let htmlLang: string = document.documentElement.lang;
 
     // find the correct language using the lang attribute, not just a === because there a are cases like fr-FR or fr_FR in html lang attribute
-    languages.forEach((language: any) => {
+    (languages as MailgoLanguages).forEach((language: any) => {
       if (new RegExp("^" + language, "gi").test(htmlLang)) {
         lang = language;
         languageType = "html lang";
@@ -1393,7 +1398,7 @@ const mailgoSetLanguage = (): string => {
   }
 
   // strings
-  strings = translations[lang];
+  strings = (translations as MailgoTranslations)[lang];
 
   return languageType;
 };

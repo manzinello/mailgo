@@ -9,7 +9,9 @@
     "allowJs": true,
     "moduleResolution": "node",
     "resolveJsonModule": true,
-    "declaration": true
+    "esModuleInterop": true,
+    "declaration": true,
+    "allowSyntheticDefaultImports": true
   },
   "include": ["mailgo-types.d.ts", "src", "webpack"]
 }
