@@ -1,5 +1,6 @@
 const path = require("path");
 const babelconfig = require("./babel.config");
+const TerserPlugin = require("terser-webpack-plugin");
 
 const mailgoRules = [
   {
@@ -34,6 +35,11 @@ const mailgoOutputEnvironment = {
   module: false,
 };
 
+const mailgoOptimization = {
+  minimize: true,
+  minimizer: [new TerserPlugin()],
+};
+
 module.exports = [
   {
     mode: "production",
@@ -47,6 +53,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.min.js",
       library: "mailgo",
@@ -70,6 +77,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.js",
       library: "mailgo",
@@ -90,6 +98,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.firefox.min.js",
       library: "mailgo",
@@ -110,6 +119,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.chrome.min.js",
       library: "mailgo",
@@ -130,6 +140,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.dark.min.js",
       library: "mailgo",
@@ -150,6 +161,7 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
+    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.nocss.min.js",
       library: "mailgo",
