@@ -7,6 +7,7 @@ const sass = require("gulp-sass");
 const cleanCSS = require("gulp-clean-css");
 const autoprefixer = require("autoprefixer");
 const postcss = require("gulp-postcss");
+const sourcemaps = require("gulp-sourcemaps");
 
 const prettier = require("gulp-prettier");
 
@@ -18,8 +19,10 @@ function css() {
   return gulp
     .src("./src/**/*.scss")
     .pipe(sass.sync().on("error", sass.logError))
+    .pipe(sourcemaps.init())
     .pipe(postcss([autoprefixer()]))
     .pipe(prettier({ singleQuote: true }))
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("./dist"));
 }
 
@@ -27,6 +30,7 @@ function cssMin() {
   return gulp
     .src("./src/**/*.scss")
     .pipe(sass.sync().on("error", sass.logError))
+    .pipe(sourcemaps.init())
     .pipe(postcss([autoprefixer()]))
     .pipe(cleanCSS({ compatibility: "ie8" }))
     .pipe(
@@ -34,6 +38,7 @@ function cssMin() {
         suffix: ".min",
       })
     )
+    .pipe(sourcemaps.write("."))
     .pipe(gulp.dest("./dist"));
 }
 
