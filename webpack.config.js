@@ -77,7 +77,6 @@ module.exports = [
     resolve: {
       extensions: [".ts", ".js"],
     },
-    optimization: mailgoOptimization,
     output: {
       filename: "mailgo.js",
       library: "mailgo",
