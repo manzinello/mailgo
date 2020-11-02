@@ -13,7 +13,7 @@ const prettier = require("gulp-prettier");
 
 const rename = require("gulp-rename");
 
-sass.compiler = require("node-sass");
+sass.compiler = require("sass");
 
 function css() {
   return gulp
