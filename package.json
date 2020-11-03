@@ -68,7 +68,7 @@
     "gulp-sourcemaps": "^2.6.5",
     "postcss": "^8.1.4",
     "sass": "^1.28.0",
-    "sass-loader": "^10.0.4",
+    "sass-loader": "^10.0.5",
     "style-loader": "^2.0.0",
     "terser-webpack-plugin": "^5.0.3",
     "to-string-loader": "^1.1.6",
