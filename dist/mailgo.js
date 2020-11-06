@@ -1530,7 +1530,7 @@ if (typeof window !== "undefined") {
 // CONCATENATED MODULE: ./mailgo.dist.ts
 // webpack > dist/mailgo.min.js
 
-
+;
 
 // call init mailgo attached to the event DOMContentLoaded
 const mailgoConfig = {
