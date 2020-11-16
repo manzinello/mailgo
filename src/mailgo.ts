@@ -631,7 +631,7 @@ function mailgoPreRender(
         subject = urlParams.get("subject");
         bodyMail = urlParams.get("body");
       } catch (error) {
-        // console.error(error);
+        console.log(error);
       }
     } else if (installation === LESS_SPAM) {
       // if the installation is less-spam
@@ -647,7 +647,7 @@ function mailgoPreRender(
       try {
         url = new URL(MAILTO + encodeURIComponent(mail));
       } catch (error) {
-        // console.error(error);
+        console.log(error);
       }
 
       let parameters: string[] = [];
@@ -725,7 +725,7 @@ function mailgoPreRender(
         // optional parameters for the phone number
         msg = urlParams.get("body");
       } catch (error) {
-        // console.error(error);
+        console.log(error);
       }
     } else if (installation == LESS_SPAM) {
       tel = mailgoElement.getAttribute("data-tel");
@@ -734,7 +734,7 @@ function mailgoPreRender(
       try {
         url = new URL(TEL + encodeURIComponent(tel));
       } catch (error) {
-        // console.error(error);
+        console.log(error);
       }
 
       let parameters: string[] = [];
@@ -1473,7 +1473,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
       return true;
     }
   } catch (error) {
-    // console.error(error);
+    console.log(error);
   }
   return false;
 }
