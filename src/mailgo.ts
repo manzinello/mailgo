@@ -148,6 +148,9 @@ const mailgoInit = (): void => {
     }
   }
 
+  // set the mailgo language
+  mailgoSetLanguage();
+
   // mailgo, if mailgo not already exists
   let mailgoExists = !!document.getElementById(MAILGO_MAIL);
 
@@ -161,9 +164,6 @@ const mailgoInit = (): void => {
     modalMailto.setAttribute("role", "dialog");
     modalMailto.setAttribute("tabindex", "-1");
     modalMailto.setAttribute("aria-labelledby", "m-title");
-
-    // set the mailgo language
-    mailgoSetLanguage();
 
     // if dark is in config
     if (config?.dark) {
@@ -529,7 +529,7 @@ const mailgoInit = (): void => {
 function mailgoClickListener(event: Event): boolean {
   // check if the mailgo HTML exists in the body
   if (
-    !document.body.contains(modalMailto) ||
+    !document.body.contains(modalMailto) &&
     !document.body.contains(modalTel)
   ) {
     return false;
@@ -774,14 +774,14 @@ function mailgoPreRender(
     }
   }
 
-  // if config.dark is set to true then all the modals will be in dark mode
-  if (mailgoElement && !config?.dark) {
-    // if the element contains dark as class enable dark mode
-    if (mailgoElement.classList.contains("dark")) {
-      enableDarkMode();
-    } else {
-      disableDarkMode();
-    }
+  // if dark is in config or contained in the element
+  if (
+    mailgoElement &&
+    (config?.dark || mailgoElement.classList.contains("dark"))
+  ) {
+    enableDarkMode();
+  } else {
+    disableDarkMode();
   }
 
   // render mailgo
@@ -1247,8 +1247,8 @@ const hideMailgo = (): void => {
 // is the mailgo modal hidden?
 const mailgoIsShowing = (): boolean => {
   return (
-    getModalDisplay(MAILGO_MAIL) === "flex" ||
-    getModalDisplay(MAILGO_TEL) === "flex"
+    (mailtoEnabled && getModalDisplay(MAILGO_MAIL) === "flex") ||
+    ((telEnabled || smsEnabled) && getModalDisplay(MAILGO_TEL) === "flex")
   );
 };
 
@@ -1288,23 +1288,26 @@ const getModalDisplay = (ref: string = MAILGO_MAIL): string =>
 // set display value
 const setModalDisplay = (ref: string = MAILGO_MAIL, value: string): void => {
   let modal = getModalHTMLElement(ref);
-  modal.style.display = value;
 
-  if (value === "flex") {
-    // "save" the activated link.
-    activatedLink = document.activeElement as HTMLElement;
-    modal.setAttribute("aria-hidden", "false");
+  if (modal) {
+    modal.style.display = value;
 
-    // Focus on the modal container.
-    modal.setAttribute("tabindex", "0");
-    modal.focus();
-    setFocusLoop(modal);
-  } else {
-    modal.setAttribute("aria-hidden", "true");
+    if (value === "flex") {
+      // "save" the activated link.
+      activatedLink = document.activeElement as HTMLElement;
+      modal.setAttribute("aria-hidden", "false");
 
-    // focus back the activated link for getting back to the context.
-    modal.setAttribute("tabindex", "-1");
-    activatedLink.focus();
+      // Focus on the modal container.
+      modal.setAttribute("tabindex", "0");
+      modal.focus();
+      setFocusLoop(modal);
+    } else {
+      modal.setAttribute("aria-hidden", "true");
+
+      // focus back the activated link for getting back to the context.
+      modal.setAttribute("tabindex", "-1");
+      activatedLink.focus();
+    }
   }
 };
 
