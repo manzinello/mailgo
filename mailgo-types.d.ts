@@ -39,7 +39,7 @@ declare module "mailgo" {
     | "default";
 
   type MailgoActions = {
-    [action in MailgoAction]: boolean;
+    [action in MailgoAction]?: boolean;
   };
 
   export type MailgoTranslation = {
