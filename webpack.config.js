@@ -89,48 +89,6 @@ module.exports = [
     mode: "production",
     target: "web",
     devtool: "source-map",
-    entry: "./mailgo.firefox.ts",
-    context: path.join(__dirname, "webpack"),
-    module: {
-      rules: mailgoRules,
-    },
-    resolve: {
-      extensions: [".ts", ".js"],
-    },
-    optimization: mailgoOptimization,
-    output: {
-      filename: "mailgo.firefox.min.js",
-      library: "mailgo",
-      libraryTarget: "window",
-      environment: mailgoOutputEnvironment,
-      path: path.resolve(__dirname, "extensions"),
-    },
-  },
-  {
-    mode: "production",
-    target: "web",
-    devtool: "source-map",
-    entry: "./mailgo.chrome.ts",
-    context: path.join(__dirname, "webpack"),
-    module: {
-      rules: mailgoRules,
-    },
-    resolve: {
-      extensions: [".ts", ".js"],
-    },
-    optimization: mailgoOptimization,
-    output: {
-      filename: "mailgo.chrome.min.js",
-      library: "mailgo",
-      libraryTarget: "window",
-      environment: mailgoOutputEnvironment,
-      path: path.resolve(__dirname, "extensions"),
-    },
-  },
-  {
-    mode: "production",
-    target: "web",
-    devtool: "source-map",
     entry: "./mailgo.dist.dark.ts",
     context: path.join(__dirname, "webpack"),
     module: {

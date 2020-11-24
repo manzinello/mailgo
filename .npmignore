@@ -17,10 +17,3 @@ babel.config.js
 webpack
 examples
 test
-extensions
-
-# extensions files
-mailgo.firefox.min.js
-mailgo.firefox.min.js.map
-mailgo.chrome.min.js
-mailgo.chrome.min.js.map
