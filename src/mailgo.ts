@@ -838,28 +838,28 @@ function mailgoRender(): boolean {
     title.innerHTML = mail.split(",").join("<br/>");
 
     // add the details if provided
-    if (cc) {
+    if (mailgoConfigAttributeEnabled("detail", "cc") && cc) {
       detailCc.style.display = "block";
       ccValue.innerHTML = cc.split(",").join("<br/>");
     } else {
       detailCc.style.display = "none";
     }
 
-    if (bcc) {
+    if (mailgoConfigAttributeEnabled("detail", "bcc") && bcc) {
       detailBcc.style.display = "block";
       bccValue.innerHTML = bcc.split(",").join("<br/>");
     } else {
       detailBcc.style.display = "none";
     }
 
-    if (subject) {
+    if (mailgoConfigAttributeEnabled("detail", "subject") && subject) {
       detailSubject.style.display = "block";
       subjectValue.textContent = subject;
     } else {
       detailSubject.style.display = "none";
     }
 
-    if (bodyMail) {
+    if (mailgoConfigAttributeEnabled("detail", "body") && bodyMail) {
       detailBody.style.display = "block";
       bodyValue.textContent = bodyMail;
     } else {
@@ -882,7 +882,7 @@ function mailgoRender(): boolean {
     // the title of the modal (tel)
     titleTel.innerHTML = tel;
 
-    if (msg) {
+    if (mailgoConfigAttributeEnabled("detail", "msg") && msg) {
       detailMsg.style.display = "block";
       msgValue.textContent = msg;
     } else {
