@@ -10,7 +10,9 @@ export const validateEmails = (arr: string[]): boolean =>
 
 // validate a single tel with regex
 export const validateTel = (tel: string): boolean =>
-  /^[+]{0,1}[\s0-9]{0,}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(tel);
+  /^[+]{0,1}[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*[p]{0,1}[\s0-9]*$/.test(
+    tel
+  );
 
 // copy of a string
 export const copyToClipboard = (str: string): boolean => {
