@@ -948,10 +948,18 @@ const openGmail = (event?: Event): void => {
 const openOutlook = (event?: Event): void => {
   event.preventDefault();
 
+  // Outlook starting url
+  let startingOutlookUrl: string =
+    "https://outlook.live.com/owa/?path=/mail/action/compose&to=";
+
+  // let the user to decide to open Office365 Outlook instead of the classic outlook.live.com
+  if (config?.office365) {
+    startingOutlookUrl =
+      "https://outlook.office365.com/owa/?path=/mail/action/compose&to=";
+  }
+
   // Outlook url
-  let outlookUrl: string =
-    "https://outlook.live.com/owa/?path=/mail/action/compose&to=" +
-    encodeURIComponent(mail);
+  let outlookUrl: string = startingOutlookUrl + encodeURIComponent(mail);
 
   // the details if provided
   if (subject) {
