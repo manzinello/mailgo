@@ -21,6 +21,8 @@ declare module "mailgo" {
     validateEmail?: boolean; // validate an email, default is true
     validateTel?: boolean; // validate a phone number, default is true
 
+    office365?: boolean; // WIP the particular case of Outlook link: can be outlook.live.com or outlook.office365.com, by default the first but with this parameter you can change the behaviour
+
     showFooter?: boolean; // show the footer with a link to mailgo.dev, default true, please!
 
     initEvent?: string; // the event which is attached the mailgo init, default DOMContentLoaded
