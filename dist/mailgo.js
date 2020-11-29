@@ -981,9 +981,18 @@ var openGmail = function openGmail(event) {
 };
 
 var openOutlook = function openOutlook(event) {
-  event.preventDefault(); // Outlook url
+  var _config10;
 
-  var outlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to=" + encodeURIComponent(mail); // the details if provided
+  event.preventDefault(); // Outlook starting url
+
+  var startingOutlookUrl = "https://outlook.live.com/owa/?path=/mail/action/compose&to="; // let the user to decide to open Office365 Outlook instead of the classic outlook.live.com
+
+  if ((_config10 = config) !== null && _config10 !== void 0 && _config10.office365) {
+    startingOutlookUrl = "https://outlook.office365.com/owa/?path=/mail/action/compose&to=";
+  } // Outlook url
+
+
+  var outlookUrl = startingOutlookUrl + encodeURIComponent(mail); // the details if provided
 
   if (subject) {
     outlookUrl = outlookUrl.concat("&subject=" + encodeURIComponent(subject));
@@ -1399,29 +1408,29 @@ var buildLessSpamHref = function buildLessSpamHref(type, parameters) {
 
 
 var mailgoConfigAttributeEnabled = function mailgoConfigAttributeEnabled(type, attribute) {
-  var _config10;
+  var _config11;
 
   // by default all the actions and attribute are enabled
   if (!config) {
     return true;
   }
 
-  if (config && !((_config10 = config) !== null && _config10 !== void 0 && _config10.actions)) {
+  if (config && !((_config11 = config) !== null && _config11 !== void 0 && _config11.actions)) {
     return true;
   } // if the attribute type is action consider the actions config attribute
 
 
   if (type === "action") {
-    var _config11;
+    var _config12;
 
-    if (config && config.actions && ((_config11 = config) === null || _config11 === void 0 ? void 0 : _config11.actions[attribute]) === false) {
+    if (config && config.actions && ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.actions[attribute]) === false) {
       return false;
     }
   } else if (type === "detail") {
-    var _config12;
+    var _config13;
 
     // else consider the details attribute
-    if (config && config.details && ((_config12 = config) === null || _config12 === void 0 ? void 0 : _config12.details[attribute]) === false) {
+    if (config && config.details && ((_config13 = config) === null || _config13 === void 0 ? void 0 : _config13.details[attribute]) === false) {
       return false;
     }
   }
@@ -1431,11 +1440,11 @@ var mailgoConfigAttributeEnabled = function mailgoConfigAttributeEnabled(type, a
 
 
 var mailgoSetLanguage = function mailgoSetLanguage() {
-  var _config13;
+  var _config14;
 
   var languageType = "default lang"; // if a language is defined in configuration use it
 
-  if ((_config13 = config) !== null && _config13 !== void 0 && _config13.lang && languages_namespaceObject.indexOf(config.lang) !== -1) {
+  if ((_config14 = config) !== null && _config14 !== void 0 && _config14.lang && languages_namespaceObject.indexOf(config.lang) !== -1) {
     lang = config.lang;
     languageType = "config lang";
   } else {
@@ -1478,25 +1487,25 @@ function mailgo(mailgoConfig) {
     config = _objectSpread(_objectSpread({}, mailgoConfig), ((_window = window) === null || _window === void 0 ? void 0 : _window.mailgoConfig) || null); // if the window is defined...
 
     if (typeof window !== "undefined") {
-      var _config14, _config15, _config16, _config17, _config18;
+      var _config15, _config16, _config17, _config18, _config19;
 
       // if is set in config use it (load the mailgo CSS)
-      if (typeof ((_config14 = config) === null || _config14 === void 0 ? void 0 : _config14.loadCSS) !== "undefined") {
+      if (typeof ((_config15 = config) === null || _config15 === void 0 ? void 0 : _config15.loadCSS) !== "undefined") {
         loadCSSConfig = config.loadCSS;
       } // if is set in config use it (enable mailto)
 
 
-      if (typeof ((_config15 = config) === null || _config15 === void 0 ? void 0 : _config15.mailto) !== "undefined") {
+      if (typeof ((_config16 = config) === null || _config16 === void 0 ? void 0 : _config16.mailto) !== "undefined") {
         mailtoEnabled = config.mailto;
       } // if is set in config use it (enable tel)
 
 
-      if (typeof ((_config16 = config) === null || _config16 === void 0 ? void 0 : _config16.tel) !== "undefined") {
+      if (typeof ((_config17 = config) === null || _config17 === void 0 ? void 0 : _config17.tel) !== "undefined") {
         telEnabled = config.tel;
       } // if is set in config use it (enable sms)
 
 
-      if (typeof ((_config17 = config) === null || _config17 === void 0 ? void 0 : _config17.sms) !== "undefined") {
+      if (typeof ((_config18 = config) === null || _config18 === void 0 ? void 0 : _config18.sms) !== "undefined") {
         smsEnabled = config.sms;
       } // if load css enabled load it!
 
@@ -1507,10 +1516,10 @@ function mailgo(mailgoConfig) {
       } // if is set an initEvent add the listener
 
 
-      if ((_config18 = config) !== null && _config18 !== void 0 && _config18.initEvent) {
-        var _config19;
+      if ((_config19 = config) !== null && _config19 !== void 0 && _config19.initEvent) {
+        var _config20;
 
-        if ((_config19 = config) !== null && _config19 !== void 0 && _config19.listenerOptions) {
+        if ((_config20 = config) !== null && _config20 !== void 0 && _config20.listenerOptions) {
           // listener options specified
           document.addEventListener(config.initEvent, mailgoInit, config.listenerOptions);
         } else {
