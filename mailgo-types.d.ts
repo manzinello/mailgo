@@ -43,12 +43,10 @@ declare module "mailgo" {
     [action in MailgoAction]?: boolean;
   };
 
+  export type MailgoDetail = "cc" | "bcc" | "subject" | "body" | "msg";
+
   type MailgoDetails = {
-    cc?: boolean;
-    bcc?: boolean;
-    subject?: boolean;
-    body?: boolean;
-    msg?: boolean;
+    [detail in MailgoDetail]?: boolean;
   };
 
   export type MailgoTranslation = {

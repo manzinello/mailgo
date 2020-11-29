@@ -5,6 +5,7 @@ import {
   MailgoAction,
   MailgoLanguages,
   MailgoType,
+  MailgoDetail,
 } from "mailgo";
 
 // polyfill
@@ -257,7 +258,7 @@ const mailgoInit = (): void => {
     );
     gmail.appendChild(gmailSpan);
 
-    if (mailgoActionEnabled("gmail")) {
+    if (mailgoConfigAttributeEnabled("action", "gmail")) {
       modalContent.appendChild(gmail);
     }
 
@@ -277,7 +278,7 @@ const mailgoInit = (): void => {
     );
     outlook.appendChild(outlookSpan);
 
-    if (mailgoActionEnabled("outlook")) {
+    if (mailgoConfigAttributeEnabled("action", "outlook")) {
       modalContent.appendChild(outlook);
     }
 
@@ -297,7 +298,7 @@ const mailgoInit = (): void => {
     );
     yahoo.appendChild(yahooSpan);
 
-    if (mailgoActionEnabled("yahoo")) {
+    if (mailgoConfigAttributeEnabled("action", "yahoo")) {
       modalContent.appendChild(yahoo);
     }
 
@@ -418,7 +419,7 @@ const mailgoInit = (): void => {
     );
     telegram.appendChild(telegramSpan);
 
-    if (mailgoActionEnabled("telegram")) {
+    if (mailgoConfigAttributeEnabled("action", "telegram")) {
       modalContent.appendChild(telegram);
     }
 
@@ -436,7 +437,7 @@ const mailgoInit = (): void => {
     );
     wa.appendChild(waSpan);
 
-    if (mailgoActionEnabled("whatsapp")) {
+    if (mailgoConfigAttributeEnabled("action", "whatsapp")) {
       modalContent.appendChild(wa);
     }
 
@@ -456,7 +457,7 @@ const mailgoInit = (): void => {
     );
     skype.appendChild(skypeSpan);
 
-    if (mailgoActionEnabled("skype")) {
+    if (mailgoConfigAttributeEnabled("action", "skype")) {
       modalContent.appendChild(skype);
     }
 
@@ -1358,18 +1359,38 @@ const buildLessSpamHref = (type: string, parameters: string[]): string => {
   return lessSpamHref;
 };
 
-// function to check an action is enabled or not
-const mailgoActionEnabled = (action: MailgoAction): boolean => {
-  // by default all the actions are enabled
+// function to check an attribute is enabled or not, by default considering it enabled
+const mailgoConfigAttributeEnabled = (
+  type: "action" | "detail",
+  attribute: MailgoAction | MailgoDetail
+): boolean => {
+  // by default all the actions and attribute are enabled
   if (!config) {
     return true;
   }
+
   if (config && !config?.actions) {
     return true;
   }
 
-  if (config && config.actions && config?.actions[action] === false) {
-    return false;
+  // if the attribute type is action consider the actions config attribute
+  if (type === "action") {
+    if (
+      config &&
+      config.actions &&
+      config?.actions[attribute as MailgoAction] === false
+    ) {
+      return false;
+    }
+  } else if (type === "detail") {
+    // else consider the details attribute
+    if (
+      config &&
+      config.details &&
+      config?.details[attribute as MailgoDetail] === false
+    ) {
+      return false;
+    }
   }
 
   return true;
