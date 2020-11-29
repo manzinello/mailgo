@@ -18,6 +18,7 @@ declare module "mailgo" {
     showFooter?: boolean; // show the footer with link to mailgo.dev, default true, please!
     loadCSS?: boolean; // loadCSS for mailgo, default true
     actions?: MailgoActions; // enable/disable actions, default all trues
+    details?: MailgoDetails; // WIP show/hide the modal details
   };
 
   export type MailgoModalType = "mailgo" | "mailgo-tel" | "mailgo-sms"; // type of mailgo modal
@@ -40,6 +41,14 @@ declare module "mailgo" {
 
   type MailgoActions = {
     [action in MailgoAction]?: boolean;
+  };
+
+  type MailgoDetails = {
+    cc?: boolean;
+    bcc?: boolean;
+    subject?: boolean;
+    body?: boolean;
+    msg?: boolean;
   };
 
   export type MailgoTranslation = {
