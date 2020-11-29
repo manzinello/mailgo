@@ -149,7 +149,7 @@ var validateEmails = function validateEmails(arr) {
 }; // validate a single tel with regex
 
 var validateTel = function validateTel(tel) {
-  return /^[+]{0,1}[\s0-9]{0,}[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*$/.test(tel);
+  return /^[+]{0,1}[\s0-9]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s\./0-9]*[p]{0,1}[\s0-9]*$/.test(tel);
 }; // copy of a string
 
 var copyToClipboard = function copyToClipboard(str) {
