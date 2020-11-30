@@ -1289,7 +1289,7 @@ var mailgoIsShowing = function mailgoIsShowing() {
 };
 
 var byElement = function byElement() {
-  // by
+  // by element in the footer
   var by = createElement(aHTMLTag);
   by.href = "https://mailgo.dev?ref=mailgo-modal";
   by.className = "m-by";

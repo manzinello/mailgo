@@ -6,6 +6,8 @@ import {
   MailgoLanguages,
   MailgoType,
   MailgoDetail,
+  MailgoInstallationType,
+  MailgoModalType,
 } from "mailgo";
 
 // polyfill
@@ -597,8 +599,8 @@ function mailgoPreRender(
   let mailgoElement: HTMLLinkElement;
 
   // get the type and installation from current mailgo type
-  let type: string = activeMailgoType?.type;
-  let installation: string = activeMailgoType?.installation;
+  let type: MailgoModalType = activeMailgoType?.type;
+  let installation: MailgoInstallationType = activeMailgoType?.installation;
 
   // if type is not defined return
   if (!type) return false;
@@ -827,7 +829,7 @@ function mailgoDirectRender(directUrl: string): boolean {
  */
 function mailgoRender(): boolean {
   // get the type from current mailgo type
-  let type: string = activeMailgoType?.type;
+  let type: MailgoModalType = activeMailgoType?.type;
 
   // if type is not defined return
   if (!type) return false;
@@ -921,7 +923,7 @@ const openGmail = (event?: Event): void => {
   event.preventDefault();
 
   let urlString: string;
-  let installation: string = activeMailgoType?.installation;
+  let installation: MailgoInstallationType = activeMailgoType?.installation;
 
   if (installation === CLASSIC) {
     try {
@@ -1053,7 +1055,7 @@ const openWhatsApp = (event?: Event): void => {
 const openDefault = (event?: Event): void => {
   event.preventDefault();
 
-  let installation: string = activeMailgoType?.installation;
+  let installation: MailgoInstallationType = activeMailgoType?.installation;
 
   // if the installation is classic the browser can follow the default behaviour
   if (installation === CLASSIC) {
@@ -1073,7 +1075,8 @@ const copy = (event?: Event): void => {
   if (mailgoIsShowing()) {
     let activeCopy: HTMLElement;
 
-    let type: string = activeMailgoType?.type;
+    let type: MailgoModalType = activeMailgoType?.type;
+
     if (type === MAILGO_MAIL) {
       // in case it is showing mail modal copy email address
       copyToClipboard(mail);
@@ -1170,7 +1173,7 @@ function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
 const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
   // if mailgo is showing
   if (mailgoIsShowing()) {
-    let type: string = activeMailgoType?.type;
+    let type: MailgoModalType = activeMailgoType?.type;
 
     if (type === MAILGO_MAIL) {
       switch (keyboardEvent.keyCode) {
@@ -1238,7 +1241,7 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
 };
 
 // show the modal
-const showMailgo = (type: string): void => {
+const showMailgo = (type: MailgoModalType): void => {
   // show the correct modal
   setModalDisplay(type, "flex");
 };
@@ -1262,7 +1265,7 @@ const mailgoIsShowing = (): boolean => {
 };
 
 const byElement = (): HTMLLinkElement => {
-  // by
+  // by element in the footer
   let by: HTMLLinkElement = createElement(aHTMLTag) as HTMLLinkElement;
   by.href = "https://mailgo.dev?ref=mailgo-modal";
   by.className = "m-by";
@@ -1282,7 +1285,7 @@ const createTextNode = (element: string): Text =>
   document.createTextNode(element);
 
 // get the correct HTMLElement from a type
-const getModalHTMLElement = (type: string = MAILGO_MAIL) => {
+const getModalHTMLElement = (type: MailgoModalType = MAILGO_MAIL) => {
   if (type === MAILGO_TEL) {
     return modalTel;
   } else {
@@ -1291,11 +1294,14 @@ const getModalHTMLElement = (type: string = MAILGO_MAIL) => {
 };
 
 // get display value
-const getModalDisplay = (ref: string = MAILGO_MAIL): string =>
+const getModalDisplay = (ref: MailgoModalType = MAILGO_MAIL): string =>
   getModalHTMLElement(ref).style.display;
 
 // set display value
-const setModalDisplay = (ref: string = MAILGO_MAIL, value: string): void => {
+const setModalDisplay = (
+  ref: MailgoModalType = MAILGO_MAIL,
+  value: string
+): void => {
   let modal = getModalHTMLElement(ref);
 
   if (modal) {
@@ -1323,7 +1329,7 @@ const setModalDisplay = (ref: string = MAILGO_MAIL, value: string): void => {
 // enable dark mode
 const enableDarkMode = () => {
   // get the type from current mailgo type
-  let type: string = activeMailgoType?.type;
+  let type: MailgoModalType = activeMailgoType?.type;
   if (type) {
     getModalHTMLElement(type).classList.add("m-dark");
   }
@@ -1332,7 +1338,7 @@ const enableDarkMode = () => {
 // disable dark mode
 const disableDarkMode = () => {
   // get the type from current mailgo type
-  let type: string = activeMailgoType?.type;
+  let type: MailgoModalType = activeMailgoType?.type;
   if (type) {
     getModalHTMLElement(type).classList.remove("m-dark");
   }
