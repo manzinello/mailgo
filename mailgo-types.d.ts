@@ -12,7 +12,7 @@ declare module "mailgo" {
     mobile?: boolean; // enable mailgo for mobile, default true
 
     actions?: MailgoActions; // enable/disable actions, default all trues
-    details?: MailgoDetails; // WIP show/hide the modal details
+    details?: MailgoDetails; // show/hide the modal details
 
     dark?: boolean; // dark mode for mailgo, default false
 
@@ -21,7 +21,7 @@ declare module "mailgo" {
     validateEmail?: boolean; // validate an email, default is true
     validateTel?: boolean; // validate a phone number, default is true
 
-    office365?: boolean; // WIP the particular case of Outlook link: can be outlook.live.com or outlook.office365.com, by default the first but with this parameter you can change the behaviour
+    office365?: boolean; // the particular case of Outlook link: can be outlook.live.com or outlook.office365.com, by default the first but with this parameter you can change the behaviour
 
     showFooter?: boolean; // show the footer with a link to mailgo.dev, default true, please!
 
