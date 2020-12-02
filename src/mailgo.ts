@@ -31,6 +31,8 @@ import {
   aHTMLTag,
   pHTMLTag,
   defaultLang,
+  notNumber,
+  leadingZeros,
 } from "./constants";
 
 // utils
@@ -58,10 +60,6 @@ let lang: string = defaultLang;
 const defaultStrings: MailgoTranslation = (translations as MailgoTranslations)[
   defaultLang
 ];
-
-// useful regexp
-const notNumber: RegExp = new RegExp("[^0-9/]", "gi");
-const leadingZeros: RegExp = new RegExp("^0+", "gi");
 
 // translation strings
 let strings: MailgoTranslation;
