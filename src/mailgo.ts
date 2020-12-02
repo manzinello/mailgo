@@ -1381,12 +1381,12 @@ const mailgoConfigAttributeEnabled = (
     return true;
   }
 
-  if (config && !config?.actions) {
-    return true;
-  }
-
   // if the attribute type is action consider the actions config attribute
   if (type === "action") {
+    if (config && !config?.actions) {
+      return true;
+    }
+
     if (
       config &&
       config.actions &&
@@ -1396,6 +1396,11 @@ const mailgoConfigAttributeEnabled = (
     }
   } else if (type === "detail") {
     // else consider the details attribute
+
+    if (config && !config?.details) {
+      return true;
+    }
+
     if (
       config &&
       config.details &&

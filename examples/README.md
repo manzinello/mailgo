@@ -63,3 +63,11 @@ Simple example of mailgo with a test of desktop/mobile settings
 ### `index.skypack.html`
 
 Simple example of mailgo using <https://www.skypack.dev/view/mailgo>
+
+### `index.office365.html`
+
+Simple example of mailgo that uses Office365 instead the classic Outlook Live for Outlook link
+
+### `index.detailshidden.html`
+
+Simple example of mailgo with subject and body of the email hidden
