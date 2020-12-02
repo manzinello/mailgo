@@ -77,7 +77,7 @@ declare module "mailgo" {
     _as_default?: string;
     copy?: string;
     copied?: string;
-    open_in_template?: string;
+    open_in_template?: string; // WIP
   };
 
   // language codes array that follow ISO 639-1 Code
