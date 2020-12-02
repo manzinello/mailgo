@@ -835,19 +835,19 @@ function mailgoRender(): boolean {
   // mailgo mail
   if (type === MAILGO_MAIL) {
     // the title of the modal (email address)
-    title.innerHTML = mail.split(",").join("<br/>");
+    title.textContent = mail.split(",").join("\n");
 
     // add the details if provided
     if (mailgoConfigAttributeEnabled("detail", "cc") && cc) {
       detailCc.style.display = "block";
-      ccValue.innerHTML = cc.split(",").join("<br/>");
+      ccValue.textContent = cc.split(",").join("\n");
     } else {
       detailCc.style.display = "none";
     }
 
     if (mailgoConfigAttributeEnabled("detail", "bcc") && bcc) {
       detailBcc.style.display = "block";
-      bccValue.innerHTML = bcc.split(",").join("<br/>");
+      bccValue.textContent = bcc.split(",").join("\n");
     } else {
       detailBcc.style.display = "none";
     }
@@ -880,7 +880,7 @@ function mailgoRender(): boolean {
   // mailgo tel
   else if (type === MAILGO_TEL) {
     // the title of the modal (tel)
-    titleTel.innerHTML = tel;
+    titleTel.textContent = tel;
 
     if (mailgoConfigAttributeEnabled("detail", "msg") && msg) {
       detailMsg.style.display = "block";
