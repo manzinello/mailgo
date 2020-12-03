@@ -45,9 +45,9 @@
   max-width: 240px;
   background-color: #fff;
   opacity: 0.95;
-  border-radius: 22px;
+  border-radius: 20px;
   box-shadow: 0 3px 20px rgba(32, 35, 42, 0.5);
-  border: 2px solid #333333;
+  border: 3px solid #333;
   color: #4a4a4a;
   display: flex;
   flex-direction: column;
@@ -80,7 +80,7 @@
   cursor: pointer;
   padding: 10px;
   color: #4a4a4a;
-  border-radius: 22px;
+  border-radius: 20px;
   text-decoration: none;
 }
 .m-modal .m-modal-content a.m-gmail {

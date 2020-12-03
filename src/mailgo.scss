@@ -22,8 +22,8 @@ $telegram-dark-color: #4cabdb;
 $skype-dark-color: #4cc7f4;
 
 // other vars
-$default-border-radius: 22px;
-$default-border-color: #333333;
+$default-border-radius: 20px;
+$default-border-color: #333;
 
 .m-modal {
   position: fixed;
@@ -76,7 +76,7 @@ $default-border-color: #333333;
     opacity: 0.95;
     border-radius: $default-border-radius;
     box-shadow: 0 3px 20px rgba(32, 35, 42, 0.5);
-    border: 2px solid $default-border-color;
+    border: 3px solid $default-border-color;
     color: $default-color;
     display: flex;
     flex-direction: column;
