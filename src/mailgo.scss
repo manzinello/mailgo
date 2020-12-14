@@ -70,6 +70,7 @@ $default-border-color: #333;
     z-index: 10002;
     box-sizing: content-box;
     text-align: center;
+    overflow: hidden;
     min-width: 200px;
     max-width: 240px;
     background-color: #fff;
@@ -93,7 +94,7 @@ $default-border-color: #333;
     .m-title {
       margin-bottom: 8px;
       overflow: hidden;
-      white-space: pre;
+      white-space: pre-line;
       text-overflow: ellipsis;
       line-height: 1.2em;
     }
@@ -101,7 +102,7 @@ $default-border-color: #333;
     .m-details {
       margin-bottom: 10px;
       p {
-        white-space: pre;
+        white-space: pre-line;
         font-size: 12px;
         margin-top: 3px;
         margin-bottom: 3px;
