@@ -776,10 +776,7 @@ function mailgoPreRender(
   }
 
   // if dark is in config or contained in the element
-  if (
-    mailgoElement &&
-    (config?.dark || mailgoElement.classList.contains("dark"))
-  ) {
+  if (config?.dark || mailgoElement.classList.contains("dark")) {
     enableDarkMode();
   } else {
     disableDarkMode();
