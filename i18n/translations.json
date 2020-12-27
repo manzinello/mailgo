@@ -148,5 +148,17 @@
     "_as_default": " 預設",
     "copy": "複製",
     "copied": "已複製"
+  },
+
+  "ja": {
+    "open_in_": "開く ",
+    "subject_": "主題 ",
+    "body_": "本文 ",
+    "call": "通話 ",
+    "open": "開く ",
+    "_default": " 標準のアプリ",
+    "_as_default": " 標準のアプリ",
+    "copy": "リンクをコピー",
+    "copied": "コピーしました"
   }
 }
