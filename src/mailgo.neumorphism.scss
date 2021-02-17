@@ -1,11 +1,79 @@
 @import "mailgo.scss";
 
+$default-color: #4a4a4a;
+$gmail-color: #c2564d;
+$outlook-color: #3178aa;
+$yahoo-color: #6b429b;
+$wa-color: #257268;
+$telegram-color: #2c789e;
+$skype-color: #2e748d;
+
+$default-color-hover: #3d3d3d;
+
+$default-dark-color: #eaeaea;
+$gmail-dark-color: #e07d73;
+$outlook-dark-color: #4c9cd7;
+$yahoo-dark-color: #ac88d3;
+$wa-dark-color: #4cd2c0;
+$telegram-dark-color: #4cabdb;
+$skype-dark-color: #4cc7f4;
+
 .m-modal-content {
+  opacity: 0.95;
   box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
     -30px -30px 60px rgba(32, 35, 42, 0.5);
   a {
-    box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
-      -30px -30px 60px rgba(32, 35, 42, 0.5);
-    margin-bottom: 10px;
+    background: #e3e3e3;
+    box-shadow: 8px 8px 16px #c1c1c1, -8px -8px 16px #ffffff;
+    margin: 10px 0px;
+  }
+  a.m-by {
+    color: #4a4a4a;
+  }
+}
+
+.m-modal {
+  .m-modal-content {
+    a.m-gmail,
+    a.m-outlook,
+    a.m-yahoo,
+    a.m-tg,
+    a.m-wa,
+    a.m-skype,
+    a.m-default,
+    a.m-copy,
+    a.m-by {
+      &:hover {
+        border-radius: 39px;
+        background: #e3e3e3;
+        box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+      }
+      &:focus {
+        border-radius: 39px;
+        background: #e3e3e3;
+        box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+      }
+      &:active {
+        border-radius: 39px;
+        background: #e3e3e3;
+        box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+      }
+    }
+    background: #e3e3e3;
+    opacity: 0.95;
+    &:hover,
+    &:focus,
+    &:active {
+      opacity: 0.95;
+    }
+    a.m-gmail {
+      color: $gmail-color;
+    }
+    a.m-outlook {
+      color: $outlook-color;
+    }
+    a.m-yahoo {
+      color: $yahoo-color;
+    }
   }
 }
