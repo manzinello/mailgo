@@ -8,15 +8,7 @@ $wa-color: #257268;
 $telegram-color: #2c789e;
 $skype-color: #2e748d;
 
-$default-color-hover: #3d3d3d;
-
-$default-dark-color: #eaeaea;
-$gmail-dark-color: #e07d73;
-$outlook-dark-color: #4c9cd7;
-$yahoo-dark-color: #ac88d3;
-$wa-dark-color: #4cd2c0;
-$telegram-dark-color: #4cabdb;
-$skype-dark-color: #4cc7f4;
+$default-dark-color: #d1d1d1;
 
 .m-modal-content {
   opacity: 0.95;
@@ -44,17 +36,14 @@ $skype-dark-color: #4cc7f4;
     a.m-copy,
     a.m-by {
       &:hover {
-        border-radius: 39px;
         background: #e3e3e3;
         box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
       }
       &:focus {
-        border-radius: 39px;
         background: #e3e3e3;
         box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
       }
       &:active {
-        border-radius: 39px;
         background: #e3e3e3;
         box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
       }
@@ -74,6 +63,56 @@ $skype-dark-color: #4cc7f4;
     }
     a.m-yahoo {
       color: $yahoo-color;
+    }
+  }
+
+  &.m-dark {
+    .m-modal-content {
+      strong {
+        color: $default-dark-color;
+      }
+      #m-cc-value,
+      #m-bcc-value,
+      #m-subject-value,
+      #m-body-value {
+        color: $default-dark-color;
+      }
+      a.m-gmail,
+      a.m-outlook,
+      a.m-yahoo,
+      a.m-tg,
+      a.m-wa,
+      a.m-skype,
+      a.m-default,
+      a.m-copy,
+      a.m-by {
+        &:hover {
+          background: #20232a;
+          box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+        }
+        &:focus {
+          background: #20232a;
+          box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+        }
+        &:active {
+          background: #20232a;
+          box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+        }
+      }
+      a {
+        color: $default-dark-color;
+        background: linear-gradient(145deg, #1d2026, #22252d);
+        box-shadow: 5px 5px 10px #191b20, -5px -5px 10px #272b34;
+      }
+    }
+
+    &:not(.m-by) {
+      &:hover,
+      &:focus,
+      &:active {
+        background-color: rgba(134, 134, 134, 0.08);
+        color: $default-dark-color;
+      }
     }
   }
 }
