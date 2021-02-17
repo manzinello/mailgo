@@ -244,13 +244,128 @@
 }
 
 .m-modal-content {
+  opacity: 0.95;
   box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
     -30px -30px 60px rgba(32, 35, 42, 0.5);
 }
 .m-modal-content a {
-  box-shadow: 20px 20px 50px rgba(32, 35, 42, 0.5),
-    -30px -30px 60px rgba(32, 35, 42, 0.5);
-  margin-bottom: 10px;
+  background: #e3e3e3;
+  box-shadow: 8px 8px 16px #c1c1c1, -8px -8px 16px #ffffff;
+  margin: 10px 0px;
+}
+.m-modal-content a.m-by {
+  color: #4a4a4a;
+}
+
+.m-modal .m-modal-content {
+  background: #e3e3e3;
+  opacity: 0.95;
+}
+.m-modal .m-modal-content a.m-gmail:hover,
+.m-modal .m-modal-content a.m-outlook:hover,
+.m-modal .m-modal-content a.m-yahoo:hover,
+.m-modal .m-modal-content a.m-tg:hover,
+.m-modal .m-modal-content a.m-wa:hover,
+.m-modal .m-modal-content a.m-skype:hover,
+.m-modal .m-modal-content a.m-default:hover,
+.m-modal .m-modal-content a.m-copy:hover,
+.m-modal .m-modal-content a.m-by:hover {
+  background: #e3e3e3;
+  box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+}
+.m-modal .m-modal-content a.m-gmail:focus,
+.m-modal .m-modal-content a.m-outlook:focus,
+.m-modal .m-modal-content a.m-yahoo:focus,
+.m-modal .m-modal-content a.m-tg:focus,
+.m-modal .m-modal-content a.m-wa:focus,
+.m-modal .m-modal-content a.m-skype:focus,
+.m-modal .m-modal-content a.m-default:focus,
+.m-modal .m-modal-content a.m-copy:focus,
+.m-modal .m-modal-content a.m-by:focus {
+  background: #e3e3e3;
+  box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+}
+.m-modal .m-modal-content a.m-gmail:active,
+.m-modal .m-modal-content a.m-outlook:active,
+.m-modal .m-modal-content a.m-yahoo:active,
+.m-modal .m-modal-content a.m-tg:active,
+.m-modal .m-modal-content a.m-wa:active,
+.m-modal .m-modal-content a.m-skype:active,
+.m-modal .m-modal-content a.m-default:active,
+.m-modal .m-modal-content a.m-copy:active,
+.m-modal .m-modal-content a.m-by:active {
+  background: #e3e3e3;
+  box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
+}
+.m-modal .m-modal-content:hover,
+.m-modal .m-modal-content:focus,
+.m-modal .m-modal-content:active {
+  opacity: 0.95;
+}
+.m-modal .m-modal-content a.m-gmail {
+  color: #c2564d;
+}
+.m-modal .m-modal-content a.m-outlook {
+  color: #3178aa;
+}
+.m-modal .m-modal-content a.m-yahoo {
+  color: #6b429b;
+}
+.m-modal.m-dark .m-modal-content strong {
+  color: #d1d1d1;
+}
+.m-modal.m-dark .m-modal-content #m-cc-value,
+.m-modal.m-dark .m-modal-content #m-bcc-value,
+.m-modal.m-dark .m-modal-content #m-subject-value,
+.m-modal.m-dark .m-modal-content #m-body-value {
+  color: #d1d1d1;
+}
+.m-modal.m-dark .m-modal-content a.m-gmail:hover,
+.m-modal.m-dark .m-modal-content a.m-outlook:hover,
+.m-modal.m-dark .m-modal-content a.m-yahoo:hover,
+.m-modal.m-dark .m-modal-content a.m-tg:hover,
+.m-modal.m-dark .m-modal-content a.m-wa:hover,
+.m-modal.m-dark .m-modal-content a.m-skype:hover,
+.m-modal.m-dark .m-modal-content a.m-default:hover,
+.m-modal.m-dark .m-modal-content a.m-copy:hover,
+.m-modal.m-dark .m-modal-content a.m-by:hover {
+  background: #20232a;
+  box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+}
+.m-modal.m-dark .m-modal-content a.m-gmail:focus,
+.m-modal.m-dark .m-modal-content a.m-outlook:focus,
+.m-modal.m-dark .m-modal-content a.m-yahoo:focus,
+.m-modal.m-dark .m-modal-content a.m-tg:focus,
+.m-modal.m-dark .m-modal-content a.m-wa:focus,
+.m-modal.m-dark .m-modal-content a.m-skype:focus,
+.m-modal.m-dark .m-modal-content a.m-default:focus,
+.m-modal.m-dark .m-modal-content a.m-copy:focus,
+.m-modal.m-dark .m-modal-content a.m-by:focus {
+  background: #20232a;
+  box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+}
+.m-modal.m-dark .m-modal-content a.m-gmail:active,
+.m-modal.m-dark .m-modal-content a.m-outlook:active,
+.m-modal.m-dark .m-modal-content a.m-yahoo:active,
+.m-modal.m-dark .m-modal-content a.m-tg:active,
+.m-modal.m-dark .m-modal-content a.m-wa:active,
+.m-modal.m-dark .m-modal-content a.m-skype:active,
+.m-modal.m-dark .m-modal-content a.m-default:active,
+.m-modal.m-dark .m-modal-content a.m-copy:active,
+.m-modal.m-dark .m-modal-content a.m-by:active {
+  background: #20232a;
+  box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
+}
+.m-modal.m-dark .m-modal-content a {
+  color: #d1d1d1;
+  background: linear-gradient(145deg, #1d2026, #22252d);
+  box-shadow: 5px 5px 10px #191b20, -5px -5px 10px #272b34;
+}
+.m-modal.m-dark:not(.m-by):hover,
+.m-modal.m-dark:not(.m-by):focus,
+.m-modal.m-dark:not(.m-by):active {
+  background-color: rgba(134, 134, 134, 0.08);
+  color: #d1d1d1;
 }
 
 /*# sourceMappingURL=mailgo.neumorphism.css.map */
