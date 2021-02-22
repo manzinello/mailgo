@@ -13,7 +13,7 @@
       window.mailgoConfig = {
         dark: true,
         details: {
-          subject: false,
+          // subject: false,
           body: false,
           to: false,
           cc: false,
@@ -26,7 +26,7 @@
       document
         .getElementById("direct-render")
         .addEventListener("click", function () {
-          mailgoDirectRender("mailto:info@mailgo.dev");
+          mailgoDirectRender("mailto:info@mailgo.dev?subject=test");
         });
     </script>
   </body>
