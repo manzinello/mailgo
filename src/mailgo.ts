@@ -37,6 +37,7 @@ import {
 
 // utils
 import {
+  validateEmail,
   validateEmails,
   validateTel,
   copyToClipboard,
@@ -1533,6 +1534,7 @@ export {
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
+  validateEmail as mailgoValidateEmail,
 };
 
 export default mailgo;

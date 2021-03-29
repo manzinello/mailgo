@@ -6,6 +6,7 @@ import mailgo, {
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
+  mailgoValidateEmail,
 } from "../src/mailgo";
 
 // start function
@@ -21,6 +22,7 @@ export {
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
+  mailgoValidateEmail,
   mailgo,
   start,
 };

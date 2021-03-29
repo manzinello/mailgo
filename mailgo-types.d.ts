@@ -113,5 +113,7 @@ declare module "mailgo" {
 
   export function mailgoRender(): boolean;
 
+  export function mailgoValidateEmail(email: string): boolean;
+
   export default function mailgo(mailgoConfig?: MailgoConfig): boolean;
 }
