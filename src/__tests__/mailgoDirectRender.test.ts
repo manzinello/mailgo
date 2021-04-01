@@ -1,16 +1,14 @@
-import {
-  queryAllByRole,
-  screen,
-  waitForElementToBeRemoved,
-} from "@testing-library/dom";
-import userEvent from "@testing-library/user-event";
-import "@testing-library/jest-dom/extend-expect";
+import { queryAllByRole } from "@testing-library/dom";
+import "@testing-library/jest-dom";
 
 import { mailgoDirectRender } from "../mailgo";
 
-import setupMailgoConfig from "./helpers/mailgoHelper";
+import setupMailgoConfig, {
+  getDialogElement,
+  hideMailgo,
+} from "./helpers/mailgoHelper";
 
-test("with a valid mailto url, should render mailgo modal", async () => {
+test("with a valid mailto url, should render the mailgo modal", async () => {
   setupMailgoConfig();
   const toAddress = "mark.white@mail.com";
   const mailtoUrl = `mailto:${toAddress}`;
@@ -19,7 +17,7 @@ test("with a valid mailto url, should render mailgo modal", async () => {
 
   expect(renderResult).toEqual(true);
 
-  const mailgoModal = screen.queryByRole("dialog");
+  const mailgoModal = getDialogElement();
   expect(mailgoModal).toBeTruthy();
   expect(mailgoModal).toHaveTextContent(toAddress);
   const mailgoModalLinks = queryAllByRole(mailgoModal, "link");
@@ -29,12 +27,9 @@ test("with a valid mailto url, should render mailgo modal", async () => {
   expect(mailgoModalLinks[2]).toHaveTextContent("open in Yahoo Mail");
   expect(mailgoModalLinks[3]).toHaveTextContent("open default");
   expect(mailgoModalLinks[4]).toHaveTextContent("copy");
-
-  userEvent.click(document.body);
-  await waitForElementToBeRemoved(() => screen.queryByRole("dialog"));
 });
 
-test("with an invalid mailto url, should not render mailgo modal", () => {
+test("with an invalid mailto url, should not render the mailgo modal", () => {
   setupMailgoConfig();
   const toAddress = "mark.white@mail";
   const mailtoUrl = `mailto:${toAddress}`;
@@ -43,6 +38,10 @@ test("with an invalid mailto url, should not render mailgo modal", () => {
 
   expect(renderResult).toEqual(false);
 
-  const mailgoModal = screen.queryByRole("dialog");
+  const mailgoModal = getDialogElement();
   expect(mailgoModal).toBeNull();
+});
+
+afterEach(() => {
+  hideMailgo();
 });

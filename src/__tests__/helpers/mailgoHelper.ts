@@ -1,3 +1,6 @@
+import { screen } from "@testing-library/dom";
+import userEvent from "@testing-library/user-event";
+
 declare global {
   interface Window {
     mailgoConfig: any;
@@ -26,4 +29,14 @@ function setupMailgoConfig(): void {
   };
 }
 
+function getDialogElement(): HTMLElement {
+  return screen.queryByRole("dialog");
+}
+
+function hideMailgo(): void {
+  userEvent.keyboard("{esc}");
+}
+
 export default setupMailgoConfig;
+
+export { getDialogElement, hideMailgo };
