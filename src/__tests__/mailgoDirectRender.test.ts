@@ -8,7 +8,7 @@ import setupMailgoConfig, {
   hideMailgo,
 } from "./helpers/mailgoHelper";
 
-test("with a valid mailto url, should render the mailgo modal", async () => {
+test("with a valid mailto url, should render the mailgo modal", () => {
   setupMailgoConfig();
   const toAddress = "mark.white@mail.com";
   const mailtoUrl = `mailto:${toAddress}`;
