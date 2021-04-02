@@ -758,7 +758,7 @@ function mailgoPreRender(
 
     // validate the phone number
     if (validateTelConfig) {
-      if (!validateTel(tel)) return;
+      if (!validateTel(tel)) return false;
     }
 
     // Telegram username
@@ -802,8 +802,7 @@ function mailgoDirectRender(directUrl: string): boolean {
       type: MAILGO_MAIL,
       installation: CLASSIC,
     };
-    mailgoPreRender(directUrl);
-    return true;
+    return mailgoPreRender(directUrl);
   } else if (
     validateUrl(directUrl, TEL) ||
     validateUrl(directUrl, CALLTO) ||
@@ -813,9 +812,9 @@ function mailgoDirectRender(directUrl: string): boolean {
       type: MAILGO_TEL,
       installation: CLASSIC,
     };
-    mailgoPreRender(directUrl);
-    return true;
+    return mailgoPreRender(directUrl);
   }
+
   return false;
 }
 
