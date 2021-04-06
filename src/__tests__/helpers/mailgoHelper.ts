@@ -7,7 +7,7 @@ declare global {
   }
 }
 
-function setupMailgoConfig(): void {
+function setupWindowConfig(): void {
   window.mailgoConfig = {
     dark: true,
     showFooter: false,
@@ -29,14 +29,24 @@ function setupMailgoConfig(): void {
   };
 }
 
-function getDialogElement(): HTMLElement {
+function cleanup(): void {
+  hideMailgo();
+  window.mailgoConfig = undefined;
+}
+
+function getMailgoModal(): HTMLElement {
   return screen.queryByRole("dialog");
+}
+
+function getMailtoUrl(mailAddress: string): string {
+  const mailtoUrl = `mailto:${mailAddress}`;
+  return mailtoUrl;
 }
 
 function hideMailgo(): void {
   userEvent.keyboard("{esc}");
 }
 
-export default setupMailgoConfig;
+export default setupWindowConfig;
 
-export { getDialogElement, hideMailgo };
+export { cleanup, getMailgoModal, getMailtoUrl };

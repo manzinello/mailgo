@@ -3,21 +3,21 @@ import "@testing-library/jest-dom";
 
 import { mailgoDirectRender } from "../mailgo";
 
-import setupMailgoConfig, {
-  getDialogElement,
-  hideMailgo,
+import setupWindowConfig, {
+  cleanup,
+  getMailgoModal,
+  getMailtoUrl,
 } from "./helpers/mailgoHelper";
 
 test("with a valid mailto url, should render the mailgo modal", () => {
-  setupMailgoConfig();
+  setupWindowConfig();
   const toAddress = "mark.white@mail.com";
-  const mailtoUrl = `mailto:${toAddress}`;
 
-  const renderResult = mailgoDirectRender(mailtoUrl);
+  const renderResult = mailgoDirectRender(getMailtoUrl(toAddress));
 
   expect(renderResult).toEqual(true);
 
-  const mailgoModal = getDialogElement();
+  const mailgoModal = getMailgoModal();
   expect(mailgoModal).toBeTruthy();
   expect(mailgoModal).toHaveTextContent(toAddress);
   const mailgoModalLinks = queryAllByRole(mailgoModal, "link");
@@ -30,18 +30,17 @@ test("with a valid mailto url, should render the mailgo modal", () => {
 });
 
 test("with an invalid mailto url, should not render the mailgo modal", () => {
-  setupMailgoConfig();
+  setupWindowConfig();
   const toAddress = "mark.white@mail";
-  const mailtoUrl = `mailto:${toAddress}`;
 
-  const renderResult = mailgoDirectRender(mailtoUrl);
+  const renderResult = mailgoDirectRender(getMailtoUrl(toAddress));
 
   expect(renderResult).toEqual(false);
 
-  const mailgoModal = getDialogElement();
+  const mailgoModal = getMailgoModal();
   expect(mailgoModal).toBeNull();
 });
 
 afterEach(() => {
-  hideMailgo();
+  cleanup();
 });
