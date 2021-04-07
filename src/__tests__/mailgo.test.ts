@@ -1,29 +1,28 @@
 import { queryAllByRole } from "@testing-library/dom";
 import "@testing-library/jest-dom";
+import userEvent from "@testing-library/user-event";
 
-import { mailgoDirectRender } from "../mailgo";
+import mailgo from "../mailgo";
 
 import setupWindowConfig, {
   cleanup,
+  createMailtoAnchor,
   getMailgoModal,
-  getMailtoUrl,
 } from "./helpers/mailgoHelper";
 
-function setup(emailAddress: string): string {
+function setup(emailAddress: string): HTMLAnchorElement {
   setupWindowConfig();
+  mailgo();
 
-  const mailtoUrl = getMailtoUrl(emailAddress);
-
-  return mailtoUrl;
+  const mailtoAnchor = createMailtoAnchor(emailAddress);
+  return mailtoAnchor;
 }
 
-test("with a valid email address, should render the mailgo modal", () => {
+test("when a mailto link with a valid email address is clicked, should render the mailgo modal", () => {
   const toAddress = "mark.white@mail.com";
-  const mailtoUrl = setup(toAddress);
+  const mailtoAnchor = setup(toAddress);
 
-  const renderResult = mailgoDirectRender(mailtoUrl);
-
-  expect(renderResult).toEqual(true);
+  userEvent.click(mailtoAnchor);
 
   const mailgoModal = getMailgoModal();
   expect(mailgoModal).toBeTruthy();
@@ -37,13 +36,11 @@ test("with a valid email address, should render the mailgo modal", () => {
   expect(mailgoModalLinks[4]).toHaveTextContent("copy");
 });
 
-test("with an invalid email address, should not render the mailgo modal", () => {
+test("when a mailto link with an invalid email address is clicked, should not render the mailgo modal", () => {
   const toAddress = "mark.white@mail";
-  const mailtoUrl = setup(toAddress);
+  const mailtoAnchor = setup(toAddress);
 
-  const renderResult = mailgoDirectRender(mailtoUrl);
-
-  expect(renderResult).toEqual(false);
+  userEvent.click(mailtoAnchor);
 
   const mailgoModal = getMailgoModal();
   expect(mailgoModal).toBeNull();

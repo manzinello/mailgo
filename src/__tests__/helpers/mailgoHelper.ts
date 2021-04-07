@@ -34,12 +34,19 @@ function cleanup(): void {
   window.mailgoConfig = undefined;
 }
 
+function createMailtoAnchor(emailAddress: string): HTMLAnchorElement {
+  const anchor = document.createElement("a");
+  anchor.href = getMailtoUrl(emailAddress);
+  anchor.textContent = emailAddress;
+  return document.body.appendChild(anchor);
+}
+
 function getMailgoModal(): HTMLElement {
   return screen.queryByRole("dialog");
 }
 
-function getMailtoUrl(mailAddress: string): string {
-  const mailtoUrl = `mailto:${mailAddress}`;
+function getMailtoUrl(emailAddress: string): string {
+  const mailtoUrl = `mailto:${emailAddress}`;
   return mailtoUrl;
 }
 
@@ -49,4 +56,4 @@ function hideMailgo(): void {
 
 export default setupWindowConfig;
 
-export { cleanup, getMailgoModal, getMailtoUrl };
+export { cleanup, createMailtoAnchor, getMailgoModal, getMailtoUrl };

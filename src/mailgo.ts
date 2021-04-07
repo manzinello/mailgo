@@ -1099,7 +1099,12 @@ const validateUrl = (url: string, type: string = MAILTO) => {
 
 // function that returns if an element is a mailgo
 function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
-  let elementHref: string = (element as HTMLLinkElement).getAttribute("href");
+  const linkElement = element as HTMLLinkElement;
+  if (!linkElement.getAttribute) {
+    return null;
+  }
+
+  let elementHref: string = linkElement.getAttribute("href");
 
   // return null if there is no-mailgo in class
   if (element.classList?.contains(NO_MAILGO)) {
