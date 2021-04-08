@@ -9,10 +9,10 @@ import setupWindowConfig, {
   getMailtoUrl,
 } from "./helpers/mailgoHelper";
 
-function setup(emailAddress: string): string {
+function setup(toAddress: string): string {
   setupWindowConfig();
 
-  const mailtoUrl = getMailtoUrl(emailAddress);
+  const mailtoUrl = getMailtoUrl(toAddress);
 
   return mailtoUrl;
 }

@@ -14,6 +14,7 @@ function setupWindowConfig(): void {
     showFooter: false,
     actions: {
       telegram: true,
+      custom: true,
     },
     details: {
       subject: false,
@@ -29,10 +30,28 @@ function cleanup(): void {
   delete window.mailgoConfig;
 }
 
-function createMailtoAnchor(emailAddress: string): HTMLAnchorElement {
+function createMailtoAnchor(
+  toAddress: string,
+  customActionText: string = null,
+  customActionUrl: string = null
+): HTMLAnchorElement {
   const anchor = document.createElement("a");
-  anchor.href = getMailtoUrl(emailAddress);
-  anchor.textContent = emailAddress;
+  anchor.href = getMailtoUrl(toAddress);
+  anchor.textContent = toAddress;
+
+  if (customActionText && customActionUrl) {
+    const customActionTextDataAttribute = document.createAttribute(
+      "data-custom-action-text"
+    );
+    customActionTextDataAttribute.value = customActionText;
+    anchor.setAttributeNode(customActionTextDataAttribute);
+    const customActionUrlDataAttribute = document.createAttribute(
+      "data-custom-action-url"
+    );
+    customActionUrlDataAttribute.value = customActionUrl;
+    anchor.setAttributeNode(customActionUrlDataAttribute);
+  }
+
   return document.body.appendChild(anchor);
 }
 
@@ -47,8 +66,8 @@ function getMailgoModal(): HTMLElement {
   return screen.queryByRole("dialog");
 }
 
-function getMailtoUrl(emailAddress: string): string {
-  const mailtoUrl = `mailto:${emailAddress}`;
+function getMailtoUrl(toAddress: string): string {
+  const mailtoUrl = `mailto:${toAddress}`;
   return mailtoUrl;
 }
 
