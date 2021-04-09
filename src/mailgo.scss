@@ -10,6 +10,7 @@ $yahoo-color: #4a00a0;
 $wa-color: #067466;
 $telegram-color: #086da0;
 $skype-color: #076d92;
+$custom-action-color: #0b790b;
 
 $default-color-hover: #3d3d3d;
 
@@ -20,6 +21,7 @@ $yahoo-dark-color: #ac88d3;
 $wa-dark-color: #4cd2c0;
 $telegram-dark-color: #4cabdb;
 $skype-dark-color: #4cc7f4;
+$custom-action-dark-color: #b0ecb0;
 
 // other vars
 $default-border-radius: 20px;
@@ -191,6 +193,16 @@ $default-border-color: #333;
         }
       }
 
+      &.m-custom-action {
+        color: $custom-action-color;
+        &:hover,
+        &:focus,
+        &:active {
+          background-color: rgba($custom-action-color, 0.08);
+          color: $custom-action-color;
+        }
+      }
+
       &.m-by {
         font-size: 12px;
         margin-top: 0.8rem;
@@ -293,6 +305,17 @@ $default-border-color: #333;
           &:active {
             background-color: rgba($skype-dark-color, 0.08);
             color: $skype-dark-color;
+          }
+        }
+
+        &.m-custom-action {
+          color: $custom-action-dark-color;
+
+          &:hover,
+          &:focus,
+          &:active {
+            background-color: rgba($custom-action-dark-color, 0.08);
+            color: $custom-action-dark-color;
           }
         }
 

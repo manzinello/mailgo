@@ -338,7 +338,7 @@ const mailgoInit = (): void => {
     customAction.id = "m-custom-action";
     customAction.href = "#mailgo-custom-action";
     customAction.classList.add("m-open");
-    customAction.classList.add("w-500");
+    customAction.classList.add("m-custom-action");
     if (mailgoConfigAttributeEnabled("action", "custom")) {
       modalContent.appendChild(customAction);
     }
@@ -1124,7 +1124,7 @@ const copy = (event?: Event): void => {
 };
 
 const openCustomAction = (event?: Event): void => {
-  event.preventDefault();
+  event?.preventDefault();
 
   if (customActionUrl) {
     const customActionUrlEncoded = encodeURI(customActionUrl);

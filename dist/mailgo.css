@@ -151,6 +151,15 @@
   background-color: rgba(0, 0, 0, 0.08);
   color: #4a4a4a;
 }
+.m-modal .m-modal-content a.m-custom-action {
+  color: #0b790b;
+}
+.m-modal .m-modal-content a.m-custom-action:hover,
+.m-modal .m-modal-content a.m-custom-action:focus,
+.m-modal .m-modal-content a.m-custom-action:active {
+  background-color: rgba(11, 121, 11, 0.08);
+  color: #0b790b;
+}
 .m-modal .m-modal-content a.m-by {
   font-size: 12px;
   margin-top: 0.8rem;
@@ -236,6 +245,15 @@
 .m-modal.m-dark .m-modal-content a.m-skype:active {
   background-color: rgba(76, 199, 244, 0.08);
   color: #4cc7f4;
+}
+.m-modal.m-dark .m-modal-content a.m-custom-action {
+  color: #b0ecb0;
+}
+.m-modal.m-dark .m-modal-content a.m-custom-action:hover,
+.m-modal.m-dark .m-modal-content a.m-custom-action:focus,
+.m-modal.m-dark .m-modal-content a.m-custom-action:active {
+  background-color: rgba(176, 236, 176, 0.08);
+  color: #b0ecb0;
 }
 .m-modal.m-dark .m-modal-content a.m-by:hover,
 .m-modal.m-dark .m-modal-content a.m-by:focus,

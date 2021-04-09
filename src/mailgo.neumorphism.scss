@@ -34,6 +34,7 @@ $default-dark-color: #d1d1d1;
     a.m-skype,
     a.m-default,
     a.m-copy,
+    a.m-custom-action,
     a.m-by {
       &:hover {
         background: #e3e3e3;
@@ -64,6 +65,9 @@ $default-dark-color: #d1d1d1;
     a.m-yahoo {
       color: $yahoo-color;
     }
+    a.m-custom-action {
+      color: $custom-action-color;
+    }
   }
 
   &.m-dark {
@@ -85,6 +89,7 @@ $default-dark-color: #d1d1d1;
       a.m-skype,
       a.m-default,
       a.m-copy,
+      a.m-custom-action,
       a.m-by {
         &:hover {
           background: #20232a;
