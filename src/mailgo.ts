@@ -33,6 +33,7 @@ import {
   defaultLang,
   notNumber,
   leadingZeros,
+  customActionTextMaxLength,
 } from "./constants";
 
 // utils
@@ -42,6 +43,7 @@ import {
   validateTel,
   copyToClipboard,
   setFocusLoop,
+  truncate,
 } from "./utils";
 
 // i18n for mailgo
@@ -886,7 +888,10 @@ function mailgoRender(): boolean {
     }
 
     // set the custom action text and visibility
-    customAction.textContent = customActionText;
+    customAction.textContent = customActionText
+      ? truncate(customActionText, customActionTextMaxLength)
+      : "";
+    customAction.title = customActionText;
     if (customActionText) {
       customAction.style.display = "block";
     } else {

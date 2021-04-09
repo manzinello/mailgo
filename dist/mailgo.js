@@ -139,7 +139,9 @@ var pHTMLTag = "p"; // default lang
 var defaultLang = "en"; // useful regexp
 
 var notNumber = new RegExp("[^0-9/]", "gi");
-var leadingZeros = new RegExp("^0+", "gi");
+var leadingZeros = new RegExp("^0+", "gi"); // custom action
+
+var customActionTextMaxLength = 20;
 ;// CONCATENATED MODULE: ../src/utils.ts
 // validate a single email with regex
 var validateEmail = function validateEmail(email) {
@@ -193,6 +195,9 @@ var leaveFirstLink = function leaveFirstLink(e) {
     e.preventDefault();
     e.target.closest("div").querySelector("a:last-of-type").focus();
   }
+};
+var truncate = function truncate(text, maxLength) {
+  return text && text.length > maxLength ? text.substr(0, maxLength - 1) + "..." : text;
 };
 ;// CONCATENATED MODULE: ../i18n/languages.json
 var languages_namespaceObject = JSON.parse('["en","it","es","de","fr","pt","nl","ru","sv","no","dk","is","zh","ja"]');
@@ -934,7 +939,8 @@ function mailgoRender() {
     } // set the custom action text and visibility
 
 
-    customAction.textContent = customActionText;
+    customAction.textContent = customActionText ? truncate(customActionText, customActionTextMaxLength) : "";
+    customAction.title = customActionText;
 
     if (customActionText) {
       customAction.style.display = "block";

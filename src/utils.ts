@@ -70,3 +70,9 @@ export const leaveFirstLink = (e: KeyboardEvent): void => {
       .querySelector("a:last-of-type") as HTMLElement).focus();
   }
 };
+
+export const truncate = (text: string, maxLength: number): string => {
+  return text && text.length > maxLength
+    ? text.substr(0, maxLength - 1) + "..."
+    : text;
+};
