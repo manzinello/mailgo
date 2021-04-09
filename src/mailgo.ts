@@ -1127,7 +1127,7 @@ const openCustomAction = (event?: Event): void => {
   event.preventDefault();
 
   if (customActionUrl) {
-    const customActionUrlEncoded: string = encodeURI(customActionUrl);
+    const customActionUrlEncoded = encodeURI(customActionUrl);
 
     window.open(customActionUrlEncoded, "_blank", "noopener, noreferrer");
   }
