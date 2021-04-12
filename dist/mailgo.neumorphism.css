@@ -151,6 +151,15 @@
   background-color: rgba(0, 0, 0, 0.08);
   color: #4a4a4a;
 }
+.m-modal .m-modal-content a.m-custom-action {
+  color: #0b790b;
+}
+.m-modal .m-modal-content a.m-custom-action:hover,
+.m-modal .m-modal-content a.m-custom-action:focus,
+.m-modal .m-modal-content a.m-custom-action:active {
+  background-color: rgba(11, 121, 11, 0.08);
+  color: #0b790b;
+}
 .m-modal .m-modal-content a.m-by {
   font-size: 12px;
   margin-top: 0.8rem;
@@ -237,6 +246,15 @@
   background-color: rgba(76, 199, 244, 0.08);
   color: #4cc7f4;
 }
+.m-modal.m-dark .m-modal-content a.m-custom-action {
+  color: #b0ecb0;
+}
+.m-modal.m-dark .m-modal-content a.m-custom-action:hover,
+.m-modal.m-dark .m-modal-content a.m-custom-action:focus,
+.m-modal.m-dark .m-modal-content a.m-custom-action:active {
+  background-color: rgba(176, 236, 176, 0.08);
+  color: #b0ecb0;
+}
 .m-modal.m-dark .m-modal-content a.m-by:hover,
 .m-modal.m-dark .m-modal-content a.m-by:focus,
 .m-modal.m-dark .m-modal-content a.m-by:active {
@@ -269,6 +287,7 @@
 .m-modal .m-modal-content a.m-skype:hover,
 .m-modal .m-modal-content a.m-default:hover,
 .m-modal .m-modal-content a.m-copy:hover,
+.m-modal .m-modal-content a.m-custom-action:hover,
 .m-modal .m-modal-content a.m-by:hover {
   background: #e3e3e3;
   box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
@@ -281,6 +300,7 @@
 .m-modal .m-modal-content a.m-skype:focus,
 .m-modal .m-modal-content a.m-default:focus,
 .m-modal .m-modal-content a.m-copy:focus,
+.m-modal .m-modal-content a.m-custom-action:focus,
 .m-modal .m-modal-content a.m-by:focus {
   background: #e3e3e3;
   box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
@@ -293,6 +313,7 @@
 .m-modal .m-modal-content a.m-skype:active,
 .m-modal .m-modal-content a.m-default:active,
 .m-modal .m-modal-content a.m-copy:active,
+.m-modal .m-modal-content a.m-custom-action:active,
 .m-modal .m-modal-content a.m-by:active {
   background: #e3e3e3;
   box-shadow: inset 5px 5px 10px #bababa, inset -5px -5px 10px #ffffff;
@@ -311,6 +332,9 @@
 .m-modal .m-modal-content a.m-yahoo {
   color: #6b429b;
 }
+.m-modal .m-modal-content a.m-custom-action {
+  color: #0b790b;
+}
 .m-modal.m-dark .m-modal-content strong {
   color: #d1d1d1;
 }
@@ -328,6 +352,7 @@
 .m-modal.m-dark .m-modal-content a.m-skype:hover,
 .m-modal.m-dark .m-modal-content a.m-default:hover,
 .m-modal.m-dark .m-modal-content a.m-copy:hover,
+.m-modal.m-dark .m-modal-content a.m-custom-action:hover,
 .m-modal.m-dark .m-modal-content a.m-by:hover {
   background: #20232a;
   box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
@@ -340,6 +365,7 @@
 .m-modal.m-dark .m-modal-content a.m-skype:focus,
 .m-modal.m-dark .m-modal-content a.m-default:focus,
 .m-modal.m-dark .m-modal-content a.m-copy:focus,
+.m-modal.m-dark .m-modal-content a.m-custom-action:focus,
 .m-modal.m-dark .m-modal-content a.m-by:focus {
   background: #20232a;
   box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;
@@ -352,6 +378,7 @@
 .m-modal.m-dark .m-modal-content a.m-skype:active,
 .m-modal.m-dark .m-modal-content a.m-default:active,
 .m-modal.m-dark .m-modal-content a.m-copy:active,
+.m-modal.m-dark .m-modal-content a.m-custom-action:active,
 .m-modal.m-dark .m-modal-content a.m-by:active {
   background: #20232a;
   box-shadow: inset 5px 5px 10px #15171b, inset -5px -5px 10px #2b2f39;

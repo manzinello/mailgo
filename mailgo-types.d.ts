@@ -47,7 +47,8 @@ declare module "mailgo" {
     | "whatsapp"
     | "skype"
     | "copy"
-    | "default";
+    | "default"
+    | "custom";
 
   type MailgoActions = {
     [action in MailgoAction]?: boolean;

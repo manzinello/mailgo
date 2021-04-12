@@ -37,3 +37,6 @@ export const defaultLang: string = "en";
 // useful regexp
 export const notNumber: RegExp = new RegExp("[^0-9/]", "gi");
 export const leadingZeros: RegExp = new RegExp("^0+", "gi");
+
+// custom action
+export const customActionTextMaxLength: number = 20;

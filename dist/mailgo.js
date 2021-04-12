@@ -8,7 +8,7 @@
 var ___CSS_LOADER_API_IMPORT___ = __webpack_require__(476);
 var ___CSS_LOADER_EXPORT___ = ___CSS_LOADER_API_IMPORT___(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".m-modal{position:fixed;top:0;right:0;bottom:0;left:0;justify-content:center;align-items:center;flex-direction:column;overflow:hidden;font-size:16.5px;z-index:10000}.m-modal p,.m-modal span,.m-modal strong,.m-modal a{margin:0;padding:0;font-size:100%;line-height:1;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\";text-rendering:optimizeLegibility}.m-modal strong{font-weight:700}.m-modal .m-modal-back{position:absolute;z-index:10001;top:0;right:0;bottom:0;left:0;background-color:#20232a;opacity:.8}.m-modal .m-modal-content{position:relative;z-index:10002;box-sizing:content-box;text-align:center;overflow:hidden;min-width:200px;max-width:240px;background-color:#fff;opacity:.95;border-radius:20px;box-shadow:0 3px 20px rgba(32,35,42,.5);border:3px solid #333;color:#4a4a4a;display:flex;flex-direction:column;overflow:auto;padding:24px;transition:.5s box-shadow}.m-modal .m-modal-content:hover,.m-modal .m-modal-content:focus,.m-modal .m-modal-content:active{opacity:1}.m-modal .m-modal-content .m-title{margin-bottom:8px;overflow:hidden;white-space:pre-line;text-overflow:ellipsis;line-height:1.2em}.m-modal .m-modal-content .m-details{margin-bottom:10px}.m-modal .m-modal-content .m-details p{white-space:pre-line;font-size:12px;margin-top:3px;margin-bottom:3px}.m-modal .m-modal-content a{cursor:pointer;padding:10px;color:#4a4a4a;border-radius:20px;text-decoration:none}.m-modal .m-modal-content a.m-gmail{color:#c0372a}.m-modal .m-modal-content a.m-gmail:hover,.m-modal .m-modal-content a.m-gmail:focus,.m-modal .m-modal-content a.m-gmail:active{background-color:rgba(192,55,42,.08);color:#c0372a}.m-modal .m-modal-content a.m-outlook{color:#0967aa}.m-modal .m-modal-content a.m-outlook:hover,.m-modal .m-modal-content a.m-outlook:focus,.m-modal .m-modal-content a.m-outlook:active{background-color:rgba(9,103,170,.08);color:#0967aa}.m-modal .m-modal-content a.m-yahoo{color:#4a00a0}.m-modal .m-modal-content a.m-yahoo:hover,.m-modal .m-modal-content a.m-yahoo:focus,.m-modal .m-modal-content a.m-yahoo:active{background-color:rgba(74,0,160,.08);color:#4a00a0}.m-modal .m-modal-content a.m-tg{color:#086da0}.m-modal .m-modal-content a.m-tg:hover,.m-modal .m-modal-content a.m-tg:focus,.m-modal .m-modal-content a.m-tg:active{background-color:rgba(8,109,160,.08);color:#086da0}.m-modal .m-modal-content a.m-wa{color:#067466}.m-modal .m-modal-content a.m-wa:hover,.m-modal .m-modal-content a.m-wa:focus,.m-modal .m-modal-content a.m-wa:active{background-color:rgba(6,116,102,.08);color:#067466}.m-modal .m-modal-content a.m-skype{color:#076d92}.m-modal .m-modal-content a.m-skype:hover,.m-modal .m-modal-content a.m-skype:focus,.m-modal .m-modal-content a.m-skype:active{background-color:rgba(7,109,146,.08);color:#076d92}.m-modal .m-modal-content a.m-copy{padding:16px 10px;font-size:16px}.m-modal .m-modal-content a.m-default:hover,.m-modal .m-modal-content a.m-default:focus,.m-modal .m-modal-content a.m-default:active,.m-modal .m-modal-content a.m-copy:hover,.m-modal .m-modal-content a.m-copy:focus,.m-modal .m-modal-content a.m-copy:active{background-color:rgba(0,0,0,.08);color:#4a4a4a}.m-modal .m-modal-content a.m-by{font-size:12px;margin-top:.8rem;padding:5px;color:#4a4a4a}.m-modal .m-modal-content a.m-by:hover,.m-modal .m-modal-content a.m-by:focus,.m-modal .m-modal-content a.m-by:active{color:#3d3d3d}.m-modal .m-modal-content .w-500{font-weight:500}.m-modal.m-dark .m-modal-content{background-color:#20232a}.m-modal.m-dark .m-modal-content,.m-modal.m-dark .m-modal-content p,.m-modal.m-dark .m-modal-content p span,.m-modal.m-dark .m-modal-content strong{color:#fff}.m-modal.m-dark .m-modal-content a{color:#eaeaea}.m-modal.m-dark .m-modal-content a:not(.m-by):hover,.m-modal.m-dark .m-modal-content a:not(.m-by):focus,.m-modal.m-dark .m-modal-content a:not(.m-by):active{background-color:rgba(134,134,134,.08);color:#eaeaea}.m-modal.m-dark .m-modal-content a.m-gmail{color:#e07d73}.m-modal.m-dark .m-modal-content a.m-gmail:hover,.m-modal.m-dark .m-modal-content a.m-gmail:focus,.m-modal.m-dark .m-modal-content a.m-gmail:active{background-color:rgba(224,125,115,.08);color:#e07d73}.m-modal.m-dark .m-modal-content a.m-outlook{color:#4c9cd7}.m-modal.m-dark .m-modal-content a.m-outlook:hover,.m-modal.m-dark .m-modal-content a.m-outlook:focus,.m-modal.m-dark .m-modal-content a.m-outlook:active{background-color:rgba(76,156,215,.08);color:#4c9cd7}.m-modal.m-dark .m-modal-content a.m-yahoo{color:#ac88d3}.m-modal.m-dark .m-modal-content a.m-yahoo:hover,.m-modal.m-dark .m-modal-content a.m-yahoo:focus,.m-modal.m-dark .m-modal-content a.m-yahoo:active{background-color:rgba(172,136,211,.08);color:#ac88d3}.m-modal.m-dark .m-modal-content a.m-tg{color:#4cabdb}.m-modal.m-dark .m-modal-content a.m-tg:hover,.m-modal.m-dark .m-modal-content a.m-tg:focus,.m-modal.m-dark .m-modal-content a.m-tg:active{background-color:rgba(76,171,219,.08);color:#4cabdb}.m-modal.m-dark .m-modal-content a.m-wa{color:#4cd2c0}.m-modal.m-dark .m-modal-content a.m-wa:hover,.m-modal.m-dark .m-modal-content a.m-wa:focus,.m-modal.m-dark .m-modal-content a.m-wa:active{background-color:rgba(76,210,192,.08);color:#4cd2c0}.m-modal.m-dark .m-modal-content a.m-skype{color:#4cc7f4}.m-modal.m-dark .m-modal-content a.m-skype:hover,.m-modal.m-dark .m-modal-content a.m-skype:focus,.m-modal.m-dark .m-modal-content a.m-skype:active{background-color:rgba(76,199,244,.08);color:#4cc7f4}.m-modal.m-dark .m-modal-content a.m-by:hover,.m-modal.m-dark .m-modal-content a.m-by:focus,.m-modal.m-dark .m-modal-content a.m-by:active{color:#fff}", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".m-modal{position:fixed;top:0;right:0;bottom:0;left:0;justify-content:center;align-items:center;flex-direction:column;overflow:hidden;font-size:16.5px;z-index:10000}.m-modal p,.m-modal span,.m-modal strong,.m-modal a{margin:0;padding:0;font-size:100%;line-height:1;font-family:-apple-system,BlinkMacSystemFont,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\",\"Segoe UI Symbol\";text-rendering:optimizeLegibility}.m-modal strong{font-weight:700}.m-modal .m-modal-back{position:absolute;z-index:10001;top:0;right:0;bottom:0;left:0;background-color:#20232a;opacity:.8}.m-modal .m-modal-content{position:relative;z-index:10002;box-sizing:content-box;text-align:center;overflow:hidden;min-width:200px;max-width:240px;background-color:#fff;opacity:.95;border-radius:20px;box-shadow:0 3px 20px rgba(32,35,42,.5);border:3px solid #333;color:#4a4a4a;display:flex;flex-direction:column;overflow:auto;padding:24px;transition:.5s box-shadow}.m-modal .m-modal-content:hover,.m-modal .m-modal-content:focus,.m-modal .m-modal-content:active{opacity:1}.m-modal .m-modal-content .m-title{margin-bottom:8px;overflow:hidden;white-space:pre-line;text-overflow:ellipsis;line-height:1.2em}.m-modal .m-modal-content .m-details{margin-bottom:10px}.m-modal .m-modal-content .m-details p{white-space:pre-line;font-size:12px;margin-top:3px;margin-bottom:3px}.m-modal .m-modal-content a{cursor:pointer;padding:10px;color:#4a4a4a;border-radius:20px;text-decoration:none}.m-modal .m-modal-content a.m-gmail{color:#c0372a}.m-modal .m-modal-content a.m-gmail:hover,.m-modal .m-modal-content a.m-gmail:focus,.m-modal .m-modal-content a.m-gmail:active{background-color:rgba(192,55,42,.08);color:#c0372a}.m-modal .m-modal-content a.m-outlook{color:#0967aa}.m-modal .m-modal-content a.m-outlook:hover,.m-modal .m-modal-content a.m-outlook:focus,.m-modal .m-modal-content a.m-outlook:active{background-color:rgba(9,103,170,.08);color:#0967aa}.m-modal .m-modal-content a.m-yahoo{color:#4a00a0}.m-modal .m-modal-content a.m-yahoo:hover,.m-modal .m-modal-content a.m-yahoo:focus,.m-modal .m-modal-content a.m-yahoo:active{background-color:rgba(74,0,160,.08);color:#4a00a0}.m-modal .m-modal-content a.m-tg{color:#086da0}.m-modal .m-modal-content a.m-tg:hover,.m-modal .m-modal-content a.m-tg:focus,.m-modal .m-modal-content a.m-tg:active{background-color:rgba(8,109,160,.08);color:#086da0}.m-modal .m-modal-content a.m-wa{color:#067466}.m-modal .m-modal-content a.m-wa:hover,.m-modal .m-modal-content a.m-wa:focus,.m-modal .m-modal-content a.m-wa:active{background-color:rgba(6,116,102,.08);color:#067466}.m-modal .m-modal-content a.m-skype{color:#076d92}.m-modal .m-modal-content a.m-skype:hover,.m-modal .m-modal-content a.m-skype:focus,.m-modal .m-modal-content a.m-skype:active{background-color:rgba(7,109,146,.08);color:#076d92}.m-modal .m-modal-content a.m-copy{padding:16px 10px;font-size:16px}.m-modal .m-modal-content a.m-default:hover,.m-modal .m-modal-content a.m-default:focus,.m-modal .m-modal-content a.m-default:active,.m-modal .m-modal-content a.m-copy:hover,.m-modal .m-modal-content a.m-copy:focus,.m-modal .m-modal-content a.m-copy:active{background-color:rgba(0,0,0,.08);color:#4a4a4a}.m-modal .m-modal-content a.m-custom-action{color:#0b790b}.m-modal .m-modal-content a.m-custom-action:hover,.m-modal .m-modal-content a.m-custom-action:focus,.m-modal .m-modal-content a.m-custom-action:active{background-color:rgba(11,121,11,.08);color:#0b790b}.m-modal .m-modal-content a.m-by{font-size:12px;margin-top:.8rem;padding:5px;color:#4a4a4a}.m-modal .m-modal-content a.m-by:hover,.m-modal .m-modal-content a.m-by:focus,.m-modal .m-modal-content a.m-by:active{color:#3d3d3d}.m-modal .m-modal-content .w-500{font-weight:500}.m-modal.m-dark .m-modal-content{background-color:#20232a}.m-modal.m-dark .m-modal-content,.m-modal.m-dark .m-modal-content p,.m-modal.m-dark .m-modal-content p span,.m-modal.m-dark .m-modal-content strong{color:#fff}.m-modal.m-dark .m-modal-content a{color:#eaeaea}.m-modal.m-dark .m-modal-content a:not(.m-by):hover,.m-modal.m-dark .m-modal-content a:not(.m-by):focus,.m-modal.m-dark .m-modal-content a:not(.m-by):active{background-color:rgba(134,134,134,.08);color:#eaeaea}.m-modal.m-dark .m-modal-content a.m-gmail{color:#e07d73}.m-modal.m-dark .m-modal-content a.m-gmail:hover,.m-modal.m-dark .m-modal-content a.m-gmail:focus,.m-modal.m-dark .m-modal-content a.m-gmail:active{background-color:rgba(224,125,115,.08);color:#e07d73}.m-modal.m-dark .m-modal-content a.m-outlook{color:#4c9cd7}.m-modal.m-dark .m-modal-content a.m-outlook:hover,.m-modal.m-dark .m-modal-content a.m-outlook:focus,.m-modal.m-dark .m-modal-content a.m-outlook:active{background-color:rgba(76,156,215,.08);color:#4c9cd7}.m-modal.m-dark .m-modal-content a.m-yahoo{color:#ac88d3}.m-modal.m-dark .m-modal-content a.m-yahoo:hover,.m-modal.m-dark .m-modal-content a.m-yahoo:focus,.m-modal.m-dark .m-modal-content a.m-yahoo:active{background-color:rgba(172,136,211,.08);color:#ac88d3}.m-modal.m-dark .m-modal-content a.m-tg{color:#4cabdb}.m-modal.m-dark .m-modal-content a.m-tg:hover,.m-modal.m-dark .m-modal-content a.m-tg:focus,.m-modal.m-dark .m-modal-content a.m-tg:active{background-color:rgba(76,171,219,.08);color:#4cabdb}.m-modal.m-dark .m-modal-content a.m-wa{color:#4cd2c0}.m-modal.m-dark .m-modal-content a.m-wa:hover,.m-modal.m-dark .m-modal-content a.m-wa:focus,.m-modal.m-dark .m-modal-content a.m-wa:active{background-color:rgba(76,210,192,.08);color:#4cd2c0}.m-modal.m-dark .m-modal-content a.m-skype{color:#4cc7f4}.m-modal.m-dark .m-modal-content a.m-skype:hover,.m-modal.m-dark .m-modal-content a.m-skype:focus,.m-modal.m-dark .m-modal-content a.m-skype:active{background-color:rgba(76,199,244,.08);color:#4cc7f4}.m-modal.m-dark .m-modal-content a.m-custom-action{color:#b0ecb0}.m-modal.m-dark .m-modal-content a.m-custom-action:hover,.m-modal.m-dark .m-modal-content a.m-custom-action:focus,.m-modal.m-dark .m-modal-content a.m-custom-action:active{background-color:rgba(176,236,176,.08);color:#b0ecb0}.m-modal.m-dark .m-modal-content a.m-by:hover,.m-modal.m-dark .m-modal-content a.m-by:focus,.m-modal.m-dark .m-modal-content a.m-by:active{color:#fff}", ""]);
 // Exports
 module.exports = ___CSS_LOADER_EXPORT___;
 
@@ -139,7 +139,9 @@ var pHTMLTag = "p"; // default lang
 var defaultLang = "en"; // useful regexp
 
 var notNumber = new RegExp("[^0-9/]", "gi");
-var leadingZeros = new RegExp("^0+", "gi");
+var leadingZeros = new RegExp("^0+", "gi"); // custom action
+
+var customActionTextMaxLength = 20;
 ;// CONCATENATED MODULE: ../src/utils.ts
 // validate a single email with regex
 var validateEmail = function validateEmail(email) {
@@ -193,6 +195,9 @@ var leaveFirstLink = function leaveFirstLink(e) {
     e.preventDefault();
     e.target.closest("div").querySelector("a:last-of-type").focus();
   }
+};
+var truncate = function truncate(text, maxLength) {
+  return text && text.length > maxLength ? text.substr(0, maxLength - 1) + "..." : text;
 };
 ;// CONCATENATED MODULE: ../i18n/languages.json
 var languages_namespaceObject = JSON.parse('["en","it","es","de","fr","pt","nl","ru","sv","no","dk","is","zh","ja"]');
@@ -254,13 +259,15 @@ var modalMailto, modalTel; // mailgo general variables
 
 var url, href, lessSpamHref; // mailgo mail variables
 
-var mail, cc, bcc, subject, bodyMail; // mailgo tel variables
+var mail, cc, bcc, subject, bodyMail; // mailgo mail custom action variables
+
+var customActionText, customActionTitle, customActionUrl; // mailgo tel variables
 
 var tel, msg, telegramUsername, skypeUsername; // the DOM elements
 
 var title, titleTel, detailCc, detailBcc, detailSubject, detailBody, detailMsg, ccValue, bccValue, subjectValue, bodyValue, msgValue, activatedLink; // mailgo buttons (actions)
 
-var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, copyTel;
+var gmail, outlook, yahoo, mailgo_open, telegram, wa, skype, call, copyMail, copyTel, customAction;
 /**
  * mailgoInit
  * the function that creates the mailgo elements in DOM
@@ -437,7 +444,18 @@ var mailgoInit = function mailgoInit() {
     copyMail.classList.add("m-copy");
     copyMail.classList.add("w-500");
     copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
-    modalContent.appendChild(copyMail); // hide mailgo.dev in footer only if showFooter is defined and equal to false
+    modalContent.appendChild(copyMail); // custom action
+
+    customAction = createElement(aHTMLTag);
+    customAction.id = "m-custom-action";
+    customAction.href = "#mailgo-custom-action";
+    customAction.classList.add("m-open");
+    customAction.classList.add("m-custom-action");
+
+    if (mailgoConfigAttributeEnabled("action", "custom")) {
+      modalContent.appendChild(customAction);
+    } // hide mailgo.dev in footer only if showFooter is defined and equal to false
+
 
     if (typeof ((_config4 = config) === null || _config4 === void 0 ? void 0 : _config4.showFooter) !== "undefined") {
       showFooterConfig = config.showFooter;
@@ -748,6 +766,24 @@ function mailgoPreRender(mailgoElementOrUrl) {
       if (bodyMail) parameters.push("body=" + bodyMail); // set the lessSpamHref
 
       lessSpamHref = buildLessSpamHref(MAILTO + encodeURIComponent(mail), parameters);
+    } // set custom action text, title and url
+
+
+    customActionText = "";
+    customActionTitle = "";
+    customActionUrl = "";
+
+    if (mailgoConfigAttributeEnabled("action", "custom") && mailgoElement) {
+      var _mailgoElement$getAtt, _mailgoElement$getAtt2;
+
+      customActionText = (_mailgoElement$getAtt = mailgoElement.getAttribute("data-custom-action-text")) !== null && _mailgoElement$getAtt !== void 0 ? _mailgoElement$getAtt : customActionText;
+
+      if (customActionText) {
+        customActionTitle = customActionText;
+        customActionText = truncate(customActionText, customActionTextMaxLength);
+      }
+
+      customActionUrl = (_mailgoElement$getAtt2 = mailgoElement.getAttribute("data-custom-action-url")) !== null && _mailgoElement$getAtt2 !== void 0 ? _mailgoElement$getAtt2 : customActionUrl;
     } // if is in config use it
 
 
@@ -909,14 +945,19 @@ function mailgoRender() {
       bodyValue.textContent = bodyMail;
     } else {
       detailBody.style.display = "none";
-    } // add the actions
+    } // custom action text, title and visibility
 
+
+    customAction.textContent = customActionText;
+    customAction.title = customActionTitle;
+    customAction.style.display = customActionText ? "block" : "none"; // add the actions
 
     gmail.addEventListener("click", openGmail);
     outlook.addEventListener("click", openOutlook);
     yahoo.addEventListener("click", openYahooMail);
     mailgo_open.addEventListener("click", openDefault);
     copyMail.addEventListener("click", copy);
+    customAction.addEventListener("click", openCustomAction);
   } // mailgo tel
   else if (type === MAILGO_TEL) {
       // the title of the modal (tel)
@@ -1107,6 +1148,17 @@ var copy = function copy(event) {
       hideMailgo();
     }, 999);
   }
+};
+
+var openCustomAction = function openCustomAction(event) {
+  event === null || event === void 0 ? void 0 : event.preventDefault();
+
+  if (customActionUrl) {
+    var customActionUrlEncoded = encodeURI(customActionUrl);
+    window.open(customActionUrlEncoded, "_blank", "noopener, noreferrer");
+  }
+
+  hideMailgo();
 }; // function to find if a link is a mailto, tel, callto or sms
 
 
@@ -1120,7 +1172,13 @@ var validateUrl = function validateUrl(url) {
 function getMailgoTypeByElement(element) {
   var _element$classList, _element$classList2, _element$classList3;
 
-  var elementHref = element.getAttribute("href"); // return null if there is no-mailgo in class
+  var linkElement = element;
+
+  if (!linkElement.getAttribute) {
+    return null;
+  }
+
+  var elementHref = linkElement.getAttribute("href"); // return null if there is no-mailgo in class
 
   if ((_element$classList = element.classList) !== null && _element$classList !== void 0 && _element$classList.contains(NO_MAILGO)) {
     return null;
@@ -1218,6 +1276,11 @@ var mailgoKeydown = function mailgoKeydown(keyboardEvent) {
         case 67:
           // c -> copy
           copy();
+          return true;
+
+        case 65:
+          // a -> custom Action
+          openCustomAction();
           return true;
 
         default:

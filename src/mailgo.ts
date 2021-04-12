@@ -33,6 +33,7 @@ import {
   defaultLang,
   notNumber,
   leadingZeros,
+  customActionTextMaxLength,
 } from "./constants";
 
 // utils
@@ -42,6 +43,7 @@ import {
   validateTel,
   copyToClipboard,
   setFocusLoop,
+  truncate,
 } from "./utils";
 
 // i18n for mailgo
@@ -94,6 +96,11 @@ let url: URL, href: string, lessSpamHref: string;
 // mailgo mail variables
 let mail: string, cc: string, bcc: string, subject: string, bodyMail: string;
 
+// mailgo mail custom action variables
+let customActionText: string,
+  customActionTitle: string,
+  customActionUrl: string;
+
 // mailgo tel variables
 let tel: string, msg: string, telegramUsername: string, skypeUsername: string;
 
@@ -122,7 +129,8 @@ let gmail: HTMLLinkElement,
   skype: HTMLLinkElement,
   call: HTMLLinkElement,
   copyMail: HTMLLinkElement,
-  copyTel: HTMLLinkElement;
+  copyTel: HTMLLinkElement,
+  customAction: HTMLLinkElement;
 
 /**
  * mailgoInit
@@ -328,6 +336,16 @@ const mailgoInit = (): void => {
     copyMail.appendChild(createTextNode(strings.copy || defaultStrings.copy));
 
     modalContent.appendChild(copyMail);
+
+    // custom action
+    customAction = createElement(aHTMLTag) as HTMLLinkElement;
+    customAction.id = "m-custom-action";
+    customAction.href = "#mailgo-custom-action";
+    customAction.classList.add("m-open");
+    customAction.classList.add("m-custom-action");
+    if (mailgoConfigAttributeEnabled("action", "custom")) {
+      modalContent.appendChild(customAction);
+    }
 
     // hide mailgo.dev in footer only if showFooter is defined and equal to false
     if (typeof config?.showFooter !== "undefined") {
@@ -693,6 +711,26 @@ function mailgoPreRender(
       );
     }
 
+    // set custom action text, title and url
+    customActionText = "";
+    customActionTitle = "";
+    customActionUrl = "";
+    if (mailgoConfigAttributeEnabled("action", "custom") && mailgoElement) {
+      customActionText =
+        mailgoElement.getAttribute("data-custom-action-text") ??
+        customActionText;
+      if (customActionText) {
+        customActionTitle = customActionText;
+        customActionText = truncate(
+          customActionText,
+          customActionTextMaxLength
+        );
+      }
+
+      customActionUrl =
+        mailgoElement.getAttribute("data-custom-action-url") ?? customActionUrl;
+    }
+
     // if is in config use it
     if (typeof config?.validateEmail !== "undefined") {
       validateEmailConfig = config.validateEmail;
@@ -863,6 +901,11 @@ function mailgoRender(): boolean {
       detailBody.style.display = "none";
     }
 
+    // custom action text, title and visibility
+    customAction.textContent = customActionText;
+    customAction.title = customActionTitle;
+    customAction.style.display = customActionText ? "block" : "none";
+
     // add the actions
     gmail.addEventListener("click", openGmail);
 
@@ -873,6 +916,8 @@ function mailgoRender(): boolean {
     open.addEventListener("click", openDefault);
 
     copyMail.addEventListener("click", copy);
+
+    customAction.addEventListener("click", openCustomAction);
   }
   // mailgo tel
   else if (type === MAILGO_TEL) {
@@ -1091,6 +1136,18 @@ const copy = (event?: Event): void => {
   }
 };
 
+const openCustomAction = (event?: Event): void => {
+  event?.preventDefault();
+
+  if (customActionUrl) {
+    const customActionUrlEncoded = encodeURI(customActionUrl);
+
+    window.open(customActionUrlEncoded, "_blank", "noopener, noreferrer");
+  }
+
+  hideMailgo();
+};
+
 // function to find if a link is a mailto, tel, callto or sms
 const validateUrl = (url: string, type: string = MAILTO) => {
   let regexValidate = new RegExp("^" + type + "((.)+)", "gi");
@@ -1099,7 +1156,12 @@ const validateUrl = (url: string, type: string = MAILTO) => {
 
 // function that returns if an element is a mailgo
 function getMailgoTypeByElement(element: HTMLElement): MailgoType | null {
-  let elementHref: string = (element as HTMLLinkElement).getAttribute("href");
+  const linkElement = element as HTMLLinkElement;
+  if (!linkElement.getAttribute) {
+    return null;
+  }
+
+  let elementHref: string = linkElement.getAttribute("href");
 
   // return null if there is no-mailgo in class
   if (element.classList?.contains(NO_MAILGO)) {
@@ -1196,6 +1258,10 @@ const mailgoKeydown = (keyboardEvent: KeyboardEvent): boolean => {
         case 67:
           // c -> copy
           copy();
+          return true;
+        case 65:
+          // a -> custom Action
+          openCustomAction();
           return true;
         default:
           return false;
