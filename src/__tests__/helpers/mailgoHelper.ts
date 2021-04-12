@@ -8,13 +8,13 @@ declare global {
   }
 }
 
-function setupWindowConfig(): void {
+function setupWindowConfig(customParameter: boolean = true): void {
   window.mailgoConfig = {
     dark: true,
     showFooter: false,
     actions: {
       telegram: true,
-      custom: true,
+      custom: customParameter,
     },
     details: {
       subject: false,
@@ -39,12 +39,15 @@ function createMailtoAnchor(
   anchor.href = getMailtoUrl(toAddress);
   anchor.textContent = toAddress;
 
-  if (customActionText && customActionUrl) {
+  if (customActionText) {
     const customActionTextDataAttribute = document.createAttribute(
       "data-custom-action-text"
     );
     customActionTextDataAttribute.value = customActionText;
     anchor.setAttributeNode(customActionTextDataAttribute);
+  }
+
+  if (customActionUrl) {
     const customActionUrlDataAttribute = document.createAttribute(
       "data-custom-action-url"
     );
