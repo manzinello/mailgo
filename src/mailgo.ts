@@ -97,7 +97,9 @@ let url: URL, href: string, lessSpamHref: string;
 let mail: string, cc: string, bcc: string, subject: string, bodyMail: string;
 
 // mailgo mail custom action variables
-let customActionText: string, customActionUrl: string;
+let customActionText: string,
+  customActionTitle: string,
+  customActionUrl: string;
 
 // mailgo tel variables
 let tel: string, msg: string, telegramUsername: string, skypeUsername: string;
@@ -709,12 +711,24 @@ function mailgoPreRender(
       );
     }
 
-    // custom action text and url
-    customActionText = null;
-    customActionUrl = null;
+    // set custom action text, title and url
+    customActionText = "";
+    customActionTitle = "";
+    customActionUrl = "";
     if (mailgoConfigAttributeEnabled("action", "custom") && mailgoElement) {
-      customActionText = mailgoElement.getAttribute("data-custom-action-text");
-      customActionUrl = mailgoElement.getAttribute("data-custom-action-url");
+      customActionText =
+        mailgoElement.getAttribute("data-custom-action-text") ??
+        customActionText;
+      if (customActionText) {
+        customActionTitle = customActionText;
+        customActionText = truncate(
+          customActionText,
+          customActionTextMaxLength
+        );
+      }
+
+      customActionUrl =
+        mailgoElement.getAttribute("data-custom-action-url") ?? customActionUrl;
     }
 
     // if is in config use it
@@ -887,16 +901,10 @@ function mailgoRender(): boolean {
       detailBody.style.display = "none";
     }
 
-    // set the custom action text and visibility
-    customAction.textContent = customActionText
-      ? truncate(customActionText, customActionTextMaxLength)
-      : "";
-    customAction.title = customActionText;
-    if (customActionText) {
-      customAction.style.display = "block";
-    } else {
-      customAction.style.display = "none";
-    }
+    // custom action text, title and visibility
+    customAction.textContent = customActionText;
+    customAction.title = customActionTitle;
+    customAction.style.display = customActionText ? "block" : "none";
 
     // add the actions
     gmail.addEventListener("click", openGmail);
