@@ -1536,7 +1536,11 @@ var mailgoStyle = function mailgoStyle() {
     mailgoCSSElement.appendChild(createTextNode(mailgoCSS));
     document.head.appendChild(mailgoCSSElement);
   }
-}; // mailgo
+};
+
+function mailgoValidateEmail(email) {
+  return validateEmail(email);
+} // mailgo
 
 
 function mailgo(mailgoConfig) {
@@ -1610,6 +1614,7 @@ if (typeof window !== "undefined") {
   window.mailgoPreRender = mailgoPreRender;
   window.mailgoDirectRender = mailgoDirectRender;
   window.mailgoRender = mailgoRender;
+  window.mailgoValidateEmail = mailgoValidateEmail;
   window.mailgo = mailgo;
 }
 
