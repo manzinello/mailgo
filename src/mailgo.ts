@@ -1520,6 +1520,10 @@ const mailgoStyle = (): void => {
   }
 };
 
+function mailgoValidateEmail(email: string): boolean {
+  return validateEmail(email);
+}
+
 // mailgo
 function mailgo(mailgoConfig?: MailgoConfig): boolean {
   try {
@@ -1590,6 +1594,7 @@ if (typeof window !== "undefined") {
   (window as any).mailgoPreRender = mailgoPreRender;
   (window as any).mailgoDirectRender = mailgoDirectRender;
   (window as any).mailgoRender = mailgoRender;
+  (window as any).mailgoValidateEmail = mailgoValidateEmail;
   (window as any).mailgo = mailgo;
 }
 
@@ -1599,7 +1604,7 @@ export {
   mailgoPreRender,
   mailgoDirectRender,
   mailgoRender,
-  validateEmail as mailgoValidateEmail,
+  mailgoValidateEmail,
 };
 
 export default mailgo;
