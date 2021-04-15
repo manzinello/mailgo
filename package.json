@@ -1,6 +1,6 @@
 {
   "name": "mailgo",
-  "version": "0.12.0",
+  "version": "0.12.1",
   "description": "a new concept of mailto and tel links",
   "scripts": {
     "start": "webpack serve",
