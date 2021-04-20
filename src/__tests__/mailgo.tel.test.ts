@@ -2,17 +2,14 @@ import { queryAllByRole } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-import mailgo from "../mailgo";
-
-import setupWindowConfig, {
+import helperSetup, {
   cleanup,
   createTelAnchor,
   getMailgoModal,
 } from "./helpers/mailgoHelper";
 
 function setup(phoneNumber: string): HTMLAnchorElement {
-  setupWindowConfig();
-  mailgo();
+  helperSetup();
 
   const telAnchor = createTelAnchor(phoneNumber);
   return telAnchor;

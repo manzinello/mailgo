@@ -1,6 +1,6 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import { MailgoConfig } from "mailgo";
+import mailgo, { MailgoConfig } from "mailgo";
 
 declare global {
   interface Window {
@@ -8,21 +8,35 @@ declare global {
   }
 }
 
-function setupWindowConfig(customParameter: boolean = true): void {
-  window.mailgoConfig = {
-    dark: true,
-    showFooter: false,
-    actions: {
-      telegram: true,
-      custom: customParameter,
-    },
-    details: {
-      subject: false,
-      body: false,
-      cc: false,
-      bcc: false,
-    },
-  };
+const mailgoConfig: MailgoConfig = {
+  dark: true,
+  showFooter: false,
+  actions: {
+    telegram: true,
+    custom: true,
+  },
+  details: {
+    subject: false,
+    body: false,
+    cc: false,
+    bcc: false,
+  },
+};
+
+function setup(
+  useWindowConfig: boolean = false,
+  enableCustomAction: boolean = true,
+  callMailgo: boolean = true
+): void {
+  const config = getMailgoConfig(enableCustomAction);
+
+  if (useWindowConfig) {
+    window.mailgoConfig = config;
+  }
+
+  if (callMailgo) {
+    mailgo(useWindowConfig ? undefined : config);
+  }
 }
 
 function cleanup(): void {
@@ -65,6 +79,12 @@ function createTelAnchor(phoneNumber: string): HTMLAnchorElement {
   return document.body.appendChild(anchor);
 }
 
+function getMailgoConfig(enableCustomAction: boolean): MailgoConfig {
+  const config: MailgoConfig = JSON.parse(JSON.stringify(mailgoConfig));
+  config.actions.custom = enableCustomAction;
+  return config;
+}
+
 function getMailgoModal(): HTMLElement {
   return screen.queryByRole("dialog");
 }
@@ -83,7 +103,7 @@ function hideMailgo(): void {
   userEvent.keyboard("{esc}");
 }
 
-export default setupWindowConfig;
+export default setup;
 
 export {
   cleanup,
