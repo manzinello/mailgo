@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
-import mailgo, { MailgoConfig } from "mailgo";
+import { MailgoConfig } from "mailgo";
+import mailgo from "../../mailgo";
 
 declare global {
   interface Window {
