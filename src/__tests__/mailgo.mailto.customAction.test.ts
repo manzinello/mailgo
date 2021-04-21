@@ -2,9 +2,7 @@ import { queryAllByRole } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-import mailgo from "../mailgo";
-
-import setupWindowConfig, {
+import helperSetup, {
   cleanup,
   createMailtoAnchor,
   getMailgoModal,
@@ -16,13 +14,11 @@ function setup(
   toAddress: string,
   customActionText: string,
   customActionUrl: string,
-  customActionConfigParameter: boolean = true
+  enableCustomAction: boolean = true
 ): HTMLAnchorElement {
   setupWindowOpenSpy();
 
-  setupWindowConfig(customActionConfigParameter);
-
-  mailgo();
+  helperSetup(false, enableCustomAction);
 
   const mailtoAnchor = createMailtoAnchor(
     toAddress,
@@ -72,7 +68,7 @@ test("when a custom action is clicked in the mailgo modal, should open the custo
   );
 });
 
-test("when the custom action config parameter is disabled and a mailto link with custom action attributes is clicked, should not render the custom action in the mailgo modal", () => {
+test("when custom action is disabled and a mailto link with custom action attributes is clicked, should not render the custom action in the mailgo modal", () => {
   const toAddress = "mark.white@mail.com";
   const customActionText = "Open activity";
   const customActionUrl = `https://dummy-url-to-test-custom-action.com/action?openActivity=true&email=${toAddress}`;

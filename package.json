@@ -7,7 +7,7 @@
     "build-js": "webpack",
     "build-css": "gulp",
     "build": "webpack && gulp",
-    "test": "jest"
+    "test": "jest --no-cache"
   },
   "repository": {
     "type": "git",

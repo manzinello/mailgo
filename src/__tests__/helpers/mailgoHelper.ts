@@ -1,6 +1,7 @@
 import { screen } from "@testing-library/dom";
 import userEvent from "@testing-library/user-event";
 import { MailgoConfig } from "mailgo";
+import mailgo from "../../mailgo";
 
 declare global {
   interface Window {
@@ -8,21 +9,36 @@ declare global {
   }
 }
 
-function setupWindowConfig(customParameter: boolean = true): void {
-  window.mailgoConfig = {
-    dark: true,
-    showFooter: false,
-    actions: {
-      telegram: true,
-      custom: customParameter,
-    },
-    details: {
-      subject: false,
-      body: false,
-      cc: false,
-      bcc: false,
-    },
-  };
+const mailgoConfig: MailgoConfig = {
+  dark: true,
+  showFooter: false,
+  actions: {
+    telegram: true,
+    custom: true,
+  },
+  details: {
+    subject: true,
+    body: true,
+    cc: true,
+    bcc: true,
+  },
+};
+
+function setup(
+  useWindowConfig: boolean = false,
+  enableCustomAction: boolean = true,
+  callMailgo: boolean = true,
+  showSubject: boolean = true
+): void {
+  const config = getMailgoConfig(enableCustomAction, showSubject);
+
+  if (useWindowConfig) {
+    window.mailgoConfig = config;
+  }
+
+  if (callMailgo) {
+    mailgo(useWindowConfig ? undefined : config);
+  }
 }
 
 function cleanup(): void {
@@ -33,10 +49,11 @@ function cleanup(): void {
 function createMailtoAnchor(
   toAddress: string,
   customActionText: string = null,
-  customActionUrl: string = null
+  customActionUrl: string = null,
+  subject: string = null
 ): HTMLAnchorElement {
   const anchor = document.createElement("a");
-  anchor.href = getMailtoUrl(toAddress);
+  anchor.href = getMailtoUrl(toAddress, subject);
   anchor.textContent = toAddress;
 
   if (customActionText) {
@@ -65,12 +82,27 @@ function createTelAnchor(phoneNumber: string): HTMLAnchorElement {
   return document.body.appendChild(anchor);
 }
 
+function getMailgoConfig(
+  enableCustomAction: boolean,
+  showSubject: boolean
+): MailgoConfig {
+  const config: MailgoConfig = JSON.parse(JSON.stringify(mailgoConfig));
+  config.actions.custom = enableCustomAction;
+  config.details.subject = showSubject;
+  return config;
+}
+
 function getMailgoModal(): HTMLElement {
   return screen.queryByRole("dialog");
 }
 
-function getMailtoUrl(toAddress: string): string {
-  const mailtoUrl = `mailto:${toAddress}`;
+function getMailtoUrl(toAddress: string, subject: string = null): string {
+  let mailtoUrl = `mailto:${toAddress}?`;
+
+  if (subject) {
+    mailtoUrl += `subject=${subject}`;
+  }
+
   return mailtoUrl;
 }
 
@@ -83,7 +115,7 @@ function hideMailgo(): void {
   userEvent.keyboard("{esc}");
 }
 
-export default setupWindowConfig;
+export default setup;
 
 export {
   cleanup,

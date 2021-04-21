@@ -3,14 +3,14 @@ import "@testing-library/jest-dom";
 
 import { mailgoDirectRender } from "../mailgo";
 
-import setupWindowConfig, {
+import helperSetup, {
   cleanup,
   getMailgoModal,
   getMailtoUrl,
 } from "./helpers/mailgoHelper";
 
 function setup(toAddress: string): string {
-  setupWindowConfig();
+  helperSetup(true, true, false);
 
   const mailtoUrl = getMailtoUrl(toAddress);
 

@@ -2,17 +2,14 @@ import { queryAllByRole } from "@testing-library/dom";
 import "@testing-library/jest-dom";
 import userEvent from "@testing-library/user-event";
 
-import mailgo from "../mailgo";
-
-import setupWindowConfig, {
+import helperSetup, {
   cleanup,
   createMailtoAnchor,
   getMailgoModal,
 } from "./helpers/mailgoHelper";
 
 function setup(toAddress: string): HTMLAnchorElement {
-  setupWindowConfig();
-  mailgo();
+  helperSetup();
 
   const mailtoAnchor = createMailtoAnchor(toAddress);
   return mailtoAnchor;
