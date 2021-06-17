@@ -160,5 +160,17 @@
     "_as_default": " 標準のアプリ",
     "copy": "リンクをコピー",
     "copied": "コピーしました"
+  },
+  "cs": {
+    "open_in_": "otevřít v ",
+    "cc_": "kopie ",
+    "subject_": "předmět ",
+    "body_": "zpráva ",
+    "call": "volat",
+    "open": "otevřít",
+    "_default": " výchozí",
+    "_as_default": " s výchozím nastavením",
+    "copy": "kopírovat",
+    "copied": "zkopírováno"
   }
 }
