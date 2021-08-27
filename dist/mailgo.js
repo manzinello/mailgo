@@ -103,7 +103,7 @@ module.exports = function (cssWithMappingToString) {
 
 /***/ }),
 
-/***/ 474:
+/***/ 859:
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -1678,7 +1678,7 @@ src_mailgo(mailgoConfig);
 /******/ 	// startup
 /******/ 	// Load entry module and return exports
 /******/ 	// This entry module doesn't tell about it's top-level declarations so it can't be inlined
-/******/ 	var __webpack_exports__ = __webpack_require__(474);
+/******/ 	var __webpack_exports__ = __webpack_require__(859);
 /******/ 	window.mailgo = __webpack_exports__;
 /******/ 	
 /******/ })()
