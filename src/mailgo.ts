@@ -840,7 +840,7 @@ function mailgoDirectRender(directUrl: string): boolean {
       type: MAILGO_MAIL,
       installation: CLASSIC,
     };
-    return mailgoPreRender(directUrl);
+    return mailgoPreRender(directUrl as string);
   } else if (
     validateUrl(directUrl, TEL) ||
     validateUrl(directUrl, CALLTO) ||
@@ -850,7 +850,7 @@ function mailgoDirectRender(directUrl: string): boolean {
       type: MAILGO_TEL,
       installation: CLASSIC,
     };
-    return mailgoPreRender(directUrl);
+    return mailgoPreRender(directUrl as string);
   }
 
   return false;
