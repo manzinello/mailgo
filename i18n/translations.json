@@ -11,12 +11,12 @@
     "telegram": "Telegram",
     "whatsapp": "WhatsApp",
     "skype": "Skype",
-    "call": "call",
-    "open": "open",
-    "_default": " default",
-    "_as_default": " as default",
-    "copy": "copy",
-    "copied": "copied"
+    "call": "Call",
+    "open": "Open",
+    "_default": " Default",
+    "_as_default": " As Default",
+    "copy": "Copy",
+    "copied": "Copied!"
   },
   "it": {
     "open_in_": "apri con ",
