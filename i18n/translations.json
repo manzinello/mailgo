@@ -173,7 +173,8 @@
     "copy": "kopírovat",
     "copied": "zkopírováno"
   },
-  "sq": {"open_in_": "open in ",
+  "sq": {
+    "open_in_": "open in ",
     "cc_": "kopje karboni ",
     "bcc_": "kopje e verbër karboni ",
     "subject_": "subjekt ",
