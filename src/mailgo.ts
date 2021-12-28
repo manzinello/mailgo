@@ -53,8 +53,9 @@ import translations from "../i18n/translations.json";
 // mobile detect
 import { userAgent } from "./mobile-detect";
 
-// mailgo scss, with toString (https://github.com/webpack-contrib/css-loader#tostring)
-const mailgoCSS: string = require("./mailgo.scss").toString();
+// mailgo scss
+// @ts-ignore
+import mailgoStyle from "./mailgo.scss";
 
 // default language
 let lang: string = defaultLang;
@@ -1507,7 +1508,7 @@ const mailgoSetLanguage = (): string => {
   return languageType;
 };
 
-const mailgoStyle = (): void => {
+const mailgoAddStyle = (): void => {
   if (!document.getElementById("mailgo-style")) {
     // mailgo style
     let mailgoCSSElement: HTMLStyleElement = createElement(
@@ -1515,7 +1516,7 @@ const mailgoStyle = (): void => {
     ) as HTMLStyleElement;
     mailgoCSSElement.id = "mailgo-style";
     mailgoCSSElement.type = "text/css";
-    mailgoCSSElement.appendChild(createTextNode(mailgoCSS));
+    mailgoCSSElement.appendChild(createTextNode(mailgoStyle));
     document.head.appendChild(mailgoCSSElement);
   }
 };
@@ -1558,7 +1559,7 @@ function mailgo(mailgoConfig?: MailgoConfig): boolean {
       // if load css enabled load it!
       if (loadCSSConfig) {
         // add the style for mailgo
-        mailgoStyle();
+        mailgoAddStyle();
       }
 
       // if is set an initEvent add the listener

@@ -143,6 +143,10 @@ module.exports = function (i) {
 
         var result = __webpack_require__(91);
 
+        if (result && result.__esModule) {
+            result = result.default;
+        }
+
         if (typeof result === "string") {
             module.exports = result;
         } else {
@@ -260,6 +264,9 @@ var userAgent = function userAgent() {
 
   return "desktop";
 };
+// EXTERNAL MODULE: ../src/mailgo.scss
+var mailgo = __webpack_require__(801);
+var mailgo_default = /*#__PURE__*/__webpack_require__.n(mailgo);
 ;// CONCATENATED MODULE: ../src/mailgo.ts
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -277,10 +284,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
  // mobile detect
 
- // mailgo scss, with toString (https://github.com/webpack-contrib/css-loader#tostring)
+ // mailgo scss
+// @ts-ignore
 
-var mailgoCSS = __webpack_require__(801).toString(); // default language
-
+ // default language
 
 var lang = defaultLang; // default strings
 
@@ -932,7 +939,7 @@ function mailgoPreRender(mailgoElementOrUrl) {
 
 function mailgoDirectRender(directUrl) {
   // start mailgo
-  mailgo();
+  mailgo_mailgo();
 
   if (validateUrl(directUrl, MAILTO) || validateUrl(directUrl, MAILGO)) {
     activeMailgoType = {
@@ -1576,13 +1583,13 @@ var mailgoSetLanguage = function mailgoSetLanguage() {
   return languageType;
 };
 
-var mailgoStyle = function mailgoStyle() {
+var mailgoAddStyle = function mailgoAddStyle() {
   if (!document.getElementById("mailgo-style")) {
     // mailgo style
     var mailgoCSSElement = createElement("style");
     mailgoCSSElement.id = "mailgo-style";
     mailgoCSSElement.type = "text/css";
-    mailgoCSSElement.appendChild(createTextNode(mailgoCSS));
+    mailgoCSSElement.appendChild(createTextNode((mailgo_default())));
     document.head.appendChild(mailgoCSSElement);
   }
 };
@@ -1592,7 +1599,7 @@ function mailgoValidateEmail(email) {
 } // mailgo
 
 
-function mailgo(mailgoConfig) {
+function mailgo_mailgo(mailgoConfig) {
   try {
     var _window;
 
@@ -1627,7 +1634,7 @@ function mailgo(mailgoConfig) {
 
       if (loadCSSConfig) {
         // add the style for mailgo
-        mailgoStyle();
+        mailgoAddStyle();
       } // if is set an initEvent add the listener
 
 
@@ -1664,11 +1671,11 @@ if (typeof window !== "undefined") {
   window.mailgoDirectRender = mailgoDirectRender;
   window.mailgoRender = mailgoRender;
   window.mailgoValidateEmail = mailgoValidateEmail;
-  window.mailgo = mailgo;
+  window.mailgo = mailgo_mailgo;
 }
 
 
-/* harmony default export */ var src_mailgo = (mailgo);
+/* harmony default export */ var src_mailgo = (mailgo_mailgo);
 ;// CONCATENATED MODULE: ./mailgo.dist.ts
 // webpack > dist/mailgo.min.js
 
@@ -1711,6 +1718,35 @@ src_mailgo(mailgoConfig);
 /******/ 	}
 /******/ 	
 /************************************************************************/
+/******/ 	/* webpack/runtime/compat get default export */
+/******/ 	!function() {
+/******/ 		// getDefaultExport function for compatibility with non-harmony modules
+/******/ 		__webpack_require__.n = function(module) {
+/******/ 			var getter = module && module.__esModule ?
+/******/ 				function() { return module['default']; } :
+/******/ 				function() { return module; };
+/******/ 			__webpack_require__.d(getter, { a: getter });
+/******/ 			return getter;
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/define property getters */
+/******/ 	!function() {
+/******/ 		// define getter functions for harmony exports
+/******/ 		__webpack_require__.d = function(exports, definition) {
+/******/ 			for(var key in definition) {
+/******/ 				if(__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
+/******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
+/******/ 				}
+/******/ 			}
+/******/ 		};
+/******/ 	}();
+/******/ 	
+/******/ 	/* webpack/runtime/hasOwnProperty shorthand */
+/******/ 	!function() {
+/******/ 		__webpack_require__.o = function(obj, prop) { return Object.prototype.hasOwnProperty.call(obj, prop); }
+/******/ 	}();
+/******/ 	
 /******/ 	/* webpack/runtime/make namespace object */
 /******/ 	!function() {
 /******/ 		// define __esModule on exports
