@@ -172,5 +172,23 @@
     "_as_default": " s výchozím nastavením",
     "copy": "kopírovat",
     "copied": "zkopírováno"
+  },
+  "sq": {"open_in_": "open in ",
+    "cc_": "kopje karboni ",
+    "bcc_": "kopje e verbër karboni ",
+    "subject_": "subjekt ",
+    "body_": "trupi ",
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "yahoo": "Yahoo Mail",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "skype": "Skype",
+    "call": "telefononi",
+    "open": "hapur",
+    "_default": " mospagim",
+    "_as_default": " si mospagim",
+    "copy": "kopje",
+    "copied": "e kopjuar"
   }
 }
