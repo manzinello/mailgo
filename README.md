@@ -5,17 +5,13 @@
 Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities!
 Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype for phone numbers.
 
-![mailgo screencast](https://github.com/manzinello/mailgo/raw/master/assets/video/mailgo.gif)
+![mailgo](https://raw.githubusercontent.com/manzinello/mailgo/master/assets/img/screenshot-1.png)
 
 ## also available for
 
 ### Wordpress
 
 <https://wordpress.org/plugins/mailgo/>
-
-### Magento 2
-
-<https://marketplace.magento.com/manzinello-mailgo.html>
 
 ### Gatsby
 
