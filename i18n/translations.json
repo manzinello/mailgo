@@ -191,5 +191,24 @@
     "_as_default": " si mospagim",
     "copy": "kopje",
     "copied": "e kopjuar"
+  },
+   "si": {
+    "open_in_": "odpri v ",
+    "cc_": "kopija ",
+    "bcc_": "skrita kopija ",
+    "subject_": "zadeva ",
+    "body_": "sporočilo ",
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "yahoo": "Yahoo Mail",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "skype": "Skype",
+    "call": "pokliči",
+    "open": "odpri",
+    "_default": " privzeto",
+    "_as_default": " kot privzeto",
+    "copy": "kopiraj",
+    "copied": "kopirano"
   }
 }
