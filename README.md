@@ -9,21 +9,13 @@ Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype f
 
 ## also available for
 
-### Wordpress
-
-<https://wordpress.org/plugins/mailgo/>
-
 ### Gatsby
 
 <https://www.gatsbyjs.com/plugins/gatsby-plugin-mailgo/>
 
-### Chrome (browser extension)
+### Wordpress
 
-<https://chrome.google.com/webstore/detail/mailgo/kljnooagpdphdgjnmjhenkganebccejm>
-
-### Firefox (browser extension)
-
-<https://addons.mozilla.org/it/firefox/addon/mailgo/>
+<https://wordpress.org/plugins/mailgo/>
 
 ## thanks
 
