@@ -1103,7 +1103,7 @@ const openDefault = (event?: Event): void => {
     window.location.href = href;
   } else if (installation === LESS_SPAM) {
     // if the installation is less-spam use the built less-spam href
-    window.location.href = lessSpamHref;
+    window.location.href = encodeURI(lessSpamHref);
   }
 
   hideMailgo();
