@@ -24,7 +24,6 @@ Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype f
 </a>
 
 <br/>
-<br/>
 
 <a target="_blank" href="https://www.netlify.com">
 <img src="https://mailgo.dev/img/netlify.svg" />
