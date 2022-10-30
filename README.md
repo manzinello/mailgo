@@ -1,5 +1,7 @@
 # 💌 mailgo
 
+Unfortunately mailgo is not actively maintained anymore. I'm sorry for this but I personally don't have time to maintain it... I hope someone will take over the project.
+
 ## a new concept of `mailto` and `tel` links <https://mailgo.dev>
 
 Transform all your `mailto` and `tel` link in a beautiful modal with more possibilities!
