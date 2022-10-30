@@ -18,7 +18,7 @@ function setup(toAddress: string): string {
 }
 
 test("with a valid email address, should render the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const mailtoUrl = setup(toAddress);
 
   const renderResult = mailgoDirectRender(mailtoUrl);

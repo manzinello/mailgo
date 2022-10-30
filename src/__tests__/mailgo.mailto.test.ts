@@ -16,7 +16,7 @@ function setup(toAddress: string): HTMLAnchorElement {
 }
 
 test("when a mailto link with a valid email address is clicked, should render the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const mailtoAnchor = setup(toAddress);
 
   userEvent.click(mailtoAnchor);

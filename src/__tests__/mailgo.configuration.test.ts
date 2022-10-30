@@ -20,7 +20,7 @@ function setup(
 }
 
 test("should support configuration via mailgo function", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const subject = "My email subject";
   const mailtoAnchor = setup(false, toAddress, false, subject);
 
@@ -32,7 +32,7 @@ test("should support configuration via mailgo function", () => {
 });
 
 test("should support configuration via window object property", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const subject = "My email subject";
   const mailtoAnchor = setup(true, toAddress, false, subject);
 

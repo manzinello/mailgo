@@ -34,7 +34,7 @@ function setupWindowOpenSpy(): void {
 }
 
 test("when a mailto link with custom action attributes is clicked, should render the custom action in the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionText = "Open activity";
   const customActionUrl = `https://dummy-url-to-test-custom-action.com/action?openActivity=true&email=${toAddress}`;
   const mailtoAnchor = setup(toAddress, customActionText, customActionUrl);
@@ -49,7 +49,7 @@ test("when a mailto link with custom action attributes is clicked, should render
 });
 
 test("when a custom action is clicked in the mailgo modal, should open the custom action url", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionText = "Open activity";
   const customActionUrl = `https://dummy-url-to-test-custom-action.com/action?openActivity=true&email=${toAddress}&param1=ABC abc 123`;
   const customActionUrlEncoded = encodeURI(customActionUrl);
@@ -69,7 +69,7 @@ test("when a custom action is clicked in the mailgo modal, should open the custo
 });
 
 test("when custom action is disabled and a mailto link with custom action attributes is clicked, should not render the custom action in the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionText = "Open activity";
   const customActionUrl = `https://dummy-url-to-test-custom-action.com/action?openActivity=true&email=${toAddress}`;
   const mailtoAnchor = setup(
@@ -91,7 +91,7 @@ test("when custom action is disabled and a mailto link with custom action attrib
 });
 
 test("when a mailto link with custom action url attribute but without custom action text attribute is clicked, should not render the custom action in the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionUrl = `https://dummy-url-to-test-custom-action.com/action?openActivity=true&email=${toAddress}`;
   const mailtoAnchor = setup(toAddress, undefined, customActionUrl);
 
@@ -104,7 +104,7 @@ test("when a mailto link with custom action url attribute but without custom act
 });
 
 test("when a mailto link with custom action text attribute but without custom action url attribute is clicked, should render the custom action in the mailgo modal", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionText = "Open activity";
   const mailtoAnchor = setup(toAddress, customActionText, undefined);
 
@@ -118,7 +118,7 @@ test("when a mailto link with custom action text attribute but without custom ac
 });
 
 test("when a mailto link with custom action text attribute but without custom action url attribute is clicked, clicking the rendered custom action in the mailgo modal does not open any url", () => {
-  const toAddress = "mark.white@mail.com";
+  const toAddress = "info@mailgo.dev";
   const customActionText = "Open activity";
   const mailtoAnchor = setup(toAddress, customActionText, undefined);
   userEvent.click(mailtoAnchor);
