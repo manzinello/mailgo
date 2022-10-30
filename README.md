@@ -1,6 +1,6 @@
 # 💌 mailgo
 
-Unfortunately mailgo is not actively maintained anymore. I'm sorry for this but I personally don't have time to maintain it... I hope someone will take over the project.
+_Unfortunately mailgo is not actively maintained anymore. I'm sorry for this but I personally don't have time to maintain it... I hope someone will take over the project._
 
 ## a new concept of `mailto` and `tel` links <https://mailgo.dev>
 
@@ -23,10 +23,4 @@ Open directly Gmail, Outlook and Yahoo for emails; Telegram, WhatsApp or Skype f
 
 <a target="_blank" href="https://www.browserstack.com">
 <img src="https://mailgo.dev/img/browserstack.png" />
-</a>
-
-<br/>
-
-<a target="_blank" href="https://www.netlify.com">
-<img src="https://mailgo.dev/img/netlify.svg" />
 </a>
