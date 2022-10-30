@@ -12,8 +12,8 @@ test("info@mailgo.dev should pass validation", () => {
   expect(validationResult).toEqual(true);
 });
 
-test("mark.white@mail should not pass validation", () => {
-  const validationResult = mailgoValidateEmail("mark.white@mail");
+test("info@mailgo should not pass validation", () => {
+  const validationResult = mailgoValidateEmail("info@mailgo");
 
   expect(validationResult).toEqual(false);
 });

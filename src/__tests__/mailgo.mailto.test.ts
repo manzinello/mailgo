@@ -34,7 +34,7 @@ test("when a mailto link with a valid email address is clicked, should render th
 });
 
 test("when a mailto link with an invalid email address is clicked, should not render the mailgo modal", () => {
-  const toAddress = "mark.white@mail";
+  const toAddress = "info@mailgo";
   const mailtoAnchor = setup(toAddress);
 
   userEvent.click(mailtoAnchor);

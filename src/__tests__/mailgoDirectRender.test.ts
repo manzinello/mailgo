@@ -38,7 +38,7 @@ test("with a valid email address, should render the mailgo modal", () => {
 });
 
 test("with an invalid email address, should not render the mailgo modal", () => {
-  const toAddress = "mark.white@mail";
+  const toAddress = "info@mailgo";
   const mailtoUrl = setup(toAddress);
 
   const renderResult = mailgoDirectRender(mailtoUrl);
