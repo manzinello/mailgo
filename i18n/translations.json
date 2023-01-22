@@ -210,5 +210,24 @@
     "_as_default": " kot privzeto",
     "copy": "kopiraj",
     "copied": "kopirano"
-  }
+  },
+  "pl": {
+    "open_in_": "otwórz w ",
+    "cc_": "cc ",
+    "bcc_": "bcc ",
+    "subject_": "Temat ",
+    "body_": "Treść ",
+    "gmail": "Gmail",
+    "outlook": "Outlook",
+    "yahoo": "Yahoo Mail",
+    "telegram": "Telegram",
+    "whatsapp": "WhatsApp",
+    "skype": "Skype",
+    "call": "telefon",
+    "open": "otwórz",
+    "_default": " domyślna",
+    "_as_default": " jako domyślna",
+    "copy": "kopiuj",
+    "copied": "skopiowane"
+  },
 }
